@@ -5,8 +5,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    roleDialog:false,
   },
   mutations: {
+    IncrementRole(state){
+      state.roleDialog = !state.roleDialog;
+    }
   },
   actions: {
   },

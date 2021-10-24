@@ -1,0 +1,219 @@
+{
+  "MyMenuDashboard": [
+    {
+      "icon": "fas fa-home-lg-alt",
+      "text": "Dashboard",
+      "router": "/dashboard"
+    },
+    { "icon": "fab fa-product-hunt", "text": "Products", "router": "/product" },
+    { "icon": "fas fa-gift", "text": "Data Package" },
+    { "icon": "far fa-newspaper", "text": "News and Activities" }
+  ],
+
+  "Usermenu": {
+    "title": "Manage Users",
+    "subtitle": [
+      { "icon": "fas fa-users", "text": "Users", "router": "/users" },
+      { "icon": "fas fa-users-cog", "text": "Roles", "router": "/rules" },
+      { "icon": "fas fa-users-class", "text": "Permission", "router": "/permission" }
+    ]
+  },
+
+  "Navbar": {
+    "selectLanguage": "Languages",
+    "setting": "Setting",
+    "logout": "Logout"
+  },
+
+  "Login": {
+    "header": "Welcome to sign in",
+    "form": {
+      "email": "Email",
+      "pass": "Password",
+      "button": "Sign in",
+      "forget pass": "I forget password"
+    }
+  },
+
+  "Product": {
+    "title": "Products Data",
+    "button": "Create",
+    "txtsearch": "Search product",
+    "loadingtext": "Loading..",
+    "table": {
+      "headers": [
+        { "text": "No", "value": "No", "sortable": false },
+        { "text": "Product Name", "value": "ProductName", "sortable": true },
+        { "text": "Category", "value": "CateProduct", "sortable": true },
+        { "text": "Decription", "value": "decription", "sortable": false },
+        { "text": "Pictures", "value": "Picture", "sortable": false },
+        { "text": "Actions", "value": "Actions", "sortable": false }
+      ],
+      "dontdata": "Dont have data",
+      "options": [
+        { "edit": "Edit", "iconEdit": "fas fa-edit" },
+        { "delete": "Delete", "delicon": "fas fa-trash-alt" }
+      ]
+    },
+    "Create": {
+      "header": "Add products",
+      "lang": {
+        "lao": "Lao",
+        "Eng": "English"
+      },
+      "form": {
+        "category": "Categories",
+        "productname": "Product Name",
+        "decription": "Decription",
+        "picture": "Upload Image",
+        "button": {
+          "save": "Save",
+          "cancel": "Cancel"
+        }
+      }
+    },
+    "Edit": {
+      "header": "Edit Products"
+    }
+  },
+
+  "Users": {
+    "title": "Users Data",
+    "button": "Create",
+    "txtsearch": "Search user",
+    "loadingtext": "Loading..",
+    "table": {
+      "headers": [
+        { "text": "No", "value": "No", "sortable": false },
+        { "text": "User Name", "value": "Username", "sortable": true },
+        { "text": "Password", "value": "Password", "sortable": true },
+        { "text": "Rule", "value": "Rule", "sortable": false },
+        { "text": "Status", "value": "Status", "sortable": false },
+        { "text": "Actions", "value": "Actions", "sortable": false }
+      ],
+      "dontdata": "Dont have data",
+      "options": [
+        { "edit": "Edit", "iconEdit": "fas fa-edit" },
+        { "delete": "Delete", "delicon": "fas fa-trash-alt" }
+      ]
+    },
+    "Create": {
+      "header": "Add Users",
+      "lang": {
+        "lao": "Lao",
+        "Eng": "English"
+      },
+      "form": {
+        "username": "Username",
+        "email": "Email",
+        "phone": "Phone number",
+        "pass": "Password",
+        "confirm pass": "Confirm Password",
+        "status": "Status",
+        "button": {
+          "save": "Save",
+          "cancel": "Cancel"
+        }
+      }
+    },
+    "Edit": {
+      "header": "Edit Products"
+    }
+  },
+
+  "Role": {
+    "title": "User Roles",
+    "button": "Create",
+    "txtsearch": "Search data",
+    "loadingtext": "Loading..",
+    "table": {
+      "headers": [
+        { "text": "No", "value": "No", "sortable": false },
+        { "text": "User Name", "value": "Username", "sortable": true },
+        { "text": "Password", "value": "Password", "sortable": true },
+        { "text": "Rule", "value": "Rule", "sortable": false },
+        { "text": "Status", "value": "Status", "sortable": false },
+        { "text": "Actions", "value": "Actions", "sortable": false }
+      ],
+      "dontdata": "Dont have data",
+      "options": [
+        { "edit": "Edit", "iconEdit": "fas fa-edit" },
+        { "delete": "Delete", "delicon": "fas fa-trash-alt" }
+      ]
+    },
+    "Create": {
+      "header": "Add User Role",
+      "lang": {
+        "lao": "Lao",
+        "Eng": "English"
+      },
+      "form": {
+        "username": "Username",
+        "email": "Email",
+        "phone": "Phone number",
+        "pass": "Password",
+        "confirm pass": "Confirm Password",
+        "status": "Status",
+        "button": {
+          "save": "Save",
+          "cancel": "Cancel"
+        }
+      }
+    },
+    "Edit": {
+      "header": "Edit Products"
+    }
+  },
+
+  "Permission": {
+    "title": "User Permission",
+    "button": "Create",
+    "txtsearch": "Search data",
+    "loadingtext": "Loading..",
+    "table": {
+      "headers": [
+        { "text": "No", "value": "No", "sortable": false },
+        { "text": "User Name", "value": "Username", "sortable": true },
+        { "text": "Password", "value": "Password", "sortable": true },
+        { "text": "Rule", "value": "Rule", "sortable": false },
+        { "text": "Status", "value": "Status", "sortable": false },
+        { "text": "Actions", "value": "Actions", "sortable": false }
+      ],
+      "dontdata": "Dont have data",
+      "options": [
+        { "edit": "Edit", "iconEdit": "fas fa-edit" },
+        { "delete": "Delete", "delicon": "fas fa-trash-alt" }
+      ]
+    },
+    "Create": {
+      "header": "Add User Role",
+      "lang": {
+        "lao": "Lao",
+        "Eng": "English"
+      },
+      "form": {
+        "username": "Username",
+        "email": "Email",
+        "phone": "Phone number",
+        "pass": "Password",
+        "confirm pass": "Confirm Password",
+        "status": "Status",
+        "button": {
+          "save": "Save",
+          "cancel": "Cancel"
+        }
+      }
+    },
+    "Edit": {
+      "header": "Edit Products"
+    }
+  },
+
+  "Validate": {
+    "required": "Please!! input data",
+    "email": "E-mail must be valid",
+    "password": "Password must contain at least lowercase letter, one number, a special character and one uppercase letter",
+    "maxmessage": " The characters must be lower",
+    "minmessage": "The characters must be over"
+  }
+}

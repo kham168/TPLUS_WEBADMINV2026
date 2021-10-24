@@ -1,0 +1,218 @@
+{
+  "MyMenuDashboard": [
+    {
+      "icon": "fas fa-home-lg-alt",
+      "text": "Dashboard",
+      "router": "/dashboard"
+    },
+    {
+      "icon": "fab fa-product-hunt",
+      "text": "ຂໍ້ມູນຜະລິດຕະພັນ",
+      "router": "/product"
+    },
+    { "icon": "fas fa-gift", "text": "ຂໍ້ມູນແພັກເກັດ" },
+    { "icon": "far fa-newspaper", "text": "ຂ່າວສານ ແລະ ກິດຈະກຳ" }
+  ],
+  "Usermenu":{
+    "title":"ຈັດການຂໍ້ມູນຜູ້ໃຊ້",
+    "subtitle":[
+      { "icon": "fas fa-users", "text": "ຂໍ້ມູນຜູ້ໃຊ້","router":"/users"},
+    { "icon": "fas fa-users-cog", "text": "ບົດບາດ","router":"/roles"},
+    { "icon": "fas fa-users-class", "text": "ສິດທິການເຂົ້າໃຊ້","router":"/permission"}
+    ]
+  },
+
+  "Navbar": {
+    "selectLanguage": "ເລືອກພາສາ",
+    "setting": "ຕັ້ງຄ່າ",
+    "logout": "ອອກຈາກລະບົບ"
+  },
+  "Login": {
+    "header": "ຍິນດີຕ້ອນຮັບ ເຂົ້າສູ່ລະບົບ",
+    "form": {
+      "email": "ອີເມວ",
+      "pass": "ລະຫັດຜ່ານ",
+      "button": "ເຂົ້າສູ່ລະບົບ",
+      "forget pass": "ຂ້ອຍລືມລະຫັດຜ່ານ"
+    }
+  },
+  "Product": {
+    "title": "ຂໍ້ມູນຜະລິດຕະພັນ",
+    "button": "ເພີ່ມ",
+    "txtsearch": "ຄົ້ນຫາຜະລິດຕະພັນ",
+    "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ",
+    "table": {
+      "headers": [
+        { "text": "ລຳດັບ", "value": "No", "sortable": false },
+        { "text": "ຊື່ສິນຄ້າ", "value": "ProductName", "sortable": true },
+        { "text": "ປະເພດສິນຄ້າ", "value": "CateProduct", "sortable": true },
+        { "text": "ລາຍລະອຽດ", "value": "decription", "sortable": false },
+        { "text": "ຮູບພາບ", "value": "Picture", "sortable": false },
+        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
+      ],
+      "dontdata":"ບໍ່ມີຂໍ້ມູນ",
+      "options":{
+        "edit":"ແກ້ໄຂ","iconEdit":"fas fa-edit",
+        "delete":"ລົບຂໍ້ມູນ","delicon":"fas fa-trash-alt"
+      }
+    },
+    "Create":{
+      "header":"ເພີ່ມຂໍ້ມູນສິນຄ້າ",
+      "lang":{
+        "lao":"ລາວ",
+        "Eng":"ອັງກິດ"
+      },
+      "form":{
+        "category":"ປະເພດສິນຄ້າ",
+        "productname":"ຊື່ສິນຄ້າ",
+        "decription":"ລາຍລະອຽດ",
+        "picture":"ອັບໂຫຼດຮູບພາບ",
+        "button":{
+          "save":"ບັນທຶກ",
+          "cancel":"ຍົກເລີກ"
+        }
+      }
+    },
+    "Edit":{
+      "header":"ແກ້ໄຂຂໍ້ມູນສິນຄ້າ"
+    }
+    
+  },
+
+  "Users": {
+    "title": "ຂໍ້ມູນຜູ້ໃຊ້ລະບົບ",
+    "button": "ເພີ່ມ",
+    "txtsearch": "ຄົ້ນຫາຂໍ້ມູນຜູໃຊ້",
+    "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ",
+    "table": {
+      "headers": [
+        { "text": "ລຳດັບ", "value": "No", "sortable": false },
+        { "text": "ຊື່ຜູ້ໃຊ້", "value": "Username", "sortable": true },
+        { "text": "ລະຫັດຜ່ານ", "value": "Password", "sortable": true },
+        { "text": "ບົດບາດ", "value": "Rule", "sortable": false },
+        { "text": "ສະຖານະ", "value": "Starus", "sortable": false },
+        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
+      ],
+      "dontdata":"ບໍ່ມີຂໍ້ມູນ",
+      "options":{
+        "edit":"ແກ້ໄຂ","iconEdit":"fas fa-edit",
+        "delete":"ລົບຂໍ້ມູນ","delicon":"fas fa-trash-alt"
+      }
+    },
+    "Create":{
+      "header":"ເພີ່ມຂໍ້ມູນຜູ້ໃຊ້",
+      "lang":{
+        "lao":"ລາວ",
+        "Eng":"ອັງກິດ"
+      },
+      "form":{
+        "username":"ຊື່ຜູ້ໃຊ້",
+        "email":"ອີເມວ",
+        "phone":"ເບີໂທ",
+        "pass":"ລະຫັດຜ່ານ",
+        "confirm pass":"ຢືນຢັນລະຫັດຜ່ານ",
+        "status":"ສະຖານະ",
+        "button":{
+          "save":"ບັນທຶກ",
+          "cancel":"ຍົກເລີກ"
+        }
+      }
+    },
+    "Edit":{
+      "header":"ແກ້ໄຂຂໍ້ມູນສິນຄ້າ"
+    }
+    
+  },
+
+  "Role": {
+    "title": "ຂໍ້ມູນບົດບາດຜູ້ໃຊ້",
+    "button": "ເພີ່ມ",
+    "txtsearch": "ຄົ້ນຫາຂໍ້ມູນ",
+    "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ",
+    "table": {
+      "headers": [
+        { "text": "ລຳດັບ", "value": "No", "sortable": false },
+        { "text": "ຊື່ຜູ້ໃຊ້", "value": "Username", "sortable": true },
+        { "text": "ລະຫັດຜ່ານ", "value": "Password", "sortable": true },
+        { "text": "ບົດບາດ", "value": "Rule", "sortable": false },
+        { "text": "ສະຖານະ", "value": "Starus", "sortable": false },
+        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
+      ],
+      "dontdata":"ບໍ່ມີຂໍ້ມູນ",
+      "options":{
+        "edit":"ແກ້ໄຂ","iconEdit":"fas fa-edit",
+        "delete":"ລົບຂໍ້ມູນ","delicon":"fas fa-trash-alt"
+      }
+    },
+    "Create":{
+      "header":"ເພີ່ມບົດບາດຜູ້ໃຊ້",
+      "lang":{
+        "lao":"ລາວ",
+        "Eng":"ອັງກິດ"
+      },
+      "form":{
+        "userrole":"ຊື່ບົດບາດ",
+        "role":"ບົດບາດ",
+        "permission":"ສິດທິການເຂົ້າໃຊ້",
+        "button":{
+          "save":"ບັນທຶກ",
+          "cancel":"ຍົກເລີກ"
+        }
+      }
+    },
+    "Edit":{
+      "header":"ແກ້ໄຂຂໍ້ມູນສິນຄ້າ"
+    }
+    
+  },
+
+  "Permission": {
+    "title": "ຂໍ້ມູນສິດທິການເຂົ້າໃຊ້",
+    "button": "ເພີ່ມ",
+    "txtsearch": "ຄົ້ນຫາຂໍ້ມູນ",
+    "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ",
+    "table": {
+      "headers": [
+        { "text": "ລຳດັບ", "value": "No", "sortable": false },
+        { "text": "ຊື່ຜູ້ໃຊ້", "value": "Username", "sortable": true },
+        { "text": "ລະຫັດຜ່ານ", "value": "Password", "sortable": true },
+        { "text": "ບົດບາດ", "value": "Rule", "sortable": false },
+        { "text": "ສະຖານະ", "value": "Starus", "sortable": false },
+        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
+      ],
+      "dontdata":"ບໍ່ມີຂໍ້ມູນ",
+      "options":{
+        "edit":"ແກ້ໄຂ","iconEdit":"fas fa-edit",
+        "delete":"ລົບຂໍ້ມູນ","delicon":"fas fa-trash-alt"
+      }
+    },
+    "Create":{
+      "header":"ເພີ່ມບົດບາດຜູ້ໃຊ້",
+      "lang":{
+        "lao":"ລາວ",
+        "Eng":"ອັງກິດ"
+      },
+      "form":{
+        "userrole":"ຊື່ບົດບາດ",
+        "role":"ບົດບາດ",
+        "permission":"ສິດທິການເຂົ້າໃຊ້",
+        "button":{
+          "save":"ບັນທຶກ",
+          "cancel":"ຍົກເລີກ"
+        }
+      }
+    },
+    "Edit":{
+      "header":"ແກ້ໄຂຂໍ້ມູນສິນຄ້າ"
+    }
+    
+  },
+
+  "Validate":{
+    "required":"ກະລຸນາປ້ອນຂໍ້ມູນ",
+    "email":"ອີເມວຖືກຕ້ອງ",
+    "password":"ລະຫັດຜ່ານຕ້ອງມີຕົວພິມນ້ອຍຢ່າງໜ້ອຍໜຶ່ງຕົວເລກ, ຕົວອັກສອນພິເສດ ແລະ ຕົວອັກສອນຕົວພິມໃຫຍ່ໜຶ່ງຕົວ",
+    "maxmessage":"ປ້ອນຕົວສອນໜ້ອຍກວ່າ",
+    "minmessage":"ປ້ອນຕົວສອນຫຼາຍກວ່າ"
+  }
+}
