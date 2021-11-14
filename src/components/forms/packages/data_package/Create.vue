@@ -1,16 +1,16 @@
 <template>
   <div id="Create">
-    <section class="product-create">
-      <div class="product-form">
+    <section class="data_package-create">
+      <div class="data_package-form">
         <div class="form-title">
-          <h1>{{ $t("Product.Create.header") }}</h1>
+          <h1>{{ $t("DataPackage.Create.header") }}</h1>
         </div>
         <div class="lang-select-input">
           <v-tabs v-model="tab" color="primary" slider-color="primary">
             <v-tabs-slider color="primary"></v-tabs-slider>
             <v-tab
               :href="lang.key"
-              v-for="lang in $t('Product.Create.lang')"
+              v-for="lang in $t('DataPackage.Create.lang')"
               :key="lang.key"
             >
               {{ lang }}
@@ -19,7 +19,7 @@
           <div class="tab-content">
             <v-tabs-items v-model="tab">
               <v-tab-item
-                v-for="i in $t('Product.Create.lang')"
+                v-for="i in $t('DataPackage.Create.lang')"
                 :key="i"
                 :value="i.key"
               >
@@ -30,29 +30,31 @@
                         v-show="tab == 0"
                         :items="items"
                         v-model="value"
-                        :label="$t('Product.Create.form.category')"
+                        :label="$t('DataPackage.Create.form.category')"
                         :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
                         outlined
                         required
                       ></v-select>
                       <v-text-field
                         :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
-                        :label="$t('Product.Create.form.productname')"
+                        :label="$t('DataPackage.Create.form.data_package_name')"
                         outlined
                         required
                       ></v-text-field>
                       <v-textarea
                         outlined
-                        :label="$t('Product.Create.form.description')"
+                        :label="$t('DataPackage.Create.form.description')"
                         
                       ></v-textarea>
-                      <div class="upload-image">
+                    
+
+                    <div class="upload-image">
                         <div class="image">
                           <v-img :src="previewImage" alt="cover"></v-img>
                         </div>
                         <div class="content" v-show="previewImage == null">
                           <i class="fas fa-plus-circle"></i>
-                          <h3>{{ $t("Product.Create.form.picture") }}</h3>
+                          <h3>{{ $t("DataPackage.Create.form.picture") }}</h3>
                         </div>
                         <input
                           type="file"
@@ -65,10 +67,10 @@
                     </v-form>
                     <div class="form-actions">
                       <v-btn plain @click="reset" class="mx-5">{{
-                        $t("Product.Create.form.button.cancel")
+                        $t("DataPackage.Create.form.button.cancel")
                       }}</v-btn>
                       <v-btn :disabled="!valid" @click="submitForm" class="btn btn-create">
-                        {{ $t("Product.Create.form.button.save") }}</v-btn
+                        {{ $t("DataPackage.Create.form.button.save") }}</v-btn
                       >
                     </div>
                   </div>
@@ -121,7 +123,7 @@ export default {
 <style lang="scss" scoped>
 
 
-  .product-form {
+  .data_package-form {
     .form-title {
       width: 100%;
       padding: 0.5rem 0;

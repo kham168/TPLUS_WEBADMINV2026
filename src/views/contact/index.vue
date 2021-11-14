@@ -1,25 +1,25 @@
 <template>
-  <div id="Product">
-    <section class="product--section">
-      <div class="header product-header">
-        <h1>{{ $t("Product.title") }}</h1>
-        <v-btn @click="CreateProduct" class="btn btn-create">
-          <v-icon>fal fa-plus-circle</v-icon>{{ $t("Product.button") }}</v-btn
+   <div id="Contact">
+    <section class="contact-section">
+      <div class="header contact-header">
+        <h1>{{ $t("Contact.title") }}</h1>
+        <v-btn @click="CreateContact" class="btn btn-create">
+          <v-icon>fal fa-plus-circle</v-icon>{{ $t("Contact.button") }}</v-btn
         >
       </div>
-      <div class="product-content">
+      <div class="contact-content">
         <v-data-table
-          :headers="$t('Product.table.headers')"
-          :items="myProducts"
+          :headers="$t('Contact.table.headers')"
+          :items="myContact"
           :search="searchItem"
           :loading="loading"
-          :loading-text="$t('Product.loadingtext')"
-          v-if="myProducts != ''"
+          :loading-text="$t('Contact.loadingtext')"
+          v-if="myContact != ''"
         >
           <template v-slot:top>
             <v-toolbar flat>
               <v-text-field
-                :label="$t('Product.txtsearch')"
+                :label="$t('Contact.txtsearch')"
                 filled
                 rounded
                 dense
@@ -35,10 +35,11 @@
           <template v-slot:item="{ item, index }">
             <tr class="table-content">
               <td>{{ index + 1 }}</td>
-              <td>{{ item.ProductName }}</td>
-              <td>{{ item.CateProduct }}</td>
+              <td>{{ item.ContactName }}</td>
+          <td>{{ item.Email }}</td>
+          <td>{{ item.Tile }}</td>
               <td>{{ item.description }}</td>
-              <td>{{ item.Picture }}</td>
+             
               <td>
                <v-menu offset-y>
                  <template v-slot:activator="{on,attrs}">
@@ -47,19 +48,19 @@
                 </v-btn>
                  </template>
                  <v-list>
-                   <v-list-item link @click="$router.push({name:'product.edit'}).catch(()=>{})">
+                   <v-list-item link @click="$router.push({name:'contact.edit'}).catch(()=>{})">
                      <v-list-item-icon>
-                       <v-icon class="mr-3" small>{{$t('Product.table.options.iconEdit')}}</v-icon>
+                       <v-icon class="mr-3" small>{{$t('Contact.table.options.iconEdit')}}</v-icon>
                        <v-list-item-title>
-                         {{$t('Product.table.options.edit')}}
+                         {{$t('Contact.table.options.edit')}}
                        </v-list-item-title>
                      </v-list-item-icon>
                    </v-list-item>
                     <v-list-item link>
                      <v-list-item-icon>
-                       <v-icon class="mr-3" small>{{$t('Product.table.options.delicon')}}</v-icon>
+                       <v-icon class="mr-3" small>{{$t('Contact.table.options.delicon')}}</v-icon>
                        <v-list-item-title>
-                         {{$t('Product.table.options.delete')}}
+                         {{$t('Contact.table.options.delete')}}
                        </v-list-item-title>
                      </v-list-item-icon>
                    </v-list-item>
@@ -71,9 +72,9 @@
         </v-data-table>
         <div class="Table-empty" v-else>
           <div class="image">
-            <v-img src="../../assets/Images/NoData.png"></v-img>
+            <v-img src="@/assets/Images/NoData.png"></v-img>
           </div>
-          <h3>{{ $t("Product.table.dontdata") }}</h3>
+          <h3>{{ $t("Contact.table.dontdata") }}</h3>
         </div>
       </div>
     </section>
@@ -82,43 +83,48 @@
 
 <script>
 export default {
-  name: "Product",
+    name: 'Contact',
 
-  data() {
-    return {
-      loading: false,
-      myProducts: [
+    data() {
+        return {
+             loading: false,
+      myContact: [
         {
-          ProductName: "Phone",
-          CateProduct: "Hardware",
-          description: "message something",
-          Picture: "feokfkowofweorwo",
+          ContactName: "M1",
+        Email: "tplus@gmail.com",
+         Tile: "None",
+          description: "1024MB",
+      
         },
+     
+        
       ],
       searchItem: "",
-    };
-  },
+        };
+    },
 
-  mounted() {},
+    mounted() {
+        
+    },
 
-  methods: {
-    CreateProduct() {
+    methods: {
+        CreateContact() {
       this.$router
         .push({
-          name: "product.create",
+          name: "contact.create",
         })
         .catch(() => {});
     },
-  },
+    },
 };
 </script>
 
 <style lang="scss" scoped>
-.product--section {
+.contact-section {
   width: 100%;
   background-color: $white-color;
 
-  .product-content {
+  .contact-content {
     width: 100%;
     padding: 1rem;
 

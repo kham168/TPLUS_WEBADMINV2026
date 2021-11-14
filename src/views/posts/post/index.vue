@@ -1,25 +1,25 @@
 <template>
-  <div id="Product">
-    <section class="product--section">
-      <div class="header product-header">
-        <h1>{{ $t("Product.title") }}</h1>
-        <v-btn @click="CreateProduct" class="btn btn-create">
-          <v-icon>fal fa-plus-circle</v-icon>{{ $t("Product.button") }}</v-btn
+  <div id="Post">
+    <section class="post-section">
+      <div class="header post-header">
+        <h1>{{ $t("Post.title") }}</h1>
+        <v-btn @click="CreatePost" class="btn btn-create">
+          <v-icon>fal fa-plus-circle</v-icon>{{ $t("Post.button") }}</v-btn
         >
       </div>
-      <div class="product-content">
+      <div class="post-content">
         <v-data-table
-          :headers="$t('Product.table.headers')"
-          :items="myProducts"
+          :headers="$t('Post.table.headers')"
+          :items="myPost"
           :search="searchItem"
           :loading="loading"
-          :loading-text="$t('Product.loadingtext')"
-          v-if="myProducts != ''"
+          :loading-text="$t('Post.loadingtext')"
+          v-if="myPost != ''"
         >
           <template v-slot:top>
             <v-toolbar flat>
               <v-text-field
-                :label="$t('Product.txtsearch')"
+                :label="$t('Post.txtsearch')"
                 filled
                 rounded
                 dense
@@ -35,8 +35,8 @@
           <template v-slot:item="{ item, index }">
             <tr class="table-content">
               <td>{{ index + 1 }}</td>
-              <td>{{ item.ProductName }}</td>
-              <td>{{ item.CateProduct }}</td>
+              <td>{{ item.PostName }}</td>
+              <td>{{ item.CatePost }}</td>
               <td>{{ item.description }}</td>
               <td>{{ item.Picture }}</td>
               <td>
@@ -47,19 +47,19 @@
                 </v-btn>
                  </template>
                  <v-list>
-                   <v-list-item link @click="$router.push({name:'product.edit'}).catch(()=>{})">
+                   <v-list-item link @click="$router.push({name:'post.edit'}).catch(()=>{})">
                      <v-list-item-icon>
-                       <v-icon class="mr-3" small>{{$t('Product.table.options.iconEdit')}}</v-icon>
+                       <v-icon class="mr-3" small>{{$t('Post.table.options.iconEdit')}}</v-icon>
                        <v-list-item-title>
-                         {{$t('Product.table.options.edit')}}
+                         {{$t('Post.table.options.edit')}}
                        </v-list-item-title>
                      </v-list-item-icon>
                    </v-list-item>
                     <v-list-item link>
                      <v-list-item-icon>
-                       <v-icon class="mr-3" small>{{$t('Product.table.options.delicon')}}</v-icon>
+                       <v-icon class="mr-3" small>{{$t('Post.table.options.delicon')}}</v-icon>
                        <v-list-item-title>
-                         {{$t('Product.table.options.delete')}}
+                         {{$t('Post.table.options.delete')}}
                        </v-list-item-title>
                      </v-list-item-icon>
                    </v-list-item>
@@ -71,9 +71,9 @@
         </v-data-table>
         <div class="Table-empty" v-else>
           <div class="image">
-            <v-img src="../../assets/Images/NoData.png"></v-img>
+            <v-img src="@/assets/Images/NoData.png"></v-img>
           </div>
-          <h3>{{ $t("Product.table.dontdata") }}</h3>
+          <h3>{{ $t("Post.table.dontdata") }}</h3>
         </div>
       </div>
     </section>
@@ -82,15 +82,15 @@
 
 <script>
 export default {
-  name: "Product",
+  name: "Post",
 
   data() {
     return {
       loading: false,
-      myProducts: [
+      myPost: [
         {
-          ProductName: "Phone",
-          CateProduct: "Hardware",
+          PostName: "Phone",
+          CatePost: "Hardware",
           description: "message something",
           Picture: "feokfkowofweorwo",
         },
@@ -102,10 +102,10 @@ export default {
   mounted() {},
 
   methods: {
-    CreateProduct() {
+    CreatePost() {
       this.$router
         .push({
-          name: "product.create",
+          name: "post.create",
         })
         .catch(() => {});
     },
@@ -114,11 +114,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.product--section {
+.post-section {
   width: 100%;
   background-color: $white-color;
 
-  .product-content {
+  .post-content {
     width: 100%;
     padding: 1rem;
 

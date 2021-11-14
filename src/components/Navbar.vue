@@ -81,6 +81,74 @@
               </v-list-item-icon>
               <v-list-item-title v-text="item.text"> </v-list-item-title>
             </v-list-item>
+
+            <v-list-group color="black">
+              <template v-slot:activator>
+                <v-list-item-icon>
+                  <v-icon>far fa-newspaper</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>{{$t('Postmenu.title')}}</v-list-item-title>
+              </template>
+              <v-list-item
+                link
+                v-for="subtitle in $t('Postmenu.subtitle')"
+                :key="subtitle.key"
+                @click="$router.push(subtitle.router)"
+              >
+                <v-list-item-icon>
+                  <v-icon small>{{ subtitle.icon }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>
+                  {{ subtitle.text }}
+                </v-list-item-title>
+              </v-list-item>
+            </v-list-group>
+
+            <v-list-group color="black">
+              <template v-slot:activator>
+                <v-list-item-icon>
+                  <v-icon>fab fa-product-hunt</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>{{$t('Productmenu.title')}}</v-list-item-title>
+              </template>
+              <v-list-item
+                link
+                v-for="subtitle in $t('Productmenu.subtitle')"
+                :key="subtitle.key"
+                @click="$router.push(subtitle.router)"
+              >
+                <v-list-item-icon>
+                  <v-icon small>{{ subtitle.icon }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>
+                  {{ subtitle.text }}
+                </v-list-item-title>
+              </v-list-item>
+            </v-list-group>
+
+            <v-list-group color="black">
+              <template v-slot:activator>
+                <v-list-item-icon>
+                  <v-icon>fas fa-gift</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>{{$t('Packagemenu.title')}}</v-list-item-title>
+              </template>
+              <v-list-item
+                link
+                v-for="subtitle in $t('Packagemenu.subtitle')"
+                :key="subtitle.key"
+                @click="$router.push(subtitle.router)"
+              >
+                <v-list-item-icon>
+                  <v-icon small>{{ subtitle.icon }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>
+                  {{ subtitle.text }}
+                </v-list-item-title>
+              </v-list-item>
+            </v-list-group>
+
+
             <v-list-group color="black">
               <template v-slot:activator>
                 <v-list-item-icon>
@@ -120,7 +188,9 @@ export default {
       drawer: true,
     };
   },
-  mounted() {},
+  mounted() {
+    
+  },
 
   methods: {
     ClickTo(router) {

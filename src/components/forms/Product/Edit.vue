@@ -47,7 +47,7 @@
                       ></v-text-field>
                       <v-textarea
                         outlined
-                        :label="$t('Product.Create.form.decription')"
+                        :label="$t('Product.Create.form.description')"
                       ></v-textarea>
                       <div class="upload-image">
                         <div class="image">

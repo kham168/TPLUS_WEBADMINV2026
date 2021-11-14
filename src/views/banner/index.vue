@@ -1,25 +1,25 @@
 <template>
-  <div id="Product">
-    <section class="product--section">
-      <div class="header product-header">
-        <h1>{{ $t("Product.title") }}</h1>
-        <v-btn @click="CreateProduct" class="btn btn-create">
-          <v-icon>fal fa-plus-circle</v-icon>{{ $t("Product.button") }}</v-btn
+   <div id="Banner">
+    <section class="banner-section">
+      <div class="header banner-header">
+        <h1>{{ $t("Banner.title") }}</h1>
+        <v-btn @click="CreateBanner" class="btn btn-create">
+          <v-icon>fal fa-plus-circle</v-icon>{{ $t("Banner.button") }}</v-btn
         >
       </div>
-      <div class="product-content">
+      <div class="banner-content">
         <v-data-table
-          :headers="$t('Product.table.headers')"
-          :items="myProducts"
+          :headers="$t('Banner.table.headers')"
+          :items="myBanner"
           :search="searchItem"
           :loading="loading"
-          :loading-text="$t('Product.loadingtext')"
-          v-if="myProducts != ''"
+          :loading-text="$t('Banner.loadingtext')"
+          v-if="myBanner != ''"
         >
           <template v-slot:top>
             <v-toolbar flat>
               <v-text-field
-                :label="$t('Product.txtsearch')"
+                :label="$t('Banner.txtsearch')"
                 filled
                 rounded
                 dense
@@ -35,10 +35,10 @@
           <template v-slot:item="{ item, index }">
             <tr class="table-content">
               <td>{{ index + 1 }}</td>
-              <td>{{ item.ProductName }}</td>
-              <td>{{ item.CateProduct }}</td>
+              <td>{{ item.BannerName }}</td>
+              <td>{{ item.Link }}</td>
               <td>{{ item.description }}</td>
-              <td>{{ item.Picture }}</td>
+               <td>{{ item.Picture }}</td>
               <td>
                <v-menu offset-y>
                  <template v-slot:activator="{on,attrs}">
@@ -47,19 +47,19 @@
                 </v-btn>
                  </template>
                  <v-list>
-                   <v-list-item link @click="$router.push({name:'product.edit'}).catch(()=>{})">
+                   <v-list-item link @click="$router.push({name:'banner.edit'}).catch(()=>{})">
                      <v-list-item-icon>
-                       <v-icon class="mr-3" small>{{$t('Product.table.options.iconEdit')}}</v-icon>
+                       <v-icon class="mr-3" small>{{$t('Banner.table.options.iconEdit')}}</v-icon>
                        <v-list-item-title>
-                         {{$t('Product.table.options.edit')}}
+                         {{$t('Banner.table.options.edit')}}
                        </v-list-item-title>
                      </v-list-item-icon>
                    </v-list-item>
                     <v-list-item link>
                      <v-list-item-icon>
-                       <v-icon class="mr-3" small>{{$t('Product.table.options.delicon')}}</v-icon>
+                       <v-icon class="mr-3" small>{{$t('Banner.table.options.delicon')}}</v-icon>
                        <v-list-item-title>
-                         {{$t('Product.table.options.delete')}}
+                         {{$t('Banner.table.options.delete')}}
                        </v-list-item-title>
                      </v-list-item-icon>
                    </v-list-item>
@@ -71,9 +71,9 @@
         </v-data-table>
         <div class="Table-empty" v-else>
           <div class="image">
-            <v-img src="../../assets/Images/NoData.png"></v-img>
+            <v-img src="@/assets/Images/NoData.png"></v-img>
           </div>
-          <h3>{{ $t("Product.table.dontdata") }}</h3>
+          <h3>{{ $t("Banner.table.dontdata") }}</h3>
         </div>
       </div>
     </section>
@@ -82,43 +82,49 @@
 
 <script>
 export default {
-  name: "Product",
+    name: 'Banner',
 
-  data() {
-    return {
-      loading: false,
-      myProducts: [
+    data() {
+        return {
+             loading: false,
+      myBanner: [
         {
-          ProductName: "Phone",
-          CateProduct: "Hardware",
-          description: "message something",
-          Picture: "feokfkowofweorwo",
+          BannerName: "M1",
+          Link:"https://www.google.com",
+      
+          description: "1024MB",
+          Picture:"sdasdasd"
+      
         },
+     
+        
       ],
       searchItem: "",
-    };
-  },
+        };
+    },
 
-  mounted() {},
+    mounted() {
+        
+    },
 
-  methods: {
-    CreateProduct() {
+    methods: {
+        CreateBanner() {
       this.$router
         .push({
-          name: "product.create",
+          name: "banner.create",
         })
         .catch(() => {});
     },
-  },
+    },
 };
 </script>
 
 <style lang="scss" scoped>
-.product--section {
+.banner-section {
   width: 100%;
   background-color: $white-color;
 
-  .product-content {
+  .banner-content {
     width: 100%;
     padding: 1rem;
 
