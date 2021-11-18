@@ -159,7 +159,8 @@ export default {
               border: 1px solid $gray-color;
 
               .image {
-                width: 100%;
+                width: 720px;
+                height: 300px;
                 overflow: hidden;
                 object-fit: cover;
               }

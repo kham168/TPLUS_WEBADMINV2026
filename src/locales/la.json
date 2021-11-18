@@ -22,10 +22,19 @@
       "icon": "fas fa-id-card",
       "text": "ຂໍ້ມູນຕິດຕໍ່",
       "router": "/contact"
+    },
+    {
+      "icon": "fas fa-border-top",
+      "text": "Topping",
+      "router": "/topping"
     }
   
    
   ],
+
+  "Topping":{
+   "title":"ຈັດການ Topping"
+  },
 
   "Postmenu":{
     "title":"ຂໍ້ມູນໂພສ",

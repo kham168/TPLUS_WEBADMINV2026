@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Dashboard from "../views/Dashboard.vue"
 import Login from "../components/Login.vue"
 import Test from "../views/test/test.vue"
+import Topping from "../views/Topping/topping.vue"
 
 Vue.use(VueRouter)
 
@@ -32,7 +33,14 @@ const routes = [
      layout:'admin'
    }
   },
-
+  {
+    path:"/topping",
+    name:"Topping",
+    component:Topping,
+    meta:{
+      layout:'admin'
+    }
+   },
 
   //Category Post
 

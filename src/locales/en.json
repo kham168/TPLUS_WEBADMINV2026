@@ -21,10 +21,18 @@
       "icon": "fas fa-id-card",
       "text": "Contact",
       "router": "/contact"
+    },
+    {
+      "icon": "fas fa-border-top",
+      "text": "Topping",
+      "router": "/topping"
     }
  
     
   ],
+  "Topping":{
+   "title":"Topping management"
+  },
 
   "Postmenu":{
     "title":"Posts",
