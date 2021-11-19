@@ -1,13 +1,17 @@
-import Vue from 'vue'
-import Axios from 'axios'
+import Vue from 'vue';
+import axios from 'axios';
+import store from  '../store'
 
-export const $axios = Axios.create(
+if (store.getters['User/isAuth']) {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + store.getters['User/getToken'];
+}
+
+export const $axios = axios.create(
     {
         baseURL: process.env.VUE_APP_BASE_API_URL,
     }
 );
-
-export const $http = Axios.create(
+export const $http = axios.create(
     {
         baseURL: process.env.VUE_APP_BASE_API_ADDRESS,
     }

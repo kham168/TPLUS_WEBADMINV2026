@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Middleware from "../middleware/index"
 import Dashboard from "../views/Dashboard.vue"
 import Login from "../components/Login.vue"
 import Test from "../views/test/test.vue"
@@ -22,6 +23,8 @@ const routes = [
    name:"Login",
    component:Login,
    meta:{
+    middleware:[Middleware.guest],
+    hiddens:true,
      layout:'default'
    }
   },
@@ -30,7 +33,8 @@ const routes = [
    name:"Dashboard",
    component:Dashboard,
    meta:{
-     layout:'admin'
+     middleware:[Middleware.auth],
+     layout:"admin"
    }
   },
   {
@@ -466,6 +470,35 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+
+function nextCheck(context, middleware, index) {
+  const nextMiddleware = middleware[index];
+
+  if (!nextMiddleware) return context.next;
+
+  return (...parameters) => {
+      context.next(...parameters);
+      const nextMidd = nextCheck(context, middleware, index + 1);
+
+      nextMiddleware({...context, nextMidd});
+  }
+}
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.middleware) {
+      const middleware = Array.isArray(to.meta.middleware) ? to.meta.middleware : [to.meta.middleware]
+      const ctx = {
+          from,
+          next,
+          router,
+          to
+      }
+      const nextMiddleware = nextCheck(ctx, middleware, 1);
+      return middleware[0]({...ctx, nextMiddleware});
+  }
+  return next();
 })
 
 export default router

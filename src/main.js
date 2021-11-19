@@ -6,6 +6,7 @@ import vuetify from './plugins/vuetify'
 import "../src/assets/scss/main.scss";
 import i18n from './i18n'
 import validate from "./Validation/validate"
+import "../src/plugins/Axios"
 
 Vue.config.productionTip = false
 Vue.prototype.$myValidator = validate;

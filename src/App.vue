@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    
     <v-main>
+       <Notification/>
       <div v-if="$route.meta.layout=='admin'">
         <Adminlayout v-if="!$route.meta.hiddens"/>
       </div>
@@ -15,11 +15,13 @@
 <script>
 import Adminlayout from "./views/layout/adminLayout.vue"
 import DefaultLayout from "./views/layout/defaultLayout.vue"
+import Notification from "./components/Notification/notification.vue"
 export default {
   name: 'App',
   components:{
   Adminlayout,
-  DefaultLayout
+  DefaultLayout,
+  Notification,
   },
   data: () => ({
     //
