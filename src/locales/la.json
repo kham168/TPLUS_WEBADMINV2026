@@ -22,10 +22,19 @@
       "icon": "fas fa-id-card",
       "text": "ຂໍ້ມູນຕິດຕໍ່",
       "router": "/contact"
+    },
+    {
+      "icon": "fas fa-border-top",
+      "text": "Topping",
+      "router": "/topping"
     }
   
    
   ],
+
+  "Topping":{
+   "title":"ຈັດການ Topping"
+  },
 
   "Postmenu":{
     "title":"ຂໍ້ມູນໂພສ",
@@ -491,12 +500,12 @@
         "Eng":"ອັງກິດ"
       },
       "form":{
-        "username":"ຊື່ຜູ້ໃຊ້",
+        "firstname":"ຊື່",
+        "lastname":"ນາມສະກຸນ",
         "email":"ອີເມວ",
         "phone":"ເບີໂທ",
+        "username":"ຊື່ຜູ້ໃຊ້",
         "pass":"ລະຫັດຜ່ານ",
-        "confirm pass":"ຢືນຢັນລະຫັດຜ່ານ",
-        "status":"ສະຖານະ",
         "button":{
           "save":"ບັນທຶກ",
           "cancel":"ຍົກເລີກ"
@@ -595,9 +604,19 @@
 
   "Validate":{
     "required":"ກະລຸນາປ້ອນຂໍ້ມູນ",
-    "email":"ອີເມວຖືກຕ້ອງ",
+    "email":"ອີເມວບໍ່ຖືກຕ້ອງ",
     "password":"ລະຫັດຜ່ານຕ້ອງມີຕົວພິມນ້ອຍຢ່າງໜ້ອຍໜຶ່ງຕົວເລກ, ຕົວອັກສອນພິເສດ ແລະ ຕົວອັກສອນຕົວພິມໃຫຍ່ໜຶ່ງຕົວ",
     "maxmessage":"ປ້ອນຕົວສອນໜ້ອຍກວ່າ",
     "minmessage":"ປ້ອນຕົວສອນຫຼາຍກວ່າ"
+  },
+  "Notification":{
+    "saveDataSuccess":"ທ່ານບັນທຶກຂໍ້ມູນສຳເລັດ...ແລ້ວ",
+    "editDataSuccess":"ທ່ານແກ້ໄຂຂໍ້ມູນສຳເລັດ...ແລ້ວ",
+    "delDataSuccess":"ທ່ານລົບຂໍ້ມູນສຳເລັດ...ແລ້ວ",
+    "saveDataError":"ການບັນທຶກຂໍ້ມູນຂອງທ່ານບໍ່ສຳເລັດ",
+    "editDataError":"ການແກ້ໄຂຂໍ້ມູນຂອງທ່ານບໍ່ສຳເລັດ",
+    "delDataError":"ການລົບຂໍ້ມູນຂອງທ່ານບໍ່ສຳເລັດ",
+    "loginSuccess":"ເຂົ້າສູ່ລະບົບສຳເລັດ",
+    "loginError":"ເຂົ້າສູ່ລະບົບບໍ່ສຳເລັດ"
   }
 }

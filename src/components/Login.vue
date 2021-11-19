@@ -7,7 +7,7 @@
             <template v-slot:activator="{ on, attrs }">
               <v-btn text v-bind="attrs" v-on="on">
                 <v-icon class="mx-3">fas fa-language</v-icon>
-                <h3>{{$i18n.locale}}</h3>
+                <h3>{{ $i18n.locale }}</h3>
               </v-btn>
             </template>
             <v-list>
@@ -25,33 +25,48 @@
         <v-row>
           <v-col cols="6">
             <div class="header">
-              <h3>{{$t('Login.header')}}</h3>
+              <h3>{{ $t("Login.header") }}</h3>
             </div>
+            <h5 class="show-error">{{$store.getters['User/ShowMsgErrors']}}</h5>
             <div class="form">
               <v-form ref="form" lazy-validation v-model="valid">
                 <v-text-field
+                  v-model="users.username"
                   :label="$t('Login.form.email')"
                   required
                   placeholder="jon.doe@example.com"
                   outlined
                   dense
                   append-icon="fas fa-envelope"
-                  :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
+                  :rules="[
+                    $myValidator.SimpleValidate($t('Validate.required')),
+                  ]"
                 ></v-text-field>
                 <v-text-field
+                  v-model="users.password"
                   :label="$t('Login.form.pass')"
                   required
                   outlined
                   dense
-                   :append-icon="showpass ? 'fas fa-eye-slash' : 'fas fa-eye'"
+                  :append-icon="showpass ? 'fas fa-eye-slash' : 'fas fa-eye'"
                   :type="showpass ? 'password' : 'text'"
                   @click:append="showpass = !showpass"
-                  :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
+                  :rules="[
+                    $myValidator.SimpleValidate($t('Validate.required')),
+                  ]"
                 ></v-text-field>
               </v-form>
-              <button @click="Login" :disabled="!valid" class="btn-login">{{$t('Login.form.button')}}</button>
+              <v-btn
+                :loading="loading"
+                @click="Login"
+                :disabled="!valid"
+                class="btn-login"
+                >{{ $t("Login.form.button") }}</v-btn
+              >
               <div class="forget-pass">
-                <a href="#" class="forget-pass">{{$t('Login.form.forget pass')}}</a>
+                <a href="#" class="forget-pass">{{
+                  $t("Login.form.forget pass")
+                }}</a>
               </div>
             </div>
           </v-col>
@@ -67,6 +82,7 @@
 </template>
 
 <script>
+import {mapActions} from "vuex"
 export default {
   name: "Login",
 
@@ -74,14 +90,37 @@ export default {
     return {
       locales: process.env.VUE_APP_I18N_SUPPORTED_LOCALE.split(","),
       localeNames: { en: "EN", la: "LA" },
-      showpass:true,
-      valid:true,
+      showpass: true,
+      valid: true,
+      users: {
+        username: "",
+        password: "",
+      },
+      loading: false,
     };
   },
 
   mounted() {},
 
   methods: {
+     ...mapActions({
+      AdminLogin: 'User/LoginUser'
+    }),
+
+    Login() {
+      this.loading = true;
+      this.$refs.form.validate();
+      this.AdminLogin(this.users).then(()=>{
+       setTimeout(() => {
+          this.$store.dispatch({
+          type:"action_Notifi_Success",
+          message:this.$t('Notification.loginSuccess')
+        })
+       }, 300);
+      }).catch(()=>{
+        this.loading=false;
+      })
+    },
     // switch language
     switchLocales(locale) {
       console.log(locale);
@@ -92,9 +131,6 @@ export default {
       }
     },
 
-    Login(){
-       this.$refs.form.validate();
-    }
   },
 };
 </script>
@@ -160,7 +196,7 @@ export default {
       &:active {
         background-color: $primary-color;
       }
-      &:disabled{
+      &:disabled {
         background-color: $primary-light;
       }
     }

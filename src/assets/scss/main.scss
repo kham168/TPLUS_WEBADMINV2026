@@ -14,7 +14,7 @@ section {
   padding: 1rem;
 }
 
-.header{
+.header {
   width: 100%;
   padding: 1rem;
   display: flex;
@@ -27,7 +27,6 @@ section {
     text-transform: uppercase;
   }
 }
-
 
 // drawer
 .drawer {
@@ -110,8 +109,10 @@ section {
 }
 .v-input .v-label {
   height: 50px;
-  line-height: 30px;
+  line-height: 20px !important;
   letter-spacing: normal;
+  font-size: 14px;
+  font-weight: 500;
 }
 .v-application .primary--text {
   color: $primary-color;
@@ -154,12 +155,11 @@ section {
   line-height: 30px;
 }
 
-
 //list item
-.v-list-item .v-list-item__title, .v-list-item .v-list-item__subtitle {
+.v-list-item .v-list-item__title,
+.v-list-item .v-list-item__subtitle {
   line-height: 2;
 }
-
 
 // Table is empty
 
@@ -182,4 +182,27 @@ section {
     font-size: 1.5rem;
     font-weight: 600;
   }
+}
+
+// v-select
+.v-select__selections {
+  align-items: center;
+  display: flex;
+  flex: 1 1;
+  flex-wrap: wrap;
+  line-height: 18px;
+  max-width: 100%;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+// table
+.v-data-table > .v-data-table__wrapper > table > tbody > tr > td,
+.v-data-table > .v-data-table__wrapper > table > thead > tr > td,
+.v-data-table > .v-data-table__wrapper > table > tfoot > tr > td {
+  font-size: 14px;
+  font-weight: 500;
+  color: $black-color;
+  height: 48px;
 }
