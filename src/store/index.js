@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import PostProvider from '@/resources/posts_provider'
+import User from "@/store/User";
 const postService = new PostProvider()
 
 Vue.use(Vuex)

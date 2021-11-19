@@ -21,10 +21,18 @@
       "icon": "fas fa-id-card",
       "text": "Contact",
       "router": "/contact"
+    },
+    {
+      "icon": "fas fa-border-top",
+      "text": "Topping",
+      "router": "/topping"
     }
  
     
   ],
+  "Topping":{
+   "title":"Topping management"
+  },
 
   "Postmenu":{
     "title":"Posts",
@@ -495,12 +503,12 @@
         "Eng": "English"
       },
       "form": {
-        "username": "Username",
-        "email": "Email",
-        "phone": "Phone number",
-        "pass": "Password",
-        "confirm pass": "Confirm Password",
-        "status": "Status",
+        "firstname":"Name",
+        "lastname":"Surname",
+        "email":"Email",
+        "phone":"Tel",
+        "username":"Username",
+        "pass":"Password",
         "button": {
           "save": "Save",
           "cancel": "Cancel"
@@ -602,9 +610,19 @@
 
   "Validate": {
     "required": "Please!! input data",
-    "email": "E-mail must be valid",
+    "email": "E-mail must not be valid",
     "password": "Password must contain at least lowercase letter, one number, a special character and one uppercase letter",
     "maxmessage": " The characters must be lower",
     "minmessage": "The characters must be over"
+  },
+  "Notification":{
+    "saveDataSuccess":"You have successfully saved your data.",
+    "editDataSuccess":"You have successfully edit your data.",
+    "delDataSuccess":"You have successfully delete your data.",
+    "saveDataError":"Failed to save your data.",
+    "editDataError":"Failed to edit your data.",
+    "delDataError":"Failed to delete your data.",
+    "loginSuccess":"Login successful",
+    "loginError":"Login failed."
   }
 }

@@ -100,10 +100,15 @@ export default {
         loading:true,
     };
   },
-
+  created(){
+   
+  },
   mounted() {},
-
-  methods: {},
+  methods: {
+  async  fatchUsers(){
+      
+    }
+  },
 };
 </script>
 

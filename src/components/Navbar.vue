@@ -36,7 +36,7 @@
               <v-icon>fas fa-cog</v-icon>
               <h3>{{ $t("Navbar.setting") }}</h3>
             </div>
-            <v-list-item link>
+            <v-list-item link @click="LoggoutUser">
               <v-list-item-icon>
                 <v-icon medium>fas fa-power-off</v-icon>
               </v-list-item-icon>
@@ -178,6 +178,7 @@
 </template>
 
 <script>
+import {mapActions} from "vuex"
 export default {
   name: "Navbar",
 
@@ -193,6 +194,9 @@ export default {
   },
 
   methods: {
+    ...mapActions({
+      LogoutUser: "User/destroyToken"
+    }),
     ClickTo(router) {
       this.$router.push(router);
     },
@@ -206,6 +210,14 @@ export default {
         window.location.reload();
       }
     },
+    // Loggout
+    LoggoutUser(){
+      this.LogoutUser().then(res =>{
+        if(res){
+          alert("Loggout Success")
+        }
+      })
+    }
   },
 };
 </script>
