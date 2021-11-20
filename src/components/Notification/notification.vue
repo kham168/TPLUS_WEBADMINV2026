@@ -1,5 +1,6 @@
 <template>
   <div class="notification">
+    <!-- Success -->
     <v-snackbar
       v-model="$store.state.modalNotificationSuccess.snackbar"
       :timeout="timeout"
@@ -11,6 +12,20 @@
       color="success"
     >
      {{$store.state.modalNotificationSuccess.message}}
+
+    </v-snackbar>
+   <!-- Error -->
+    <v-snackbar
+      v-model="$store.state.modalNotificationError.snackbar"
+      :timeout="timeout"
+      top
+      right
+      elevation="5"
+      class="Modal"
+      transition="slide-x-transition"
+      color="error"
+    >
+     {{$store.state.modalNotificationError.message}}
 
     </v-snackbar>
   </div>

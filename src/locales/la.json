@@ -490,7 +490,9 @@
       "dontdata":"ບໍ່ມີຂໍ້ມູນ",
       "options":{
         "edit":"ແກ້ໄຂ","iconEdit":"fas fa-edit",
-        "delete":"ລົບຂໍ້ມູນ","delicon":"fas fa-trash-alt"
+        "delete":"ລົບຂໍ້ມູນ","delicon":"fas fa-trash-alt",
+        "addRole":"ເພີ່ມບົດບາດ","aroleicon":"fas fa-user-tag",
+        "editRole":"ແກ້ໄຂບົດບາດ","eroleicon":"fas fa-edit"
       }
     },
     "Create":{
@@ -548,6 +550,7 @@
         "userrole":"ຊື່ບົດບາດ",
         "role":"ບົດບາດ",
         "permission":"ສິດທິການເຂົ້າໃຊ້",
+        "selectRole":"ເລືອກບົດບາດຜູ້ໃຊ້",
         "button":{
           "save":"ບັນທຶກ",
           "cancel":"ຍົກເລີກ"
@@ -555,7 +558,7 @@
       }
     },
     "Edit":{
-      "header":"ແກ້ໄຂຂໍ້ມູນສິນຄ້າ"
+      "header":"ແກ້ໄຂບົດບາດຜູ້ໃຊ້"
     }
     
   },
