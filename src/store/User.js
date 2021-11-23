@@ -78,7 +78,7 @@ const actions ={
                         // context.commit('setUserProfile', response.data.authUser.roleUser);
 
                         // window.localStorage.setItem('user_profile', JSON.stringify(response.data.authUser.roleUser));
-                        // $axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+                        $axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
                         router.push({name:'Dashboard'})
                         setTimeout(() => {
                             window.location.reload();

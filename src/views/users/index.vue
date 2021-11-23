@@ -70,6 +70,26 @@
                         </v-list-item-title>
                       </v-list-item-icon>
                     </v-list-item>
+                     <v-list-item link @click="$store.commit('IncrementUserRole')">
+                      <v-list-item-icon>
+                        <v-icon class="mr-3" small>{{
+                          $t("Users.table.options.aroleicon")
+                        }}</v-icon>
+                        <v-list-item-title>
+                          {{ $t("Users.table.options.addRole") }}
+                        </v-list-item-title>
+                      </v-list-item-icon>
+                    </v-list-item>
+                    <v-list-item link @click="$store.commit('IncrementUserRole_edit')">
+                      <v-list-item-icon>
+                        <v-icon class="mr-3" small>{{
+                          $t("Users.table.options.eroleicon")
+                        }}</v-icon>
+                        <v-list-item-title>
+                          {{ $t("Users.table.options.editRole") }}
+                        </v-list-item-title>
+                      </v-list-item-icon>
+                    </v-list-item>
                   </v-list>
                 </v-menu>
               </td>
@@ -84,18 +104,28 @@
           </div>
           <h3>{{ $t("Users.table.dontdata") }}</h3>
         </div>
+
+        <!-- Add User role dialog -->
+        <AddUserRole/>
+        <!-- Edit User role dialog -->
+        <EditUserRole/>
       </div>
     </section>
   </div>
 </template>
 
 <script>
+import AddUserRole from "../../components/dialog/UserRoles/addUserRole.vue"
+import EditUserRole from "../../components/dialog/UserRoles/editUserRole.vue"
 export default {
   name: "Index",
-
+  components:{
+    AddUserRole,
+    EditUserRole
+  },
   data() {
     return {
-        myUser:[],
+        myUser:[1],
         searchItem:null,
         loading:true,
     };

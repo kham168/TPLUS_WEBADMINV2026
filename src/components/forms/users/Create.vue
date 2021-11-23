@@ -11,6 +11,8 @@
               <v-col cols="6">
                 <v-text-field
                   :label="$t('Users.Create.form.firstname')"
+                  v-model="users.firstname"
+                  :hint="server_errors.firstname"
                   required
                   outlined
                   :rules="[
@@ -21,6 +23,8 @@
               <v-col cols="6">
                 <v-text-field
                   :label="$t('Users.Create.form.lastname')"
+                  v-model="users.lastname"
+                  :hint="server_errors.lastname"
                   required
                   outlined
                   :rules="[
@@ -31,6 +35,8 @@
               <v-col cols="6">
                 <v-text-field
                   :label="$t('Users.Create.form.email')"
+                  :hint="server_errors.email"
+                  v-model="users.email"
                   required
                   outlined
                   type="email"
@@ -43,6 +49,8 @@
               <v-col cols="6">
                 <v-text-field
                   :label="$t('Users.Create.form.phone')"
+                  :hint="server_errors.phone"
+                  v-model="users.phone"
                   required
                   type="number"
                   counter="10"
@@ -60,6 +68,8 @@
               <v-col cols="12">
                 <v-text-field
                   :label="$t('Users.Create.form.username')"
+                  :hint="server_errors.username"
+                  v-model="users.username"
                   required
                   outlined
                   :rules="[
@@ -70,6 +80,8 @@
               <v-col cols="12">
                 <v-text-field
                   :label="$t('Users.Create.form.pass')"
+                  :hint="server_errors.password"
+                  v-model="users.password"
                   required
                   outlined
                   :rules="[
@@ -120,6 +132,14 @@ export default {
         username: "",
         password: "",
       },
+      server_errors:{
+        firstname: "",
+        lastname: "",
+        email: "",
+        phone: '',
+        username: "",
+        password: "",
+      }
     };
   },
   created(){
@@ -129,21 +149,39 @@ export default {
 
   methods: {
     submitForm() {
-      this.btnLoading = true;
       this.$refs.form.validate();
       if (this.$refs.form.validate()) {
-        this.$axios.post(`/register`, this.users).then((res) => {
-          if (res.data.code === 200) {
+        this.btnLoading = true;
+        this.$axios.post(`/register`, {
+          firstName:this.users.firstname,
+          surName:this.users.lastname,
+          email:this.users.email,
+          phone:this.users.phone,
+          username:this.users.username,
+          password:this.users.password
+        }).then(() => {
             setTimeout(() => {
               this.$store.dispatch({
                 type: "action_Notifi_Success",
                 message: this.$t("Notification.saveDataSuccess"),
               });
             }, 300);
+          this.btnLoading=false;
+          window.location.reload();
+        }).catch((error)=>{
+           this.btnLoading=false;
+           setTimeout(() => {
+              this.$store.dispatch({
+                type: "action_Notifi_Error",
+                message: this.$t("Notification.saveDataError"),
+              });
+            }, 300);
+          if (error.response.status === 422) {
+          const obj = error.response.data.errors;
+          for (let [key, value] of Object.entries(obj)) {
+            this.server_errors[key] = value[0];
           }
-          this.btnLoading=false;
-        }).catch(()=>{
-          this.btnLoading=false;
+        }
         })
       }
     },

@@ -491,10 +491,12 @@
         { "text": "Actions", "value": "Actions", "sortable": false }
       ],
       "dontdata": "Dont have data",
-      "options": [
-        { "edit": "Edit", "iconEdit": "fas fa-edit" },
-        { "delete": "Delete", "delicon": "fas fa-trash-alt" }
-      ]
+      "options": {
+        "edit": "Edit", "iconEdit": "fas fa-edit" ,
+         "delete": "Delete", "delicon": "fas fa-trash-alt",
+         "addRole":"Add Role","aroleicon":"fas fa-user-tag",
+         "editRole":"Edit Role","eroleicon":"fas fa-edit"
+    }
     },
     "Create": {
       "header": "Add Users",
@@ -516,7 +518,7 @@
       }
     },
     "Edit": {
-      "header": "Edit Products"
+      "header": "Edit User Roles"
     }
   },
 
@@ -546,21 +548,19 @@
         "lao": "Lao",
         "Eng": "English"
       },
-      "form": {
-        "username": "Username",
-        "email": "Email",
-        "phone": "Phone number",
-        "pass": "Password",
-        "confirm pass": "Confirm Password",
-        "status": "Status",
-        "button": {
-          "save": "Save",
-          "cancel": "Cancel"
+      "form":{
+        "userrole":"Role Name",
+        "role":"Roles",
+        "permission":"Permissions",
+        "selectRole":"Select Role",
+        "button":{
+          "save":"Save",
+          "cancel":"Cancel"
         }
       }
     },
     "Edit": {
-      "header": "Edit Products"
+      "header": "Edit User Roles"
     }
   },
 
