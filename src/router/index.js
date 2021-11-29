@@ -194,7 +194,80 @@ const routes = [
      }
    ]
   },
+    //Logo
+    {
+        path: "/logo",
+        component: () => import(/* webpackChunkName:"Logo" */'../views/logo/logo.vue'),
+        meta: {
+            layout: 'admin'
+        },
+        children: [
+            {
+                path: "",
+                name: "logo.index",
+                component: () => import(/* webpackChunkName:"Logo index" */'../views/logo/index.vue'),
+                meta: {
+                    layout: "admin"
+                }
+            },
+            {
+                path: "create",
+                name: "logo.create",
+                component: () => import(/* webpackChunkName:"Logo Create" */ '../components/forms/logo/Create.vue'),
+                meta: {
+                    layout: 'admin',
+                }
 
+            },
+            {
+                path: "edit",
+                name: "logo.edit",
+                component: () => import(/* webpackChunkName:"Logo Edit" */ '../components/forms/logo/Edit.vue'),
+                meta: {
+                    layout: 'admin',
+                }
+
+            },
+        ]
+    },
+
+    //Position
+    {
+        path: "/position",
+        component: () => import(/* webpackChunkName:"Position" */'../views/position/position'),
+        meta: {
+            layout: 'admin'
+        },
+        children: [
+            {
+                path: "",
+                name: "position.index",
+                component: () => import(/* webpackChunkName:"Position index" */'../views/position/index.vue'),
+                meta: {
+                    layout: "admin"
+                }
+            },
+            {
+                path: "create",
+                name: "position.create",
+                component: () => import(/* webpackChunkName:"Position Create" */ '../components/forms/position/Create.vue'),
+                meta: {
+                    layout: 'admin',
+                }
+
+            },
+
+            {
+                path: "edit",
+                name: "position.edit",
+                component: () => import(/* webpackChunkName:"Position Edit" */ '../components/forms/position/Edit.vue'),
+                meta: {
+                    layout: 'admin',
+                }
+
+            },
+        ]
+    },
 
   //User
   {
