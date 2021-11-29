@@ -4,24 +4,26 @@ import store from "@/store/index";
 const $axios = axios.create(
     {
         baseURL: process.env.VUE_APP_BASE_API_URL,
+
     }
 );
 $axios.defaults.headers.common['content_language'] = "en";
 const state = {
-    user_id: "",
+    logoId: "",
 }
 
 const getters = {}
 const mutations = {
-    SET_USER_ID(state, payload) {
-        return state.user_id = payload;
+    SET_LOGO_ITEM(state, payload) {
+        return state.logoId = payload;
     }
 }
+
 const actions = {
-    fetchUser({state}, user_id) {
+    fetchLogoItem({state}, logo_id) {
         return new Promise((resolve, reject) => {
             $axios.defaults.headers.common['Authorization'] = 'Bearer ' + store.getters['User/getToken'];
-            $axios.get(`users/${state.user_id || user_id}`).then((res) => {
+            $axios.get(`siteInfo/${state.logoId || logo_id}`).then((res) => {
                 if (res.status === 200) {
                     resolve(res)
                 }

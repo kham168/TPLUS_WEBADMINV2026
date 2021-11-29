@@ -8,20 +8,18 @@ const $axios = axios.create(
 );
 $axios.defaults.headers.common['content_language'] = "en";
 const state = {
-    user_id: "",
+    permission_id: "",
 }
-
-const getters = {}
 const mutations = {
-    SET_USER_ID(state, payload) {
-        return state.user_id = payload;
+    SET_PERMISSION_ID(state, payload) {
+        return state.permission_id = payload;
     }
 }
 const actions = {
-    fetchUser({state}, user_id) {
+    fetchPermission({state}, permission_id) {
         return new Promise((resolve, reject) => {
             $axios.defaults.headers.common['Authorization'] = 'Bearer ' + store.getters['User/getToken'];
-            $axios.get(`users/${state.user_id || user_id}`).then((res) => {
+            $axios.get(`permissions/${state.permission_id || permission_id}`).then((res) => {
                 if (res.status === 200) {
                     resolve(res)
                 }
@@ -34,7 +32,6 @@ const actions = {
 export default {
     namespaced: true,
     state,
-    getters,
     mutations,
     actions
 }

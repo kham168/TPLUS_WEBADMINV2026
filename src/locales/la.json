@@ -5,19 +5,16 @@
       "text": "Dashboard",
       "router": "/dashboard"
     },
-
     {
       "icon": "fas fa-star-of-life",
       "text": "ໂລໂກ້ເວັບໄຊລ໌",
       "router": "/logo"
     },
-
     {
       "icon": "fab fa-usps",
       "text": "ປ້າຍໂຄສະນາ",
       "router": "/banner"
     },
-
     {
       "icon": "fas fa-id-card",
       "text": "ຂໍ້ມູນຕິດຕໍ່",
@@ -27,49 +24,86 @@
       "icon": "fas fa-border-top",
       "text": "Topping",
       "router": "/topping"
+    },
+    {
+      "icon": "fas fa-border-top",
+      "text": "ຕຳແໜ່ງ",
+      "router": "/position"
+    },
+    {
+      "icon": "fas fa-border-top",
+      "text": "ຮັບສະໝັກວຽກ",
+      "router": "/jobRecruit"
     }
-  
-   
   ],
-
-  "Topping":{
-   "title":"ຈັດການ Topping"
+  "Topping": {
+    "title": "ຈັດການ Topping"
   },
-
-  "Postmenu":{
-    "title":"ຂໍ້ມູນໂພສ",
-    "subtitle":[
-      { "icon": "fas fa-boxes", "text": "ປະເພດຂອງໂພສ","router":"/cate_post"},
-      { "icon": "far fa-newspaper", "text": "ຂໍ້ມູນໂພສ","router":"/post"}
+  "Postmenu": {
+    "title": "ຂໍ້ມູນໂພສ",
+    "subtitle": [
+      {
+        "icon": "fas fa-boxes",
+        "text": "ປະເພດຂອງໂພສ",
+        "router": "/cate_post"
+      },
+      {
+        "icon": "far fa-newspaper",
+        "text": "ຂໍ້ມູນໂພສ",
+        "router": "/post"
+      }
     ]
   },
-
-  "Productmenu":{
-    "title":"ຂໍ້ມູນຜະລິດຕະພັນ",
-    "subtitle":[
-      { "icon": "fas fa-boxes", "text": "ປະເພດຜະລິດຕະພັນ","router":"/cate_product"},
-      { "icon": "fab fa-product-hunt", "text": "ຂໍ້ມູນຜະລິດຕະພັນ","router":"/product"}
+  "Productmenu": {
+    "title": "ຂໍ້ມູນຜະລິດຕະພັນ",
+    "subtitle": [
+      {
+        "icon": "fas fa-boxes",
+        "text": "ປະເພດຜະລິດຕະພັນ",
+        "router": "/cate_product"
+      },
+      {
+        "icon": "fab fa-product-hunt",
+        "text": "ຂໍ້ມູນຜະລິດຕະພັນ",
+        "router": "/product"
+      }
     ]
   },
-
-  "Packagemenu":{
-    "title":"ຂໍ້ມູນແພັດເກັດ",
-    "subtitle":[
-      { "icon": "fas fa-gifts", "text": "ປະເພດແພັດເກັດ","router":"/cate_data_package"},
-    { "icon": "fas fa-gift", "text": "ຂໍ້ມູນແພັດເກັດ","router":"/data_package"}
-  
+  "Packagemenu": {
+    "title": "ຂໍ້ມູນແພັດເກັດ",
+    "subtitle": [
+      {
+        "icon": "fas fa-gifts",
+        "text": "ປະເພດແພັດເກັດ",
+        "router": "/cate_data_package"
+      },
+      {
+        "icon": "fas fa-gift",
+        "text": "ຂໍ້ມູນແພັດເກັດ",
+        "router": "/data_package"
+      }
     ]
   },
-
-  "Usermenu":{
-    "title":"ຈັດການຂໍ້ມູນຜູ້ໃຊ້",
-    "subtitle":[
-      { "icon": "fas fa-users", "text": "ຂໍ້ມູນຜູ້ໃຊ້","router":"/users"},
-    { "icon": "fas fa-users-cog", "text": "ບົດບາດ","router":"/roles"},
-    { "icon": "fas fa-users-class", "text": "ສິດທິການເຂົ້າໃຊ້","router":"/permission"}
+  "Usermenu": {
+    "title": "ຈັດການຂໍ້ມູນຜູ້ໃຊ້",
+    "subtitle": [
+      {
+        "icon": "fas fa-users",
+        "text": "ຂໍ້ມູນຜູ້ໃຊ້",
+        "router": "/users"
+      },
+      {
+        "icon": "fas fa-users-cog",
+        "text": "ບົດບາດ",
+        "router": "/roles"
+      },
+      {
+        "icon": "fas fa-users-class",
+        "text": "ສິດທິການເຂົ້າໃຊ້",
+        "router": "/permission"
+      }
     ]
   },
-
   "Navbar": {
     "selectLanguage": "ເລືອກພາສາ",
     "setting": "ຕັ້ງຄ່າ",
@@ -84,542 +118,1004 @@
       "forget pass": "ຂ້ອຍລືມລະຫັດຜ່ານ"
     }
   },
-
   "Contact": {
     "title": "ຂໍ້ມູນຕິດຕໍ່",
     "button": "ເພີ່ມ",
     "txtsearch": "ຄົ້ນຫາຂໍ້ມູນຕິດຕໍ່",
-    "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ",
+    "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
-        { "text": "ລຳດັບ", "value": "No", "sortable": false },
-        { "text": "ຊື່", "value": "ContactName", "sortable": true },
-        { "text": "ອີເມລ", "value": "Email", "sortable": false },
-        { "text": "Tile", "value": "Tile", "sortable": false },
-        { "text": "ລາຍລະອຽດ", "value": "description", "sortable": false },
-        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "ຊື່",
+          "value": "ContactName",
+          "sortable": true
+        },
+        {
+          "text": "ອີເມລ",
+          "value": "Email",
+          "sortable": false
+        },
+        {
+          "text": "Tile",
+          "value": "Tile",
+          "sortable": false
+        },
+        {
+          "text": "ລາຍລະອຽດ",
+          "value": "description",
+          "sortable": false
+        },
+        {
+          "text": "ຈັດການ",
+          "value": "Actions",
+          "sortable": false
+        }
       ],
-      "dontdata":"ບໍ່ມີຂໍ້ມູນ",
-      "options":{
-        "edit":"ແກ້ໄຂ","iconEdit":"fas fa-edit",
-        "delete":"ລົບຂໍ້ມູນ","delicon":"fas fa-trash-alt"
+      "dontdata": "ບໍ່ມີຂໍ້ມູນ",
+      "options": {
+        "edit": "ແກ້ໄຂ",
+        "iconEdit": "fas fa-edit",
+        "delete": "ລົບຂໍ້ມູນ",
+        "delicon": "fas fa-trash-alt"
       }
     },
-    "Create":{
-      "header":"ເພີ່ມຂໍ້ມູນຕິດຕໍ່",
-      "lang":{
-        "lao":"ລາວ",
-        "Eng":"ອັງກິດ"
+    "Create": {
+      "header": "ເພີ່ມຂໍ້ມູນຕິດຕໍ່",
+      "lang": {
+        "lao": "ລາວ",
+        "Eng": "ອັງກິດ"
       },
-      "form":{
-        "contact_name":"ຊື່",
-        "email":"ອີເມລ",
-        "tile":"Tile",
-        "description":"ລາຍລະອຽດ",
-
-        "button":{
-          "save":"ບັນທຶກ",
-          "cancel":"ຍົກເລີກ"
+      "form": {
+        "contact_name": "ຊື່",
+        "email": "ອີເມລ",
+        "tile": "Tile",
+        "description": "ລາຍລະອຽດ",
+        "button": {
+          "save": "ບັນທຶກ",
+          "cancel": "ຍົກເລີກ"
         }
       }
     },
-    "Edit":{
-      "header":"ແກ້ໄຂຂໍ້ມູນຕິດຕໍ່"
+    "Edit": {
+      "header": "ແກ້ໄຂຂໍ້ມູນຕິດຕໍ່"
     }
   },
-
   "Logo": {
     "title": "ຂໍ້ມູນໂລໂກ້",
     "button": "ເພີ່ມ",
     "txtsearch": "ຄົ້ນຫາໂລໂກ້",
-    "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ",
+    "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
-        { "text": "ລຳດັບ", "value": "No", "sortable": false },
-        { "text": "ໂລໂກ້ເວັບໄຊລ໌", "value": "WebsiteLogo", "sortable": true },
-        { "text": "ຊື່ເວັບໄຊລ໌", "value": "WebsiteName", "sortable": true },
-        { "text": "ທີ່ຢູ່", "value": "Address", "sortable": false },
-        { "text": "ອີເມລ", "value": "Email", "sortable": false },
-        { "text": "ລາຍລະອຽດ", "value": "description", "sortable": false },
-        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "ໂລໂກ້ເວັບໄຊລ໌",
+          "value": "WebsiteLogo",
+          "sortable": true
+        },
+        {
+          "text": "ຊື່ເວັບໄຊລ໌",
+          "value": "WebsiteName",
+          "sortable": true
+        },
+        {
+          "text": "ທີ່ຢູ່",
+          "value": "Address",
+          "sortable": false
+        },
+        {
+          "text": "ອີເມລ",
+          "value": "Email",
+          "sortable": false
+        },
+        {
+          "text": "ເຟສບຸກ",
+          "value": "Facebook",
+          "sortable": false
+        },
+        {
+          "text": "ເບີໂທ",
+          "value": "Phone",
+          "sortable": false
+        },
+        {
+          "text": "ລາຍລະອຽດ",
+          "value": "description",
+          "sortable": false
+        },
+        {
+          "text": "ຈັດການ",
+          "value": "Actions",
+          "sortable": false
+        }
       ],
-      "dontdata":"ບໍ່ມີຂໍ້ມູນ",
-      "options":{
-        "edit":"ແກ້ໄຂ","iconEdit":"fas fa-edit",
-        "delete":"ລົບຂໍ້ມູນ","delicon":"fas fa-trash-alt"
+      "dontdata": "ບໍ່ມີຂໍ້ມູນ",
+      "options": {
+        "edit": "ແກ້ໄຂ",
+        "iconEdit": "fas fa-edit",
+        "delete": "ລົບຂໍ້ມູນ",
+        "delicon": "fas fa-trash-alt"
       }
     },
-    "Create":{
-      "header":"ເພີ່ມຂໍ້ມູນໂລໂກ້",
-      "lang":{
-        "lao":"ລາວ",
-        "Eng":"ອັງກິດ"
+    "Create": {
+      "header": "ເພີ່ມຂໍ້ມູນໂລໂກ້",
+      "lang": {
+        "lao": "ລາວ",
+        "Eng": "ອັງກິດ"
       },
-      "form":{
-        "website_logo":"ອັບໂຫຼດໂລໂກ້ເວັບໄຊລ໌",
-        "website_name":"ຊື່ເວັບໄຊລ໌",
-        "address":"ທີ່ຢູ່",
-        "email":"ອີເມລ",
-        "description":"ລາຍລະອຽດ",
-
-        "button":{
-          "save":"ບັນທຶກ",
-          "cancel":"ຍົກເລີກ"
+      "form": {
+        "website_logo": "ອັບໂຫຼດໂລໂກ້ເວັບໄຊລ໌",
+        "website_name": "ຊື່ເວັບໄຊລ໌",
+        "address": "ທີ່ຢູ່",
+        "email": "ອີເມລ",
+        "description": "ລາຍລະອຽດ",
+        "button": {
+          "save": "ບັນທຶກ",
+          "cancel": "ຍົກເລີກ"
         }
       }
     },
-    "Edit":{
-      "header":"ແກ້ໄຂຂໍ້ມູນໂລໂກ້"
+    "Edit": {
+      "header": "ແກ້ໄຂຂໍ້ມູນໂລໂກ້"
     }
-    
   },
+  "position": {
+    "title": "ຂໍ້ມູນຕຳແໜ່ງ",
+    "button": "ເພີ່ມ",
+    "txtsearch": "ຄົ້ນຫາຂໍ້ມູນ",
+    "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
+    "table": {
+      "headers": [
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "ຊື່ຕຳແໜ່ງ",
+          "value": "name",
+          "sortable": true
+        },
+        {
+          "text": "ລາຍລະອຽດ",
+          "value": "description",
+          "sortable": false
+        },
+        {
+          "text": "ວັນທີສ້າງ",
+          "value": "createdAt",
+          "sortable": false
+        },
 
+        {
+          "text": "ວັນທີອັບເດດ",
+          "value": "updatedAt",
+          "sortable": false
+        },
 
+        {
+          "text": "ຈັດການ",
+          "value": "Actions",
+          "sortable": false
+        }
+      ],
+      "dontdata": "ບໍ່ມີຂໍ້ມູນ",
+      "options": {
+        "edit": "ແກ້ໄຂ",
+        "iconEdit": "fas fa-edit",
+        "delete": "ລົບຂໍ້ມູນ",
+        "delicon": "fas fa-trash-alt"
+      }
+    },
+    "Create": {
+      "header": "ຂໍ້ມູນຕຳແໜ່ງ",
+      "lang": {
+        "Eng": "ປ້ອນຂໍ້ມູນຕຳແໜ່ງ"
+      },
+      "form": {
+        "name": "ຕຳແໜ່ງ",
+        "description": "ລາຍລະອຽດ",
+        "button": {
+          "save": "ບັນທຶກ",
+          "cancel": "ຍົກເລີກ"
+        }
+      }
+    },
+    "Edit": {
+      "header": "ແກ້ໄຂຂໍ້ມູນໂລໂກ້"
+    }
+  },
+  "permission": {
+    "title": "ຂໍ້ມູນສິດການໃຊ້ງານ",
+    "button": "ເພີ່ມ",
+    "txtsearch": "ຄົ້ນຫາຂໍ້ມູນ",
+    "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
+    "table": {
+      "headers": [
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "ຊື່ສິດ",
+          "value": "name",
+          "sortable": true
+        },
+        {
+          "text": "ລາຍລະອຽດ",
+          "value": "description",
+          "sortable": false
+        },
+        {
+          "text": "ວັນທີສ້າງ",
+          "value": "createdAt",
+          "sortable": false
+        },
+
+        {
+          "text": "ວັນທີອັບເດດ",
+          "value": "updatedAt",
+          "sortable": false
+        },
+
+        {
+          "text": "ຈັດການ",
+          "value": "Actions",
+          "sortable": false
+        }
+      ],
+      "dontdata": "ບໍ່ມີຂໍ້ມູນ",
+      "options": {
+        "edit": "ແກ້ໄຂ",
+        "iconEdit": "fas fa-edit",
+        "delete": "ລົບຂໍ້ມູນ",
+        "delicon": "fas fa-trash-alt"
+      }
+    },
+    "Create": {
+      "header": "ຂໍ້ມູນສິດການໃຊ້ງານ",
+      "lang": {
+        "Eng": "ປ້ອນຂໍ້ມູນສິດການໃຊ້ງານ"
+      },
+      "form": {
+        "name": "ສິດການໃຊ້ງານ",
+        "description": "ລາຍລະອຽດ",
+        "button": {
+          "save": "ບັນທຶກ",
+          "cancel": "ຍົກເລີກ"
+        }
+      }
+    },
+    "Edit": {
+      "header": "ແກ້ໄຂຂໍ້ມູນໂລໂກ້"
+    }
+  },
   "Banner": {
     "title": "ຂໍ້ມູນປ້າຍໂຄສະນາ",
     "button": "ເພີ່ມ",
     "txtsearch": "ຄົ້ນຫາປ້າຍໂຄສະນາ",
-    "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ",
+    "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
-        { "text": "ລຳດັບ", "value": "No", "sortable": false },
-        { "text": "ຊື່ປ້າຍໂຄສະນາ", "value": "BannerName", "sortable": true },
-        { "text": "ລິ້ງ", "value": "Link", "sortable": false },
-        { "text": "ລາຍລະອຽດ", "value": "description", "sortable": false },
-        { "text": "ຮູບພາບ", "value": "Picture", "sortable": false },
-        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "ຊື່ປ້າຍໂຄສະນາ",
+          "value": "BannerName",
+          "sortable": true
+        },
+        {
+          "text": "ລິ້ງ",
+          "value": "Link",
+          "sortable": false
+        },
+        {
+          "text": "ລາຍລະອຽດ",
+          "value": "description",
+          "sortable": false
+        },
+        {
+          "text": "ຮູບພາບ",
+          "value": "Picture",
+          "sortable": false
+        },
+        {
+          "text": "ຈັດການ",
+          "value": "Actions",
+          "sortable": false
+        }
       ],
-      "dontdata":"ບໍ່ມີຂໍ້ມູນ",
-      "options":{
-        "edit":"ແກ້ໄຂ","iconEdit":"fas fa-edit",
-        "delete":"ລົບຂໍ້ມູນ","delicon":"fas fa-trash-alt"
+      "dontdata": "ບໍ່ມີຂໍ້ມູນ",
+      "options": {
+        "edit": "ແກ້ໄຂ",
+        "iconEdit": "fas fa-edit",
+        "delete": "ລົບຂໍ້ມູນ",
+        "delicon": "fas fa-trash-alt"
       }
     },
-    "Create":{
-      "header":"ເພີ່ມຂໍ້ມູນປ້າຍໂຄສະນາ",
-      "lang":{
-        "lao":"ລາວ",
-        "Eng":"ອັງກິດ"
+    "Create": {
+      "header": "ເພີ່ມຂໍ້ມູນປ້າຍໂຄສະນາ",
+      "lang": {
+        "lao": "ລາວ",
+        "Eng": "ອັງກິດ"
       },
-      "form":{
-      
-        "banner_name":"ຊື່ປ້າຍໂຄສະນາ",
-        "link":"ລິ້ງ",
-        "description":"ລາຍລະອຽດ",
-        "picture":"ອັບໂຫຼດຮູບພາບ",
-
-        "button":{
-          "save":"ບັນທຶກ",
-          "cancel":"ຍົກເລີກ"
+      "form": {
+        "banner_name": "ຊື່ປ້າຍໂຄສະນາ",
+        "link": "ລິ້ງ",
+        "description": "ລາຍລະອຽດ",
+        "picture": "ອັບໂຫຼດຮູບພາບ",
+        "button": {
+          "save": "ບັນທຶກ",
+          "cancel": "ຍົກເລີກ"
         }
       }
     },
-    "Edit":{
-      "header":"ແກ້ໄຂຂໍ້ມູນປ້າຍໂຄສະນາ"
+    "Edit": {
+      "header": "ແກ້ໄຂຂໍ້ມູນປ້າຍໂຄສະນາ"
     }
-    
   },
-
-
   "CatePost": {
     "title": "ຂໍ້ມູນປະເພດຂອງໂພສ",
     "button": "ເພີ່ມ",
     "txtsearch": "ຄົ້ນຫາປະເພດຂອງໂພສ",
-    "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ",
+    "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
-        { "text": "ລຳດັບ", "value": "No", "sortable": false },
-        { "text": "ຊື່ປະເພດຂອງໂພສ", "value": "CatePostName", "sortable": true },
-        { "text": "ລາຍລະອຽດ", "value": "description", "sortable": false },
-        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "ຊື່ປະເພດຂອງໂພສ",
+          "value": "CatePostName",
+          "sortable": true
+        },
+        {
+          "text": "ລາຍລະອຽດ",
+          "value": "description",
+          "sortable": false
+        },
+        {
+          "text": "ຈັດການ",
+          "value": "Actions",
+          "sortable": false
+        }
       ],
-      "dontdata":"ບໍ່ມີຂໍ້ມູນ",
-      "options":{
-        "edit":"ແກ້ໄຂ","iconEdit":"fas fa-edit",
-        "delete":"ລົບຂໍ້ມູນ","delicon":"fas fa-trash-alt"
+      "dontdata": "ບໍ່ມີຂໍ້ມູນ",
+      "options": {
+        "edit": "ແກ້ໄຂ",
+        "iconEdit": "fas fa-edit",
+        "delete": "ລົບຂໍ້ມູນ",
+        "delicon": "fas fa-trash-alt"
       }
     },
-    "Create":{
-      "header":"ເພີ່ມຂໍ້ມູນປະເພດຂອໂພສ",
-      "lang":{
-        "lao":"ລາວ",
-        "Eng":"ອັງກິດ"
+    "Create": {
+      "header": "ເພີ່ມຂໍ້ມູນປະເພດຂອໂພສ",
+      "lang": {
+        "lao": "ລາວ",
+        "Eng": "ອັງກິດ"
       },
-      "form":{
-      
-        "cate_post_name":"ຊື່ປະເພດຂອງໂພສ",
-        "description":"ລາຍລະອຽດ",
-        
-        "button":{
-          "save":"ບັນທຶກ",
-          "cancel":"ຍົກເລີກ"
+      "form": {
+        "cate_post_name": "ຊື່ປະເພດຂອງໂພສ",
+        "description": "ລາຍລະອຽດ",
+        "button": {
+          "save": "ບັນທຶກ",
+          "cancel": "ຍົກເລີກ"
         }
       }
     },
-    "Edit":{
-      "header":"ແກ້ໄຂຂໍ້ມູນປະເພດຂອງໂພສ"
+    "Edit": {
+      "header": "ແກ້ໄຂຂໍ້ມູນປະເພດຂອງໂພສ"
     }
-    
   },
-
   "Post": {
     "title": "ຂໍ້ມູນໂພສ",
     "button": "ເພີ່ມ",
     "txtsearch": "ຄົ້ນຫາໂພສ",
-    "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ",
+    "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
-        { "text": "ລຳດັບ", "value": "No", "sortable": false },
-        { "text": "ຊື່ໂພສ", "value": "PostName", "sortable": true },
-        { "text": "ປະເພດຂອງໂພສ", "value": "CatePost", "sortable": true },
-        { "text": "ລາຍລະອຽດ", "value": "description", "sortable": false },
-        { "text": "ຮູບພາບ", "value": "Picture", "sortable": false },
-        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "ຊື່ໂພສ",
+          "value": "PostName",
+          "sortable": true
+        },
+        {
+          "text": "ປະເພດຂອງໂພສ",
+          "value": "CatePost",
+          "sortable": true
+        },
+        {
+          "text": "ລາຍລະອຽດ",
+          "value": "description",
+          "sortable": false
+        },
+        {
+          "text": "ຮູບພາບ",
+          "value": "Picture",
+          "sortable": false
+        },
+        {
+          "text": "ຈັດການ",
+          "value": "Actions",
+          "sortable": false
+        }
       ],
-      "dontdata":"ບໍ່ມີຂໍ້ມູນ",
-      "options":{
-        "edit":"ແກ້ໄຂ","iconEdit":"fas fa-edit",
-        "delete":"ລົບຂໍ້ມູນ","delicon":"fas fa-trash-alt"
+      "dontdata": "ບໍ່ມີຂໍ້ມູນ",
+      "options": {
+        "edit": "ແກ້ໄຂ",
+        "iconEdit": "fas fa-edit",
+        "delete": "ລົບຂໍ້ມູນ",
+        "delicon": "fas fa-trash-alt"
       }
     },
-    "Create":{
-      "header":"ເພີ່ມຂໍ້ມູນໂພສ",
-      "lang":{
-        "lao":"ລາວ",
-        "Eng":"ອັງກິດ"
+    "Create": {
+      "header": "ເພີ່ມຂໍ້ມູນໂພສ",
+      "lang": {
+        "lao": "ລາວ",
+        "Eng": "ອັງກິດ"
       },
-      "form":{
-        "category":"ປະເພດຂອງໂພສ",
-        "post_name":"ຊື່ໂພສ",
-        "description":"ລາຍລະອຽດ",
-        "picture":"ອັບໂຫຼດຮູບພາບ",
-        "button":{
-          "save":"ບັນທຶກ",
-          "cancel":"ຍົກເລີກ"
+      "form": {
+        "category": "ປະເພດຂອງໂພສ",
+        "post_name": "ຊື່ໂພສ",
+        "description": "ລາຍລະອຽດ",
+        "picture": "ອັບໂຫຼດຮູບພາບ",
+        "button": {
+          "save": "ບັນທຶກ",
+          "cancel": "ຍົກເລີກ"
         }
       }
     },
-    "Edit":{
-      "header":"ແກ້ໄຂຂໍ້ມູນໂພສ"
+    "Edit": {
+      "header": "ແກ້ໄຂຂໍ້ມູນໂພສ"
     }
-    
   },
-
   "CateProduct": {
     "title": "ຂໍ້ມູນປະເພດຂອງສິນຄ້າ",
     "button": "ເພີ່ມ",
     "txtsearch": "ຄົ້ນຫາປະເພດຂອງສິນຄ້າ",
-    "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ",
+    "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
-        { "text": "ລຳດັບ", "value": "No", "sortable": false },
-        { "text": "ຊື່ປະເພດຂອງສິນຄ້າ", "value": "CateProductName", "sortable": true },
-        { "text": "ລາຍລະອຽດ", "value": "description", "sortable": false },
-        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "ຊື່ປະເພດຂອງສິນຄ້າ",
+          "value": "CateProductName",
+          "sortable": true
+        },
+        {
+          "text": "ລາຍລະອຽດ",
+          "value": "description",
+          "sortable": false
+        },
+        {
+          "text": "ຈັດການ",
+          "value": "Actions",
+          "sortable": false
+        }
       ],
-      "dontdata":"ບໍ່ມີຂໍ້ມູນ",
-      "options":{
-        "edit":"ແກ້ໄຂ","iconEdit":"fas fa-edit",
-        "delete":"ລົບຂໍ້ມູນ","delicon":"fas fa-trash-alt"
+      "dontdata": "ບໍ່ມີຂໍ້ມູນ",
+      "options": {
+        "edit": "ແກ້ໄຂ",
+        "iconEdit": "fas fa-edit",
+        "delete": "ລົບຂໍ້ມູນ",
+        "delicon": "fas fa-trash-alt"
       }
     },
-    "Create":{
-      "header":"ເພີ່ມຂໍ້ມູນປະເພດຂອງສິນຄ້າ",
-      "lang":{
-        "lao":"ລາວ",
-        "Eng":"ອັງກິດ"
+    "Create": {
+      "header": "ເພີ່ມຂໍ້ມູນປະເພດຂອງສິນຄ້າ",
+      "lang": {
+        "lao": "ລາວ",
+        "Eng": "ອັງກິດ"
       },
-      "form":{
-      
-        "cate_product_name":"ຊື່ປະເພດຂອງສິນຄ້າ",
-        "description":"ລາຍລະອຽດ",
-        
-        "button":{
-          "save":"ບັນທຶກ",
-          "cancel":"ຍົກເລີກ"
+      "form": {
+        "cate_product_name": "ຊື່ປະເພດຂອງສິນຄ້າ",
+        "description": "ລາຍລະອຽດ",
+        "button": {
+          "save": "ບັນທຶກ",
+          "cancel": "ຍົກເລີກ"
         }
       }
     },
-    "Edit":{
-      "header":"ແກ້ໄຂຂໍ້ມູນປະເພດຂອງສິນຄ້າ"
+    "Edit": {
+      "header": "ແກ້ໄຂຂໍ້ມູນປະເພດຂອງສິນຄ້າ"
     }
-    
   },
-
   "Product": {
     "title": "ຂໍ້ມູນຜະລິດຕະພັນ",
     "button": "ເພີ່ມ",
     "txtsearch": "ຄົ້ນຫາຜະລິດຕະພັນ",
-    "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ",
+    "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
-        { "text": "ລຳດັບ", "value": "No", "sortable": false },
-        { "text": "ຊື່ສິນຄ້າ", "value": "ProductName", "sortable": true },
-        { "text": "ປະເພດສິນຄ້າ", "value": "CateProduct", "sortable": true },
-        { "text": "ລາຍລະອຽດ", "value": "description", "sortable": false },
-        { "text": "ຮູບພາບ", "value": "Picture", "sortable": false },
-        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "ຊື່ສິນຄ້າ",
+          "value": "ProductName",
+          "sortable": true
+        },
+        {
+          "text": "ປະເພດສິນຄ້າ",
+          "value": "CateProduct",
+          "sortable": true
+        },
+        {
+          "text": "ລາຍລະອຽດ",
+          "value": "description",
+          "sortable": false
+        },
+        {
+          "text": "ຮູບພາບ",
+          "value": "Picture",
+          "sortable": false
+        },
+        {
+          "text": "ຈັດການ",
+          "value": "Actions",
+          "sortable": false
+        }
       ],
-      "dontdata":"ບໍ່ມີຂໍ້ມູນ",
-      "options":{
-        "edit":"ແກ້ໄຂ","iconEdit":"fas fa-edit",
-        "delete":"ລົບຂໍ້ມູນ","delicon":"fas fa-trash-alt"
+      "dontdata": "ບໍ່ມີຂໍ້ມູນ",
+      "options": {
+        "edit": "ແກ້ໄຂ",
+        "iconEdit": "fas fa-edit",
+        "delete": "ລົບຂໍ້ມູນ",
+        "delicon": "fas fa-trash-alt"
       }
     },
-    "Create":{
-      "header":"ເພີ່ມຂໍ້ມູນສິນຄ້າ",
-      "lang":{
-        "lao":"ລາວ",
-        "Eng":"ອັງກິດ"
+    "Create": {
+      "header": "ເພີ່ມຂໍ້ມູນສິນຄ້າ",
+      "lang": {
+        "lao": "ລາວ",
+        "Eng": "ອັງກິດ"
       },
-      "form":{
-        "category":"ປະເພດສິນຄ້າ",
-        "productname":"ຊື່ສິນຄ້າ",
-        "description":"ລາຍລະອຽດ",
-        "picture":"ອັບໂຫຼດຮູບພາບ",
-        "button":{
-          "save":"ບັນທຶກ",
-          "cancel":"ຍົກເລີກ"
+      "form": {
+        "category": "ປະເພດສິນຄ້າ",
+        "productname": "ຊື່ສິນຄ້າ",
+        "description": "ລາຍລະອຽດ",
+        "picture": "ອັບໂຫຼດຮູບພາບ",
+        "button": {
+          "save": "ບັນທຶກ",
+          "cancel": "ຍົກເລີກ"
         }
       }
     },
-    "Edit":{
-      "header":"ແກ້ໄຂຂໍ້ມູນສິນຄ້າ"
+    "Edit": {
+      "header": "ແກ້ໄຂຂໍ້ມູນສິນຄ້າ"
     }
-    
   },
   "CateDataPackage": {
     "title": "ຂໍ້ມູນປະເພດຂອງແພັກເກັດ",
     "button": "ເພີ່ມ",
     "txtsearch": "ຄົ້ນຫາປະເພດຂອງແພັກເກັດ",
-    "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ",
+    "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
-        { "text": "ລຳດັບ", "value": "No", "sortable": false },
-        { "text": "ຊື່ປະເພດຂອງແພັກເກັດ", "value": "CateDataPackageName", "sortable": true },
-        { "text": "ລາຍລະອຽດ", "value": "description", "sortable": false },
-        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "ຊື່ປະເພດຂອງແພັກເກັດ",
+          "value": "CateDataPackageName",
+          "sortable": true
+        },
+        {
+          "text": "ລາຍລະອຽດ",
+          "value": "description",
+          "sortable": false
+        },
+        {
+          "text": "ຈັດການ",
+          "value": "Actions",
+          "sortable": false
+        }
       ],
-      "dontdata":"ບໍ່ມີຂໍ້ມູນ",
-      "options":{
-        "edit":"ແກ້ໄຂ","iconEdit":"fas fa-edit",
-        "delete":"ລົບຂໍ້ມູນ","delicon":"fas fa-trash-alt"
+      "dontdata": "ບໍ່ມີຂໍ້ມູນ",
+      "options": {
+        "edit": "ແກ້ໄຂ",
+        "iconEdit": "fas fa-edit",
+        "delete": "ລົບຂໍ້ມູນ",
+        "delicon": "fas fa-trash-alt"
       }
     },
-    "Create":{
-      "header":"ເພີ່ມຂໍ້ມູນປະເພດຂອງແພັກເກັດ",
-      "lang":{
-        "lao":"ລາວ",
-        "Eng":"ອັງກິດ"
+    "Create": {
+      "header": "ເພີ່ມຂໍ້ມູນປະເພດຂອງແພັກເກັດ",
+      "lang": {
+        "lao": "ລາວ",
+        "Eng": "ອັງກິດ"
       },
-      "form":{
-      
-        "cate_data_package_name":"ຊື່ປະເພດຂອງແພັກເກັດ",
-        "description":"ລາຍລະອຽດ",
-        
-        "button":{
-          "save":"ບັນທຶກ",
-          "cancel":"ຍົກເລີກ"
+      "form": {
+        "cate_data_package_name": "ຊື່ປະເພດຂອງແພັກເກັດ",
+        "description": "ລາຍລະອຽດ",
+        "button": {
+          "save": "ບັນທຶກ",
+          "cancel": "ຍົກເລີກ"
         }
       }
     },
-    "Edit":{
-      "header":"ແກ້ໄຂຂໍ້ມູນປະເພດຂອງແພັກເກັດ"
+    "Edit": {
+      "header": "ແກ້ໄຂຂໍ້ມູນປະເພດຂອງແພັກເກັດ"
     }
-    
   },
-
   "DataPackage": {
     "title": "ຂໍ້ມູນແພັກເກັດ",
     "button": "ເພີ່ມ",
     "txtsearch": "ຄົ້ນຫາແພັກເກັດ",
-    "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ",
+    "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
-        { "text": "ລຳດັບ", "value": "No", "sortable": false },
-        { "text": "ຊື່ແພັກເກັດ", "value": "DataPackageName", "sortable": true },
-        { "text": "ປະເພດແພັກເກັດ", "value": "CateDataPackage", "sortable": true },
-        { "text": "ລາຍລະອຽດ", "value": "description", "sortable": false },
-        { "text": "ຮູບພາບ", "value": "Picture", "sortable": false },
-        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "ຊື່ແພັກເກັດ",
+          "value": "DataPackageName",
+          "sortable": true
+        },
+        {
+          "text": "ປະເພດແພັກເກັດ",
+          "value": "CateDataPackage",
+          "sortable": true
+        },
+        {
+          "text": "ລາຍລະອຽດ",
+          "value": "description",
+          "sortable": false
+        },
+        {
+          "text": "ຮູບພາບ",
+          "value": "Picture",
+          "sortable": false
+        },
+        {
+          "text": "ຈັດການ",
+          "value": "Actions",
+          "sortable": false
+        }
       ],
-      "dontdata":"ບໍ່ມີຂໍ້ມູນ",
-      "options":{
-        "edit":"ແກ້ໄຂ","iconEdit":"fas fa-edit",
-        "delete":"ລົບຂໍ້ມູນ","delicon":"fas fa-trash-alt"
+      "dontdata": "ບໍ່ມີຂໍ້ມູນ",
+      "options": {
+        "edit": "ແກ້ໄຂ",
+        "iconEdit": "fas fa-edit",
+        "delete": "ລົບຂໍ້ມູນ",
+        "delicon": "fas fa-trash-alt"
       }
     },
-    "Create":{
-      "header":"ເພີ່ມຂໍ້ມູນແພັກເກັດ",
-      "lang":{
-        "lao":"ລາວ",
-        "Eng":"ອັງກິດ"
+    "Create": {
+      "header": "ເພີ່ມຂໍ້ມູນແພັກເກັດ",
+      "lang": {
+        "lao": "ລາວ",
+        "Eng": "ອັງກິດ"
       },
-      "form":{
-        "category":"ປະເພດແພັກເກັດ",
-        "data_package_name":"ຊື່ແພັກເກັດ",
-        "description":"ລາຍລະອຽດ",
-        "picture":"ອັບໂຫຼດຮູບພາບ",
-        
-        "button":{
-          "save":"ບັນທຶກ",
-          "cancel":"ຍົກເລີກ"
+      "form": {
+        "category": "ປະເພດແພັກເກັດ",
+        "data_package_name": "ຊື່ແພັກເກັດ",
+        "description": "ລາຍລະອຽດ",
+        "picture": "ອັບໂຫຼດຮູບພາບ",
+        "button": {
+          "save": "ບັນທຶກ",
+          "cancel": "ຍົກເລີກ"
         }
       }
     },
-    "Edit":{
-      "header":"ແກ້ໄຂຂໍ້ມູນແພັກເກັດ"
+    "Edit": {
+      "header": "ແກ້ໄຂຂໍ້ມູນແພັກເກັດ"
     }
-    
   },
-
   "Users": {
     "title": "ຂໍ້ມູນຜູ້ໃຊ້ລະບົບ",
     "button": "ເພີ່ມ",
     "txtsearch": "ຄົ້ນຫາຂໍ້ມູນຜູໃຊ້",
-    "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ",
+    "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
-        { "text": "ລຳດັບ", "value": "No", "sortable": false },
-        { "text": "ຊື່ຜູ້ໃຊ້", "value": "Username", "sortable": true },
-        { "text": "ລະຫັດຜ່ານ", "value": "Password", "sortable": true },
-        { "text": "ບົດບາດ", "value": "Rule", "sortable": false },
-        { "text": "ສະຖານະ", "value": "Starus", "sortable": false },
-        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "ຊື່ຜູ້ໃຊ້",
+          "value": "Username",
+          "sortable": true
+        },
+        {
+          "text": "ອີເມວ",
+          "value": "email",
+          "sortable": true
+        },
+        {
+          "text": "ເບີໂທ",
+          "value": "phone",
+          "sortable": false
+        },
+        {
+          "text": "ສະຖານະ",
+          "value": "status",
+          "sortable": false
+        },
+        {
+          "text": "ຈັດການ",
+          "value": "Actions",
+          "sortable": false
+        }
       ],
-      "dontdata":"ບໍ່ມີຂໍ້ມູນ",
-      "options":{
-        "edit":"ແກ້ໄຂ","iconEdit":"fas fa-edit",
-        "delete":"ລົບຂໍ້ມູນ","delicon":"fas fa-trash-alt",
-        "addRole":"ເພີ່ມບົດບາດ","aroleicon":"fas fa-user-tag",
-        "editRole":"ແກ້ໄຂບົດບາດ","eroleicon":"fas fa-edit"
+      "dontdata": "ບໍ່ມີຂໍ້ມູນ",
+      "options": {
+        "edit": "ແກ້ໄຂ",
+        "iconEdit": "fas fa-edit",
+        "delete": "ລົບຂໍ້ມູນ",
+        "delicon": "fas fa-trash-alt",
+        "addRole": "ເພີ່ມບົດບາດ",
+        "aroleicon": "fas fa-user-tag",
+        "editRole": "ແກ້ໄຂບົດບາດ",
+        "eroleicon": "fas fa-edit"
       }
     },
-    "Create":{
-      "header":"ເພີ່ມຂໍ້ມູນຜູ້ໃຊ້",
-      "lang":{
-        "lao":"ລາວ",
-        "Eng":"ອັງກິດ"
+    "Create": {
+      "header": "ເພີ່ມຂໍ້ມູນຜູ້ໃຊ້",
+      "lang": {
+        "lao": "ລາວ",
+        "Eng": "ອັງກິດ"
       },
-      "form":{
-        "firstname":"ຊື່",
-        "lastname":"ນາມສະກຸນ",
-        "email":"ອີເມວ",
-        "phone":"ເບີໂທ",
-        "username":"ຊື່ຜູ້ໃຊ້",
-        "pass":"ລະຫັດຜ່ານ",
-        "button":{
-          "save":"ບັນທຶກ",
-          "cancel":"ຍົກເລີກ"
+      "form": {
+        "firstname": "ຊື່",
+        "lastname": "ນາມສະກຸນ",
+        "email": "ອີເມວ",
+        "phone": "ເບີໂທ",
+        "username": "ຊື່ຜູ້ໃຊ້",
+        "pass": "ລະຫັດຜ່ານ",
+        "button": {
+          "save": "ບັນທຶກ",
+          "cancel": "ຍົກເລີກ"
         }
       }
     },
-    "Edit":{
-      "header":"ແກ້ໄຂຂໍ້ມູນສິນຄ້າ"
+    "Edit": {
+      "header": "ແກ້ໄຂຂໍ້ມູນສິນຄ້າ"
     }
-    
   },
-
   "Role": {
     "title": "ຂໍ້ມູນບົດບາດຜູ້ໃຊ້",
     "button": "ເພີ່ມ",
     "txtsearch": "ຄົ້ນຫາຂໍ້ມູນ",
-    "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ",
+    "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
-        { "text": "ລຳດັບ", "value": "No", "sortable": false },
-        { "text": "ຊື່ຜູ້ໃຊ້", "value": "Username", "sortable": true },
-        { "text": "ລະຫັດຜ່ານ", "value": "Password", "sortable": true },
-        { "text": "ບົດບາດ", "value": "Rule", "sortable": false },
-        { "text": "ສະຖານະ", "value": "Starus", "sortable": false },
-        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "ຊື່ ສິດ",
+          "value": "RoleName",
+          "sortable": false
+        },
+        {
+          "text": "ຄຳອະທິບາຍ",
+          "value": "description",
+          "sortable": false
+        },
+        {
+          "text": "ວັນທີສ້າງ",
+          "value": "createdAt",
+          "sortable": false
+        },
+        {
+          "text": "ວັນທິແກ້ໄຂ",
+          "value": "updatedAt",
+          "sortable": false
+        },
+        {
+          "text": "ເພີ່ມສິດການໃຊ້ງານ",
+          "value": "addPermission",
+          "sortable": false
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": false
+        }
       ],
-      "dontdata":"ບໍ່ມີຂໍ້ມູນ",
-      "options":{
-        "edit":"ແກ້ໄຂ","iconEdit":"fas fa-edit",
-        "delete":"ລົບຂໍ້ມູນ","delicon":"fas fa-trash-alt"
+      "dontdata": "ບໍ່ມີຂໍ້ມູນ",
+      "options": {
+        "edit": "ແກ້ໄຂ",
+        "iconEdit": "fas fa-edit",
+        "delete": "ລົບຂໍ້ມູນ",
+        "delicon": "fas fa-trash-alt"
       }
     },
-    "Create":{
-      "header":"ເພີ່ມບົດບາດຜູ້ໃຊ້",
-      "lang":{
-        "lao":"ລາວ",
-        "Eng":"ອັງກິດ"
+    "Create": {
+      "header": "ເພີ່ມບົດບາດຜູ້ໃຊ້",
+      "lang": {
+        "Eng": "ບົດບາດຜູ້ໃຊ້"
       },
-      "form":{
-        "userrole":"ຊື່ບົດບາດ",
-        "role":"ບົດບາດ",
-        "permission":"ສິດທິການເຂົ້າໃຊ້",
-        "selectRole":"ເລືອກບົດບາດຜູ້ໃຊ້",
-        "button":{
-          "save":"ບັນທຶກ",
-          "cancel":"ຍົກເລີກ"
+      "form": {
+        "name": "ຊື່ບົດບາດຜູ້ໃຊ້",
+        "description": "ຄຳອະທິບາຍ",
+        "button": {
+          "save": "ບັນທຶກ",
+          "cancel": "ຍົກເລີກ"
         }
       }
     },
-    "Edit":{
-      "header":"ແກ້ໄຂບົດບາດຜູ້ໃຊ້"
+    "Edit": {
+      "header": "ແກ້ໄຂບົດບາດຜູ້ໃຊ້"
     }
-    
   },
+  "permissionRole": {
+    "title": "ສິດການໃຊ້ງານ",
+    "button": "ເພີ່ມສິດ",
+    "txtsearch": "ຄົ້ນຫາຂໍ້ມູນ",
+    "loadingtext": "Loading..",
+    "table": {
+      "headers": [
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "ຊື່ສິດການໃຊ້ງານ",
+          "value": "RoleName",
+          "sortable": false
+        },
+        {
+          "text": "ວັນທີສ້າງ",
+          "value": "createdAt",
+          "sortable": false
+        },
+        {
+          "text": "ວັນທິອັບເດດ",
+          "value": "updatedAt",
+          "sortable": false
+        },
 
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": false
+        }
+      ],
+      "dontdata": "ບໍ່ມິຂໍ້ມູນ",
+      "options": {
+        "edit": "ແກ້ໄຂ",
+        "iconEdit": "fas fa-edit",
+        "delete": "ລຶບ",
+        "delicon": "fas fa-trash-alt"
+      }
+    },
+    "Create": {
+      "header": "ເພີ່ມສິດການໃຊ້ງານ",
+      "lang": {
+        "Eng": "ສິດການໃຊ້ງານ"
+      },
+      "form": {
+        "name": "ສິດການໃຊ້ງານ",
+        "button": {
+          "save": "ບັນທຶກ",
+          "cancel": "ຍົກເລີກ"
+        }
+      }
+    },
+    "Edit": {
+      "header": "ສິດການໃຊ້ງານ"
+    }
+  },
   "Permission": {
     "title": "ຂໍ້ມູນສິດທິການເຂົ້າໃຊ້",
     "button": "ເພີ່ມ",
     "txtsearch": "ຄົ້ນຫາຂໍ້ມູນ",
-    "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ",
+    "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
-        { "text": "ລຳດັບ", "value": "No", "sortable": false },
-        { "text": "ຊື່ຜູ້ໃຊ້", "value": "Username", "sortable": true },
-        { "text": "ລະຫັດຜ່ານ", "value": "Password", "sortable": true },
-        { "text": "ບົດບາດ", "value": "Rule", "sortable": false },
-        { "text": "ສະຖານະ", "value": "Starus", "sortable": false },
-        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "ຊື່ຜູ້ໃຊ້",
+          "value": "Username",
+          "sortable": true
+        },
+        {
+          "text": "ລະຫັດຜ່ານ",
+          "value": "Password",
+          "sortable": true
+        },
+        {
+          "text": "ບົດບາດ",
+          "value": "Rule",
+          "sortable": false
+        },
+        {
+          "text": "ສະຖານະ",
+          "value": "Starus",
+          "sortable": false
+        },
+        {
+          "text": "ຈັດການ",
+          "value": "Actions",
+          "sortable": false
+        }
       ],
-      "dontdata":"ບໍ່ມີຂໍ້ມູນ",
-      "options":{
-        "edit":"ແກ້ໄຂ","iconEdit":"fas fa-edit",
-        "delete":"ລົບຂໍ້ມູນ","delicon":"fas fa-trash-alt"
+      "dontdata": "ບໍ່ມີຂໍ້ມູນ",
+      "options": {
+        "edit": "ແກ້ໄຂ",
+        "iconEdit": "fas fa-edit",
+        "delete": "ລົບຂໍ້ມູນ",
+        "delicon": "fas fa-trash-alt"
       }
     },
-    "Create":{
-      "header":"ເພີ່ມບົດບາດຜູ້ໃຊ້",
-      "lang":{
-        "lao":"ລາວ",
-        "Eng":"ອັງກິດ"
+    "Create": {
+      "header": "ເພີ່ມບົດບາດຜູ້ໃຊ້",
+      "lang": {
+        "lao": "ລາວ",
+        "Eng": "ອັງກິດ"
       },
-      "form":{
-        "userrole":"ຊື່ບົດບາດ",
-        "role":"ບົດບາດ",
-        "permission":"ສິດທິການເຂົ້າໃຊ້",
-        "button":{
-          "save":"ບັນທຶກ",
-          "cancel":"ຍົກເລີກ"
+      "form": {
+        "userrole": "ຊື່ບົດບາດ",
+        "role": "ບົດບາດ",
+        "permission": "ສິດທິການເຂົ້າໃຊ້",
+        "button": {
+          "save": "ບັນທຶກ",
+          "cancel": "ຍົກເລີກ"
         }
       }
     },
-    "Edit":{
-      "header":"ແກ້ໄຂຂໍ້ມູນສິນຄ້າ"
+    "Edit": {
+      "header": "ແກ້ໄຂຂໍ້ມູນສິນຄ້າ"
     }
-    
   },
-
-  "Validate":{
-    "required":"ກະລຸນາປ້ອນຂໍ້ມູນ",
-    "email":"ອີເມວບໍ່ຖືກຕ້ອງ",
-    "password":"ລະຫັດຜ່ານຕ້ອງມີຕົວພິມນ້ອຍຢ່າງໜ້ອຍໜຶ່ງຕົວເລກ, ຕົວອັກສອນພິເສດ ແລະ ຕົວອັກສອນຕົວພິມໃຫຍ່ໜຶ່ງຕົວ",
-    "maxmessage":"ປ້ອນຕົວສອນໜ້ອຍກວ່າ",
-    "minmessage":"ປ້ອນຕົວສອນຫຼາຍກວ່າ"
+  "Validate": {
+    "required": "ກະລຸນາປ້ອນຂໍ້ມູນ",
+    "email": "ອີເມວບໍ່ຖືກຕ້ອງ",
+    "password": "ລະຫັດຜ່ານຕ້ອງມີຕົວພິມນ້ອຍຢ່າງໜ້ອຍໜຶ່ງຕົວເລກ, ຕົວອັກສອນພິເສດ ແລະ ຕົວອັກສອນຕົວພິມໃຫຍ່ໜຶ່ງຕົວ",
+    "maxmessage": "ປ້ອນຕົວສອນໜ້ອຍກວ່າ",
+    "minmessage": "ປ້ອນຕົວສອນຫຼາຍກວ່າ"
   },
-  "Notification":{
-    "saveDataSuccess":"ທ່ານບັນທຶກຂໍ້ມູນສຳເລັດ...ແລ້ວ",
-    "editDataSuccess":"ທ່ານແກ້ໄຂຂໍ້ມູນສຳເລັດ...ແລ້ວ",
-    "delDataSuccess":"ທ່ານລົບຂໍ້ມູນສຳເລັດ...ແລ້ວ",
-    "saveDataError":"ການບັນທຶກຂໍ້ມູນຂອງທ່ານບໍ່ສຳເລັດ",
-    "editDataError":"ການແກ້ໄຂຂໍ້ມູນຂອງທ່ານບໍ່ສຳເລັດ",
-    "delDataError":"ການລົບຂໍ້ມູນຂອງທ່ານບໍ່ສຳເລັດ",
-    "loginSuccess":"ເຂົ້າສູ່ລະບົບສຳເລັດ",
-    "loginError":"ເຂົ້າສູ່ລະບົບບໍ່ສຳເລັດ"
+  "Notification": {
+    "saveDataSuccess": "ທ່ານບັນທຶກຂໍ້ມູນສຳເລັດ...ແລ້ວ",
+    "editDataSuccess": "ທ່ານແກ້ໄຂຂໍ້ມູນສຳເລັດ...ແລ້ວ",
+    "delDataSuccess": "ທ່ານລົບຂໍ້ມູນສຳເລັດ...ແລ້ວ",
+    "saveDataError": "ການບັນທຶກຂໍ້ມູນຂອງທ່ານບໍ່ສຳເລັດ",
+    "editDataError": "ການແກ້ໄຂຂໍ້ມູນຂອງທ່ານບໍ່ສຳເລັດ",
+    "delDataError": "ການລົບຂໍ້ມູນຂອງທ່ານບໍ່ສຳເລັດ",
+    "loginSuccess": "ເຂົ້າສູ່ລະບົບສຳເລັດ",
+    "loginError": "ເຂົ້າສູ່ລະບົບບໍ່ສຳເລັດ",
+    "permissionError": "ການລືບຂໍ້ມູນບໍ່ສຳເລັດ permission ນີ້ຖຶກໃຊ້ງານຢູ່"
   }
 }

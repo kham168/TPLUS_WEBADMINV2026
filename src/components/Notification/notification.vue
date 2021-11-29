@@ -36,7 +36,7 @@ export default {
   name: "Notification",
   data() {
     return {
-      timeout:6000
+      timeout:3000
     };
   },
 

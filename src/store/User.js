@@ -65,7 +65,7 @@ const mutations = {
 const actions ={
     LoginUser(context, data) {
         return new Promise((resolve, reject) => {
-            $axios.post('/login', {
+            $axios.post('admin/login', {
                 data: data.username,
                 password: data.password
             })

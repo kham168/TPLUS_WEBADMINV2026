@@ -1,27 +1,27 @@
 <template>
-  <div id="Index">
-    <section class="permisstion-container">
-      <div class="header permission-header">
-        <h1>{{ $t("permission.title") }}</h1>
+  <div id="Logo">
+    <section class="logo-section">
+      <div class="header logo-header">
+        <h1>{{ $t("position.title") }}</h1>
         <v-btn @click="onCreate" class="btn btn-create">
           <v-icon>fal fa-plus-circle</v-icon>
-          {{ $t("permission.button") }}
-        </v-btn
-        >
+          {{ $t("position.button") }}
+        </v-btn>
       </div>
-      <div class="permission-content">
+      <div class="logo-content">
         <v-data-table
-            :headers="$t('permission.table.headers')"
-            :items="listPermission"
+            :headers="$t('position.table.headers')"
+            :items="position"
+            :itemid="position"
             :search="searchItem"
             :loading="loading"
-            :loading-text="$t('permission.loadingtext')"
-            v-if="listPermission != ''"
+            :loading-text="$t('position.loadingtext')"
+            v-if="position !==''"
         >
           <template v-slot:top>
             <v-toolbar flat>
               <v-text-field
-                  :label="$t('permission.txtsearch')"
+                  :label="$t('position.txtsearch')"
                   filled
                   rounded
                   dense
@@ -38,14 +38,7 @@
             <tr class="table-content">
               <td>{{ index + 1 }}</td>
               <td>{{ item.name }}</td>
-              <td>
-                <div v-if="item.description">
-                  {{ item.description }}
-                </div>
-                <div v-else>
-                  <span><i style="color: #ff001b" class="far fa-minus"></i></span>
-                </div>
-              </td>
+              <td>{{ item.description }}</td>
               <td>{{ item.createdAt }}</td>
               <td>{{ item.updatedAt }}</td>
               <td>
@@ -58,17 +51,17 @@
                   <v-list>
                     <v-list-item link @click="onEdit(item.id)">
                       <v-list-item-icon>
-                        <v-icon class="mr-3" small>{{ $t('permission.table.options.iconEdit') }}</v-icon>
+                        <v-icon class="mr-3" small>{{ $t('position.table.options.iconEdit') }}</v-icon>
                         <v-list-item-title>
-                          {{ $t('permission.table.options.edit') }}
+                          {{ $t('Logo.table.options.edit') }}
                         </v-list-item-title>
                       </v-list-item-icon>
                     </v-list-item>
                     <v-list-item link @click="onDelete(item.id)">
                       <v-list-item-icon>
-                        <v-icon class="mr-3" small>{{ $t('permission.table.options.delicon') }}</v-icon>
+                        <v-icon class="mr-3" small>{{ $t('position.table.options.delicon') }}</v-icon>
                         <v-list-item-title>
-                          {{ $t('permission.table.options.delete') }}
+                          {{ $t('position.table.options.delete') }}
                         </v-list-item-title>
                       </v-list-item-icon>
                     </v-list-item>
@@ -78,72 +71,84 @@
             </tr>
           </template>
         </v-data-table>
+
         <div class="Table-empty" v-else>
           <div class="image">
-            <v-img src="../../assets/Images/NoData.png"></v-img>
+            <v-img src="@/assets/Images/NoData.png"></v-img>
           </div>
-          <h3>{{ $t("permission.table.dontdata") }}</h3>
+          <h3>{{ $t("position.table.dontdata") }}</h3>
         </div>
       </div>
       <ModalDelete>
         <template v-slot="{close}">
-          <Delete :permission_id="permission_id" @close="close" @success="fetchPermission()"/>
+          <Delete :position_id="position_id" @close="close" @success="fetchPosition()"/>
         </template>
       </ModalDelete>
+
     </section>
   </div>
 </template>
 
 <script>
-import Delete from "../../components/forms/permission/Delete";
+import Delete from "../../components/forms/position/Delete";
 
 export default {
   components: {
     Delete
   },
-
   data() {
     return {
-      listPermission: [],
-      searchItem: "",
       loading: false,
-      permission_id: "",
+      searchItem: "",
+      position: [],
+      position_id: ""
     };
   },
+
   methods: {
     onCreate() {
       this.$router.push({
-        name: "permission.create"
+        name: "position.create"
       })
     },
-    onDelete(permission_id) {
-      this.permission_id = permission_id;
+    onDelete(position_id) {
+      this.position_id = position_id;
       this.$store.commit("modalDelete_State", true);
     },
-    onEdit(permission_id) {
-      this.$store.commit("permission/SET_PERMISSION_ID",permission_id)
-      this.$router.push({
-        name: "permission.edit",
-        query: {
-          permission_id: permission_id
-        }
-      })
-    },
-    fetchPermission() {
-      this.$axios.get(`permissions`).then((res) => {
+    fetchPosition() {
+      this.$axios.get(`position`).then((res) => {
         if (res.status === 200) {
-          this.listPermission = res.data.data;
+          this.position = res.data.data;
         }
       }).catch((error) => {
         console.log(error)
       })
+    },
+    onEdit(position_id) {
+      this.$store.commit("position/SET_POSITION_ID", position_id)
+      this.$router.push({
+        name: "position.edit",
+        query: {
+          position_id: position_id
+        }
+      });
     }
   },
   created() {
-    this.fetchPermission();
+    this.fetchPosition();
   }
 };
 </script>
 
 <style lang="scss" scoped>
+.logo-section {
+  width: 100%;
+  background-color: $white-color;
+
+  .logo-content {
+    width: 100%;
+    padding: 1rem;
+
+  }
+}
 </style>

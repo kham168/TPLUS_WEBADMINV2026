@@ -2,30 +2,32 @@
   <div id="Index">
     <section class="role-container">
       <div class="header role-header">
-        <h1>{{ $t("Role.title") }}</h1>
+        <h1><span @click="back" style="margin-right: 10px;color: #4b96da;cursor: pointer">
+          <i class="fas fa-arrow-circle-left"></i></span>{{ $t("permissionRole.title") }}
+        </h1>
         <v-btn
             @click="onCreate"
             class="btn btn-create"
         >
           <v-icon>fal fa-plus-circle</v-icon>
-          {{ $t("Role.button") }}
+          {{ $t("permissionRole.button") }}
         </v-btn>
       </div>
       <!-- end -->
       <!-- content -->
       <div class="role-content">
         <v-data-table
-            :headers="$t('Role.table.headers')"
-            :items="listRole"
+            :headers="$t('permissionRole.table.headers')"
             :search="searchItem"
             :loading="loading"
-            :loading-text="$t('Role.loadingtext')"
-            v-if="listRole != ''"
+            :items="permissionRole"
+            :loading-text="$t('permissionRole.loadingtext')"
+            v-if="permissionRole != ''"
         >
           <template v-slot:top>
             <v-toolbar flat>
               <v-text-field
-                  :label="$t('Role.txtsearch')"
+                  :label="$t('permissionRole.txtsearch')"
                   filled
                   rounded
                   dense
@@ -42,25 +44,8 @@
             <tr class="table-content">
               <td>{{ index + 1 }}</td>
               <td>{{ item.name }}</td>
-              <td>
-                <div v-if="item.description">
-                  {{ item.description }}
-                </div>
-                <div v-else>
-                  <span><i style="color: #ff001b" class="far fa-minus"></i></span>
-                </div>
-              </td>
               <td>{{ item.createdAt }}</td>
               <td>{{ item.updatedAt }}</td>
-              <td>
-                <v-menu offset-y>
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-btn icon v-on="on" v-bind="attrs" @click="addPermissionInRole(item.id)">
-                      <i style="font-size: 20px" class="far fa-plus-circle"></i>
-                    </v-btn>
-                  </template>
-                </v-menu>
-              </td>
               <td>
                 <v-menu offset-y>
                   <template v-slot:activator="{ on, attrs }">
@@ -69,28 +54,14 @@
                     </v-btn>
                   </template>
                   <v-list>
-                    <v-list-item
-                        link
-                        @click="onEdit(item.id)"
-                    >
-                      <v-list-item-icon>
-                        <v-icon class="mr-3" small>{{
-                            $t("Role.table.options.iconEdit")
-                          }}
-                        </v-icon>
-                        <v-list-item-title>
-                          {{ $t("Role.table.options.edit") }}
-                        </v-list-item-title>
-                      </v-list-item-icon>
-                    </v-list-item>
                     <v-list-item link @click="onDelete(item.id)">
                       <v-list-item-icon>
                         <v-icon class="mr-3" small>{{
-                            $t("Role.table.options.delicon")
+                            $t("permissionRole.table.options.delicon")
                           }}
                         </v-icon>
                         <v-list-item-title>
-                          {{ $t("Role.table.options.delete") }}
+                          {{ $t("permissionRole.table.options.delete") }}
                         </v-list-item-title>
                       </v-list-item-icon>
                     </v-list-item>
@@ -105,13 +76,20 @@
           <div class="image">
             <v-img src="../../assets/Images/NoData.png"></v-img>
           </div>
-          <h3>{{ $t("Role.table.dontdata") }}</h3>
+          <h3>{{ $t("permissionRole.table.dontdata") }}</h3>
         </div>
         <!-- end -->
       </div>
+      <ModalAdd>
+        <template v-slot="{ close }">
+          <addPermissionInRole @close="close" @success="fetchPermissionRole()"/>
+        </template>
+      </ModalAdd>
+
       <ModalDelete>
         <template v-slot="{close}">
-          <Delete :role_id="role_id" @close="close" @success="fetchRole()"/>
+          <deletePermissionRole :role_id="role_id" :permissionRole_id="permissionRole_id" @close="close"
+                                @success="fetchPermissionRole()"/>
         </template>
       </ModalDelete>
       <!-- end -->
@@ -120,60 +98,49 @@
 </template>
 
 <script>
-import Delete from "../../components/forms/role/Delete";
+import addPermissionInRole from "./addPermissionInRole";
+import deletePermissionRole from "./deletePermissionRole"
 
 export default {
   components: {
-    Delete
+    addPermissionInRole,
+    deletePermissionRole
   },
   data() {
     return {
-      listRole: [],
       searchItem: "",
       loading: false,
-      role_id: ""
+      role_id: this.$route.params.role_id,
+      permissionRole: [],
+      permissionRole_id: "",
+
     };
   },
   methods: {
-
-    fetchRole() {
-      this.$axios.get(`roles`).then((res) => {
+    back() {
+      this.$router.push({
+        name: "roles.index"
+      })
+    },
+    fetchPermissionRole() {
+      this.$axios.get(`roles/${this.role_id}/permissions`).then((res) => {
         if (res.status === 200) {
-          this.listRole = res.data.data;
-          console.log(this.listRole)
+          this.permissionRole = res.data.data.permissions;
+          console.log(this.permissionRole, 555555555555)
         }
       })
     },
     onCreate() {
-      this.$router.push({
-        name: "roles.create"
-      })
+      this.$store.commit("modalAdd_State", true);
     },
-    onEdit(role_id) {
-      this.$store.commit("role/SET_ROLE_ID", role_id);
-      this.$router.push({
-        name: "roles.edit",
-        query: {
-          role_id: role_id
-        }
-      })
-    },
-    onDelete(role_id) {
-      this.role_id = role_id;
+    onDelete(permissionRole_id) {
+      this.permissionRole_id = permissionRole_id;
       this.$store.commit("modalDelete_State", true);
     },
-    addPermissionInRole(role_id) {
-      console.log(role_id)
-      this.$router.push({
-        name: "permissionRole.index",
-        params: {
-          role_id: role_id
-        }
-      })
-    }
+
   },
   created() {
-    this.fetchRole();
+    this.fetchPermissionRole();
   }
 };
 </script>

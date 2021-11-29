@@ -7,14 +7,17 @@ import "../src/assets/scss/main.scss";
 import i18n from './i18n'
 import validate from "./Validation/validate"
 import "../src/plugins/Axios"
+import ModalDelete from "@/components/Modals/modalDelete"
+import ModalAdd from "@/components/Modals/modalAdd"
 
 Vue.config.productionTip = false
 Vue.prototype.$myValidator = validate;
-
+Vue.component('ModalDelete', ModalDelete)
+Vue.component('ModalAdd', ModalAdd)
 new Vue({
-  router,
-  store,
-  vuetify,
-  i18n,
-  render: h => h(App)
+    router,
+    store,
+    vuetify,
+    i18n,
+    render: h => h(App)
 }).$mount('#app')

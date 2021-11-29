@@ -2,32 +2,31 @@
   <div id="">
     <section class="user-container">
       <div class="header user-header">
-        <h1>{{$t('Users.title')}}</h1>
-        <v-btn @click="$router.push({name:'users.create'}).catch(()=>{})" class="btn btn-create">
+        <h1>{{ $t('Users.title') }}</h1>
+        <v-btn @click="onCreate" class="btn btn-create">
           <v-icon>fal fa-plus-circle</v-icon>
-          {{$t('Users.button')}}
+          {{ $t('Users.button') }}
         </v-btn>
       </div>
       <div class="user-content">
         <v-data-table
-          :headers="$t('Users.table.headers')"
-          :items="myUser"
-          :search="searchItem"
-          :loading="loading"
-          :loading-text="$t('Users.loadingtext')"
-          v-if="myUser != ''"
-        >
+            :headers="$t('Users.table.headers')"
+            :items="listUser"
+            :search="searchItem"
+            :loading="loading"
+            :loading-text="$t('Users.loadingtext')"
+            v-if="listUser != ''">
           <template v-slot:top>
             <v-toolbar flat>
               <v-text-field
-                :label="$t('Users.txtsearch')"
-                filled
-                rounded
-                dense
-                append-icon="fas fa-search"
-                single-line
-                hide-details
-                v-model="searchItem"
+                  :label="$t('Users.txtsearch')"
+                  filled
+                  rounded
+                  dense
+                  append-icon="fas fa-search"
+                  single-line
+                  hide-details
+                  v-model="searchItem"
               ></v-text-field>
               <v-spacer></v-spacer>
             </v-toolbar>
@@ -36,7 +35,10 @@
           <template v-slot:item="{ item, index }">
             <tr class="table-content">
               <td>{{ index + 1 }}</td>
-              <td>{{ item }}</td>
+              <td>{{ item.username }}</td>
+              <td>{{ item.email }}</td>
+              <td>{{ item.phone }}</td>
+              <td>{{ item.status }}</td>
               <td>
                 <v-menu offset-y>
                   <template v-slot:activator="{ on, attrs }">
@@ -46,47 +48,38 @@
                   </template>
                   <v-list>
                     <v-list-item
-                      link
-                      @click="
-                        $router.push({ name: 'users.edit' }).catch(() => {})
-                      "
+                        link
+                        @click="onEdit(item.id)"
                     >
                       <v-list-item-icon>
                         <v-icon class="mr-3" small>{{
-                          $t("Users.table.options.iconEdit")
-                        }}</v-icon>
+                            $t("Users.table.options.iconEdit")
+                          }}
+                        </v-icon>
                         <v-list-item-title>
                           {{ $t("Users.table.options.edit") }}
                         </v-list-item-title>
                       </v-list-item-icon>
                     </v-list-item>
-                    <v-list-item link>
+                    <v-list-item link @click="addRole(item.id)">
                       <v-list-item-icon>
                         <v-icon class="mr-3" small>{{
-                          $t("Users.table.options.delicon")
-                        }}</v-icon>
-                        <v-list-item-title>
-                          {{ $t("Users.table.options.delete") }}
-                        </v-list-item-title>
-                      </v-list-item-icon>
-                    </v-list-item>
-                     <v-list-item link @click="$store.commit('IncrementUserRole')">
-                      <v-list-item-icon>
-                        <v-icon class="mr-3" small>{{
-                          $t("Users.table.options.aroleicon")
-                        }}</v-icon>
+                            $t("Users.table.options.aroleicon")
+                          }}
+                        </v-icon>
                         <v-list-item-title>
                           {{ $t("Users.table.options.addRole") }}
                         </v-list-item-title>
                       </v-list-item-icon>
                     </v-list-item>
-                    <v-list-item link @click="$store.commit('IncrementUserRole_edit')">
+                    <v-list-item link @click="addPermission(item.id)">
                       <v-list-item-icon>
                         <v-icon class="mr-3" small>{{
-                          $t("Users.table.options.eroleicon")
-                        }}</v-icon>
+                            $t("Users.table.options.aroleicon")
+                          }}
+                        </v-icon>
                         <v-list-item-title>
-                          {{ $t("Users.table.options.editRole") }}
+                          ເພີ່ມສິດການໃຊ້ງານ
                         </v-list-item-title>
                       </v-list-item-icon>
                     </v-list-item>
@@ -96,7 +89,6 @@
             </tr>
           </template>
         </v-data-table>
-
         <!-- Table is empty -->
         <div class="Table-empty" v-else>
           <div class="image">
@@ -104,40 +96,66 @@
           </div>
           <h3>{{ $t("Users.table.dontdata") }}</h3>
         </div>
-
-        <!-- Add User role dialog -->
-        <AddUserRole/>
-        <!-- Edit User role dialog -->
-        <EditUserRole/>
       </div>
     </section>
   </div>
 </template>
 
 <script>
-import AddUserRole from "../../components/dialog/UserRoles/addUserRole.vue"
-import EditUserRole from "../../components/dialog/UserRoles/editUserRole.vue"
+
 export default {
-  name: "Index",
-  components:{
-    AddUserRole,
-    EditUserRole
-  },
   data() {
     return {
-        myUser:[1],
-        searchItem:null,
-        loading:true,
+      searchItem: null,
+      loading: false,
+      listUser: [],
     };
   },
-  created(){
-   
-  },
-  mounted() {},
+
+
   methods: {
-  async  fatchUsers(){
-      
+    addRole(user_id) {
+      this.$router.push({
+        name: "roleUser.index",
+        params: {
+          user_id: user_id,
+        }
+      })
+    },
+    addPermission(user_id) {
+      this.$router.push({
+        name: "permissionUser.index",
+        params: {
+          user_id: user_id
+        }
+      })
+    },
+    fetchUser() {
+      this.$axios.get(`users`).then((res) => {
+        if (res.status === 200) {
+          this.listUser = res.data.data;
+        }
+      })
+    },
+    onCreate() {
+      this.$router.push({
+        name: "users.create"
+      })
+    },
+
+    onEdit(user_id) {
+      this.$store.commit("users/SET_USER_ID", user_id)
+      this.$router.push({
+        name: "users.edit",
+        query: {
+          user_id: user_id,
+        }
+      })
     }
+  },
+
+  created() {
+    this.fetchUser();
   },
 };
 </script>

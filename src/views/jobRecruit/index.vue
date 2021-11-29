@@ -2,21 +2,16 @@
   <div id="Index">
     <section class="permisstion-container">
       <div class="header permission-header">
-        <h1>{{ $t("permission.title") }}</h1>
-        <v-btn @click="onCreate" class="btn btn-create">
-          <v-icon>fal fa-plus-circle</v-icon>
-          {{ $t("permission.button") }}
-        </v-btn
-        >
+        <h1>JobRecruit</h1>
       </div>
       <div class="permission-content">
         <v-data-table
             :headers="$t('permission.table.headers')"
-            :items="listPermission"
+            :items="listJobRecruit"
             :search="searchItem"
             :loading="loading"
             :loading-text="$t('permission.loadingtext')"
-            v-if="listPermission != ''"
+            v-if="listJobRecruit != ''"
         >
           <template v-slot:top>
             <v-toolbar flat>
@@ -37,7 +32,18 @@
           <template v-slot:item="{ item, index }">
             <tr class="table-content">
               <td>{{ index + 1 }}</td>
-              <td>{{ item.name }}</td>
+              <template v-for="(item) in item.JobSeekers">
+                <td>
+                  {{ item.name }}
+                </td>
+                <td>
+                  {{ item.surName }}
+                </td>
+                <td>
+                  {{ item.phone }}
+                </td>
+                <td>{{ item.email }}</td>
+              </template>
               <td>
                 <div v-if="item.description">
                   {{ item.description }}
@@ -56,14 +62,6 @@
                     </v-btn>
                   </template>
                   <v-list>
-                    <v-list-item link @click="onEdit(item.id)">
-                      <v-list-item-icon>
-                        <v-icon class="mr-3" small>{{ $t('permission.table.options.iconEdit') }}</v-icon>
-                        <v-list-item-title>
-                          {{ $t('permission.table.options.edit') }}
-                        </v-list-item-title>
-                      </v-list-item-icon>
-                    </v-list-item>
                     <v-list-item link @click="onDelete(item.id)">
                       <v-list-item-icon>
                         <v-icon class="mr-3" small>{{ $t('permission.table.options.delicon') }}</v-icon>
@@ -87,7 +85,7 @@
       </div>
       <ModalDelete>
         <template v-slot="{close}">
-          <Delete :permission_id="permission_id" @close="close" @success="fetchPermission()"/>
+          <Delete @close="close"/>
         </template>
       </ModalDelete>
     </section>
@@ -104,35 +102,22 @@ export default {
 
   data() {
     return {
-      listPermission: [],
+      listJobRecruit: [],
       searchItem: "",
       loading: false,
-      permission_id: "",
     };
   },
   methods: {
-    onCreate() {
-      this.$router.push({
-        name: "permission.create"
-      })
-    },
     onDelete(permission_id) {
       this.permission_id = permission_id;
       this.$store.commit("modalDelete_State", true);
     },
-    onEdit(permission_id) {
-      this.$store.commit("permission/SET_PERMISSION_ID",permission_id)
-      this.$router.push({
-        name: "permission.edit",
-        query: {
-          permission_id: permission_id
-        }
-      })
-    },
-    fetchPermission() {
-      this.$axios.get(`permissions`).then((res) => {
+
+    fetchJobRecruit() {
+      this.$axios.get(`jobRecuit`).then((res) => {
         if (res.status === 200) {
-          this.listPermission = res.data.data;
+          this.listJobRecruit = res.data.data;
+          console.log(this.listJobRecruit)
         }
       }).catch((error) => {
         console.log(error)
@@ -140,7 +125,7 @@ export default {
     }
   },
   created() {
-    this.fetchPermission();
+    this.fetchJobRecruit();
   }
 };
 </script>

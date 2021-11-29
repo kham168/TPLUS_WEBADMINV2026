@@ -1,10 +1,10 @@
 <template>
   <div id="#Navbar">
     <v-app-bar app flat>
-      <v-app-bar-nav-icon @click="drawer = !drawer"> </v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-spacer></v-spacer>
       <v-avatar size="30" color="red">
-        <img src="../assets/Images/logo.png" alt="K" />
+        <img src="../assets/Images/logo.png" alt="K"/>
       </v-avatar>
       <v-btn icon class="mx-3">
         <v-icon>fas fa-bell</v-icon>
@@ -23,10 +23,10 @@
             </div>
             <v-list-item-group active-class="deep-black--text text--accent-4">
               <v-list-item
-                link
-                v-for="locale in locales"
-                :key="locale"
-                @click="switchLocales(locale)"
+                  link
+                  v-for="locale in locales"
+                  :key="locale"
+                  @click="switchLocales(locale)"
               >
                 <span class="locale--title">{{ localeNames[locale] }}</span>
               </v-list-item>
@@ -55,13 +55,13 @@
           <v-list-item two-line>
             <div class="logo">
               <img
-                width="50"
-                height="50"
-                constain
-                class="shrink"
-                transition="scale-transition"
-                src="../assets/Images/logo.png"
-                alt="alt"
+                  width="50"
+                  height="50"
+                  constain
+                  class="shrink"
+                  transition="scale-transition"
+                  src="../assets/Images/logo.png"
+                  alt="alt"
               />
               <h1>TPLUS</h1>
             </div>
@@ -71,15 +71,15 @@
         <v-list>
           <v-list-item-group active-class="deep-black--text text--accent-4">
             <v-list-item
-              link
-              v-for="(item, index) in $t('MyMenuDashboard')"
-              :key="index"
-              @click="ClickTo(item.router)"
+                link
+                v-for="(item, index) in $t('MyMenuDashboard')"
+                :key="index"
+                @click="ClickTo(item.router)"
             >
               <v-list-item-icon>
                 <v-icon>{{ item.icon }}</v-icon>
               </v-list-item-icon>
-              <v-list-item-title v-text="item.text"> </v-list-item-title>
+              <v-list-item-title v-text="item.text"></v-list-item-title>
             </v-list-item>
 
             <v-list-group color="black">
@@ -87,13 +87,13 @@
                 <v-list-item-icon>
                   <v-icon>far fa-newspaper</v-icon>
                 </v-list-item-icon>
-                <v-list-item-title>{{$t('Postmenu.title')}}</v-list-item-title>
+                <v-list-item-title>{{ $t('Postmenu.title') }}</v-list-item-title>
               </template>
               <v-list-item
-                link
-                v-for="subtitle in $t('Postmenu.subtitle')"
-                :key="subtitle.key"
-                @click="$router.push(subtitle.router)"
+                  link
+                  v-for="subtitle in $t('Postmenu.subtitle')"
+                  :key="subtitle.key"
+                  @click="$router.push(subtitle.router)"
               >
                 <v-list-item-icon>
                   <v-icon small>{{ subtitle.icon }}</v-icon>
@@ -109,13 +109,13 @@
                 <v-list-item-icon>
                   <v-icon>fab fa-product-hunt</v-icon>
                 </v-list-item-icon>
-                <v-list-item-title>{{$t('Productmenu.title')}}</v-list-item-title>
+                <v-list-item-title>{{ $t('Productmenu.title') }}</v-list-item-title>
               </template>
               <v-list-item
-                link
-                v-for="subtitle in $t('Productmenu.subtitle')"
-                :key="subtitle.key"
-                @click="$router.push(subtitle.router)"
+                  link
+                  v-for="subtitle in $t('Productmenu.subtitle')"
+                  :key="subtitle.key"
+                  @click="$router.push(subtitle.router)"
               >
                 <v-list-item-icon>
                   <v-icon small>{{ subtitle.icon }}</v-icon>
@@ -131,13 +131,13 @@
                 <v-list-item-icon>
                   <v-icon>fas fa-gift</v-icon>
                 </v-list-item-icon>
-                <v-list-item-title>{{$t('Packagemenu.title')}}</v-list-item-title>
+                <v-list-item-title>{{ $t('Packagemenu.title') }}</v-list-item-title>
               </template>
               <v-list-item
-                link
-                v-for="subtitle in $t('Packagemenu.subtitle')"
-                :key="subtitle.key"
-                @click="$router.push(subtitle.router)"
+                  link
+                  v-for="subtitle in $t('Packagemenu.subtitle')"
+                  :key="subtitle.key"
+                  @click="$router.push(subtitle.router)"
               >
                 <v-list-item-icon>
                   <v-icon small>{{ subtitle.icon }}</v-icon>
@@ -154,13 +154,13 @@
                 <v-list-item-icon>
                   <v-icon>fas fa-users</v-icon>
                 </v-list-item-icon>
-                <v-list-item-title>{{$t('Usermenu.title')}}</v-list-item-title>
+                <v-list-item-title>{{ $t('Usermenu.title') }}</v-list-item-title>
               </template>
               <v-list-item
-                link
-                v-for="subtitle in $t('Usermenu.subtitle')"
-                :key="subtitle.key"
-                @click="$router.push(subtitle.router)"
+                  link
+                  v-for="subtitle in $t('Usermenu.subtitle')"
+                  :key="subtitle.key"
+                  @click="$router.push(subtitle.router)"
               >
                 <v-list-item-icon>
                   <v-icon small>{{ subtitle.icon }}</v-icon>
@@ -179,18 +179,20 @@
 
 <script>
 import {mapActions} from "vuex"
+
+
 export default {
   name: "Navbar",
 
   data() {
     return {
       locales: process.env.VUE_APP_I18N_SUPPORTED_LOCALE.split(","),
-      localeNames: { en: "EN", la: "LA" },
+      localeNames: {en: "EN", la: "LA"},
       drawer: true,
     };
   },
   mounted() {
-    
+
   },
 
   methods: {
@@ -200,10 +202,8 @@ export default {
     ClickTo(router) {
       this.$router.push(router);
     },
-
     // switch language
     switchLocales(locale) {
-      console.log(locale);
       if (this.$i18n.locale !== locale) {
         this.$i18n.locale = locale;
         localStorage.setItem("lang", locale);
@@ -211,9 +211,9 @@ export default {
       }
     },
     // Loggout
-    LoggoutUser(){
-      this.LogoutUser().then(res =>{
-        if(res){
+    LoggoutUser() {
+      this.LogoutUser().then(res => {
+        if (res) {
           alert("Loggout Success")
         }
       })

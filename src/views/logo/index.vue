@@ -1,32 +1,33 @@
 <template>
-   <div id="Logo">
+  <div id="Logo">
     <section class="logo-section">
       <div class="header logo-header">
         <h1>{{ $t("Logo.title") }}</h1>
-        <v-btn @click="CreateLogo" class="btn btn-create">
-          <v-icon>fal fa-plus-circle</v-icon>{{ $t("Logo.button") }}</v-btn
-        >
+        <!--        <v-btn @click="CreateLogo" class="btn btn-create">-->
+        <!--          <v-icon>fal fa-plus-circle</v-icon>-->
+        <!--          {{ $t("Logo.button") }}-->
+        <!--        </v-btn>-->
       </div>
       <div class="logo-content">
         <v-data-table
-          :headers="$t('Logo.table.headers')"
-          :items="myLogo"
-          :search="searchItem"
-          :loading="loading"
-          :loading-text="$t('Logo.loadingtext')"
-          v-if="myLogo != ''"
+            :headers="$t('Logo.table.headers')"
+            :items="logo"
+            :search="searchItem"
+            :loading="loading"
+            :loading-text="$t('Logo.loadingtext')"
+            v-if="logo !==''"
         >
           <template v-slot:top>
             <v-toolbar flat>
               <v-text-field
-                :label="$t('Logo.txtsearch')"
-                filled
-                rounded
-                dense
-                append-icon="fas fa-search"
-                single-line
-                hide-details
-                v-model="searchItem"
+                  :label="$t('Logo.txtsearch')"
+                  filled
+                  rounded
+                  dense
+                  append-icon="fas fa-search"
+                  single-line
+                  hide-details
+                  v-model="searchItem"
               ></v-text-field>
               <v-spacer></v-spacer>
             </v-toolbar>
@@ -35,38 +36,47 @@
           <template v-slot:item="{ item, index }">
             <tr class="table-content">
               <td>{{ index + 1 }}</td>
-              <td>{{ item.WebsiteName }}</td>
-              <td>{{ item.Address }}</td>
-              <td>{{ item.Email }}</td>
-              <td>{{ item.description }}</td>
-              <td>{{ item.WebsiteLogo }}</td>
-             
               <td>
-               <v-menu offset-y>
-                 <template v-slot:activator="{on,attrs}">
-                   <v-btn icon v-on="on" v-bind="attrs">
-                  <v-icon small>fas fa-ellipsis-v</v-icon>
-                </v-btn>
-                 </template>
-                 <v-list>
-                   <v-list-item link @click="$router.push({name:'logo.edit'}).catch(()=>{})">
-                     <v-list-item-icon>
-                       <v-icon class="mr-3" small>{{$t('Logo.table.options.iconEdit')}}</v-icon>
-                       <v-list-item-title>
-                         {{$t('Logo.table.options.edit')}}
-                       </v-list-item-title>
-                     </v-list-item-icon>
-                   </v-list-item>
-                    <v-list-item link>
-                     <v-list-item-icon>
-                       <v-icon class="mr-3" small>{{$t('Logo.table.options.delicon')}}</v-icon>
-                       <v-list-item-title>
-                         {{$t('Logo.table.options.delete')}}
-                       </v-list-item-title>
-                     </v-list-item-icon>
-                   </v-list-item>
-                 </v-list>
-               </v-menu>
+                <v-img class="image-table" :src="item.websiteLogo"/>
+              </td>
+              <td>
+                <div v-if="item.SiteInfoTrans && item.SiteInfoTrans.length">
+                  {{ item.SiteInfoTrans[0].siteName }}
+                </div>
+                <div v-else>
+                  {{ item.siteName }}
+                </div>
+              </td>
+              <td>
+                <div v-if="item.SiteInfoTrans && item.SiteInfoTrans.length">
+                  {{ item.SiteInfoTrans[0].address }}
+                </div>
+                <div v-else>
+                  {{ item.address }}
+                </div>
+              </td>
+              <td>{{ item.email }}</td>
+              <td>{{ item.facebook }}</td>
+              <td>{{ item.phone }}</td>
+              <td>{{ item.description }}</td>
+              <td>
+                <v-menu offset-y>
+                  <template v-slot:activator="{on,attrs}">
+                    <v-btn icon v-on="on" v-bind="attrs">
+                      <v-icon small>fas fa-ellipsis-v</v-icon>
+                    </v-btn>
+                  </template>
+                  <v-list>
+                    <v-list-item link @click="onEdit(item.id)">
+                      <v-list-item-icon>
+                        <v-icon class="mr-3" small>{{ $t('Logo.table.options.iconEdit') }}</v-icon>
+                        <v-list-item-title>
+                          {{ $t('Logo.table.options.edit') }}
+                        </v-list-item-title>
+                      </v-list-item-icon>
+                    </v-list-item>
+                  </v-list>
+                </v-menu>
               </td>
             </tr>
           </template>
@@ -84,41 +94,37 @@
 
 <script>
 export default {
-    name: 'Logo',
+  name: 'Logo',
 
-    data() {
-        return {
-             loading: false,
-      myLogo: [
-        {
-        
-          WebsiteName: "Tplus",
-          Address:"None",
-          Email:"tplus@gmail.com",
-          description: "1024MB",
-            WebsiteLogo: "asdfgg"
-      
-        },
-     
-        
-      ],
+  data() {
+    return {
+      loading: false,
       searchItem: "",
-        };
-    },
+      logo: [],
+    };
+  },
 
-    mounted() {
-        
+  methods: {
+    fetchLogo() {
+      this.$axios.get(`siteInfo`).then((res) => {
+        if (res.status === 200) {
+          this.logo = res.data.data;
+        }
+      })
     },
-
-    methods: {
-        CreateLogo() {
-      this.$router
-        .push({
-          name: "logo.create",
-        })
-        .catch(() => {});
-    },
-    },
+    onEdit(logo_id) {
+      this.$store.commit("logo/SET_LOGO_ITEM", logo_id)
+      this.$router.push({
+        name: "logo.edit",
+        query: {
+          logo_id: logo_id
+        }
+      });
+    }
+  },
+  created() {
+    this.fetchLogo();
+  }
 };
 </script>
 

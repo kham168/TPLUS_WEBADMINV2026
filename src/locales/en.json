@@ -10,13 +10,11 @@
       "text": "Logo",
       "router": "/logo"
     },
-
     {
       "icon": "fab fa-usps",
       "text": "Banner",
       "router": "/banner"
     },
-
     {
       "icon": "fas fa-id-card",
       "text": "Contact",
@@ -26,54 +24,91 @@
       "icon": "fas fa-border-top",
       "text": "Topping",
       "router": "/topping"
+    },
+    {
+      "icon": "fas fa-border-top",
+      "text": "Position",
+      "router": "/position"
+    },
+    {
+      "icon": "fas fa-border-top",
+      "text": "jobRecruit",
+      "router": "/jobRecruit"
     }
- 
-    
   ],
-  "Topping":{
-   "title":"Topping management"
+  "Topping": {
+    "title": "Topping management"
   },
-
-  "Postmenu":{
-    "title":"Posts",
-    "subtitle":[
-      { "icon": "fas fa-boxes", "text": "Category Post","router":"/cate_post"},
-      { "icon": "far fa-newspaper", "text": "Posts","router":"/post"}
+  "Postmenu": {
+    "title": "Posts",
+    "subtitle": [
+      {
+        "icon": "fas fa-boxes",
+        "text": "Category Post",
+        "router": "/cate_post"
+      },
+      {
+        "icon": "far fa-newspaper",
+        "text": "Posts",
+        "router": "/post"
+      }
     ]
   },
-
-  "Productmenu":{
-    "title":"Products",
-    "subtitle":[
-      { "icon": "fas fa-boxes", "text": "Category Product","router":"/cate_product"},
-      { "icon": "fab fa-product-hunt", "text": "Products","router":"/product"}
+  "Productmenu": {
+    "title": "Products",
+    "subtitle": [
+      {
+        "icon": "fas fa-boxes",
+        "text": "Category Product",
+        "router": "/cate_product"
+      },
+      {
+        "icon": "fab fa-product-hunt",
+        "text": "Products",
+        "router": "/product"
+      }
     ]
   },
-
-  "Packagemenu":{
-    "title":"Data Package",
-    "subtitle":[
-      { "icon": "fas fa-gifts", "text": "Category Data Package","router":"/cate_data_package"},
-    { "icon": "fas fa-gift", "text": "Data Package","router":"/data_package"}
-  
+  "Packagemenu": {
+    "title": "Data Package",
+    "subtitle": [
+      {
+        "icon": "fas fa-gifts",
+        "text": "Category Data Package",
+        "router": "/cate_data_package"
+      },
+      {
+        "icon": "fas fa-gift",
+        "text": "Data Package",
+        "router": "/data_package"
+      }
     ]
   },
-
   "Usermenu": {
     "title": "Manage Users",
     "subtitle": [
-      { "icon": "fas fa-users", "text": "Users", "router": "/users" },
-      { "icon": "fas fa-users-cog", "text": "Roles", "router": "/roles" },
-      { "icon": "fas fa-users-class", "text": "Permission", "router": "/permission" }
+      {
+        "icon": "fas fa-users",
+        "text": "Users",
+        "router": "/users"
+      },
+      {
+        "icon": "fas fa-users-cog",
+        "text": "Roles",
+        "router": "/roles"
+      },
+      {
+        "icon": "fas fa-users-class",
+        "text": "Permission",
+        "router": "/permission"
+      }
     ]
   },
-
   "Navbar": {
     "selectLanguage": "Languages",
     "setting": "Setting",
     "logout": "Logout"
   },
-
   "Login": {
     "header": "Welcome to sign in",
     "form": {
@@ -83,187 +118,406 @@
       "forget pass": "I forget password"
     }
   },
-
-
   "Contact": {
     "title": "Contact",
     "button": "Create",
     "txtsearch": "Search Contact",
-    "loadingtext":"Loading...",
+    "loadingtext": "Loading...",
     "table": {
       "headers": [
-        { "text": "No", "value": "No", "sortable": false },
-        { "text": "Name", "value": "ContactName", "sortable": true },
-        { "text": "Email", "value": "Email", "sortable": false },
-        { "text": "Tile", "value": "Tile", "sortable": false },
-        { "text": "Description", "value": "description", "sortable": false },
-        { "text": "Actions", "value": "Actions", "sortable": false }
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "Name",
+          "value": "ContactName",
+          "sortable": true
+        },
+        {
+          "text": "Email",
+          "value": "Email",
+          "sortable": false
+        },
+        {
+          "text": "Tile",
+          "value": "Tile",
+          "sortable": false
+        },
+        {
+          "text": "Description",
+          "value": "description",
+          "sortable": false
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": false
+        }
       ],
-      "dontdata":"Don't have data",
-      "options":{
-        "edit":"Edit","iconEdit":"fas fa-edit",
-        "delete":"Delete","delicon":"fas fa-trash-alt"
+      "dontdata": "Don't have data",
+      "options": {
+        "edit": "Edit",
+        "iconEdit": "fas fa-edit",
+        "delete": "Delete",
+        "delicon": "fas fa-trash-alt"
       }
     },
-    "Create":{
-      "header":"Create Contact",
-      "lang":{
-        "lao":"lao",
-        "Eng":"english"
+    "Create": {
+      "header": "Create Contact",
+      "lang": {
+        "lao": "lao",
+        "Eng": "english"
       },
-      "form":{
-        "contact_name":"Name",
-        "email":"Email",
-        "tile":"Tile",
-        "description":"Description",
-      
-
-        "button":{
-          "save":"Save",
-          "cancel":"Cancel"
+      "form": {
+        "contact_name": "Name",
+        "email": "Email",
+        "tile": "Tile",
+        "description": "Description",
+        "button": {
+          "save": "Save",
+          "cancel": "Cancel"
         }
       }
     },
-    "Edit":{
-      "header":"Edit Contact"
+    "Edit": {
+      "header": "Edit Contact"
     }
-    
   },
-
-
   "Logo": {
     "title": "Logo",
     "button": "Create",
     "txtsearch": "Search Logo",
-    "loadingtext":"Loading...",
+    "loadingtext": "Loading...",
     "table": {
       "headers": [
-        { "text": "No", "value": "No", "sortable": false },
-        { "text": "Website Logo", "value": "WebsiteLogo", "sortable": true },
-        { "text": "Website Name", "value": "WebsiteName", "sortable": true },
-        { "text": "Address", "value": "Address", "sortable": false },
-        { "text": "Email", "value": "Email", "sortable": false },
-        { "text": "Description", "value": "description", "sortable": false },
-        { "text": "Actions", "value": "Actions", "sortable": false }
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "Website Logo",
+          "value": "WebsiteLogo",
+          "sortable": true
+        },
+        {
+          "text": "Website Name",
+          "value": "WebsiteName",
+          "sortable": true
+        },
+        {
+          "text": "Address",
+          "value": "Address",
+          "sortable": false
+        },
+        {
+          "text": "Email",
+          "value": "Email",
+          "sortable": false
+        },
+        {
+          "text": "Facebook",
+          "value": "Facebook",
+          "sortable": false
+        },
+        {
+          "text": "Phone",
+          "value": "Phone",
+          "sortable": false
+        },
+        {
+          "text": "Description",
+          "value": "description",
+          "sortable": false
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": false
+        }
       ],
-      "dontdata":"Don't have data",
-      "options":{
-        "edit":"Edit","iconEdit":"fas fa-edit",
-        "delete":"Delete","delicon":"fas fa-trash-alt"
+      "dontdata": "Don't have data",
+      "options": {
+        "edit": "Edit",
+        "iconEdit": "fas fa-edit",
+        "delete": "Delete",
+        "delicon": "fas fa-trash-alt"
       }
     },
-    "Create":{
-      "header":"Create Logo",
-      "lang":{
-        "lao":"Lao",
-        "Eng":"English"
+    "Create": {
+      "header": "Create Logo",
+      "lang": {
+        "lao": "Lao",
+        "Eng": "English"
       },
-      "form":{
-        "website_logo":"Upload Logo",
-        "website_name":"Website Name",
-        "address":"Address",
-        "email":"Email",
-        "description":"Description",
-
-
-        "button":{
-          "save":"Save",
-          "cancel":"Cancel"
+      "form": {
+        "website_logo": "Upload Logo",
+        "website_name": "Website Name",
+        "address": "Address",
+        "email": "Email",
+        "description": "Description",
+        "button": {
+          "save": "Save",
+          "cancel": "Cancel"
         }
       }
     },
-    "Edit":{
-      "header":"Edit Logo"
+    "Edit": {
+      "header": "Edit Logo"
     }
-    
   },
-
+  "position": {
+    "title": "Position",
+    "button": "Create",
+    "txtsearch": "Search Position",
+    "loadingtext": "Loading...",
+    "table": {
+      "headers": [
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "Position Name",
+          "value": "name",
+          "sortable": true
+        },
+        {
+          "text": "Description",
+          "value": "description",
+          "sortable": false
+        },
+        {
+          "text": "createdAt",
+          "value": "createdAt",
+          "sortable": false
+        },
+        {
+          "text": "updatedAt",
+          "value": "updatedAt",
+          "sortable": false
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": false
+        }
+      ],
+      "dontdata": "Don't have data",
+      "options": {
+        "edit": "Edit",
+        "iconEdit": "fas fa-edit",
+        "delete": "Delete",
+        "delicon": "fas fa-trash-alt"
+      }
+    },
+    "Create": {
+      "header": "Create Position",
+      "lang": {
+        "Eng": "Positions"
+      },
+      "form": {
+        "name": "Position Name",
+        "description": "Description",
+        "button": {
+          "save": "Save",
+          "cancel": "Cancel"
+        }
+      }
+    },
+    "Edit": {
+      "header": "Edit Logo"
+    }
+  },
+  "permission": {
+    "title": "Permission",
+    "button": "Create",
+    "txtsearch": "Search Permission",
+    "loadingtext": "Loading...",
+    "table": {
+      "headers": [
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "Permission Name",
+          "value": "name",
+          "sortable": true
+        },
+        {
+          "text": "Description",
+          "value": "description",
+          "sortable": false
+        },
+        {
+          "text": "createdAt",
+          "value": "createdAt",
+          "sortable": false
+        },
+        {
+          "text": "updatedAt",
+          "value": "updatedAt",
+          "sortable": false
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": false
+        }
+      ],
+      "dontdata": "Don't have data",
+      "options": {
+        "edit": "Edit",
+        "iconEdit": "fas fa-edit",
+        "delete": "Delete",
+        "delicon": "fas fa-trash-alt"
+      }
+    },
+    "Create": {
+      "header": "Create Permission",
+      "lang": {
+        "Eng": "Permission"
+      },
+      "form": {
+        "name": "Permission Name",
+        "description": "Description",
+        "button": {
+          "save": "Save",
+          "cancel": "Cancel"
+        }
+      }
+    },
+    "Edit": {
+      "header": "Edit Permission"
+    }
+  },
   "Banner": {
     "title": "Banner",
     "button": "Create",
     "txtsearch": "Search Banner",
-    "loadingtext":"Loading...",
+    "loadingtext": "Loading...",
     "table": {
       "headers": [
-        { "text": "No", "value": "No", "sortable": false },
-        { "text": "Banner Name", "value": "BannerName", "sortable": true },
-        { "text": "Link", "value": "Link", "sortable": false },
-        { "text": "Description", "value": "description", "sortable": false },
-        { "text": "Piccture", "value": "Picture", "sortable": false },
-        { "text": "Actions", "value": "Actions", "sortable": false }
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "Banner Name",
+          "value": "BannerName",
+          "sortable": true
+        },
+        {
+          "text": "Link",
+          "value": "Link",
+          "sortable": false
+        },
+        {
+          "text": "Description",
+          "value": "description",
+          "sortable": false
+        },
+        {
+          "text": "Piccture",
+          "value": "Picture",
+          "sortable": false
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": false
+        }
       ],
-      "dontdata":"Don't have data",
-      "options":{
-        "edit":"Edit","iconEdit":"fas fa-edit",
-        "delete":"Delete","delicon":"fas fa-trash-alt"
+      "dontdata": "Don't have data",
+      "options": {
+        "edit": "Edit",
+        "iconEdit": "fas fa-edit",
+        "delete": "Delete",
+        "delicon": "fas fa-trash-alt"
       }
     },
-    "Create":{
-      "header":"Add Banner",
-      "lang":{
-        "lao":"Lao",
-        "Eng":"English"
+    "Create": {
+      "header": "Add Banner",
+      "lang": {
+        "lao": "Lao",
+        "Eng": "English"
       },
-      "form":{      
-        "banner_name":"Banner Name",
-        "link":"Link",
-        "description":"Description",
-        "picture":"Upload Image",
-
-        "button":{
-          "save":"Save",
-          "cancel":"Cancel"
+      "form": {
+        "banner_name": "Banner Name",
+        "link": "Link",
+        "description": "Description",
+        "picture": "Upload Image",
+        "button": {
+          "save": "Save",
+          "cancel": "Cancel"
         }
       }
     },
-    "Edit":{
-      "header":"Edit Banner"
+    "Edit": {
+      "header": "Edit Banner"
     }
   },
-
-
   "CatePost": {
     "title": "Category Post",
     "button": "Create",
     "txtsearch": "Search Category Post",
-    "loadingtext":"Loading...",
+    "loadingtext": "Loading...",
     "table": {
       "headers": [
-        { "text": "No", "value": "No", "sortable": false },
-        { "text": "Category Post Name", "value": "CatePostName", "sortable": true },
-       
-        { "text": "Description", "value": "description", "sortable": false },
-        { "text": "Actions", "value": "Actions", "sortable": false }
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "Category Post Name",
+          "value": "CatePostName",
+          "sortable": true
+        },
+        {
+          "text": "Description",
+          "value": "description",
+          "sortable": false
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": false
+        }
       ],
-      "dontdata":"Don't have data",
-      "options":{
-        "edit":"Edit","iconEdit":"fas fa-edit",
-        "delete":"Delete","delicon":"fas fa-trash-alt"
+      "dontdata": "Don't have data",
+      "options": {
+        "edit": "Edit",
+        "iconEdit": "fas fa-edit",
+        "delete": "Delete",
+        "delicon": "fas fa-trash-alt"
       }
     },
-    "Create":{
-      "header":"Add Category Post",
-      "lang":{
-        "lao":"Lao",
-        "Eng":"English"
+    "Create": {
+      "header": "Add Category Post",
+      "lang": {
+        "lao": "Lao",
+        "Eng": "English"
       },
-      "form":{
-      
-        "cate_post_name":"Category Post Name",
-        "description":"Description",
-        
-        "button":{
-          "save":"Save",
-          "cancel":"Cancel"
+      "form": {
+        "cate_post_name": "Category Post Name",
+        "description": "Description",
+        "button": {
+          "save": "Save",
+          "cancel": "Cancel"
         }
       }
     },
-    "Edit":{
-      "header":"Edit Post Product"
+    "Edit": {
+      "header": "Edit Post Product"
     }
-    
   },
-
   "Post": {
     "title": "Post Data",
     "button": "Create",
@@ -271,17 +525,47 @@
     "loadingtext": "Loading..",
     "table": {
       "headers": [
-        { "text": "No", "value": "No", "sortable": false },
-        { "text": "Post Name", "value": "PostName", "sortable": true },
-        { "text": "Category", "value": "CatePost", "sortable": true },
-        { "text": "Description", "value": "description", "sortable": false },
-        { "text": "Pictures", "value": "Picture", "sortable": false },
-        { "text": "Actions", "value": "Actions", "sortable": false }
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "Post Name",
+          "value": "PostName",
+          "sortable": true
+        },
+        {
+          "text": "Category",
+          "value": "CatePost",
+          "sortable": true
+        },
+        {
+          "text": "Description",
+          "value": "description",
+          "sortable": false
+        },
+        {
+          "text": "Pictures",
+          "value": "Picture",
+          "sortable": false
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": false
+        }
       ],
       "dontdata": "Dont have data",
       "options": [
-        { "edit": "Edit", "iconEdit": "fas fa-edit" },
-        { "delete": "Delete", "delicon": "fas fa-trash-alt" }
+        {
+          "edit": "Edit",
+          "iconEdit": "fas fa-edit"
+        },
+        {
+          "delete": "Delete",
+          "delicon": "fas fa-trash-alt"
+        }
       ]
     },
     "Create": {
@@ -305,49 +589,61 @@
       "header": "Edit Post"
     }
   },
-
   "CateProduct": {
     "title": "Category Product",
     "button": "Create",
     "txtsearch": "Search Category Product",
-    "loadingtext":"Loading...",
+    "loadingtext": "Loading...",
     "table": {
       "headers": [
-        { "text": "No", "value": "No", "sortable": false },
-        { "text": "Category Product Name", "value": "CateProductName", "sortable": true },
-       
-        { "text": "Description", "value": "description", "sortable": false },
-        { "text": "Actions", "value": "Actions", "sortable": false }
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "Category Product Name",
+          "value": "CateProductName",
+          "sortable": true
+        },
+        {
+          "text": "Description",
+          "value": "description",
+          "sortable": false
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": false
+        }
       ],
-      "dontdata":"Don't have data",
-      "options":{
-        "edit":"Edit","iconEdit":"fas fa-edit",
-        "delete":"Delete","delicon":"fas fa-trash-alt"
+      "dontdata": "Don't have data",
+      "options": {
+        "edit": "Edit",
+        "iconEdit": "fas fa-edit",
+        "delete": "Delete",
+        "delicon": "fas fa-trash-alt"
       }
     },
-    "Create":{
-      "header":"Add Category Product",
-      "lang":{
-        "lao":"Lao",
-        "Eng":"English"
+    "Create": {
+      "header": "Add Category Product",
+      "lang": {
+        "lao": "Lao",
+        "Eng": "English"
       },
-      "form":{
-      
-        "cate_product_name":"Category Product Name",
-        "description":"Description",
-        
-        "button":{
-          "save":"Save",
-          "cancel":"Cancel"
+      "form": {
+        "cate_product_name": "Category Product Name",
+        "description": "Description",
+        "button": {
+          "save": "Save",
+          "cancel": "Cancel"
         }
       }
     },
-    "Edit":{
-      "header":"Edit Category Product"
+    "Edit": {
+      "header": "Edit Category Product"
     }
-    
   },
-
   "Product": {
     "title": "Products Data",
     "button": "Create",
@@ -355,17 +651,47 @@
     "loadingtext": "Loading..",
     "table": {
       "headers": [
-        { "text": "No", "value": "No", "sortable": false },
-        { "text": "Product Name", "value": "ProductName", "sortable": true },
-        { "text": "Category", "value": "CateProduct", "sortable": true },
-        { "text": "Description", "value": "description", "sortable": false },
-        { "text": "Pictures", "value": "Picture", "sortable": false },
-        { "text": "Actions", "value": "Actions", "sortable": false }
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "Product Name",
+          "value": "ProductName",
+          "sortable": true
+        },
+        {
+          "text": "Category",
+          "value": "CateProduct",
+          "sortable": true
+        },
+        {
+          "text": "Description",
+          "value": "description",
+          "sortable": false
+        },
+        {
+          "text": "Pictures",
+          "value": "Picture",
+          "sortable": false
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": false
+        }
       ],
       "dontdata": "Dont have data",
       "options": [
-        { "edit": "Edit", "iconEdit": "fas fa-edit" },
-        { "delete": "Delete", "delicon": "fas fa-trash-alt" }
+        {
+          "edit": "Edit",
+          "iconEdit": "fas fa-edit"
+        },
+        {
+          "delete": "Delete",
+          "delicon": "fas fa-trash-alt"
+        }
       ]
     },
     "Create": {
@@ -389,93 +715,128 @@
       "header": "Edit Products"
     }
   },
-
   "CateDataPackage": {
     "title": "Category Data Package",
     "button": "Create",
     "txtsearch": "Search Category Data Package",
-    "loadingtext":"Loading...",
+    "loadingtext": "Loading...",
     "table": {
       "headers": [
-        { "text": "No", "value": "No", "sortable": false },
-        { "text": "Category Data Package Name", "value": "CateDataPackageName", "sortable": true },
-       
-        { "text": "Description", "value": "description", "sortable": false },
-        { "text": "Actions", "value": "Actions", "sortable": false }
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "Category Data Package Name",
+          "value": "CateDataPackageName",
+          "sortable": true
+        },
+        {
+          "text": "Description",
+          "value": "description",
+          "sortable": false
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": false
+        }
       ],
-      "dontdata":"Don't have data",
-      "options":{
-        "edit":"Edit","iconEdit":"fas fa-edit",
-        "delete":"Delete","delicon":"fas fa-trash-alt"
+      "dontdata": "Don't have data",
+      "options": {
+        "edit": "Edit",
+        "iconEdit": "fas fa-edit",
+        "delete": "Delete",
+        "delicon": "fas fa-trash-alt"
       }
     },
-    "Create":{
-      "header":"Add Category Data Package",
-      "lang":{
-        "lao":"Lao",
-        "Eng":"English"
+    "Create": {
+      "header": "Add Category Data Package",
+      "lang": {
+        "lao": "Lao",
+        "Eng": "English"
       },
-      "form":{
-      
-        "cate_data_package_name":"Category Data Package Name",
-        "description":"Description",
-        
-        "button":{
-          "save":"Save",
-          "cancel":"Cancel"
+      "form": {
+        "cate_data_package_name": "Category Data Package Name",
+        "description": "Description",
+        "button": {
+          "save": "Save",
+          "cancel": "Cancel"
         }
       }
     },
-    "Edit":{
-      "header":"Edit Category Data Package"
+    "Edit": {
+      "header": "Edit Category Data Package"
     }
-    
   },
-
   "DataPackage": {
     "title": "Data Package",
     "button": "Create",
     "txtsearch": "Search Data Package",
-    "loadingtext":"Loading...",
+    "loadingtext": "Loading...",
     "table": {
       "headers": [
-        { "text": "No", "value": "No", "sortable": false },
-        { "text": "Data Package Name", "value": "DataPackageName", "sortable": true },
-        { "text": "Category", "value": "CateDataPackage", "sortable": true },
-        { "text": "Description", "value": "description", "sortable": false },
-        { "text": "Pictures", "value": "Picture", "sortable": false },
-        { "text": "Actions", "value": "Actions", "sortable": false }
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "Data Package Name",
+          "value": "DataPackageName",
+          "sortable": true
+        },
+        {
+          "text": "Category",
+          "value": "CateDataPackage",
+          "sortable": true
+        },
+        {
+          "text": "Description",
+          "value": "description",
+          "sortable": false
+        },
+        {
+          "text": "Pictures",
+          "value": "Picture",
+          "sortable": false
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": false
+        }
       ],
-      "dontdata":"Don't have data",
-      "options":{
-        "edit":"Edit","iconEdit":"fas fa-edit",
-        "delete":"Delete","delicon":"fas fa-trash-alt"
+      "dontdata": "Don't have data",
+      "options": {
+        "edit": "Edit",
+        "iconEdit": "fas fa-edit",
+        "delete": "Delete",
+        "delicon": "fas fa-trash-alt"
       }
     },
-    "Create":{
-      "header":"Add Data Package",
-      "lang":{
-        "lao":"Lao",
-        "Eng":"English"
+    "Create": {
+      "header": "Add Data Package",
+      "lang": {
+        "lao": "Lao",
+        "Eng": "English"
       },
-      "form":{
-        "category":"Categories",
-        "data_package_name":"Data Package Name",
-        "description":"Description",
-        "picture":"Upload Image",
-        
-        "button":{
-          "save":"Save",
-          "cancel":"Cancel"
+      "form": {
+        "category": "Categories",
+        "data_package_name": "Data Package Name",
+        "description": "Description",
+        "picture": "Upload Image",
+        "button": {
+          "save": "Save",
+          "cancel": "Cancel"
         }
       }
     },
-    "Edit":{
-      "header":"Edit Data Package"
+    "Edit": {
+      "header": "Edit Data Package"
     }
-    
   },
-
   "Users": {
     "title": "Users Data",
     "button": "Create",
@@ -483,20 +844,48 @@
     "loadingtext": "Loading..",
     "table": {
       "headers": [
-        { "text": "No", "value": "No", "sortable": false },
-        { "text": "User Name", "value": "Username", "sortable": true },
-        { "text": "Password", "value": "Password", "sortable": true },
-        { "text": "Rule", "value": "Rule", "sortable": false },
-        { "text": "Status", "value": "Status", "sortable": false },
-        { "text": "Actions", "value": "Actions", "sortable": false }
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "User Name",
+          "value": "Username",
+          "sortable": true
+        },
+        {
+          "text": "Email",
+          "value": "email",
+          "sortable": true
+        },
+        {
+          "text": "Phone",
+          "value": "phone",
+          "sortable": false
+        },
+        {
+          "text": "Status",
+          "value": "Status",
+          "sortable": false
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": false
+        }
       ],
       "dontdata": "Dont have data",
       "options": {
-        "edit": "Edit", "iconEdit": "fas fa-edit" ,
-         "delete": "Delete", "delicon": "fas fa-trash-alt",
-         "addRole":"Add Role","aroleicon":"fas fa-user-tag",
-         "editRole":"Edit Role","eroleicon":"fas fa-edit"
-    }
+        "edit": "Edit",
+        "iconEdit": "fas fa-edit",
+        "delete": "Delete",
+        "delicon": "fas fa-trash-alt",
+        "addRole": "Add Role",
+        "aroleicon": "fas fa-user-tag",
+        "editRole": "Edit Role",
+        "eroleicon": "fas fa-edit"
+      }
     },
     "Create": {
       "header": "Add Users",
@@ -505,12 +894,12 @@
         "Eng": "English"
       },
       "form": {
-        "firstname":"Name",
-        "lastname":"Surname",
-        "email":"Email",
-        "phone":"Tel",
-        "username":"Username",
-        "pass":"Password",
+        "firstname": "Name",
+        "lastname": "Surname",
+        "email": "Email",
+        "phone": "Tel",
+        "username": "Username",
+        "pass": "Password",
         "button": {
           "save": "Save",
           "cancel": "Cancel"
@@ -521,7 +910,6 @@
       "header": "Edit User Roles"
     }
   },
-
   "Role": {
     "title": "User Roles",
     "button": "Create",
@@ -529,74 +917,59 @@
     "loadingtext": "Loading..",
     "table": {
       "headers": [
-        { "text": "No", "value": "No", "sortable": false },
-        { "text": "User Name", "value": "Username", "sortable": true },
-        { "text": "Password", "value": "Password", "sortable": true },
-        { "text": "Rule", "value": "Rule", "sortable": false },
-        { "text": "Status", "value": "Status", "sortable": false },
-        { "text": "Actions", "value": "Actions", "sortable": false }
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "Role name",
+          "value": "RoleName",
+          "sortable": false
+        },
+        {
+          "text": "Description",
+          "value": "description",
+          "sortable": false
+        },
+        {
+          "text": "Created",
+          "value": "createdAt",
+          "sortable": false
+        },
+        {
+          "text": "Updated",
+          "value": "updatedAt",
+          "sortable": false
+        },
+        {
+          "text": "Add Permission",
+          "value": "addPermission",
+          "sortable": false
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": false
+        }
       ],
       "dontdata": "Dont have data",
-      "options": [
-        { "edit": "Edit", "iconEdit": "fas fa-edit" },
-        { "delete": "Delete", "delicon": "fas fa-trash-alt" }
-      ]
-    },
-    "Create": {
-      "header": "Add User Role",
-      "lang": {
-        "lao": "Lao",
-        "Eng": "English"
-      },
-      "form":{
-        "userrole":"Role Name",
-        "role":"Roles",
-        "permission":"Permissions",
-        "selectRole":"Select Role",
-        "button":{
-          "save":"Save",
-          "cancel":"Cancel"
-        }
+      "options": {
+        "edit": "Edit",
+        "iconEdit": "fas fa-edit",
+        "delete": "Delete",
+        "delicon": "fas fa-trash-alt"
       }
     },
-    "Edit": {
-      "header": "Edit User Roles"
-    }
-  },
-
-  "Permission": {
-    "title": "User Permission",
-    "button": "Create",
-    "txtsearch": "Search data",
-    "loadingtext": "Loading..",
-    "table": {
-      "headers": [
-        { "text": "No", "value": "No", "sortable": false },
-        { "text": "User Name", "value": "Username", "sortable": true },
-        { "text": "Password", "value": "Password", "sortable": true },
-        { "text": "Rule", "value": "Rule", "sortable": false },
-        { "text": "Status", "value": "Status", "sortable": false },
-        { "text": "Actions", "value": "Actions", "sortable": false }
-      ],
-      "dontdata": "Dont have data",
-      "options": [
-        { "edit": "Edit", "iconEdit": "fas fa-edit" },
-        { "delete": "Delete", "delicon": "fas fa-trash-alt" }
-      ]
-    },
     "Create": {
       "header": "Add User Role",
       "lang": {
-        "lao": "Lao",
-        "Eng": "English"
+        "Eng": "Roles"
       },
       "form": {
-        "username": "Username",
-        "email": "Email",
-        "phone": "Phone number",
-        "pass": "Password",
-        "confirm pass": "Confirm Password",
-        "status": "Status",
+        "userrole": "Role Name",
+        "name": "Role Name",
+        "description": "Description",
         "button": {
           "save": "Save",
           "cancel": "Cancel"
@@ -604,10 +977,70 @@
       }
     },
     "Edit": {
-      "header": "Edit Products"
+      "header": "Edit User Roles"
     }
   },
+  "permissionRole": {
+    "title": "Permission",
+    "button": "Create",
+    "txtsearch": "Search data",
+    "loadingtext": "Loading..",
+    "table": {
+      "headers": [
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "Role name",
+          "value": "RoleName",
+          "sortable": false
+        },
+        {
+          "text": "Created",
+          "value": "createdAt",
+          "sortable": false
+        },
+        {
+          "text": "Updated",
+          "value": "updatedAt",
+          "sortable": false
+        },
 
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": false
+        }
+      ],
+      "dontdata": "Dont have data",
+      "options": {
+        "edit": "Edit",
+        "iconEdit": "fas fa-edit",
+        "delete": "Delete",
+        "delicon": "fas fa-trash-alt"
+      }
+    },
+    "Create": {
+      "header": "Add User Role",
+      "lang": {
+        "Eng": "Roles"
+      },
+      "form": {
+        "userrole": "Role Name",
+        "name": "Role Name",
+        "description": "Description",
+        "button": {
+          "save": "Save",
+          "cancel": "Cancel"
+        }
+      }
+    },
+    "Edit": {
+      "header": "Edit User Roles"
+    }
+  },
   "Validate": {
     "required": "Please!! input data",
     "email": "E-mail must not be valid",
@@ -615,14 +1048,15 @@
     "maxmessage": " The characters must be lower",
     "minmessage": "The characters must be over"
   },
-  "Notification":{
-    "saveDataSuccess":"You have successfully saved your data.",
-    "editDataSuccess":"You have successfully edit your data.",
-    "delDataSuccess":"You have successfully delete your data.",
-    "saveDataError":"Failed to save your data.",
-    "editDataError":"Failed to edit your data.",
-    "delDataError":"Failed to delete your data.",
-    "loginSuccess":"Login successful",
-    "loginError":"Login failed."
+  "Notification": {
+    "saveDataSuccess": "You have successfully saved your data.",
+    "editDataSuccess": "You have successfully edit your data.",
+    "delDataSuccess": "You have successfully delete your data.",
+    "saveDataError": "Failed to save your data.",
+    "editDataError": "Failed to edit your data.",
+    "delDataError": "Failed to delete your data.",
+    "loginSuccess": "Login successful",
+    "loginError": "Login failed.",
+    "permissionError": "Failed to delete Permissions table is active"
   }
 }
