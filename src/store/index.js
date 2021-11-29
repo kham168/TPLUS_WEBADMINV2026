@@ -1,8 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import PostProvider from '@/resources/posts_provider'
-// user login
 import User from "@/store/User";
+import Post from "@/store/Posts/Post"
+import CatePost from "@/store/Posts/CatePost"
+import DataPackage from "@/store/Packages/DataPackage"
+import CateDataPackage from "@/store/Packages/CateDataPackage"
+import Banner from "@/store/Banner"
+import Contact from "@/store/Contact"
+import Product from "@/store/Products/Product.js"
+import CateProduct from "@/store/Products/CateProduct.js"
 //get all users
 import users from "./Users"
 import logo from "@/store/logo"
@@ -106,6 +112,14 @@ export default new Vuex.Store({
         logo,
         position,
         permission,
-        role
+        role,
+        Post,
+        CatePost,
+        DataPackage,
+        CateDataPackage,
+        Banner,
+        Contact,
+        Product,
+        CateProduct,
     }
 })

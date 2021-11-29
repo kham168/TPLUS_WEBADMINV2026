@@ -12,6 +12,7 @@
               :href="lang.key"
               v-for="lang in $t('CatePost.Create.lang')"
               :key="lang.key"
+              @click="checkTabLang(lang)"
             >
               {{ lang }}
             </v-tab>
@@ -27,18 +28,38 @@
                   <div class="form-content">
                     <v-form v-model="valid" ref="form" lazy-validation>
                     
-                      <v-text-field
-                        :rules="[
-                          $myValidator.SimpleValidate($t('Validate.required')),
-                        ]"
+                       <v-text-field
+                      v-show="isLaoTab"
+                      v-model="name"
+                        :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
                         :label="$t('CatePost.Create.form.cate_post_name')"
                         outlined
                         required
                       ></v-text-field>
-                      <v-textarea
+
+                      
+                      <v-text-field
+                      v-show="isEngTab"
+                      v-model="nameEng"
+                        :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
+                        :label="$t('CatePost.Create.form.cate_post_name')"
                         outlined
-                        :label="$t('CatePost.Create.form.description')"
-                      ></v-textarea>
+                        required
+                      ></v-text-field>
+
+                       <v-select
+                        v-show="isLaoTab"
+                       :items="$t('CatePost.Status.item')"
+                       item-text="text"
+                      item-value="value"
+                        
+                        v-model="statusValue"
+                        :label="$t('CatePost.Create.form.status')"
+                       
+                        outlined
+                        required
+                      
+                      ></v-select>
                     
                     </v-form>
                     <div class="form-actions">
@@ -65,29 +86,94 @@
 </template>
 
 <script>
+
+import {mapActions} from 'vuex'
 export default {
   name: "Edit",
 
   data() {
     return {
+      catePostId:0,
+      statusValue:false,
+      argStatus:{},
+      name:'',
+      nameEng:'',
       tab: null,
-  
+      isLaoTab:false,
+      isEngTab:false,
       valid: true,
     };
   },
 
-  mounted() {},
+  mounted() {
+    this.loadDataToComponent();
+    this.checkTabLang('ລາວ');
+  },
 
   methods: {
+
+      selectStatus(){
+        this.statusValue=this.argStatus
+        console.log(this.statusValue)
+     
+      },
+
+
+    loadDataToComponent(){
+      let data = this.$route.params;
+   console.log(data)
+        this.catePostId=data.catePostId,
+     
+     
    
+      this.statusValue=data.statusValue,
+      this.name=data.name,
+      this.nameEng=data.nameEng
+        
+    },
+
+     checkTabLang(lang){
+      console.log(lang)
+      if(lang == 'ລາວ' ||lang== 'Lao'){
+        this.isLaoTab = true
+        this.isEngTab = false
+        console.log("lao"+this.isLaoTab)
+         console.log(this.isEngTab)
+      }else{
+         this.isLaoTab = false
+         this.isEngTab = true
+            console.log("lao"+this.isLaoTab)
+            console.log(this.isEngTab)
+      }
+    },
 
     submitForm () {
-    this.$refs.form.validate();
+    this.$refs.form[0].validate();
+
+    if(this.$refs.form[0].validate()){
+
+      console.log(this.nameEng)
+  this.updateCatePost({
+            'cate_post_id':this.catePostId,
+            'cate_post_name':this.name,
+        'other_lang_cate_post_name':this.nameEng,
+        'is_active':this.statusValue
+    })
+
+    console.log('update successful')
+    }else{
+ console.log('can not update')
+    }
   },
    reset(){
     this.$router.back();
-    this.$refs.form.reset();
-  }
+    this.$refs.form[0].reset();
+  },
+
+  ...mapActions({
+    updateCatePost:'CatePost/updateCatePost'
+  })
+
   },
 };
 </script>

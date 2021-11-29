@@ -12,6 +12,7 @@
               :href="lang.key"
               v-for="lang in $t('CateDataPackage.Create.lang')"
               :key="lang.key"
+                @click="checkTabLang(lang)"
             >
               {{ lang }}
             </v-tab>
@@ -22,12 +23,15 @@
                 v-for="i in $t('CateDataPackage.Create.lang')"
                 :key="i"
                 :value="i.key"
+                
               >
                 <div class="card-form">
                   <div class="form-content">
                     <v-form v-model="valid" ref="form" lazy-validation>
                     
                       <v-text-field
+                      v-show="isLaoTab"
+                      v-model="cate_package_name"
                         :rules="[
                           $myValidator.SimpleValidate($t('Validate.required')),
                         ]"
@@ -35,7 +39,29 @@
                         outlined
                         required
                       ></v-text-field>
+
+                       <v-text-field
+                        v-show="isEngTab"
+                       v-model="other_lang_cate_package_name"
+                        :rules="[
+                          $myValidator.SimpleValidate($t('Validate.required')),
+                        ]"
+                        :label="$t('CateDataPackage.Create.form.cate_data_package_name')"
+                        outlined
+                        required
+                      ></v-text-field>
+
+
                       <v-textarea
+                       v-show="isLaoTab"
+                      v-model="description"
+                        outlined
+                        :label="$t('CateDataPackage.Create.form.description')"
+                      ></v-textarea>
+
+                       <v-textarea
+                         v-show="isEngTab"
+                       v-model="other_lang_description"
                         outlined
                         :label="$t('CateDataPackage.Create.form.description')"
                       ></v-textarea>
@@ -65,29 +91,76 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 export default {
   name: "Edit",
 
   data() {
     return {
+      cate_package_id:0,
+      cate_package_name:'',
+      description:'',
+      other_lang_cate_package_name:'',
+      other_lang_description:'',
       tab: null,
-  
+       isLaoTab:true,
+      isEngTab:false,
       valid: true,
     };
   },
 
-  mounted() {},
-
-  methods: {
+  mounted() {
+   let data = this.$route.params;
+      console.log(data);
+  
+this.loadDataToComponent();
    
 
+    
+  },
+
+  methods: {
+
+    loadDataToComponent(){
+ this.cate_package_id = this.$route.params.cateId;
+   this.cate_package_name= this.$route.params.cateName;
+   this.description = this.$route.params.cateDescription;
+   this.other_lang_cate_package_name = this.$route.params.cateNameEng;
+   this.other_lang_description = this.$route.params.cateDescriptionEng
+    },
+
+   checkTabLang(lang){
+      console.log(lang)
+      if(lang == 'ລາວ' ||lang== 'Lao'){
+        this.isLaoTab = true
+        this.isEngTab = false
+        console.log("lao "+this.isLaoTab)
+         console.log(this.isEngTab)
+      }else{
+         this.isLaoTab = false
+         this.isEngTab = true
+            console.log("lao "+this.isLaoTab)
+            console.log(this.isEngTab)
+      }
+    },
+
     submitForm () {
-    this.$refs.form.validate();
+    this.$refs.form[0].validate();
+    if(this.$refs.form[0].validate()){
+    this.updateCateDataPackage({'cate_package_id':this.cate_package_id,'cate_package_name':this.cate_package_name,'description':this.description,'other_lang_cate_package_name':this.other_lang_cate_package_name,'other_lang_description':this.other_lang_description})
+    console.log('update successful')
+    }else{
+     console.log('can not update')
+    }
   },
    reset(){
     this.$router.back();
-    this.$refs.form.reset();
-  }
+    this.$refs.form[0].reset();
+  },
+
+  ...mapActions({
+    updateCateDataPackage:'CateDataPackage/updateCateDataPackage'
+  })
   },
 };
 </script>

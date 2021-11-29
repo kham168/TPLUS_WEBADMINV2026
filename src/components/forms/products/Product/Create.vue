@@ -1,18 +1,18 @@
 <template>
   <div id="Create">
-    <section class="banner-create">
-      <div class="banner-form">
+    <section class="product-create">
+      <div class="product-form">
         <div class="form-title">
-          <h1>{{ $t("Banner.Create.header") }}</h1>
+          <h1>{{ $t("Product.Create.header") }}</h1>
         </div>
         <div class="lang-select-input">
           <v-tabs v-model="tab" color="primary" slider-color="primary">
             <v-tabs-slider color="primary"></v-tabs-slider>
             <v-tab
               :href="lang.key"
-              v-for="lang in $t('Banner.Create.lang')"
+              v-for="lang in $t('Product.Create.lang')"
               :key="lang.key"
-               @click="checkTabLang(lang)"
+              @click="checkTabLang(lang)"
             >
               {{ lang }}
             </v-tab>
@@ -20,67 +20,56 @@
           <div class="tab-content">
             <v-tabs-items v-model="tab">
               <v-tab-item
-                v-for="i in $t('Banner.Create.lang')"
+                v-for="i in $t('Product.Create.lang')"
                 :key="i"
                 :value="i.key"
               >
-                <div class="card-form" >
+                <div class="card-form">
                   <div class="form-content">
                     <v-form  v-model="valid" ref="form" lazy-validation>
-                  
-                      <v-text-field
-                       v-show="isLaoTab"
-                         v-model="bannerName"
-                        :rules="[
-                        $myValidator.SimpleValidate($t('Validate.required')),
-                        $myValidator.MinlengthValidate($t('Validate.minmessage'),2)
-                        ]"
-                        :label="$t('Banner.Create.form.banner_name')"
-                        outlined
-                        required
-                      ></v-text-field>
-
-                       <v-text-field
-                      v-show="isEngTab"
-                      v-model="bannerNameEng"
+                      <v-select
+                   
+                      multiple
+                      item-text="cateName"
+                      item-value="id"
+                        v-show="tab == 0"
+                        :items="cate_product['data']"
+                        v-model="productTypeValue"
+                        :label="$t('Product.Create.form.category')"
                         :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
-                        :label="$t('Banner.Create.form.banner_name')"
                         outlined
                         required
-                      ></v-text-field>
-
+                      ></v-select>
                       <v-text-field
                       v-show="isLaoTab"
-                         v-model="link"
+                      v-model="productName"
                         :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
-                        :label="$t('Banner.Create.form.link')"
+                        :label="$t('Product.Create.form.productname')"
                         outlined
                         required
                       ></v-text-field>
-
                       <v-text-field
                       v-show="isEngTab"
-                         v-model="linkEng"
+                       v-model="productNameEng"
                         :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
-                        :label="$t('Banner.Create.form.link')"
+                        :label="$t('Product.Create.form.productname')"
                         outlined
                         required
                       ></v-text-field>
-
                       <v-textarea
                       v-show="isLaoTab"
-                         v-model="description"
+                       v-model="description"
                         outlined
-                        :label="$t('Banner.Create.form.description')"
+                        :label="$t('Product.Create.form.description')"
+                        
                       ></v-textarea>
-
                        <v-textarea
-                      v-show="isEngTab"
-                         v-model="descriptionEng"
+                        v-show="isEngTab"
+                       v-model="descriptionEng"
                         outlined
-                        :label="$t('Banner.Create.form.description')"
+                        :label="$t('Product.Create.form.description')"
+                        
                       ></v-textarea>
-
                       <div v-show="isLaoTab">
                       
                         <div class="upload-image" v-if="previewImage[0] == null">
@@ -227,19 +216,18 @@
                           </v-carousel>
                           
                         </div>
-                      </div> 
+                      </div>   
                     </v-form>
                     <div class="form-actions">
                       <v-btn plain @click="reset" class="mx-5">{{
-                        $t("Banner.Create.form.button.cancel")
+                        $t("Product.Create.form.button.cancel")
                       }}</v-btn>
                       <v-btn :disabled="!valid" @click="submitForm" class="btn btn-create">
-                        {{ $t("Banner.Create.form.button.save") }}</v-btn
+                        {{ $t("Product.Create.form.button.save") }}</v-btn
                       >
                     </div>
                   </div>
                 </div>
-              
               </v-tab-item>
             </v-tabs-items>
           </div>
@@ -256,45 +244,31 @@ export default {
 
   data() {
     return {
-      bannerName:'',
-      bannerNameEng:'',
-      link:'',
-      linkEng:'',
+      productTypeValue:'',
+      productName:'',
+      productNameEng:'',
       description:'',
       descriptionEng:'',
-      uploadImage:[],
-      uploadImageEng:[],
+       previewImage: [],
+        previewImageEng: [],
        isLaoTab:false,
       isEngTab:false,
       tab: null,
-      previewImage: [],
-       previewImageEng: [],
+     
       valid:true,
     };
   },
 
   mounted() {
-     this.checkTabLang('ລາວ')
+
+    this.checkTabLang('ລາວ');
+    this.getCateProduct();
   },
 
   methods: {
-  onIncreaseImage(){
-      
-     this.$refs.uploader[0].click()
-    },
-    onIncreaseImageEng(){
-      
-     this.$refs.uploaderEng[0].click()
-    },
 
-     removeImage(index){
-      this.previewImage.splice(index, 1);
-    },
-    removeImageEng(index){
-      this.previewImageEng.splice(index, 1);
-    },
 
-    checkTabLang(lang){
+     checkTabLang(lang){
       console.log(lang)
       if(lang == 'ລາວ' ||lang== 'Lao'){
         this.isLaoTab = true
@@ -308,13 +282,23 @@ export default {
             console.log(this.isEngTab)
       }
     },
+  
 
-     UploadImage(e) {
+    onIncreaseImage(){
+      
+     this.$refs.uploader[0].click()
+    },
+    onIncreaseImageEng(){
+      
+     this.$refs.uploaderEng[0].click()
+    },
+   
+
+    UploadImage(e) {
   
       const img = e.target.files;
 
       for(let i = 0;i<img.length;i++){
-        uploadImage.push(img[i])
         const reader = new FileReader();
         reader.readAsDataURL(img[i]);
        reader.onload = (e) => {
@@ -331,7 +315,6 @@ export default {
       const img = e.target.files;
 
       for(let i = 0;i<img.length;i++){
-        uploadImageEng.push(img[i])
         const reader = new FileReader();
         reader.readAsDataURL(img[i]);
        reader.onload = (e) => {
@@ -343,45 +326,59 @@ export default {
       };
     },
 
+    removeImage(index){
+      this.previewImage.splice(index, 1);
+    },
+    removeImageEng(index){
+      this.previewImageEng.splice(index, 1);
+    },
+
     submitForm () {
-    console.log(this.$refs.form[0].validate())
-    if(this.$refs.form[0].validate()){
-      this.createBanner({
     
-        'ban_name':this.bannerName,
-        'link':this.link,
-        'description':this.description,
-        'other_lang_ban_name':this.bannerNameEng,
-        'other_lang_link':this.linkEng,
-        'other_lang_description':this.descriptionEng,
-        'avatar':this.uploadImage,
-        'avatar_EN':this.uploadImageEng
+    this.$refs.form[0].validate();
+    if(this.$refs.form[0].validate()){
+     
+      this.createProduct({
+ 
+         'cate_product_id':this.productTypeValue,
+                'product_name': this.productName,
+                'description':this.description,
+                'other_lang_product_name':this.productNameEng,
+                'other_lang_description':this.descriptionEng,
+               
+                'avatar':this.previewImage,
+                'avatar_EN':this.previewImageEng
       })
-
-      
-       console.log("create successful")
+      console.log('create successful')
     }else{
-      console.log("can not create")
+       console.log('can not create')
     }
-
   },
    reset(){
     this.$router.back();
     this.$refs.form[0].reset();
   },
 
-    ...mapActions({
-      createBanner:'Banner/createBanner'
-    })
+             ...mapActions({
+getCateProduct:'CateProduct/getCateProduct',
+createProduct:'Product/createProduct'
 
+        })
   },
+
+  computed:{
+    ...mapGetters({
+        cate_product:'CateProduct/cate_product',
+    
+        })
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 
 
-  .banner-form {
+  .product-form {
     .form-title {
       width: 100%;
       padding: 0.5rem 0;
@@ -421,8 +418,7 @@ export default {
               border: 1px solid $gray-color;
 
               .image {
-                width: 720px;
-                height: 300px;
+                width: 100%;
                 overflow: hidden;
                 object-fit: cover;
               }
@@ -454,7 +450,7 @@ export default {
                 opacity: 0;
               }
             }
-              .image {
+            .image {
               
                 max-width: 100%;
                 overflow: hidden;
