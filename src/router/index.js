@@ -8,8 +8,6 @@ import Topping from "../views/Topping/topping.vue"
 Vue.use(VueRouter)
 
 const routes = [
-
-
   {
    path:"/",
    name:"Login",
@@ -38,9 +36,7 @@ const routes = [
       layout:'admin'
     }
    },
-
   //Category Post
-
   {
     path:"/cate_post",
     component:()=> import(/* webpackChunkName:"cate_post" */'../views/posts/cate_post/cate_post.vue'),
@@ -80,7 +76,6 @@ const routes = [
     },
     ]
   },
-
     //News and Activity
     {
       path:"/post",
@@ -120,8 +115,6 @@ const routes = [
         }
       ]
      },
-
-
    //Category Product
    {
     path:"/cate_product",
