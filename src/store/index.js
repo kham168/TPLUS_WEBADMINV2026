@@ -16,7 +16,6 @@ import position from "@/store/position"
 import permission from "@/store/permission";
 import role from "@/store/role"
 
-const postService = new PostProvider()
 
 Vue.use(Vuex)
 
@@ -69,14 +68,6 @@ export default new Vuex.Store({
             state.modalNotificationWarning.snackbar = true;
             state.modalNotificationWarning.message = message;
         },
-
-        SET_POST(state, data) {
-            state.post = data;
-        },
-
-        SET_RES(state, data) {
-            state.res = data;
-        },
         modalDelete_State(state, value) {
             state.modalDeleteState = value;
         },
@@ -96,15 +87,6 @@ export default new Vuex.Store({
             const data = await postService.getPost()
             commit('SET_POST', data)
         },
-
-        async createPost({commit}, datum) {
-            console.log(datum)
-            console.log(datum[0].title)
-            console.log(datum[0].body)
-            console.log(datum[0].userId)
-            const data = await postService.createPost(datum[0].title, datum[0].body, datum[0].userId)
-            commit('SET_RES', data)
-        }
     },
     modules: {
         User,
