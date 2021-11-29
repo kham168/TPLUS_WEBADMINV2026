@@ -3,18 +3,18 @@
     <section class="contact-section">
       <div class="header contact-header">
         <h1>{{ $t("Contact.title") }}</h1>
-        <v-btn @click="CreateContact" class="btn btn-create">
+        <v-btn @click="CreateContact" class="btn btn-create" v-if="false">
           <v-icon>fal fa-plus-circle</v-icon>{{ $t("Contact.button") }}</v-btn
         >
       </div>
       <div class="contact-content">
         <v-data-table
           :headers="$t('Contact.table.headers')"
-          :items="myContact"
+          :items="contact['data']"
           :search="searchItem"
           :loading="loading"
           :loading-text="$t('Contact.loadingtext')"
-          v-if="myContact != ''"
+          v-if="contact['data'] != ''"
         >
           <template v-slot:top>
             <v-toolbar flat>
@@ -35,9 +35,9 @@
           <template v-slot:item="{ item, index }">
             <tr class="table-content">
               <td>{{ index + 1 }}</td>
-              <td>{{ item.ContactName }}</td>
-          <td>{{ item.Email }}</td>
-          <td>{{ item.Tile }}</td>
+              <td>{{ item.name }}</td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.title }}</td>
               <td>{{ item.description }}</td>
              
               <td>
@@ -48,7 +48,7 @@
                 </v-btn>
                  </template>
                  <v-list>
-                   <v-list-item link @click="$router.push({name:'contact.edit'}).catch(()=>{})">
+                   <v-list-item link @click="$router.push({name:'contact.edit',params: { 'contact_id':item.id,'name':item.name,'email':item.email,'title':item.title,'description':item.description }}).catch(()=>{})">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('Contact.table.options.iconEdit')}}</v-icon>
                        <v-list-item-title>
@@ -82,6 +82,7 @@
 </template>
 
 <script>
+import {mapActions,mapGetters} from 'vuex'
 export default {
     name: 'Contact',
 
@@ -104,7 +105,7 @@ export default {
     },
 
     mounted() {
-        
+        this.getContact()
     },
 
     methods: {
@@ -115,7 +116,17 @@ export default {
         })
         .catch(() => {});
     },
+
+    ...mapActions({
+      getContact:'Contact/getContact'
+    })
     },
+
+    computed:{
+      ...mapGetters({
+        contact:'Contact/contact'
+      })
+    }
 };
 </script>
 

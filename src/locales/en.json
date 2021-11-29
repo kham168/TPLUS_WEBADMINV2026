@@ -1,15 +1,13 @@
 {
+ 
+
   "MyMenuDashboard": [
     {
       "icon": "fas fa-home-lg-alt",
       "text": "Dashboard",
       "router": "/dashboard"
     },
-    {
-      "icon": "fas fa-star-of-life",
-      "text": "Logo",
-      "router": "/logo"
-    },
+
 
     {
       "icon": "fab fa-usps",
@@ -95,7 +93,7 @@
         { "text": "No", "value": "No", "sortable": false },
         { "text": "Name", "value": "ContactName", "sortable": true },
         { "text": "Email", "value": "Email", "sortable": false },
-        { "text": "Tile", "value": "Tile", "sortable": false },
+        { "text": "Title", "value": "Title", "sortable": false },
         { "text": "Description", "value": "description", "sortable": false },
         { "text": "Actions", "value": "Actions", "sortable": false }
       ],
@@ -114,7 +112,7 @@
       "form":{
         "contact_name":"Name",
         "email":"Email",
-        "tile":"Tile",
+        "tile":"Title",
         "description":"Description",
       
 
@@ -131,52 +129,7 @@
   },
 
 
-  "Logo": {
-    "title": "Logo",
-    "button": "Create",
-    "txtsearch": "Search Logo",
-    "loadingtext":"Loading...",
-    "table": {
-      "headers": [
-        { "text": "No", "value": "No", "sortable": false },
-        { "text": "Website Logo", "value": "WebsiteLogo", "sortable": true },
-        { "text": "Website Name", "value": "WebsiteName", "sortable": true },
-        { "text": "Address", "value": "Address", "sortable": false },
-        { "text": "Email", "value": "Email", "sortable": false },
-        { "text": "Description", "value": "description", "sortable": false },
-        { "text": "Actions", "value": "Actions", "sortable": false }
-      ],
-      "dontdata":"Don't have data",
-      "options":{
-        "edit":"Edit","iconEdit":"fas fa-edit",
-        "delete":"Delete","delicon":"fas fa-trash-alt"
-      }
-    },
-    "Create":{
-      "header":"Create Logo",
-      "lang":{
-        "lao":"Lao",
-        "Eng":"English"
-      },
-      "form":{
-        "website_logo":"Upload Logo",
-        "website_name":"Website Name",
-        "address":"Address",
-        "email":"Email",
-        "description":"Description",
-
-
-        "button":{
-          "save":"Save",
-          "cancel":"Cancel"
-        }
-      }
-    },
-    "Edit":{
-      "header":"Edit Logo"
-    }
-    
-  },
+ 
 
   "Banner": {
     "title": "Banner",
@@ -186,10 +139,11 @@
     "table": {
       "headers": [
         { "text": "No", "value": "No", "sortable": false },
-        { "text": "Banner Name", "value": "BannerName", "sortable": true },
-        { "text": "Link", "value": "Link", "sortable": false },
-        { "text": "Description", "value": "description", "sortable": false },
-        { "text": "Piccture", "value": "Picture", "sortable": false },
+        { "text": "Piccture", "value": "BannerTrans[0].image[0]", "sortable": false },
+        { "text": "Banner Name", "value": "BannerTrans[0].banName", "sortable": true },
+        { "text": "Link", "value": "BannerTrans[0].link", "sortable": false },
+        { "text": "Description", "value": "BannerTrans[0].description", "sortable": false },
+      
         { "text": "Actions", "value": "Actions", "sortable": false }
       ],
       "dontdata":"Don't have data",
@@ -232,7 +186,7 @@
         { "text": "No", "value": "No", "sortable": false },
         { "text": "Category Post Name", "value": "CatePostName", "sortable": true },
        
-        { "text": "Description", "value": "description", "sortable": false },
+        { "text": "Status", "value": "description", "sortable": false },
         { "text": "Actions", "value": "Actions", "sortable": false }
       ],
       "dontdata":"Don't have data",
@@ -251,7 +205,7 @@
       
         "cate_post_name":"Category Post Name",
         "description":"Description",
-        
+        "status":"Status",
         "button":{
           "save":"Save",
           "cancel":"Cancel"
@@ -260,7 +214,13 @@
     },
     "Edit":{
       "header":"Edit Post Product"
-    }
+    },
+    "Status":{
+      "item":[
+      {"text":"Open","value":true},
+      {"text":"close","value":false}
+    ]
+  }
     
   },
 
@@ -268,22 +228,26 @@
     "title": "Post Data",
     "button": "Create",
     "txtsearch": "Search Post",
-    "loadingtext": "Loading..",
+    "loadingtext": "Loading...",
     "table": {
       "headers": [
         { "text": "No", "value": "No", "sortable": false },
-        { "text": "Post Name", "value": "PostName", "sortable": true },
-        { "text": "Category", "value": "CatePost", "sortable": true },
-        { "text": "Description", "value": "description", "sortable": false },
-        { "text": "Pictures", "value": "Picture", "sortable": false },
+        { "text": "Post Name", "value": "PostTrans[0].title", "sortable": true },
+        { "text": "Category", "value": "postTypeId", "sortable": true },
+        { "text": "Description", "value": "PostTrans[0].description", "sortable": false },
+        { "text": "Start Date", "value": "startDate", "sortable": false },
+        { "text": "End Date", "value": "endDate", "sortable": false },
+        { "text": "Status", "value": "status", "sortable": false },
+        { "text": "Pictures", "value": "PostImageTrans[0].image", "sortable": false },
         { "text": "Actions", "value": "Actions", "sortable": false }
       ],
       "dontdata": "Dont have data",
-      "options": [
-        { "edit": "Edit", "iconEdit": "fas fa-edit" },
-        { "delete": "Delete", "delicon": "fas fa-trash-alt" }
-      ]
+      "options":{
+        "edit": "Edit", "iconEdit": "fas fa-edit",
+        "delete": "Delete", "delicon": "fas fa-trash-alt" 
+     }
     },
+   
     "Create": {
       "header": "Add Post",
       "lang": {
@@ -295,6 +259,9 @@
         "post_name": "Post Name",
         "description": "Description",
         "picture": "Upload Image",
+        "start_date":"Start Date",
+        "end_date":"End Date",
+        "status":"Status",
         "button": {
           "save": "Save",
           "cancel": "Cancel"
@@ -303,7 +270,13 @@
     },
     "Edit": {
       "header": "Edit Post"
-    }
+    },
+    "status":{
+      "item":[
+      {"text":"Open","value":"open"},
+      {"text":"Close","value":"close"}
+    ]
+  }
   },
 
   "CateProduct": {
@@ -363,10 +336,10 @@
         { "text": "Actions", "value": "Actions", "sortable": false }
       ],
       "dontdata": "Dont have data",
-      "options": [
-        { "edit": "Edit", "iconEdit": "fas fa-edit" },
-        { "delete": "Delete", "delicon": "fas fa-trash-alt" }
-      ]
+      "options": {
+         "edit": "Edit", "iconEdit": "fas fa-edit" ,
+         "delete": "Delete", "delicon": "fas fa-trash-alt" 
+      }
     },
     "Create": {
       "header": "Add products",
@@ -440,10 +413,10 @@
     "table": {
       "headers": [
         { "text": "No", "value": "No", "sortable": false },
-        { "text": "Data Package Name", "value": "DataPackageName", "sortable": true },
+        { "text": "Pictures", "value": "Picture", "sortable": true },
         { "text": "Category", "value": "CateDataPackage", "sortable": true },
+        { "text": "Data Package Name", "value": "DataPackageName", "sortable": false },
         { "text": "Description", "value": "description", "sortable": false },
-        { "text": "Pictures", "value": "Picture", "sortable": false },
         { "text": "Actions", "value": "Actions", "sortable": false }
       ],
       "dontdata":"Don't have data",

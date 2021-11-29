@@ -37,6 +37,7 @@ const getters = {
     getToken(state) {
         return state.token;
     },
+
     isAuth(state) {
         return state.token && state.token !== null;
     },

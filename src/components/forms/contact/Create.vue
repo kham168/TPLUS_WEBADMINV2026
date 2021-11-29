@@ -6,46 +6,36 @@
           <h1>{{ $t("Contact.Create.header") }}</h1>
         </div>
         <div class="lang-select-input">
-          <v-tabs v-model="tab" color="primary" slider-color="primary">
-            <v-tabs-slider color="primary"></v-tabs-slider>
-            <v-tab
-              :href="lang.key"
-              v-for="lang in $t('Contact.Create.lang')"
-              :key="lang.key"
-            >
-              {{ lang }}
-            </v-tab>
-          </v-tabs>
+      
           <div class="tab-content">
-            <v-tabs-items v-model="tab">
-              <v-tab-item
-                v-for="i in $t('Contact.Create.lang')"
-                :key="i"
-                :value="i.key"
-              >
+            
                 <div class="card-form">
                   <div class="form-content">
                     <v-form  v-model="valid" ref="form" lazy-validation>
                     
                       <v-text-field
+                      v-model="name"
                         :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
                         :label="$t('Contact.Create.form.contact_name')"
                         outlined
                         required
                       ></v-text-field>
                        <v-text-field
+                       v-model="email"
                         :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
                         :label="$t('Contact.Create.form.email')"
                         outlined
                         required
                       ></v-text-field>
                        <v-text-field
+                       v-model="title"
                         :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
                         :label="$t('Contact.Create.form.tile')"
                         outlined
                         required
                       ></v-text-field>
                       <v-textarea
+                      v-model="description"
                         outlined
                         :label="$t('Contact.Create.form.description')"
                         
@@ -62,8 +52,7 @@
                     </div>
                   </div>
                 </div>
-              </v-tab-item>
-            </v-tabs-items>
+            
           </div>
         </div>
       </div>
@@ -72,13 +61,18 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
+
 export default {
   name: "Create",
 
   data() {
     return {
-      tab: null,
-      previewImage: null,
+      name:'',
+      email:'',
+      title:'',
+      description:'',
+  
       valid:true,
     };
   },
@@ -90,11 +84,22 @@ export default {
 
     submitForm () {
     this.$refs.form.validate();
+
+    if(this.$refs.form.validate()){
+      this.createContact({'name':this.name,'email':this.email,'title':this.title,'description':this.description})
+      console.log("create successful")
+   }else{
+      console.log("can not create")
+    }
   },
    reset(){
     this.$router.back();
     this.$refs.form.reset();
-  }
+  },
+
+  ...mapActions({
+    createContact:'Contact/createContact'
+  }),
   },
 };
 </script>

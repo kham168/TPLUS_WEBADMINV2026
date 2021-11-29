@@ -1,8 +1,16 @@
 
 import axios from 'axios'
+import User from "@/store/User";
+import Store from '@/store/index';
+import i18n from '@/i18n'
+import Router from '@/router';
+
+
 
 class HttpRequest {
-  constructor (url = 'https://jsonplaceholder.typicode.com') {
+
+  //api 
+  constructor (url = 'http://128.199.104.34:7000') {
     // this.axios = axios
     this.axiosInstance = axios.create({
       baseURL: url,
@@ -11,18 +19,59 @@ class HttpRequest {
 
     this.axiosInstance.interceptors.request.use(function (config) {
       // Do something before request is sent
+      console.log("config")
+      console.log(config)
       return config
     }, function (error) {
       // Do something with request error
+
+      console.log(error.response.data);
+      console.log("Error request status:"+error.response.status);
+      console.log(error.response.headers);
+
       return Promise.reject(error)
     })
 
     // Add a response interceptor
     this.axiosInstance.interceptors.response.use(function (response) {
       // Do something with response data
+      console.log("response status:"+response.status)
+      console.log("response body:")
+      console.log(response)
+
+      if(response.config.method=="post" && response.status == 200){
+        setTimeout(() => {
+          Store.dispatch({
+          type:"action_Notifi_Success",
+          message:i18n.tc('Notification.saveDataSuccess')
+        })
+       }, 300);
+       Router.back();
+      }else if(response.config.method=="put" && response.status == 200){
+        setTimeout(() => {
+          Store.dispatch({
+          type:"action_Notifi_Success",
+          message:i18n.tc('Notification.editDataSuccess')
+        })
+       }, 300);
+       Router.back();
+      }else if(response.config.method=="delete" && response.status == 200){
+        setTimeout(() => {
+          Store.dispatch({
+          type:"action_Notifi_Success",
+          message:i18n.tc('Notification.delDataSuccess')
+        })
+       }, 300);
+       Router.back();
+      }
       return response
     }, function (error) {
       // Do something with response error
+ 
+      console.log(error.response.data);
+      console.log("Error response status:"+error.response.status);
+      console.log(error.response.headers);
+
       return Promise.reject(error)
     })
   }
@@ -30,7 +79,16 @@ class HttpRequest {
   setHeader (header) {
     // this.axiosInstance.defaults.headers.common[header.key] = header.value
     this.axiosInstance.defaults.headers.common = header
+    this.axiosInstance.defaults.headers.common['Authorization'] = 'Bearer '+User.state.token
+   
+    this.axiosInstance.defaults.headers.common['content_language'] = 'en'
+
+    this.axiosInstance.defaults.headers.common['Accept'] = 'application/json'
     this.axiosInstance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+  
+  
+    
+   
   }
 
   get (methodName, data) {
