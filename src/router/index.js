@@ -198,7 +198,7 @@ const routes = [
     //Logo
     {
         path: "/logo",
-        component: () => import(/* webpackChunkName:"Logo" */'../views/logo/logo.vue'),
+        component: () => import(/* webpackChunkName:"Logo" */'../views/logo/index'),
         meta: {
             layout: 'admin'
         },
@@ -210,15 +210,6 @@ const routes = [
                 meta: {
                     layout: "admin"
                 }
-            },
-            {
-                path: "create",
-                name: "logo.create",
-                component: () => import(/* webpackChunkName:"Logo Create" */ '../components/forms/logo/Create.vue'),
-                meta: {
-                    layout: 'admin',
-                }
-
             },
             {
                 path: "edit",
