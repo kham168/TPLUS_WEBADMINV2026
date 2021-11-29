@@ -21,7 +21,7 @@ const actions = {
     fetchUser({state}, user_id) {
         return new Promise((resolve, reject) => {
             $axios.defaults.headers.common['Authorization'] = 'Bearer ' + store.getters['User/getToken'];
-            $axios.get(`users/${state.user_id || user_id}`).then((res) => {
+            $axios.get(`users-roles-permissions/${state.user_id || user_id}`).then((res) => {
                 if (res.status === 200) {
                     resolve(res)
                 }
