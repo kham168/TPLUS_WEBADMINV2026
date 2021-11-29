@@ -1,9 +1,9 @@
 <template>
-  <div id="Create">
-    <section class="cate_product-create">
+  <div id="Edit">
+    <section class="cate_product-edit">
       <div class="cate_product-form">
         <div class="form-title">
-          <h1>{{ $t("CateProduct.Create.header") }}</h1>
+          <h1>{{ $t("CateProduct.Edit.header") }}</h1>
         </div>
         <div class="lang-select-input">
           <v-tabs v-model="tab" color="primary" slider-color="primary">
@@ -12,6 +12,7 @@
               :href="lang.key"
               v-for="lang in $t('CateProduct.Create.lang')"
               :key="lang.key"
+              @click="checkTabLang(lang)"
             >
               {{ lang }}
             </v-tab>
@@ -25,18 +26,44 @@
               >
                 <div class="card-form">
                   <div class="form-content">
-                    <v-form  v-model="valid" ref="form" lazy-validation>
-                  
+                    <v-form v-model="valid" ref="form" lazy-validation>
+                    
                       <v-text-field
-                        :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
+                      v-model="cateName"
+                          v-show="isLaoTab"
+                        :rules="[
+                          $myValidator.SimpleValidate($t('Validate.required')),
+                        ]"
                         :label="$t('CateProduct.Create.form.cate_product_name')"
                         outlined
                         required
                       ></v-text-field>
+
+                      <v-text-field
+                        v-model="cateNameEng"
+                          v-show="isEngTab"
+                        :rules="[
+                          $myValidator.SimpleValidate($t('Validate.required')),
+                        ]"
+                        :label="$t('CateProduct.Create.form.cate_product_name')"
+                        outlined
+                        required
+                      ></v-text-field>
+
+
                       <v-textarea
+                        v-model="description"
+                          v-show="isLaoTab"
+                        outlined
+
+                        :label="$t('CateProduct.Create.form.description')"
+                      ></v-textarea>
+
+                       <v-textarea
+                            v-model="descriptionEng"
+                       v-show="isEngTab"
                         outlined
                         :label="$t('CateProduct.Create.form.description')"
-                        
                       ></v-textarea>
                     
                     </v-form>
@@ -44,7 +71,11 @@
                       <v-btn plain @click="reset" class="mx-5">{{
                         $t("CateProduct.Create.form.button.cancel")
                       }}</v-btn>
-                      <v-btn :disabled="!valid" @click="submitForm" class="btn btn-create">
+                      <v-btn
+                        :disabled="!valid"
+                        @click="submitForm"
+                        class="btn btn-create"
+                      >
                         {{ $t("CateProduct.Create.form.button.save") }}</v-btn
                       >
                     </div>
@@ -60,36 +91,87 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
+
 export default {
-  name: "Create",
+  name: "Edit",
 
   data() {
     return {
+      cateId:0,
+        cateName:'',
+      description:'',
+      cateNameEng:'',
+      descriptionEng:'',
+      isLaoTab:true,
+      isEngTab:false,
       tab: null,
-      previewImage: null,
-      valid:true,
+  
+      valid: true,
     };
   },
 
-  mounted() {},
+  mounted() {
+    this.loadDataToComponent();
+    this.checkTabLang('ລາວ');
+  },
 
   methods: {
 
+    loadDataToComponent(){
+      let data = this.$route.params;
+
+       this.cateId=data.cate_product_id,
+        this.cateName=data.cateName,
+     this.description=data.description,
+      this.cateNameEng=data.cateNameEng,
+      this.descriptionEng=data.descriptionEng
+    },
+   
+ checkTabLang(lang){
+      console.log(lang)
+      if(lang == 'ລາວ' ||lang== 'Lao'){
+        this.isLaoTab = true
+        this.isEngTab = false
+        console.log("lao"+this.isLaoTab)
+         console.log(this.isEngTab)
+      }else{
+         this.isLaoTab = false
+         this.isEngTab = true
+            console.log("lao"+this.isLaoTab)
+            console.log(this.isEngTab)
+      }
+    },
 
     submitForm () {
-    this.$refs.form.validate();
+    this.$refs.form[0].validate();
+       if( this.$refs.form[0].validate()){
+
+      this.updateCateProduct({
+        'cate_product_id':this.cateId,
+         'cate_product_name':this.cateName,
+    'description':this.description,
+    'other_lang_cate_product_name':this.cateNameEng,
+    'other_lang_description':this.descriptionEng,
+      })
+ console.log("create successful")
+    }else{
+      console.log("can not create")
+    }
   },
+
    reset(){
     this.$router.back();
-    this.$refs.form.reset();
-  }
+    this.$refs.form[0].reset();
+  },
+   ...mapActions({
+    updateCateProduct:'CateProduct/updateCateProduct'
+  })
   },
 };
 </script>
 
 <style lang="scss" scoped>
-
-
   .cate_product-form {
     .form-title {
       width: 100%;
@@ -176,4 +258,3 @@ export default {
     }
   }
 </style>
-

@@ -27,35 +27,67 @@
                   <div class="form-content">
                     <v-form v-model="valid" ref="form" lazy-validation>
                      
-                      <v-text-field
-                        :rules="[
-                          $myValidator.SimpleValidate($t('Validate.required')),
-                        ]"
+                       <v-text-field
+                       v-show="isLaoTab"
+                         v-model="bannerName"
+                        :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
                         :label="$t('Banner.Create.form.banner_name')"
                         outlined
                         required
                       ></v-text-field>
+
+                       <v-text-field
+                      v-show="isEngTab"
+                      v-model="bannerNameEng"
+                        :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
+                        :label="$t('Banner.Create.form.banner_name')"
+                        outlined
+                        required
+                      ></v-text-field>
+
                       <v-text-field
-                        :rules="[
-                          $myValidator.SimpleValidate($t('Validate.required')),
-                        ]"
+                      v-show="isLaoTab"
+                         v-model="link"
+                        :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
                         :label="$t('Banner.Create.form.link')"
                         outlined
                         required
                       ></v-text-field>
+
+                      <v-text-field
+                      v-show="isEngTab"
+                         v-model="linkEng"
+                        :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
+                        :label="$t('Banner.Create.form.link')"
+                        outlined
+                        required
+                      ></v-text-field>
+
                       <v-textarea
+                      v-show="isLaoTab"
+                         v-model="description"
                         outlined
                         :label="$t('Banner.Create.form.description')"
                       ></v-textarea>
-                    <div class="upload-image">
-                        <div class="image">
-                          <v-img :src="previewImage" alt="cover"></v-img>
-                        </div>
-                        <div class="content" v-show="previewImage == null">
+
+                       <v-textarea
+                      v-show="isEngTab"
+                         v-model="descriptionEng"
+                        outlined
+                        :label="$t('Banner.Create.form.description')"
+                      ></v-textarea>
+
+                      <div v-show="isLaoTab">
+                      
+                        <div class="upload-image" v-if="previewImage[0] == null">
+                       
+                        <div class="content" >
                           <i class="fas fa-plus-circle"></i>
-                          <h3>{{ $t("Banner.Create.form.picture") }}</h3>
+                          <h3>{{ $t("Post.Create.form.picture") }}</h3>
                         </div>
                         <input
+                         multiple
+                        
                           type="file"
                           class="choose-file"
                           name="upload-image"
@@ -63,6 +95,135 @@
                           @change="UploadImage"
                         />
                       </div>
+
+
+                      <div class="image" v-else>
+                          <v-carousel height="100%">
+                            <v-carousel-item :key="index" v-for="(imageFiles,index) in previewImage">
+                              <div class="increase-decrease-image">
+                                 <v-btn
+                                  class="mx-2"
+                                  fab
+                                  dark
+                                  small
+                                  color="primary"
+                                  @click="removeImage(index)"
+                                >
+                                  <v-icon dark>
+                                    mdi-minus
+                                  </v-icon>
+                                </v-btn>
+
+
+                                 <v-btn
+                                  class="mx-2"
+                                  fab
+                                  dark
+                                  small
+                                  color="success"
+                                  @click="onIncreaseImage"
+                                >
+                                  <v-icon dark>
+                                    mdi-plus
+                                  </v-icon>
+                                </v-btn>
+                                 <input
+                         multiple
+                         
+                          type="file"
+                           class="d-none"
+                           ref="uploader"
+                          accept="image/*"
+                          @change="UploadImage"
+                        />
+                        </div>
+                              <v-layout row >
+                                <v-flex  :key="j" v-for="j in 1" align-self-center >
+
+                                     <img class="image-files" :src="imageFiles"  >
+
+                                </v-flex>
+                               
+                              </v-layout>
+                            </v-carousel-item>
+                          </v-carousel>
+                          
+                        </div>
+                      </div>    
+                  
+                   <div v-show="isEngTab">
+                      
+                        <div class="upload-image" v-if="previewImageEng[0] == null">
+                       
+                        <div class="content" >
+                          <i class="fas fa-plus-circle"></i>
+                          <h3>{{ $t("Post.Create.form.picture") }}</h3>
+                        </div>
+                        <input
+                         multiple
+                        
+                          type="file"
+                          class="choose-file"
+                          name="upload-image"
+                          accept="image/*"
+                          @change="UploadImageEng"
+                        />
+                      </div>
+
+
+                      <div class="image" v-else>
+                          <v-carousel height="100%">
+                            <v-carousel-item :key="index" v-for="(imageFilesEng,index) in previewImageEng">
+                              <div class="increase-decrease-image">
+                                 <v-btn
+                                  class="mx-2"
+                                  fab
+                                  dark
+                                  small
+                                  color="primary"
+                                  @click="removeImageEng(index)"
+                                >
+                                  <v-icon dark>
+                                    mdi-minus
+                                  </v-icon>
+                                </v-btn>
+
+
+                                 <v-btn
+                                  class="mx-2"
+                                  fab
+                                  dark
+                                  small
+                                  color="success"
+                                  @click="onIncreaseImageEng"
+                                >
+                                  <v-icon dark>
+                                    mdi-plus
+                                  </v-icon>
+                                </v-btn>
+                                 <input
+                         multiple
+                         
+                          type="file"
+                           class="d-none"
+                           ref="uploaderEng"
+                          accept="image/*"
+                          @change="UploadImageEng"
+                        />
+                        </div>
+                              <v-layout row >
+                                <v-flex  :key="j" v-for="j in 1" align-self-center >
+
+                                     <img class="image-files" :src="imageFilesEng"  >
+
+                                </v-flex>
+                               
+                              </v-layout>
+                            </v-carousel-item>
+                          </v-carousel>
+                          
+                        </div>
+                      </div> 
                     </v-form>
                     <div class="form-actions">
                       <v-btn plain @click="reset" class="mx-5">{{
@@ -93,33 +254,151 @@ export default {
 
   data() {
     return {
+        banId:0,
+        bannerName:'',
+      bannerNameEng:'',
+      link:'',
+      linkEng:'',
+      description:'',
+      descriptionEng:'',
+      uploadImage:[],
+      uploadImageEng:[],
+       isLaoTab:false,
+      isEngTab:false,
+       previewImage: [],
+       previewImageEng: [],
+
       tab: null,
   
       valid: true,
     };
   },
 
-  mounted() {},
+  mounted() {
+    loadDataToComponent();
+    checkTabLang('ລາວ')
+  },
 
   methods: {
-   
 
-       UploadImage(e) {
-      const img = e.target.files[0];
-      const reader = new FileReader();
-      reader.readAsDataURL(img);
-      reader.onload = (e) => {
-        this.previewImage = e.target.result;
-        console.log(this.previewImage);
+    loadDataToComponent(){
+      let data = this.$route.params
+
+        banId=data.banId,
+        bannerName=data.bannerName,
+      bannerNameEng=data.bannerNameEng,
+      link=data.link,
+      linkEng=data.linkEng,
+      description=data.description,
+      descriptionEng=data.descriptionEng
+
+      for(let i=0;i<data.argImage.length;i++){
+       uploadImage.push(data.argImage[i].image)
+
+      }
+      for(let i=0;i<data.argImageEng.length;i++){
+         uploadImageEng.push(data.argImageEng[i].image)
+      }
+    
+     
+    },
+   
+   onIncreaseImage(){
+      
+     this.$refs.uploader[0].click()
+    },
+    onIncreaseImageEng(){
+      
+     this.$refs.uploaderEng[0].click()
+    },
+
+     removeImage(index){
+      this.previewImage.splice(index, 1);
+    },
+    removeImageEng(index){
+      this.previewImageEng.splice(index, 1);
+    },
+
+    checkTabLang(lang){
+      console.log(lang)
+      if(lang == 'ລາວ' ||lang== 'Lao'){
+        this.isLaoTab = true
+        this.isEngTab = false
+        console.log("lao"+this.isLaoTab)
+         console.log(this.isEngTab)
+      }else{
+         this.isLaoTab = false
+         this.isEngTab = true
+            console.log("lao"+this.isLaoTab)
+            console.log(this.isEngTab)
+      }
+    },
+
+     UploadImage(e) {
+  
+      const img = e.target.files;
+
+      for(let i = 0;i<img.length;i++){
+        uploadImage.push(img[i])
+        const reader = new FileReader();
+        reader.readAsDataURL(img[i]);
+       reader.onload = (e) => {
+         
+        this.previewImage.push(e.target.result);
+        console.log(this.previewImage[i]);
+        }
+
       };
     },
-    submitForm () {
-    this.$refs.form.validate();
+
+     UploadImageEng(e) {
+  
+      const img = e.target.files;
+
+      for(let i = 0;i<img.length;i++){
+        uploadImageEng.push(img[i])
+        const reader = new FileReader();
+        reader.readAsDataURL(img[i]);
+       reader.onload = (e) => {
+         
+        this.previewImageEng.push(e.target.result);
+        console.log(this.previewImageEng[i]);
+        }
+
+      };
+    },
+
+      submitForm () {
+    console.log(this.$refs.form[0].validate())
+    if(this.$refs.form[0].validate()){
+      this.updateBanner({
+        'ban_id':this.banId,
+        'ban_name':this.bannerName,
+        'link':this.link,
+        'description':this.description,
+        'other_lang_ban_name':this.bannerNameEng,
+        'other_lang_link':this.linkEng,
+        'other_lang_description':this.descriptionEng,
+        'avatar':this.uploadImage,
+        'avatar_EN':this.uploadImageEng
+      })
+
+      
+       console.log("create successful")
+    }else{
+      console.log("can not create")
+    }
+
   },
    reset(){
     this.$router.back();
-    this.$refs.form.reset();
-  }
+    this.$refs.form[0].reset();
+  },
+
+    ...mapActions({
+      updateBanner:'Banner/updateBanner'
+    })
+
   },
 };
 </script>

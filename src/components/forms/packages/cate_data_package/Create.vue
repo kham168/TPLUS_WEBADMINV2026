@@ -12,6 +12,7 @@
               :href="lang.key"
               v-for="lang in $t('CateDataPackage.Create.lang')"
               :key="lang.key"
+               @click="checkTabLang(lang)"
             >
               {{ lang }}
             </v-tab>
@@ -28,12 +29,32 @@
                     <v-form  v-model="valid" ref="form" lazy-validation>
                   
                       <v-text-field
+                        v-show="isLaoTab"
+                      v-model="cateName"
+                        :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
+                        :label="$t('CateDataPackage.Create.form.cate_data_package_name')"
+                        outlined
+                        required
+                      ></v-text-field>
+                      <v-text-field
+                        v-show="isEngTab"
+                      v-model="cateNameEng"
                         :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
                         :label="$t('CateDataPackage.Create.form.cate_data_package_name')"
                         outlined
                         required
                       ></v-text-field>
                       <v-textarea
+                        v-show="isLaoTab"
+                      v-model="description"
+                        outlined
+                        :label="$t('CateDataPackage.Create.form.description')"
+                        
+                      ></v-textarea>
+
+                        <v-textarea
+                          v-show="isEngTab"
+                        v-model="descriptionEng"
                         outlined
                         :label="$t('CateDataPackage.Create.form.description')"
                         
@@ -60,29 +81,63 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 export default {
   name: "Create",
 
   data() {
     return {
+      cateName:'',
+      description:'',
+      cateNameEng:'',
+      descriptionEng:'',
+      isLaoTab:false,
+      isEngTab:false,
       tab: null,
-      previewImage: null,
+    
       valid:true,
     };
   },
 
-  mounted() {},
+  mounted() {
+    this.checkTabLang('ລາວ');
+  },
 
   methods: {
-
+ checkTabLang(lang){
+      console.log(lang)
+      if(lang == 'ລາວ' ||lang== 'Lao'){
+        this.isLaoTab = true
+        this.isEngTab = false
+        console.log("lao"+this.isLaoTab)
+         console.log(this.isEngTab)
+      }else{
+         this.isLaoTab = false
+         this.isEngTab = true
+            console.log("lao"+this.isLaoTab)
+            console.log(this.isEngTab)
+      }
+    },
 
     submitForm () {
-    this.$refs.form.validate();
+    this.$refs.form[0].validate();
+   if(  this.$refs.form[0].validate()){
+ 
+      this.createCateDataPackage({'cate_package_name':this.cateName,'description':this.description,'other_lang_cate_package_name':this.cateNameEng,'other_lang_description':this.descriptionEng});
+    
+      console.log('create successful')
+    }else{
+      console.log('can not create')
+    }
   },
    reset(){
     this.$router.back();
-    this.$refs.form.reset();
-  }
+    this.$refs.form[0].reset();
+  },
+
+  ...mapActions({
+    createCateDataPackage:'CateDataPackage/createCateDataPackage'
+  })
   },
 };
 </script>

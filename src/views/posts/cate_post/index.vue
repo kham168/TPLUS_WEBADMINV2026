@@ -2,7 +2,7 @@
   <div id="CatePost">
     <section class="cate_post-section">
       <div class="header cate_post-header">
-        <h1>{{ $t("Post.title") }}</h1>
+        <h1>{{ $t("CatePost.title") }}</h1>
         <v-btn @click="CreateCatePost" class="btn btn-create">
           <v-icon>fal fa-plus-circle</v-icon>{{ $t("CatePost.button") }}</v-btn
         >
@@ -10,11 +10,11 @@
       <div class="cate_post-content">
         <v-data-table
           :headers="$t('CatePost.table.headers')"
-          :items="myCatePost"
+          :items="cate_post['data']"
           :search="searchItem"
           :loading="loading"
           :loading-text="$t('CatePost.loadingtext')"
-          v-if="myCatePost != ''"
+          v-if="cate_post['data'] != []"
         >
           <template v-slot:top>
             <v-toolbar flat>
@@ -33,10 +33,11 @@
           </template>
           <!-- table content -->
           <template v-slot:item="{ item, index }">
-            <tr class="table-content">
+            <tr class="table-content" v-if="isLaoLanguage">
               <td>{{ index + 1 }}</td>
-              <td>{{ item.CatePostName }}</td>
-              <td>{{ item.description }}</td>
+              <td>{{ item.name }}</td>
+              <td v-if="item.is_active === true">ເປີດ</td>
+            <td v-else>ປິດ</td>
         
               <td>
                <v-menu offset-y>
@@ -46,7 +47,49 @@
                 </v-btn>
                  </template>
                  <v-list>
-                   <v-list-item link @click="$router.push({name:'cate_post.edit'}).catch(()=>{})">
+                   <v-list-item link @click="$router.push({name:'cate_post.edit',params:{
+                         'catePostId':item.id,
+      'statusValue':{'value':item.is_active},
+      'name':item.name,
+      'nameEng':item.PostTypesTrans[0].name}}).catch(()=>{})">
+                     <v-list-item-icon>
+                       <v-icon class="mr-3" small>{{$t('CatePost.table.options.iconEdit')}}</v-icon>
+                       <v-list-item-title>
+                         {{$t('CatePost.table.options.edit')}}
+                       </v-list-item-title>
+                     </v-list-item-icon>
+                   </v-list-item>
+                    <v-list-item link>
+                     <v-list-item-icon>
+                       <v-icon class="mr-3" small>{{$t('CatePost.table.options.delicon')}}</v-icon>
+                       <v-list-item-title>
+                         {{$t('CatePost.table.options.delete')}}
+                       </v-list-item-title>
+                     </v-list-item-icon>
+                   </v-list-item>
+                 </v-list>
+               </v-menu>
+              </td>
+            </tr>
+
+            <tr class="table-content" v-else>
+              <td>{{ index + 1 }}</td>
+              <td>{{ item.PostTypesTrans[0].name }}</td>
+              <td v-if="item.is_active == true"> Open </td>
+            <td v-else> Close </td>
+              <td>
+               <v-menu offset-y>
+                 <template v-slot:activator="{on,attrs}">
+                   <v-btn icon v-on="on" v-bind="attrs">
+                  <v-icon small>fas fa-ellipsis-v</v-icon>
+                </v-btn>
+                 </template>
+                 <v-list>
+                   <v-list-item link @click="$router.push({name:'cate_post.edit',params:{
+                         'catePostId':item.id,
+      'statusValue':{'value':item.is_active},
+      'name':item.name,
+      'nameEng':item.PostTypesTrans[0].name}}).catch(()=>{})">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('CatePost.table.options.iconEdit')}}</v-icon>
                        <v-list-item-title>
@@ -80,24 +123,23 @@
 </template>
 
 <script>
+import {mapActions, mapGetters} from 'vuex'
 export default {
   name: "CatePost",
 
   data() {
     return {
+      isLaoLanguage:localStorage.getItem('lang')==='la',
       loading: false,
-      myCatePost: [
-        {
-          CatePostName: "Phone",
-          description: "message something",
-         
-        },
-      ],
+     
       searchItem: "",
     };
   },
 
-  mounted() {},
+  mounted() {
+    this.getCatePostAll();
+    console.log(this.getCatePostAll());
+  },
 
   methods: {
     CreateCatePost() {
@@ -107,7 +149,16 @@ export default {
         })
         .catch(() => {});
     },
+
+    ...mapActions({
+      getCatePostAll:'CatePost/getCatePostAll'
+    })
   },
+  computed:{
+    ...mapGetters({
+      cate_post:'CatePost/cate_post'
+    })
+  }
 };
 </script>
 

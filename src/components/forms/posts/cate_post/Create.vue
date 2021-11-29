@@ -12,6 +12,7 @@
               :href="lang.key"
               v-for="lang in $t('CatePost.Create.lang')"
               :key="lang.key"
+              @click="checkTabLang(lang)"
             >
               {{ lang }}
             </v-tab>
@@ -26,19 +27,26 @@
                 <div class="card-form">
                   <div class="form-content">
                     <v-form  v-model="valid" ref="form" lazy-validation>
-                  
+
                       <v-text-field
+                      v-show="isLaoTab"
+                      v-model="name"
                         :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
                         :label="$t('CatePost.Create.form.cate_post_name')"
                         outlined
                         required
                       ></v-text-field>
-                      <v-textarea
+
+                      
+                      <v-text-field
+                      v-show="isEngTab"
+                      v-model="nameEng"
+                        :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
+                        :label="$t('CatePost.Create.form.cate_post_name')"
                         outlined
-                        :label="$t('CatePost.Create.form.description')"
-                        
-                      ></v-textarea>
-                    
+                        required
+                      ></v-text-field>
+                     
                     </v-form>
                     <div class="form-actions">
                       <v-btn plain @click="reset" class="mx-5">{{
@@ -60,29 +68,64 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 export default {
   name: "Create",
 
   data() {
     return {
+      name:'',
+      nameEng:'',
+      isLaoTab:false,
+      isEngTab:false,
       tab: null,
       previewImage: null,
       valid:true,
     };
   },
 
-  mounted() {},
+  mounted() {
+    this.checkTabLang('ລາວ')
+  },
 
   methods: {
-
+  checkTabLang(lang){
+      console.log(lang)
+      if(lang == 'ລາວ' ||lang== 'Lao'){
+        this.isLaoTab = true
+        this.isEngTab = false
+        console.log("lao"+this.isLaoTab)
+         console.log(this.isEngTab)
+      }else{
+         this.isLaoTab = false
+         this.isEngTab = true
+            console.log("lao"+this.isLaoTab)
+            console.log(this.isEngTab)
+      }
+    },
 
     submitForm () {
-    this.$refs.form.validate();
+    this.$refs.form[0].validate();
+    if(this.$refs.form[0].validate()){
+
+      this.createCatePost({
+            'cate_post_name':this.name,
+        'other_lang_cate_post_name':this.nameEng,
+      })
+
+ console.log('create successful')
+    }else{
+      console.log('can not create')
+    }
   },
    reset(){
     this.$router.back();
-    this.$refs.form.reset();
-  }
+    this.$refs.form[0].reset();
+  },
+
+  ...mapActions({
+    createCatePost:'CatePost/createCatePost'
+  })
   },
 };
 </script>
