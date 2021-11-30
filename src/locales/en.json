@@ -24,17 +24,8 @@
       "icon": "fas fa-border-top",
       "text": "Topping",
       "router": "/topping"
-    },
-    {
-      "icon": "fas fa-border-top",
-      "text": "Position",
-      "router": "/position"
-    },
-    {
-      "icon": "fas fa-border-top",
-      "text": "jobRecruit",
-      "router": "/jobRecruit"
     }
+
   ],
   "Topping": {
     "title": "Topping management"

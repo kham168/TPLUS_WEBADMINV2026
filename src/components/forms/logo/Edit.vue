@@ -45,6 +45,24 @@
                           required
                           v-model="logoItem.email"
                       ></v-text-field>
+                      <v-text-field
+                          :rules="[
+                          $myValidator.SimpleValidate($t('Validate.required')),
+                        ]"
+                          label="phone"
+                          outlined
+                          required
+                          v-model="logoItem.phone"
+                      ></v-text-field>
+                      <v-text-field
+                          :rules="[
+                          $myValidator.SimpleValidate($t('Validate.required')),
+                        ]"
+                          label="Facebook"
+                          outlined
+                          required
+                          v-model="logoItem.facebook"
+                      ></v-text-field>
                       <v-textarea
                           outlined
                           :label="$t('Logo.Create.form.address')"
@@ -216,7 +234,8 @@ export default {
     saveItems() {
       const formData = new FormData();
       formData.append('siteName', this.logoItem.siteName);
-      formData.append("address", this.logoItem.address)
+      formData.append("address", this.logoItem.address);
+      formData.append('phone', this.logoItem.phone);
       formData.append("email", this.logoItem.email);
       formData.append("facebook", this.logoItem.facebook);
       formData.append("description", this.logoItem.description);

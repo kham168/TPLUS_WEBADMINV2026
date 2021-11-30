@@ -25,21 +25,8 @@
       "icon": "fas fa-border-top",
       "text": "Topping",
       "router": "/topping"
-    },
-    {
-      "icon": "fas fa-border-top",
-      "text": "ຕຳແໜ່ງ",
-      "router": "/position"
-    },
-    {
-      "icon": "fas fa-border-top",
-      "text": "ຮັບສະໝັກວຽກ",
-      "router": "/jobRecruit"
     }
   ],
-  "Topping": {
-    "title": "ຈັດການ Topping"
-  },
   "Postmenu": {
     "title": "ຂໍ້ມູນໂພສ",
     "subtitle": [
@@ -105,6 +92,10 @@
       }
     ]
   },
+  "Topping": {
+    "title": "ຈັດການ Topping"
+  },
+
   "Navbar": {
     "selectLanguage": "ເລືອກພາສາ",
     "setting": "ຕັ້ງຄ່າ",

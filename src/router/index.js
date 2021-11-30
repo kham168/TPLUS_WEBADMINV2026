@@ -222,42 +222,42 @@ const routes = [
         ]
     },
     //Position
-    {
-        path: "/position",
-        component: () => import(/* webpackChunkName:"Position" */'../views/position/position'),
-        meta: {
-            layout: 'admin'
-        },
-        children: [
-            {
-                path: "",
-                name: "position.index",
-                component: () => import(/* webpackChunkName:"Position index" */'../views/position/index.vue'),
-                meta: {
-                    layout: "admin"
-                }
-            },
-            {
-                path: "create",
-                name: "position.create",
-                component: () => import(/* webpackChunkName:"Position Create" */ '../components/forms/position/Create.vue'),
-                meta: {
-                    layout: 'admin',
-                }
-
-            },
-
-            {
-                path: "edit",
-                name: "position.edit",
-                component: () => import(/* webpackChunkName:"Position Edit" */ '../components/forms/position/Edit.vue'),
-                meta: {
-                    layout: 'admin',
-                }
-
-            },
-        ]
-    },
+    // {
+    //     path: "/position",
+    //     component: () => import(/* webpackChunkName:"Position" */'../views/position/position'),
+    //     meta: {
+    //         layout: 'admin'
+    //     },
+    //     children: [
+    //         {
+    //             path: "",
+    //             name: "position.index",
+    //             component: () => import(/* webpackChunkName:"Position index" */'../views/position/index.vue'),
+    //             meta: {
+    //                 layout: "admin"
+    //             }
+    //         },
+    //         {
+    //             path: "create",
+    //             name: "position.create",
+    //             component: () => import(/* webpackChunkName:"Position Create" */ '../components/forms/position/Create.vue'),
+    //             meta: {
+    //                 layout: 'admin',
+    //             }
+    //
+    //         },
+    //
+    //         {
+    //             path: "edit",
+    //             name: "position.edit",
+    //             component: () => import(/* webpackChunkName:"Position Edit" */ '../components/forms/position/Edit.vue'),
+    //             meta: {
+    //                 layout: 'admin',
+    //             }
+    //
+    //         },
+    //     ]
+    // },
 
     //User
     {
@@ -595,41 +595,41 @@ const routes = [
 
 
     //jobRecruit
-    {
-        path: "/jobRecruit",
-        component: () => import(/* webpackChunkName:"jobRecruit" */'../views/jobRecruit/index'),
-        meta: {
-            layout: 'admin'
-        },
-        children: [
-            {
-                path: "",
-                name: "jobRecruit.index",
-                component: () => import(/* webpackChunkName:"jobRecruit index" */'../views/jobRecruit/index.vue'),
-                meta: {
-                    layout: "admin"
-                }
-            },
-            // {
-            //     path: "create",
-            //     name: "contact.create",
-            //     component: () => import(/* webpackChunkName:"Contact Create" */ '../components/forms/contact/Create.vue'),
-            //     meta: {
-            //         layout: 'admin',
-            //     }
-            //
-            // },
-            // {
-            //     path: "edit",
-            //     name: "contact.edit",
-            //     component: () => import(/* webpackChunkName:"Contact Edit" */ '../components/forms/contact/Edit.vue'),
-            //     meta: {
-            //         layout: 'admin',
-            //     }
-            //
-            // },
-        ]
-    },
+    // {
+    //     path: "/jobRecruit",
+    //     component: () => import(/* webpackChunkName:"jobRecruit" */'../views/jobRecruit/index'),
+    //     meta: {
+    //         layout: 'admin'
+    //     },
+    //     children: [
+    //         {
+    //             path: "",
+    //             name: "jobRecruit.index",
+    //             component: () => import(/* webpackChunkName:"jobRecruit index" */'../views/jobRecruit/index.vue'),
+    //             meta: {
+    //                 layout: "admin"
+    //             }
+    //         },
+    //         // {
+    //         //     path: "create",
+    //         //     name: "contact.create",
+    //         //     component: () => import(/* webpackChunkName:"Contact Create" */ '../components/forms/contact/Create.vue'),
+    //         //     meta: {
+    //         //         layout: 'admin',
+    //         //     }
+    //         //
+    //         // },
+    //         // {
+    //         //     path: "edit",
+    //         //     name: "contact.edit",
+    //         //     component: () => import(/* webpackChunkName:"Contact Edit" */ '../components/forms/contact/Edit.vue'),
+    //         //     meta: {
+    //         //         layout: 'admin',
+    //         //     }
+    //         //
+    //         // },
+    //     ]
+    // },
 ]
 
 const router = new VueRouter({
