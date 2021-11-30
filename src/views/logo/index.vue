@@ -119,6 +119,8 @@ export default {
         query: {
           logo_id: logo_id
         }
+      }).catch((error) => {
+        console.log(error)
       });
     }
   },

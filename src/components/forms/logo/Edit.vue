@@ -259,7 +259,6 @@ export default {
     this.$store.dispatch("logo/fetchLogoItem", this.logoId).then((res) => {
       if (res.status === 200) {
         this.logoItem = res.data.data;
-
       }
     });
 
