@@ -74,6 +74,9 @@ export default new Vuex.Store({
         modalAdd_State(state, value) {
             state.modalAddState = value;
         },
+        modalShow_State(state, value) {
+            state.modalShowState = value;
+        }
 
     },
     actions: {

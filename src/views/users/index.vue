@@ -38,7 +38,18 @@
               <td>{{ item.username }}</td>
               <td>{{ item.email }}</td>
               <td>{{ item.phone }}</td>
-              <td>{{ item.status }}</td>
+              <td>
+                <!--                {{ item.status }}-->
+                <div v-if="item.status === 'active'">
+                  <span class="active">Active</span>
+                </div>
+                <div v-if="item.status === 'inactive'">
+                  <span class="inactive">inactive</span>
+                </div>
+                <div v-if="item.status === 'suspended'">
+                  <span class="suspended">suspended</span>
+                </div>
+              </td>
               <td>
                 <v-menu offset-y>
                   <template v-slot:activator="{ on, attrs }">
@@ -111,8 +122,6 @@ export default {
       listUser: [],
     };
   },
-
-
   methods: {
     addRole(user_id) {
       this.$router.push({
@@ -161,4 +170,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.active {
+  background: rgba(38, 222, 129, 1.0);
+  padding: 1px 8px;
+  color: #ffffff;
+  border-radius: 30px;
+  text-transform: capitalize;
+  font-size: 14px;
+  font-weight: 300;
+}
+.inactive{
+  padding: 1px 8px;
+  color: #ffffff;
+  border-radius: 30px;
+  background: rgba(252, 92, 101,1.0);
+  text-transform: capitalize;
+  font-size: 14px;
+  font-weight: 300;
+}
+.suspended{
+  padding: 1px 8px;
+  color: #ffffff;
+  border-radius: 30px;
+  background: rgba(75, 101, 132,1.0);
+  text-transform: capitalize;
+  font-size: 14px;
+  font-weight: 300;
+}
 </style>

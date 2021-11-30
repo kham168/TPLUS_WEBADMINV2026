@@ -17,17 +17,17 @@
       <!-- content -->
       <div class="role-content">
         <v-data-table
-            :headers="$t('permissionRole.table.headers')"
+            :headers="$t('RoleUser.table.headers')"
             :search="searchItem"
             :loading="loading"
             :items="listUserRole"
-            :loading-text="$t('permissionRole.loadingtext')"
+            :loading-text="$t('RoleUser.loadingtext')"
             v-if="listUserRole != ''"
         >
           <template v-slot:top>
             <v-toolbar flat>
               <v-text-field
-                  :label="$t('permissionRole.txtsearch')"
+                  :label="$t('RoleUser.txtsearch')"
                   filled
                   rounded
                   dense
@@ -66,11 +66,11 @@
                     <v-list-item link @click="onDelete(item.id)">
                       <v-list-item-icon>
                         <v-icon class="mr-3" small>{{
-                            $t("permissionRole.table.options.delicon")
+                            $t("RoleUser.table.options.delicon")
                           }}
                         </v-icon>
                         <v-list-item-title>
-                          {{ $t("permissionRole.table.options.delete") }}
+                          {{ $t("RoleUser.table.options.delete") }}
                         </v-list-item-title>
                       </v-list-item-icon>
                     </v-list-item>
@@ -85,7 +85,7 @@
           <div class="image">
             <v-img :src="require('@/assets/Images/NoData.png')"></v-img>
           </div>
-          <h3>{{ $t("permissionRole.table.dontdata") }}</h3>
+          <h3>{{ $t("RoleUser.table.dontdata") }}</h3>
         </div>
         <!-- end -->
       </div>
@@ -102,9 +102,13 @@
         </template>
       </ModalDelete>
 
-      <showAllPermission :visible="modalShowAllPermission"
-                         :role_id="role_id"
-                         @change="(val) => modalShowAllPermission = val"/>
+      <ModalShow>
+        <template v-slot="{close}">
+          <showAllPermission  @close="close" :listPermission="listPermission"
+                             @success="fetchRoleUser()"/>
+        </template>
+      </ModalShow>
+
       <!-- end -->
     </section>
   </div>
@@ -130,8 +134,7 @@ export default {
       user_id: this.$route.params.user_id,
       role_id: "",
       listUserRole: [],
-      modalShowAllPermission: false,
-
+      listPermission: [],
     };
   },
   methods: {
@@ -142,7 +145,12 @@ export default {
     },
     showPermission(role_id) {
       this.role_id = role_id;
-      this.modalShowAllPermission = true;
+      this.$axios.get(`roles/${this.role_id}/permissions`).then((res) => {
+        if (res.status === 200) {
+          this.listPermission = res.data.data.permissions;
+        }
+      })
+      this.$store.commit("modalShow_State", true);
     },
     fetchRoleUser() {
       this.$axios.get(`users-roles/${this.user_id}`).then((res) => {
@@ -161,7 +169,6 @@ export default {
   },
   created() {
     this.fetchRoleUser();
-    console.log(11111)
   }
 };
 </script>

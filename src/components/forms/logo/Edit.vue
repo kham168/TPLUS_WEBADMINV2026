@@ -77,14 +77,14 @@
                           $t("Logo.Create.form.button.cancel")
                         }}
                       </v-btn>
-                      <!--                      <v-btn-->
-                      <!--                          :disabled="!valid"-->
-                      <!--                          @click="submitForm"-->
-                      <!--                          class="btn btn-create"-->
-                      <!--                      >-->
-                      <!--                        {{ $t("Logo.Create.form.button.save") }}-->
-                      <!--                      </v-btn-->
-                      <!--                      >-->
+                      <v-btn
+                          :disabled="!valid"
+                          @click="submitForm"
+                          class="btn btn-create"
+                      >
+                        {{ $t("Logo.Create.form.button.save") }}
+                      </v-btn
+                      >
                     </div>
                   </div>
                 </div>
@@ -259,7 +259,6 @@ export default {
     this.$store.dispatch("logo/fetchLogoItem", this.logoId).then((res) => {
       if (res.status === 200) {
         this.logoItem = res.data.data;
-
       }
     });
 

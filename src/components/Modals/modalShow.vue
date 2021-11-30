@@ -5,7 +5,7 @@
         prevent-close
         v-model="dialog"
         persistent
-        max-width="600">
+>
       <v-card>
         <v-card-actions>
           <v-spacer></v-spacer>

@@ -7,7 +7,7 @@
       <v-btn outlined class="btn-cancel" @click="$emit('close')">
         Cancel
       </v-btn>
-      <v-btn class="btn-delete" @click="deleteItem(position_id)" :loading="btnLoading">
+      <v-btn class="btn-delete" @click="deleteItem(job_id)" :loading="btnLoading">
         Delete
       </v-btn>
 
@@ -23,12 +23,12 @@ export default {
     }
   },
   props: {
-    position_id: {}
+    job_id: {}
   },
   methods: {
-    deleteItem(position_id) {
+    deleteItem(job_id) {
       this.btnLoading = true
-      this.$axios.delete(`position/${position_id}`).then((res) => {
+      this.$axios.delete(`jobRecuit/${job_id}`).then((res) => {
         if (res.status === 200) {
           setTimeout(() => {
             this.$emit('close');
@@ -38,10 +38,10 @@ export default {
               message: this.$t('Notification.delDataSuccess')
             })
           }, 300);
-
         }
         this.btnLoading = false;
       }).catch((error) => {
+        console.log(error);
         this.btnLoading = false;
         if (error.response.data.error.status === 400) {
           this.$store.dispatch({
@@ -49,6 +49,7 @@ export default {
             message: `${error.response.data.error.message}`
           })
         }
+
       })
     }
   }

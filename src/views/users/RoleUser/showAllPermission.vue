@@ -1,86 +1,53 @@
 <template>
-  <v-dialog
-      v-model="modalShowAllPermission"
-      width="500"
-      persistent
-      @close="setModalShowAllPermission(false)"
-      transition="scroll-x-transition">
-    <v-card class="main-card-delete">
-      <v-card-actions class="card-action-delete" style="float: right;">
-        <v-btn
-            icon
-            depressed
-            @click="setModalShowAllPermission(false)"
-        >
-          <v-icon class="icon-style">{{ icon }}</v-icon>
-        </v-btn>
-      </v-card-actions>
-      <div class="main-show">
-        <div class="header">
-
+  <div class="main-show">
+    <v-row>
+      <v-col v-for="(item,idx) in listPermission" :key="idx" cols="4" md="4" lg="4">
+        <div class="card-permission" v-if="listPermission.length > 0">
+          {{ item.name }}
         </div>
-      </div>
-    </v-card>
-  </v-dialog>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script>
 export default {
-  components: {},
   props: {
-    visible: {
-      default: false,
-    },
-    icon: {
-      default: 'mdi-close',
-      type: String
-    },
-    role_id: {}
+    listPermission: {}
   },
   data() {
-    return {
-      modalShowAllPermission: false,
-      listPermission: [],
-    }
-  },
-
-  methods: {
-    setModalShowAllPermission(isVisible) {
-      this.modalShowAllPermission = isVisible;
-      this.$emit('change', isVisible);
-    },
-
-    // fetchPermissionRole() {
-    //   this.$axios.get(`roles/${this.role_id}/permissions`).then((res) => {
-    //     if (res.status === 200) {
-    //       this.listPermission = res.data.data;
-    //       console.log(this.listPermission)
-    //     }
-    //   })
-    // }
+    return {}
   },
   watch: {
-    visible(val) {
-      this.modalShowAllPermission = val;
-    },
-
+    listPermission(val) {
+      console.log(val)
+    }
   },
-  created() {
-   // this.fetchPermissionRole();
-    console.log(this.role_id, 555555)
-
-  }
+  methods: {},
 }
 </script>
 
 <style scoped lang="scss">
 .main-show {
-  min-height: 600px;
+  height: auto;
+  width: 600px;
+  overflow: hidden !important;
+  display: flex;
+  flex-direction: row;
+  padding: 40px;
 
-  .header {
+  .card-permission {
     width: 100%;
-    height: 80px;
-    background: red;
+    height: 60px;
+    background: #4b96da;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 300;
+    text-transform: capitalize;
+    text-align: center;
+    border-radius: 4px;
   }
 }
 </style>

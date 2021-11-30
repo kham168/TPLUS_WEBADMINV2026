@@ -6,17 +6,17 @@
       </div>
       <div class="permission-content">
         <v-data-table
-            :headers="$t('permission.table.headers')"
+            :headers="$t('Job.table.headers')"
             :items="listJobRecruit"
             :search="searchItem"
             :loading="loading"
-            :loading-text="$t('permission.loadingtext')"
+            :loading-text="$t('Job.loadingtext')"
             v-if="listJobRecruit != ''"
         >
           <template v-slot:top>
             <v-toolbar flat>
               <v-text-field
-                  :label="$t('permission.txtsearch')"
+                  :label="$t('Job.txtsearch')"
                   filled
                   rounded
                   dense
@@ -64,9 +64,9 @@
                   <v-list>
                     <v-list-item link @click="onDelete(item.id)">
                       <v-list-item-icon>
-                        <v-icon class="mr-3" small>{{ $t('permission.table.options.delicon') }}</v-icon>
+                        <v-icon class="mr-3" small>{{ $t('Job.table.options.delicon') }}</v-icon>
                         <v-list-item-title>
-                          {{ $t('permission.table.options.delete') }}
+                          {{ $t('Job.table.options.delete') }}
                         </v-list-item-title>
                       </v-list-item-icon>
                     </v-list-item>
@@ -80,12 +80,12 @@
           <div class="image">
             <v-img src="../../assets/Images/NoData.png"></v-img>
           </div>
-          <h3>{{ $t("permission.table.dontdata") }}</h3>
+          <h3>{{ $t("Job.table.dontdata") }}</h3>
         </div>
       </div>
       <ModalDelete>
         <template v-slot="{close}">
-          <Delete @close="close"/>
+          <Delete :job_id="job_id" @close="close"/>
         </template>
       </ModalDelete>
     </section>
@@ -93,7 +93,7 @@
 </template>
 
 <script>
-import Delete from "../../components/forms/permission/Delete";
+import Delete from "../../views/jobRecruit/deleteJobRecruit";
 
 export default {
   components: {
@@ -104,12 +104,13 @@ export default {
     return {
       listJobRecruit: [],
       searchItem: "",
+      job_id: "",
       loading: false,
     };
   },
   methods: {
-    onDelete(permission_id) {
-      this.permission_id = permission_id;
+    onDelete(job_id) {
+      this.job_id = job_id;
       this.$store.commit("modalDelete_State", true);
     },
 

@@ -9,11 +9,13 @@ import validate from "./Validation/validate"
 import "../src/plugins/Axios"
 import ModalDelete from "@/components/Modals/modalDelete"
 import ModalAdd from "@/components/Modals/modalAdd"
+import ModalShow from "@/components/Modals/modalShow"
 
 Vue.config.productionTip = false
 Vue.prototype.$myValidator = validate;
 Vue.component('ModalDelete', ModalDelete)
 Vue.component('ModalAdd', ModalAdd)
+Vue.component('ModalShow', ModalShow)
 new Vue({
     router,
     store,
