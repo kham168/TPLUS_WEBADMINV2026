@@ -4,13 +4,13 @@ const contactProvider = new ContactProvider()
 
 const state={
     contact:{},
-   
-  
+
+
 }
 
 const getters={
     contact:state=>state.contact,
- 
+
 }
 
 const mutations={
@@ -18,16 +18,13 @@ const mutations={
       state.contact = data;
     },
 
-  
+
 }
 
 const actions={
- 
-  
-
     async getContact ({commit}) {
         const data = await contactProvider.getContact()
-     
+
         commit('SET_CONTACT', data)
       },
 
@@ -36,7 +33,7 @@ const actions={
         email,
         title,
         description,
-        
+
     }){
 
         let arg={
@@ -44,8 +41,8 @@ const actions={
             'email':email,
             'description':description,
             'title':title,
-    
-           
+
+
         }
 
          await contactProvider.createContact(arg)
@@ -59,19 +56,19 @@ const actions={
         title,
         description,
           }){
-            
+
             let arg={
               'contact_id':contact_id,
               'name':name,
               'email':email,
               'description':description,
               'title':title,
-      
-             
+
+
           }
          await contactProvider.updateContact(arg)
         dispatch('getContact',{ root: true });
-        
+
         //commit('SET_POST',data)
       },
 

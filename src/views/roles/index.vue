@@ -140,7 +140,18 @@ export default {
       this.$axios.get(`roles`).then((res) => {
         if (res.status === 200) {
           this.listRole = res.data.data;
-          console.log(this.listRole)
+        }
+      }).catch((error) => {
+        if (error.response.status === 403) {
+          setTimeout(() => {
+            this.$store.dispatch({
+              type: "action_Notifi_Error",
+              message: `${error.response.data.message}`
+            })
+            this.$router.push({
+              name:"ErrorRole"
+            })
+          }, 300);
         }
       })
     },

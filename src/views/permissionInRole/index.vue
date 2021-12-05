@@ -126,7 +126,6 @@ export default {
       this.$axios.get(`roles/${this.role_id}/permissions`).then((res) => {
         if (res.status === 200) {
           this.permissionRole = res.data.data.permissions;
-          console.log(this.permissionRole, 555555555555)
         }
       })
     },

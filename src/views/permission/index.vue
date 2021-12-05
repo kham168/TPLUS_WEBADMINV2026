@@ -135,7 +135,17 @@ export default {
           this.listPermission = res.data.data;
         }
       }).catch((error) => {
-        console.log(error)
+        if (error.response.status === 403) {
+          setTimeout(() => {
+            this.$store.dispatch({
+              type: "action_Notifi_Error",
+              message: `${error.response.data.message}`
+            })
+            this.$router.push({
+              name:"ErrorRole"
+            })
+          }, 300);
+        }
       })
     }
   },

@@ -2,17 +2,35 @@
   <div class="modal-card">
     <v-form ref="form">
       <v-row>
-        <label>Select Permission</label>
+        <!--        <label>Select Permission</label>-->
         <v-col class="pa-0" cols="12" md="12" sm="12">
           <v-select
-              outlined
-              dense
-              multiple
+              v-model="selectedAllPermission"
               :items="listPermission"
               item-text="name"
               item-value="id"
-              v-model="permission_id"
+              label="Select Permission"
+              multiple
+              outlined
           >
+            <template v-slot:prepend-item>
+              <v-list-item
+                  ripple
+                  @click="toggle"
+              >
+                <v-list-item-action>
+                  <v-icon :color="selectedAllPermission.length > 0 ? 'indigo darken-4' : ''">
+                    {{ icon }}
+                  </v-icon>
+                </v-list-item-action>
+                <v-list-item-content>
+                  <v-list-item-title>
+                    Select All
+                  </v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-divider class="mt-2"></v-divider>
+            </template>
           </v-select>
         </v-col>
         <v-col class="pa-0" cols="12" md="12" sm="12" @click="addPermission">
@@ -32,10 +50,36 @@ export default {
     return {
       listPermission: [],
       role_id: this.$route.params.role_id,
-      permission_id: ""
+      permission_id: "",
+      selectedAllPermission: [],
     }
   },
+  computed: {
+    selectAllPermissions() {
+      return this.selectedAllPermission.length === this.listPermission.length
+    },
+    selectSomePermission() {
+      return this.selectedAllPermission.length > 0 && !this.selectAllPermissions
+    },
+    icon() {
+      if (this.selectAllPermissions) return 'mdi-close-box'
+      if (this.selectSomePermission) return 'mdi-minus-box'
+      return 'mdi-checkbox-blank-outline'
+    },
+  },
+
   methods: {
+
+    toggle() {
+      this.$nextTick(() => {
+        if (this.selectAllPermissions) {
+          this.selectedAllPermission = []
+        } else {
+          this.selectedAllPermission = this.listPermission.slice()
+        }
+      })
+    },
+
     fetchPermission() {
       this.$axios.get(`permissions`).then((res) => {
         if (res.status === 200) {
@@ -48,11 +92,11 @@ export default {
     },
     addPermission() {
       const permission = [];
-      this.permission_id.map((item) => {
+      this.selectedAllPermission.map((item) => {
         const permId = {
-          permId: item
+          permId: item.id || item
         }
-        permission.push(permId)
+        permission.push(permId);
       })
       this.$axios.post(`roles/${this.role_id}/permissions`, permission).then((res) => {
         if (res.status === 200) {

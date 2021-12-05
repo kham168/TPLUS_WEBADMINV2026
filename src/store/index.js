@@ -43,7 +43,12 @@ export default new Vuex.Store({
             message: ''
         },
         post: {},
-        res: {}
+        res: {},
+        menus: {
+            users: {
+                roles: ["super-admin", "admin","Employee"]
+            }
+        }
     },
     mutations: {
         IncrementRole(state) {

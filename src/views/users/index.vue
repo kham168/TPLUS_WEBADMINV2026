@@ -144,6 +144,18 @@ export default {
         if (res.status === 200) {
           this.listUser = res.data.data;
         }
+      }).catch((error) => {
+        if (error.response.status === 403) {
+          setTimeout(() => {
+            this.$store.dispatch({
+              type: "action_Notifi_Error",
+              message: `${error.response.data.message}`
+            })
+            this.$router.push({
+              name:"ErrorRole"
+            })
+          }, 300);
+        }
       })
     },
     onCreate() {
@@ -179,20 +191,22 @@ export default {
   font-size: 14px;
   font-weight: 300;
 }
-.inactive{
+
+.inactive {
   padding: 1px 8px;
   color: #ffffff;
   border-radius: 30px;
-  background: rgba(252, 92, 101,1.0);
+  background: rgba(252, 92, 101, 1.0);
   text-transform: capitalize;
   font-size: 14px;
   font-weight: 300;
 }
-.suspended{
+
+.suspended {
   padding: 1px 8px;
   color: #ffffff;
   border-radius: 30px;
-  background: rgba(75, 101, 132,1.0);
+  background: rgba(75, 101, 132, 1.0);
   text-transform: capitalize;
   font-size: 14px;
   font-weight: 300;

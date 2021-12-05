@@ -9,7 +9,6 @@ const $axios = axios.create(
 
 const state = {
     token: localStorage.getItem('access_token') || null,
-    userProfile: {},
     msgErrors: '',
 };
 
@@ -41,7 +40,7 @@ const getters = {
     isAuth(state) {
         return state.token && state.token !== null;
     },
-    ShowMsgErrors(state){
+    ShowMsgErrors(state) {
         return state.msgErrors;
     }
 };
@@ -54,16 +53,14 @@ const mutations = {
     destroyToken(state) {
         state.token = null;
     },
-    setUserProfile(state, payload) {
-        state.userProfile = payload;
-    },
-    Commit_ErrorLogin(state, payload){
+
+    Commit_ErrorLogin(state, payload) {
         state.msgErrors = payload;
     }
 };
 
 
-const actions ={
+const actions = {
     LoginUser(context, data) {
         return new Promise((resolve, reject) => {
             $axios.post('admin/login', {
@@ -75,20 +72,31 @@ const actions ={
                         resolve(response)
                         const token = response.data.accessToken;
                         localStorage.setItem('access_token', token);   // ເກັບ Token ໄວ້ໃນ Localstorage ເພື່ອຈະນຳໄປໃຊ້ຂໍຂໍ້ມູນ
-                        // context.commit('AdminSigIn', token);
-                        // context.commit('setUserProfile', response.data.authUser.roleUser);
-
-                        // window.localStorage.setItem('user_profile', JSON.stringify(response.data.authUser.roleUser));
+                        const authUser = response.data.role;
+                        localStorage.setItem("roleUser", response.data.role[0].name);
                         $axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-                        router.push({name:'Dashboard'})
-                        setTimeout(() => {
-                            window.location.reload();
-                        }, 3000);
+                        authUser.forEach((roleUser) => {
+                            if (roleUser.name === 'Super-admin') {
+                                router.push({
+                                    name: "Dashboard"
+                                })
+                            } else if (roleUser.name === 'Admin') {
+                                router.push({
+                                    name: "Dashboard"
+                                })
+                            }
+                            else if (roleUser.name === 'Employee') {
+                                router.push({
+                                    name: "Dashboard"
+                                })
+                            }
+                        })
+                        window.location.reload();
                     } else {
-                        // context.commit('error_msg_login', response.data.msg);
-                        // setTimeout(() => {
-                        //    context.commit('error_msg_login', '');
-                        // }, 3000);
+                        context.commit('error_msg_login', response.data.msg);
+                        setTimeout(() => {
+                            context.commit('error_msg_login', '');
+                        }, 3000);
                     }
                 }).catch(error => {
                 reject(error)
@@ -118,15 +126,16 @@ const actions ={
                 //     .catch((error) => {
                 //         reject(error)
                 //     })
-                    // .finally(response => {
-                        // resolve(response)
-                        localStorage.removeItem('access_token')     // Remove Item Of Localstorage...
-                        localStorage.removeItem('user_profile')     // Remove Item Of Localstorage...
-                        context.commit('destroyToken')
-                        router.push({
-                            name: 'Login'
-                        }).catch(() => {});
-                    // })
+                // .finally(response => {
+                // resolve(response)
+                localStorage.removeItem('access_token')     // Remove Item Of Localstorage...
+                localStorage.removeItem('user_profile')     // Remove Item Of Localstorage...
+                context.commit('destroyToken')
+                router.push({
+                    name: 'Login'
+                }).catch(() => {
+                });
+                // })
             })
         }
     },

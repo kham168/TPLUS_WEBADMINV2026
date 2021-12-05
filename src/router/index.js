@@ -4,17 +4,27 @@ import Middleware from "../middleware/index"
 import Dashboard from "../views/Dashboard.vue"
 import Login from "../components/Login.vue"
 import Topping from "../views/Topping/topping.vue"
+import ErrorRole from "../views/layout/errorRole"
+import store from "@/store/index.js"
+
 
 Vue.use(VueRouter)
 
 const routes = [
     {
+        path: "/access-denied",
+        name: "ErrorRole",
+        component: ErrorRole,
+        meta: {
+            middleware: [Middleware.auth],
+            layout: 'admin',
+        }
+    },
+    {
         path: "/",
         name: "Login",
         component: Login,
         meta: {
-            middleware: [Middleware.guest],
-            hiddens: true,
             layout: 'default'
         }
     },
@@ -24,7 +34,7 @@ const routes = [
         component: Dashboard,
         meta: {
             middleware: [Middleware.auth],
-            layout: "admin"
+            layout: "admin",
         }
     },
     {
@@ -33,7 +43,9 @@ const routes = [
         component: Topping,
         meta: {
             middleware: [Middleware.auth],
-            layout: 'admin'
+            layout: 'admin',
+            requiredAuth: true,
+            menu: "users"
         }
     },
     //Category Post
@@ -42,7 +54,9 @@ const routes = [
         component: () => import(/* webpackChunkName:"cate_post" */'../views/posts/cate_post/cate_post.vue'),
         meta: {
             middleware: [Middleware.auth],
-            layout: 'admin'
+            layout: 'admin',
+            requiredAuth: true,
+            menu: "users"
         },
         children: [
             {
@@ -51,7 +65,9 @@ const routes = [
                 component: () => import(/* webpackChunkName:"cate_post index" */'../views/posts/cate_post/index.vue'),
                 meta: {
                     middleware: [Middleware.auth],
-                    layout: "admin"
+                    layout: "admin",
+                    requiredAuth: true,
+                    menu: "users"
                 }
             },
             {
@@ -198,9 +214,9 @@ const routes = [
     //Logo
     {
         path: "/logo",
-        component: () => import(/* webpackChunkName:"Logo" */'../views/logo/logo'),
+        component: () => import(/* webpackChunkName:"Logo" */'../views/logo/logo.vue'),
         meta: {
-            layout: 'admin'
+            layout: 'admin',
         },
         children: [
             {
@@ -208,7 +224,9 @@ const routes = [
                 name: "logo.index",
                 component: () => import(/* webpackChunkName:"Logo index" */'../views/logo/index.vue'),
                 meta: {
-                    layout: "admin"
+                    layout: "admin",
+                    requiredAuth: true,
+                    menu: "users"
                 }
             },
             {
@@ -263,9 +281,6 @@ const routes = [
     {
         path: "/users",
         component: () => import(/* webpackChunkName: "User" */ '../views/users/user.vue'),
-        meta: {
-            layout: 'admin'
-        },
         children: [
 
             {
@@ -274,6 +289,8 @@ const routes = [
                 component: () => import(/* webpackChunkName:"UserIndex" */ '../views/users/index.vue'),
                 meta: {
                     layout: 'admin',
+                    requiredAuth: true,
+                    menu: "users"
                 }
 
             },
@@ -284,6 +301,7 @@ const routes = [
                 component: () => import(/* webpackChunkName:"UserCreate" */ '../components/forms/users/Create.vue'),
                 meta: {
                     layout: 'admin',
+
                 }
 
             },
@@ -559,7 +577,8 @@ const routes = [
         component: () => import(/* webpackChunkName:"Contact" */'../views/contact/contact.vue'),
         meta: {
             middleware: [Middleware.auth],
-            layout: 'admin'
+            layout: 'admin',
+
         },
         children: [
             {
@@ -638,33 +657,52 @@ const router = new VueRouter({
     routes
 })
 
-
-function nextCheck(context, middleware, index) {
-    const nextMiddleware = middleware[index];
-
-    if (!nextMiddleware) return context.next;
-
-    return (...parameters) => {
-        context.next(...parameters);
-        const nextMidd = nextCheck(context, middleware, index + 1);
-
-        nextMiddleware({...context, nextMidd});
-    }
-}
+// function nextCheck(context, middleware, index) {
+//     const nextMiddleware = middleware[index];
+//
+//     if (!nextMiddleware) return context.next;
+//
+//     return (...parameters) => {
+//         context.next(...parameters);
+//         const nextMidd = nextCheck(context, middleware, index + 1);
+//
+//         nextMiddleware({...context, nextMidd});
+//     }
+// }
+//
+// router.beforeEach((to, from, next) => {
+//     if (to.meta.middleware) {
+//         const middleware = Array.isArray(to.meta.middleware) ? to.meta.middleware : [to.meta.middleware]
+//         const ctx = {
+//             from,
+//             next,
+//             router,
+//             to
+//         }
+//         const nextMiddleware = nextCheck(ctx, middleware, 1);
+//         return middleware[0]({...ctx, nextMiddleware});
+//     }
+//     return next();
+// })
 
 router.beforeEach((to, from, next) => {
-    if (to.meta.middleware) {
-        const middleware = Array.isArray(to.meta.middleware) ? to.meta.middleware : [to.meta.middleware]
-        const ctx = {
-            from,
-            next,
-            router,
-            to
+    if (to.meta.requiredAuth) {
+        const authUser = localStorage.getItem('access_token');
+        if (!authUser) {
+            next({name: 'Login'})
         }
-        const nextMiddleware = nextCheck(ctx, middleware, 1);
-        return middleware[0]({...ctx, nextMiddleware});
+        if (store.state.menus[to.meta.menu]) {
+            const authUserRole = localStorage.getItem('roleUser');
+            if (store.state.menus[to.meta.menu].roles.includes((authUserRole || "").toLowerCase())) {
+                next()
+            } else {
+                next('/access-denied')
+            }
+        }
+    } else {
+        next()
     }
-    return next();
 })
+
 
 export default router

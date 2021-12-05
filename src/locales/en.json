@@ -25,7 +25,6 @@
       "text": "Topping",
       "router": "/topping"
     }
-
   ],
   "Topping": {
     "title": "Topping management"

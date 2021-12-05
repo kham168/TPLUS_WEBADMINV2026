@@ -104,6 +104,27 @@
               </v-list-item>
             </v-list-group>
 
+            <v-list-group color="black" v-if="$store.state.menus.users.roles.includes(authRole)">
+              <template v-slot:activator>
+                <v-list-item-icon>
+                  <v-icon>fas fa-users</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>{{ $t('Usermenu.title') }}</v-list-item-title>
+              </template>
+              <v-list-item
+                  link
+                  v-for="subtitle in $t('Usermenu.subtitle')"
+                  :key="subtitle.key"
+                  @click="$router.push(subtitle.router)"
+              >
+                <v-list-item-icon>
+                  <v-icon small>{{ subtitle.icon }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>
+                  {{ subtitle.text }}
+                </v-list-item-title>
+              </v-list-item>
+            </v-list-group>
             <v-list-group color="black">
               <template v-slot:activator>
                 <v-list-item-icon>
@@ -125,7 +146,6 @@
                 </v-list-item-title>
               </v-list-item>
             </v-list-group>
-
             <v-list-group color="black">
               <template v-slot:activator>
                 <v-list-item-icon>
@@ -148,28 +168,6 @@
               </v-list-item>
             </v-list-group>
 
-
-            <v-list-group color="black">
-              <template v-slot:activator>
-                <v-list-item-icon>
-                  <v-icon>fas fa-users</v-icon>
-                </v-list-item-icon>
-                <v-list-item-title>{{ $t('Usermenu.title') }}</v-list-item-title>
-              </template>
-              <v-list-item
-                  link
-                  v-for="subtitle in $t('Usermenu.subtitle')"
-                  :key="subtitle.key"
-                  @click="$router.push(subtitle.router)"
-              >
-                <v-list-item-icon>
-                  <v-icon small>{{ subtitle.icon }}</v-icon>
-                </v-list-item-icon>
-                <v-list-item-title>
-                  {{ subtitle.text }}
-                </v-list-item-title>
-              </v-list-item>
-            </v-list-group>
           </v-list-item-group>
         </v-list>
       </v-navigation-drawer>
@@ -219,6 +217,11 @@ export default {
       })
     }
   },
+  computed: {
+    authRole() {
+      return (localStorage.getItem('roleUser') || "").toLowerCase();
+    }
+  }
 };
 </script>
 
