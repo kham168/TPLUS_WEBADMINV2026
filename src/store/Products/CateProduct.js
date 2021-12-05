@@ -31,6 +31,7 @@ const actions={
     const data = await catProductProvider.getCateProductOne({'cate_product_id':cate_product_id})
     console.log(data)
     commit('SET_CATE_PRODUCT_ONE', data)
+    return data
   },
 
     async getCateProduct ({commit}) {
@@ -82,7 +83,7 @@ const actions={
         //commit('SET_POST',data)
       },
 
-      async deleteCatePost ({dispatch},{cate_product_id}) {
+      async deleteCateProduct ({dispatch},{cate_product_id}) {
         await catProductProvider.deleteCateProduct({'cate_product_id':cate_product_id})
         dispatch('getCateProduct',{ root: true });
        // commit('SET_POST', data)

@@ -27,19 +27,7 @@
                 <div class="card-form">
                   <div class="form-content">
                     <v-form v-model="valid" ref="form" lazy-validation>
-                  <v-select
-                        v-show="tab == 0"
-                       :items="cate_post['data']"
-                       item-text="name"
-                      item-value="id"
-                        
-                        v-model="catePostValue"
-                        :label="$t('Post.Create.form.category')"
-                   
-                        outlined
-                        required
-                      
-                      ></v-select>
+                 
                       <v-text-field
                       v-show="isLaoTab"
                         :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
@@ -59,99 +47,19 @@
                       
                       ></v-text-field>
 
-          
-      <v-dialog
-      
-        ref="dialogStart"
-        v-model="modalStart"
-        :return-value.sync="dateStart"
-        persistent
-        width="290px"
-      >
-        <template v-slot:activator="{ on, attrs }">
-          <v-text-field
-            v-show="tab == 0"
-            :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
-             :label="$t('Post.Create.form.start_date')"
-              outlined
-
-            v-model="dateStart"
-           prepend-inner-icon="mdi-calendar"
-            readonly
-           
-            v-bind="attrs"
-            v-on="on"
-          ></v-text-field>
-        </template>
-        <v-date-picker
-          v-model="dateStart"
-          scrollable
-           locale="lo-LA"
-        >
-          <v-spacer></v-spacer>
-          <v-btn
-            text
-            color="primary"
-            @click="modalStart = false"
-          >
-            Cancel
-          </v-btn>
-          <v-btn
-            text
-            color="primary"
-            @click="$refs.dialogStart[0].save(dateStart)"
-          >
-            OK
-          </v-btn>
-        </v-date-picker>
-      </v-dialog>
-   
-
-   
-      <v-dialog
-        ref="dialogEnd"
-        v-model="modalEnd"
-        :return-value.sync="dateEnd"
-        persistent
-        width="290px"
-      >
-        <template v-slot:activator="{ on, attrs }">
-          <v-text-field
-            v-show="tab == 0"
-            :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
-            :label="$t('Post.Create.form.end_date')"
-            outlined
-
-            v-model="dateEnd"
-            prepend-inner-icon="mdi-calendar"
-            readonly
-            
-            v-bind="attrs"
-            v-on="on"
-          ></v-text-field>
-        </template>
-        <v-date-picker
-          v-model="dateEnd"
-          scrollable
-         locale="lo-LA"
-        >
-          <v-spacer></v-spacer>
-          <v-btn
-            text
-            color="primary"
-            @click="modalEnd = false"
-          >
-            Cancel
-          </v-btn>
-          <v-btn
-            text
-            color="primary"
-            @click="$refs.dialogEnd[0].save(dateEnd)"
-          >
-            OK
-          </v-btn>
-        </v-date-picker>
-      </v-dialog>
+           <v-select
+                        v-if="false"
+                       :items="cate_post['data']"
+                       item-text="name"
+                      item-value="id"
+                        
+                        v-model="catePostValue"
+                        :label="$t('Post.Create.form.category')"
+                        :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
+                        outlined
+                        required
+                      
+                      ></v-select>
   
                         <v-select
                           v-show="tab == 0"
@@ -369,6 +277,8 @@ export default {
       postNameEng:'',
       statusValue:'',
       catePostValue:'',
+         uploadImage: [],
+       uploadImageEng: [],
       previewImage: [],
        previewImageEng: [],
 
@@ -383,8 +293,17 @@ export default {
     };
   },
 
+  created(){
+  
+    this.getPostOne({'post_id':this.$route.params.post_id}).then(res=>{
+      if(res.success){
+    this.loadDataToComponent(res);
+      }
+    });
+  },
   mounted() {
-    this.loadDataToComponent();
+
+    this.getCatePostAll();
     this.checkTabLang('ລາວ');
 
 
@@ -392,33 +311,61 @@ export default {
 
   methods: {
 
-    loadDataToComponent(){
+ async convertUrlToFileImage(image) {
+  const response = await fetch(image);
+  // here image is url/location of image
+  const blob = await response.blob();
+  const file = new File([blob], image.split('/').pop(), {type: blob.type});
+ 
+  this.uploadImage.push(file)
+},
 
-    let data = this.$route.params;
-          console.log(data)
+ async convertUrlToFileImageEng(image) {
+  const response = await fetch(image);
+  // here image is url/location of image
+  const blob = await response.blob();
+  const file = new File([blob], image.split('/').pop(), {type: blob.type});
+ 
+  this.uploadImageEng.push(file)
+},
 
-            this.postId=data.postId,
-      this.descriptionText=data.descriptionText,
-      this.descriptionTextEng=data.descriptionTextEng,
-      this.postName=data.postName,
-      this.postNameEng=data.postNameEng,
-      this.statusValue={'value':data.statusValue},
-      this.catePostValue={'id':data.catePostValue},
-      this.dateStart = new Date(data.dateStart).toISOString().substr(0, 10),
-      this.dateEnd = new Date(data.dateEnd).toISOString().substr(0, 10)
+    loadDataToComponent(res){
+
+    let data = res.data;
+       
+
+            this.postId=data.id,
+      this.descriptionText=data.description,
+      this.descriptionTextEng=data.PostTrans[0].description,
+      this.postName=data.title,
+      this.postNameEng=data.PostTrans[0].title,
+      this.statusValue=data.status,
+      this.catePostValue=data.postTypeId,
+      this.dateStart = new Date(data.startDate).toISOString().substr(0, 10),
+      this.dateEnd = new Date(data.endDate).toISOString().substr(0, 10)
 
       
-      for(let i=0;i<data.previewImage.length;i++){
-      this.previewImage.push(data.previewImage[i].image);
-            
+      for(let i=0;i<data.PostImages.length;i++){
+      
+         let url = data.PostImages[i].image;
+           this.previewImage.push(url);  
+      
+           this.convertUrlToFileImage(url)
+
+   
       }
 
-       for(let i=0;i<data.previewImageEng.length;i++){
+       for(let i=0;i<data.PostImageTrans.length;i++){
      
-           this.previewImageEng.push(data.previewImageEng[i].image);
+      let url = data.PostImageTrans[i].image;
+     this.convertUrlToFileImageEng(url)
+      
+           this.previewImageEng.push(url);
     
         
       }
+
+      
     },
    
   checkTabLang(lang){
@@ -452,6 +399,8 @@ export default {
       const img = e.target.files;
 
       for(let i = 0;i<img.length;i++){
+        this.uploadImage.push(img[i])
+        console.log(this.uploadImage)
         const reader = new FileReader();
         reader.readAsDataURL(img[i]);
        reader.onload = (e) => {
@@ -468,6 +417,7 @@ export default {
       const img = e.target.files;
 
       for(let i = 0;i<img.length;i++){
+         this.uploadImageEng.push(img[i])
         const reader = new FileReader();
         reader.readAsDataURL(img[i]);
        reader.onload = (e) => {
@@ -480,9 +430,11 @@ export default {
     },
 
     removeImage(index){
+      this.uploadImage.splice(index,1);
       this.previewImage.splice(index, 1);
     },
     removeImageEng(index){
+       this.uploadImageEng.splice(index,1);
       this.previewImageEng.splice(index, 1);
     },
 
@@ -501,8 +453,8 @@ export default {
                 'other_lang_title':this.postNameEng,
                 'other_lang_description':this.descriptionTextEng,
                
-                'avatar':this.previewImage,
-                'avatar_EN':this.previewImageEng
+                'avatar':this.uploadImage,
+                'avatar_EN':this.uploadImageEng
       })
       console.log('create successful')
     }else{
@@ -516,6 +468,7 @@ export default {
   },
 
    ...mapActions({
+    getPostOne:'Post/getPostOne', 
 getCatePostAll:'CatePost/getCatePostAll',
 updatePost:'Post/updatePost'
 

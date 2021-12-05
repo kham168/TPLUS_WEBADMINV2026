@@ -23,7 +23,11 @@ const mutations={
 
 const actions={
  
-  
+  async getBannerOne ({commit},{banner_id}) {
+    const data = await bannerProvider.getBannerOne({'banner_id':banner_id})
+ 
+    return data
+  },
 
     async getBanner ({commit}) {
         const data = await bannerProvider.getBanner()

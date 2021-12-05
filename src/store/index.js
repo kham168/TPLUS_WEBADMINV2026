@@ -9,6 +9,7 @@ import Banner from "@/store/Banner"
 import Contact from "@/store/Contact"
 import Product from "@/store/Products/Product.js"
 import CateProduct from "@/store/Products/CateProduct.js"
+import PromotionEvent from "@/store/Posts/PromotionEvent.js"
 //get all users
 import users from "./Users"
 import logo from "@/store/logo"
@@ -42,8 +43,6 @@ export default new Vuex.Store({
             snackbar: false,
             message: ''
         },
-        post: {},
-        res: {},
         menus: {
             users: {
                 roles: ["super-admin", "admin","Employee"]
@@ -91,10 +90,7 @@ export default new Vuex.Store({
         action_Notifi_Error({commit}, {message}) {
             commit('SET_NOTIFICATION_ERROR', {message});
         },
-        async getPost({commit}) {
-            const data = await postService.getPost()
-            commit('SET_POST', data)
-        },
+
     },
     modules: {
         User,
@@ -111,5 +107,7 @@ export default new Vuex.Store({
         Contact,
         Product,
         CateProduct,
-    }
+        PromotionEvent
+    },
+
 })

@@ -109,24 +109,26 @@ export default {
     };
   },
 
+  created(){
+    this.getCateDataPackageOne({'cate_package_id':this.$route.params.cate_data_package_id}).then(res=>{
+      if(res.success){
+        this.loadDataToComponent(res);
+      }
+    })
+  },
   mounted() {
-   let data = this.$route.params;
-      console.log(data);
-  
-this.loadDataToComponent();
-   
-
-    
+     this.checkTabLang('ລາວ')
   },
 
   methods: {
 
-    loadDataToComponent(){
- this.cate_package_id = this.$route.params.cateId;
-   this.cate_package_name= this.$route.params.cateName;
-   this.description = this.$route.params.cateDescription;
-   this.other_lang_cate_package_name = this.$route.params.cateNameEng;
-   this.other_lang_description = this.$route.params.cateDescriptionEng
+    loadDataToComponent(res){
+      let data = res.data
+ this.cate_package_id = data.id;
+   this.cate_package_name= data.name;
+   this.description = data.description;
+   this.other_lang_cate_package_name = data.CatePackageTrans[0].name;
+   this.other_lang_description = data.CatePackageTrans[0].description
     },
 
    checkTabLang(lang){
@@ -159,7 +161,8 @@ this.loadDataToComponent();
   },
 
   ...mapActions({
-    updateCateDataPackage:'CateDataPackage/updateCateDataPackage'
+    updateCateDataPackage:'CateDataPackage/updateCateDataPackage',
+    getCateDataPackageOne:'CateDataPackage/getCateDataPackageOne'
   })
   },
 };

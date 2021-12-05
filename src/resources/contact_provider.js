@@ -9,7 +9,16 @@ class ContactProvider extends HttpRequest {
     super('http://128.199.104.34:7000')
   }
 
+  async getContactOne ({contact_id}) {
 
+    //Call setHeader on class HttpRequest and write common header
+    //If write Header on class HttpRequest Should call like under method
+     this.setHeader({})
+   // example path http://128.199.104.34:7000/this.get()
+     const {data} = await this.get('/api/v1/contact/'+contact_id)
+     console.log(data)
+     return data
+  }
  
   async getContact () {
 

@@ -27,19 +27,7 @@
                 <div class="card-form">
                   <div class="form-content">
                     <v-form  v-model="valid" ref="form" lazy-validation>
-                      <v-select
-                   
-                      multiple
-                      item-text="cateName"
-                      item-value="id"
-                        v-show="tab == 0"
-                        :items="cate_product['data']"
-                        v-model="productTypeValue"
-                        :label="$t('Product.Create.form.category')"
-                        :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
-                        outlined
-                        required
-                      ></v-select>
+                     
                       <v-text-field
                       v-show="isLaoTab"
                       v-model="productName"
@@ -56,6 +44,19 @@
                         outlined
                         required
                       ></v-text-field>
+                       <v-select
+                   
+                      multiple
+                      item-text="cateName"
+                      item-value="id"
+                        v-show="tab == 0"
+                        :items="cate_product['data']"
+                        v-model="productTypeValue"
+                        :label="$t('Product.Create.form.category')"
+                        :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
+                        outlined
+                        required
+                      ></v-select>
                       <v-textarea
                       v-show="isLaoTab"
                        v-model="description"
@@ -249,6 +250,8 @@ export default {
       productNameEng:'',
       description:'',
       descriptionEng:'',
+             uploadImage: [],
+        uploadImageEng: [],
        previewImage: [],
         previewImageEng: [],
        isLaoTab:false,
@@ -299,6 +302,7 @@ export default {
       const img = e.target.files;
 
       for(let i = 0;i<img.length;i++){
+             this.uploadImage.push(img[i])
         const reader = new FileReader();
         reader.readAsDataURL(img[i]);
        reader.onload = (e) => {
@@ -315,6 +319,7 @@ export default {
       const img = e.target.files;
 
       for(let i = 0;i<img.length;i++){
+        this.uploadImageEng.push(img[i])
         const reader = new FileReader();
         reader.readAsDataURL(img[i]);
        reader.onload = (e) => {
@@ -327,9 +332,11 @@ export default {
     },
 
     removeImage(index){
+      this.uploadImage.splice(index,1);
       this.previewImage.splice(index, 1);
     },
     removeImageEng(index){
+       this.uploadImageEng.splice(index,1);
       this.previewImageEng.splice(index, 1);
     },
 
@@ -346,8 +353,8 @@ export default {
                 'other_lang_product_name':this.productNameEng,
                 'other_lang_description':this.descriptionEng,
                
-                'avatar':this.previewImage,
-                'avatar_EN':this.previewImageEng
+                'avatar':this.uploadImage,
+                'avatar_EN':this.uploadImageEng
       })
       console.log('create successful')
     }else{

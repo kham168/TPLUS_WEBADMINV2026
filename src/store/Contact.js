@@ -4,12 +4,15 @@ const contactProvider = new ContactProvider()
 
 const state={
     contact:{},
+    contact_one:{},
 
 
 }
 
 const getters={
     contact:state=>state.contact,
+    contact_one:state=>state.contact_one,
+
 
 }
 
@@ -18,12 +21,39 @@ const mutations={
       state.contact = data;
     },
 
+    SET_CONTACT_ONE(state,data){
+      state.contact_one = data;
+
+    },
+
+    SET_IS_LOADING(state,data){
+      state.isLoading = data;
+    },
+
 
 }
 
 const actions={
+
+
+
+  async getContactOne ({commit },{contact_id}) {
+
+
+   const data = await contactProvider.getContactOne({'contact_id':contact_id})
+
+
+    commit('SET_CONTACT_ONE', data)
+
+
+    return data
+
+  },
+
+
     async getContact ({commit}) {
         const data = await contactProvider.getContact()
+
 
         commit('SET_CONTACT', data)
       },
@@ -63,8 +93,6 @@ const actions={
               'email':email,
               'description':description,
               'title':title,
-
-
           }
          await contactProvider.updateContact(arg)
         dispatch('getContact',{ root: true });

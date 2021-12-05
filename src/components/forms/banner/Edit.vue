@@ -12,6 +12,7 @@
               :href="lang.key"
               v-for="lang in $t('Banner.Create.lang')"
               :key="lang.key"
+              @click="checkTabLang(lang)"
             >
               {{ lang }}
             </v-tab>
@@ -249,6 +250,7 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 export default {
   name: "Edit",
 
@@ -274,30 +276,57 @@ export default {
     };
   },
 
+  created(){
+    this.getBannerOne({'banner_id':this.$route.params.banner_id}).then(res=>{
+      if(res.success){
+      this.loadDataToComponent(res);
+      }
+    })
+  },
+
   mounted() {
-    loadDataToComponent();
-    checkTabLang('ລາວ')
+   
+    this.checkTabLang('ລາວ')
   },
 
   methods: {
 
-    loadDataToComponent(){
-      let data = this.$route.params
+ async convertUrlToFileImage(image) {
+  const response = await fetch(image);
+  // here image is url/location of image
+  const blob = await response.blob();
+  const file = new File([blob], image.split('/').pop(), {type: blob.type});
+ 
+  this.uploadImage.push(file)
+},
 
-        banId=data.banId,
-        bannerName=data.bannerName,
-      bannerNameEng=data.bannerNameEng,
-      link=data.link,
-      linkEng=data.linkEng,
-      description=data.description,
-      descriptionEng=data.descriptionEng
+ async convertUrlToFileImageEng(image) {
+  const response = await fetch(image);
+  // here image is url/location of image
+  const blob = await response.blob();
+  const file = new File([blob], image.split('/').pop(), {type: blob.type});
+ 
+  this.uploadImageEng.push(file)
+},
+    loadDataToComponent(res){
+      let data = res.data
 
-      for(let i=0;i<data.argImage.length;i++){
-       uploadImage.push(data.argImage[i].image)
+        this.banId=data.id,
+        this.bannerName=data.banName,
+      this.bannerNameEng=data.BannerTrans[0].banName,
+      this.link=data.link,
+      this.linkEng=data.BannerTrans[0].link,
+      this.description=data.description,
+      this.descriptionEng=data.BannerTrans[0].description
+
+      for(let i=0;i<data.BanImages.length;i++){
+       this.previewImage.push(data.BanImages[i].image)
+       this.convertUrlToFileImage(data.BanImages[i].image)
 
       }
-      for(let i=0;i<data.argImageEng.length;i++){
-         uploadImageEng.push(data.argImageEng[i].image)
+      for(let i=0;i<data.BanImageTrans.length;i++){
+         this.previewImageEng.push(data.BanImageTrans[i].image)
+         this.convertUrlToFileImageEng(data.BanImageTrans[i].image)
       }
     
      
@@ -313,9 +342,11 @@ export default {
     },
 
      removeImage(index){
+        this.uploadImage.splice(index, 1);
       this.previewImage.splice(index, 1);
     },
     removeImageEng(index){
+       this.uploadImageEng.splice(index, 1);
       this.previewImageEng.splice(index, 1);
     },
 
@@ -339,7 +370,7 @@ export default {
       const img = e.target.files;
 
       for(let i = 0;i<img.length;i++){
-        uploadImage.push(img[i])
+        this.uploadImage.push(img[i])
         const reader = new FileReader();
         reader.readAsDataURL(img[i]);
        reader.onload = (e) => {
@@ -356,7 +387,7 @@ export default {
       const img = e.target.files;
 
       for(let i = 0;i<img.length;i++){
-        uploadImageEng.push(img[i])
+        this.uploadImageEng.push(img[i])
         const reader = new FileReader();
         reader.readAsDataURL(img[i]);
        reader.onload = (e) => {
@@ -396,7 +427,8 @@ export default {
   },
 
     ...mapActions({
-      updateBanner:'Banner/updateBanner'
+      updateBanner:'Banner/updateBanner',
+      getBannerOne:'Banner/getBannerOne'
     })
 
   },
@@ -476,6 +508,26 @@ export default {
                 opacity: 0;
               }
             }
+
+             .image {
+              
+                max-width: 100%;
+                overflow: hidden;
+                object-fit: cover;
+
+               
+
+                    .image-files{
+                    max-width: 100%;
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                  }
+
+                
+                  
+              }
+
 
             .form-actions {
               width: 100%;

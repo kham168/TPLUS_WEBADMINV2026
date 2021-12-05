@@ -1,39 +1,38 @@
-import PostProvider from '@/resources/post_provider'
+import PromotionEventProvider from '@/resources/promotion_event_provider'
 
-const postService = new PostProvider()
+const promotionEventService = new PromotionEventProvider()
 
 const state={
-    post:{},
+    promotion_event:{},
   
 }
 
 const getters={
-    post:state=>state.post,
+    promotion_event:state=>state.promotion_event,
     
 }
 
 const mutations={
-  SET_POST(state,data){
-      state.post = data;
+  SET_PROMOTION_EVNT(state,data){
+      state.promotion_event = data;
     },
   
 }
 
 const actions={
-    async getPostOne ({commit},{post_id}) {
-      console.log(post_id)
-        const data = await postService.getPostOne({'post_id':post_id})
-        return data
+ 
+  async getPromotionEventOne ({commit},{promotion_event_id}) {
+    const data = await promotionEventService.getPromotionEventOne({'promotion_event_id':promotion_event_id})
+
+    return data
+  },
+    async getPromotionEvent ({commit}) {
+        const data = await promotionEventService.getPromotionEvent()
+  
+        commit('SET_PROMOTION_EVNT', data)
       },
 
-    async getPost ({commit}) {
-        const data = await postService.getPost()
-        console.log('data der')
-        console.log(data)
-        commit('SET_POST', data)
-      },
-
-      async createPost({dispatch},{
+      async createPromotionEvent({dispatch},{
         post_type_id,
         title,
         description,
@@ -59,11 +58,11 @@ const actions={
                 'avatar':avatar,
                 'avatar_EN':avatar_EN
             }
-         await postService.createPost(arg)
-        dispatch('getPost',{ root: true });
+         await promotionEventService.createPromotionEvent(arg)
+        dispatch('getPromotionEvent',{ root: true });
       },
 
-      async updatePost({dispatch },{
+      async updatePromotionEvent({dispatch },{
           post_id,
         post_type_id,
         title,
@@ -91,16 +90,16 @@ const actions={
                 'avatar':avatar,
                 'avatar_EN':avatar_EN
             }
-         await postService.updatePost(arg)
-        dispatch('getPost',{ root: true });
+         await promotionEventService.updatePromotionEvent(arg)
+        dispatch('getPromotionEvent',{ root: true });
         
-        //commit('SET_POST',data)
+ 
       },
 
-      async deletePost ({dispatch},{post_id}) {
-        await postService.deletePost({'post_id':post_id})
-        dispatch('getPost',{ root: true });
-       // commit('SET_POST', data)
+      async deletePromotionEvent ({dispatch},{post_id}) {
+        await promotionEventService.deletePromotionEvent({'post_id':post_id})
+        dispatch('getPromotionEvent',{ root: true });
+  
       },
 }
 

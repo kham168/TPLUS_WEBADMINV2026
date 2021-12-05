@@ -27,8 +27,9 @@ const actions={
  
     async getCatePostOne ({commit},{cate_post_id}) {
         const data = await catPostProvider.getCatePostOne({'cate_post_id':cate_post_id})
-      
+        
         commit('SET_CATE_POST_ONE', data)
+        return data
       },
 
     async getCatePostAll ({commit}) {

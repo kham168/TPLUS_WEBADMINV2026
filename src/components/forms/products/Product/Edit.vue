@@ -26,18 +26,7 @@
                 <div class="card-form">
                   <div class="form-content">
                     <v-form v-model="valid" ref="form" lazy-validation>
-                     <v-select
-                      multiple
-                      item-text="cateName"
-                      item-value="id"
-                        v-show="tab == 0"
-                        :items="cate_product['data']"
-                        v-model="productTypeValue"
-                        :label="$t('Product.Create.form.category')"
-                        :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
-                        outlined
-                        required
-                      ></v-select>
+                    
                       <v-text-field
                       v-show="isLaoTab"
                       v-model="productName"
@@ -54,6 +43,18 @@
                         outlined
                         required
                       ></v-text-field>
+                       <v-select
+                      multiple
+                      item-text="cateName"
+                      item-value="id"
+                        v-show="tab == 0"
+                        :items="cate_product['data']"
+                        v-model="productTypeValue"
+                        :label="$t('Product.Create.form.category')"
+                        :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
+                        outlined
+                        required
+                      ></v-select>
                       <v-textarea
                       v-show="isLaoTab"
                        v-model="description"
@@ -70,7 +71,7 @@
                       ></v-textarea>
                       <div v-show="isLaoTab">
                       
-                        <div class="upload-image" v-if="previewImage[0] == null">
+                        <div class="upload-image" v-if="uploadImage == []">
                        
                         <div class="content" >
                           <i class="fas fa-plus-circle"></i>
@@ -144,7 +145,7 @@
                   
                    <div v-show="isEngTab">
                       
-                        <div class="upload-image" v-if="previewImageEng[0] == null">
+                        <div class="upload-image" v-if="uploadImageEng == null">
                        
                         <div class="content" >
                           <i class="fas fa-plus-circle"></i>
@@ -253,6 +254,8 @@ export default {
       productNameEng:'',
       description:'',
       descriptionEng:'',
+        uploadImage: [],
+        uploadImageEng: [],
        previewImage: [],
         previewImageEng: [],
        isLaoTab:false,
@@ -263,24 +266,70 @@ export default {
     };
   },
 
+  created(){
+    this.getProductOne({'product_id':this.$route.params.product_id}).then(res=>{
+      if(res.success){
+     this.loadDataToComponent(res);
+      }
+    })
+  },
+
    mounted() {
-     this.loadDataToComponent();
+
     this.checkTabLang('ລາວ');
     this.getCateProduct();
   },
 
    methods: {
+async convertUrlToFileImage(image) {
+  const response = await fetch(image);
+  // here image is url/location of image
+  const blob = await response.blob();
+  const file = new File([blob], image.split('/').pop(), {type: blob.type});
+ 
+  this.uploadImage.push(file)
+},
 
-    loadDataToComponent(){
-     let data = this.$route.params;
-            this.productId=data.productId
-     this.productTypeValue=data.productTypeValue
+ async convertUrlToFileImageEng(image) {
+  const response = await fetch(image);
+  // here image is url/location of image
+  const blob = await response.blob();
+  const file = new File([blob], image.split('/').pop(), {type: blob.type});
+ 
+  this.uploadImageEng.push(file)
+},
+
+    loadDataToComponent(res){
+     let data = res.data;
+            this.productId=data.id
+     
           this.productName=data.productName
-       this.productNameEng=data.productNameEng
+       this.productNameEng=data.ProductTrans[0].productName
           this.description=data.description
-       this.descriptionEng=data.descriptionEng
-         this.previewImage=data.previewImage
-      this.previewImageEng=data.previewImageEng
+       this.descriptionEng=data.ProductTrans[0].description
+ 
+       for(let i=0;i<data.ProductCategories.length;i++){
+       
+         this.productTypeValue.push(data.ProductCategories[i].cateProductId)
+     
+       }
+
+       for(let i=0;i<data.ProductImages.length;i++){
+       
+          this.previewImage.push(data.ProductImages[i].image)
+          this.convertUrlToFileImage(data.ProductImages[i].image)
+    
+       }
+
+         for(let i=0;i<data.ProductImages.length;i++){
+
+        
+          this.previewImageEng.push(data.ProductImages[i].image)
+          this.convertUrlToFileImageEng(data.ProductImages[i].image)
+        
+       }
+       
+    
     },
 
      checkTabLang(lang){
@@ -288,13 +337,11 @@ export default {
       if(lang == 'ລາວ' ||lang== 'Lao'){
         this.isLaoTab = true
         this.isEngTab = false
-        console.log("lao"+this.isLaoTab)
-         console.log(this.isEngTab)
+  
       }else{
          this.isLaoTab = false
          this.isEngTab = true
-            console.log("lao"+this.isLaoTab)
-            console.log(this.isEngTab)
+     
       }
     },
   
@@ -314,6 +361,7 @@ export default {
       const img = e.target.files;
 
       for(let i = 0;i<img.length;i++){
+        this.uploadImage.push(img[i])
         const reader = new FileReader();
         reader.readAsDataURL(img[i]);
        reader.onload = (e) => {
@@ -330,6 +378,7 @@ export default {
       const img = e.target.files;
 
       for(let i = 0;i<img.length;i++){
+         this.uploadImageEng.push(img[i])
         const reader = new FileReader();
         reader.readAsDataURL(img[i]);
        reader.onload = (e) => {
@@ -342,9 +391,11 @@ export default {
     },
 
     removeImage(index){
+      this.uploadImage.splice(index,1);
       this.previewImage.splice(index, 1);
     },
     removeImageEng(index){
+       this.uploadImageEng.splice(index,1);
       this.previewImageEng.splice(index, 1);
     },
 
@@ -354,14 +405,14 @@ export default {
 
       this.createProduct({
         'product_id':this.productId,
-         'cate_product_id':this.productTypeId,
+         'cate_product_id':this.productTypeValue,
                 'product_name': this.productName,
                 'description':this.description,
                 'other_lang_product_name':this.productNameEng,
                 'other_lang_description':this.descriptionEng,
                
-                'avatar':this.previewImage,
-                'avatar_EN':this.previewImageEng
+                'avatar':this.uploadImage,
+                'avatar_EN':this.uploadImageEng
       })
       console.log('create successful')
     }else{
@@ -375,7 +426,8 @@ export default {
 
              ...mapActions({
 getCateProduct:'CateProduct/getCateProduct',
-createProduct:'Product/createProduct'
+createProduct:'Product/createProduct',
+getProductOne:'Product/getProductOne'
 
         })
   },

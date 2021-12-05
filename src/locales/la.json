@@ -38,6 +38,11 @@
         "icon": "far fa-newspaper",
         "text": "ຂໍ້ມູນໂພສ",
         "router": "/post"
+      },
+      {
+        "icon": "far fa-newspaper",
+        "text": "ຂໍ້ມູນໂປຣໂມຊັ່ນແລະອີເວັ້ນ",
+        "router": "/promotion_event"
       }
     ]
   },
@@ -528,46 +533,15 @@
     "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
-        {
-          "text": "ລຳດັບ",
-          "value": "No",
-          "sortable": false
-        },
-        {
-          "text": "ຫົວຂໍ້",
-          "value": "title",
-          "sortable": true
-        },
-        {
-          "text": "ປະເພດຂອງໂພສ",
-          "value": "postTypeId",
-          "sortable": true
-        },
-        {
-          "text": "ລາຍລະອຽດ",
-          "value": "description",
-          "sortable": false
-        },
-        {
-          "text": "ເວລາເປີດ",
-          "value": "startDate",
-          "sortable": false
-        },
-        {
-          "text": "ເວລາປິດ",
-          "value": "endDate",
-          "sortable": false
-        },
-        {
-          "text": "ສະຖານະ",
-          "value": "status",
-          "sortable": false
-        },
-        {
-          "text": "ຈັດການ",
-          "value": "Actions",
-          "sortable": false
-        }
+        { "text": "ລຳດັບ", "value": "No", "sortable": false },
+        { "text": "ຮູບ", "value": "image", "sortable": false },
+        { "text": "ຫົວຂໍ້", "value": "title", "sortable": true },
+        { "text": "ປະເພດຂອງໂພສ", "value": "postTypeId", "sortable": true },
+        { "text": "ລາຍລະອຽດ", "value": "description", "sortable": false },
+        { "text": "ເວລາເປີດ", "value": "startDate", "sortable": false },
+        { "text": "ເວລາປິດ", "value": "endDate", "sortable": false },
+        { "text": "ສະຖານະ", "value": "status", "sortable": false },
+        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
       ],
       "dontdata": "ບໍ່ມີຂໍ້ມູນ",
       "options": {
@@ -613,133 +587,152 @@
       ]
     }
   },
-  "CateProduct": {
-    "title": "ຂໍ້ມູນປະເພດຂອງສິນຄ້າ",
+
+  "PromotionEvent": {
+    "title": "ຂໍ້ມູນໂປຣໂມຊັ່ນຫຼືອີເວັ້ນ",
     "button": "ເພີ່ມ",
-    "txtsearch": "ຄົ້ນຫາປະເພດຂອງສິນຄ້າ",
-    "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
+    "txtsearch": "ຄົ້ນຫາໂປຣໂມຊັ່ນຫຼືອີເວັ້ນ",
+    "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
-        {
-          "text": "ລຳດັບ",
-          "value": "No",
-          "sortable": false
-        },
-        {
-          "text": "ຊື່ປະເພດຂອງສິນຄ້າ",
-          "value": "CateProductName",
-          "sortable": true
-        },
-        {
-          "text": "ລາຍລະອຽດ",
-          "value": "description",
-          "sortable": false
-        },
-        {
-          "text": "ຈັດການ",
-          "value": "Actions",
-          "sortable": false
-        }
+        { "text": "ລຳດັບ", "value": "No", "sortable": false },
+        { "text": "ຮູບ", "value": "image", "sortable": false },
+        { "text": "ຫົວຂໍ້", "value": "title", "sortable": true },
+        { "text": "ປະເພດຂອງໂພສ", "value": "postTypeId", "sortable": true },
+        { "text": "ລາຍລະອຽດ", "value": "description", "sortable": false },
+        { "text": "ເວລາເປີດ", "value": "startDate", "sortable": false },
+        { "text": "ເວລາປິດ", "value": "endDate", "sortable": false },
+        { "text": "ສະຖານະ", "value": "status", "sortable": false },
+        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
       ],
-      "dontdata": "ບໍ່ມີຂໍ້ມູນ",
-      "options": {
-        "edit": "ແກ້ໄຂ",
-        "iconEdit": "fas fa-edit",
-        "delete": "ລົບຂໍ້ມູນ",
-        "delicon": "fas fa-trash-alt"
+      "dontdata":"ບໍ່ມີຂໍ້ມູນ",
+      "options":{
+        "edit":"ແກ້ໄຂ","iconEdit":"fas fa-edit",
+        "delete":"ລົບຂໍ້ມູນ","delicon":"fas fa-trash-alt"
       }
     },
-    "Create": {
-      "header": "ເພີ່ມຂໍ້ມູນປະເພດຂອງສິນຄ້າ",
-      "lang": {
-        "lao": "ລາວ",
-        "Eng": "ອັງກິດ"
+
+    "Create":{
+      "header":"ເພີ່ມຂໍ້ມູນໂພສ",
+      "lang":{
+        "lao":"ລາວ",
+        "Eng":"ອັງກິດ"
       },
-      "form": {
-        "cate_product_name": "ຊື່ປະເພດຂອງສິນຄ້າ",
-        "description": "ລາຍລະອຽດ",
-        "button": {
-          "save": "ບັນທຶກ",
-          "cancel": "ຍົກເລີກ"
+      "form":{
+        "category":"ປະເພດຂອງໂພສ",
+        "post_name":"ຫົວຂໍ້",
+        "description":"ລາຍລະອຽດ",
+        "picture":"ອັບໂຫຼດຮູບພາບ",
+        "start_date":"ເວລາເປີດ",
+        "end_date":"ເວລາປິດ",
+        "status":"ສະຖານະ",
+        "button":{
+          "save":"ບັນທຶກ",
+          "cancel":"ຍົກເລີກ"
         }
       }
     },
-    "Edit": {
-      "header": "ແກ້ໄຂຂໍ້ມູນປະເພດຂອງສິນຄ້າ"
-    }
+    "Edit":{
+      "header":"ແກ້ໄຂຂໍ້ມູນໂປຣໂມຊັ່ນຫຼືອີເວັ້ນ"
+    },
+    "status":{
+      "item":[
+      {"text":"ເປີດ","value":"open"},
+      {"text":"ປິດ","value":"close"}
+    ]
+  }
+
   },
+
+  "CateProduct": {
+    "title": "ຂໍ້ມູນປະເພດຂອງຜະລິດຕະພັນ",
+    "button": "ເພີ່ມ",
+    "txtsearch": "ຄົ້ນຫາປະເພດຂອງຜະລິດຕະພັນ",
+    "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ",
+    "table": {
+      "headers": [
+        { "text": "ລຳດັບ", "value": "No", "sortable": false },
+        { "text": "ຊື່ປະເພດຂອງຜະລິດຕະພັນ", "value": "CateProductName", "sortable": true },
+        { "text": "ລາຍລະອຽດ", "value": "description", "sortable": false },
+        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
+      ],
+      "dontdata":"ບໍ່ມີຂໍ້ມູນ",
+      "options":{
+        "edit":"ແກ້ໄຂ","iconEdit":"fas fa-edit",
+        "delete":"ລົບຂໍ້ມູນ","delicon":"fas fa-trash-alt"
+      }
+    },
+    "Create":{
+      "header":"ເພີ່ມຂໍ້ມູນປະເພດຂອງຜະລິດຕະພັນ",
+      "lang":{
+        "lao":"ລາວ",
+        "Eng":"ອັງກິດ"
+      },
+      "form":{
+
+        "cate_product_name":"ຊື່ປະເພດຂອງຜະລິດຕະພັນ",
+        "description":"ລາຍລະອຽດ",
+
+        "button":{
+          "save":"ບັນທຶກ",
+          "cancel":"ຍົກເລີກ"
+        }
+      }
+    },
+    "Edit":{
+      "header":"ແກ້ໄຂຂໍ້ມູນປະເພດຂອງຜະລິດຕະພັນ"
+    }
+
+  },
+
   "Product": {
     "title": "ຂໍ້ມູນຜະລິດຕະພັນ",
     "button": "ເພີ່ມ",
     "txtsearch": "ຄົ້ນຫາຜະລິດຕະພັນ",
-    "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
+    "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
-        {
-          "text": "ລຳດັບ",
-          "value": "No",
-          "sortable": false
-        },
-        {
-          "text": "ຊື່ສິນຄ້າ",
-          "value": "ProductName",
-          "sortable": true
-        },
-        {
-          "text": "ປະເພດສິນຄ້າ",
-          "value": "CateProduct",
-          "sortable": true
-        },
-        {
-          "text": "ລາຍລະອຽດ",
-          "value": "description",
-          "sortable": false
-        },
-        {
-          "text": "ຮູບພາບ",
-          "value": "Picture",
-          "sortable": false
-        },
-        {
-          "text": "ຈັດການ",
-          "value": "Actions",
-          "sortable": false
-        }
+        { "text": "ລຳດັບ", "value": "No", "sortable": false },
+        { "text": "ຮູບພາບ", "value": "Picture", "sortable": false },
+        { "text": "ຊື່ຜະລິດຕະພັນ", "value": "ProductName", "sortable": true },
+        { "text": "ປະເພດຜະລິດຕະພັນ", "value": "CateProduct", "sortable": true },
+        { "text": "ລາຍລະອຽດ", "value": "description", "sortable": false },
+
+        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
       ],
-      "dontdata": "ບໍ່ມີຂໍ້ມູນ",
-      "options": {
-        "edit": "ແກ້ໄຂ",
-        "iconEdit": "fas fa-edit",
-        "delete": "ລົບຂໍ້ມູນ",
-        "delicon": "fas fa-trash-alt"
+      "dontdata":"ບໍ່ມີຂໍ້ມູນ",
+      "options":{
+        "edit":"ແກ້ໄຂ","iconEdit":"fas fa-edit",
+        "delete":"ລົບຂໍ້ມູນ","delicon":"fas fa-trash-alt"
       }
     },
-    "Create": {
-      "header": "ເພີ່ມຂໍ້ມູນສິນຄ້າ",
-      "lang": {
-        "lao": "ລາວ",
-        "Eng": "ອັງກິດ"
+    "Create":{
+      "header":"ເພີ່ມຂໍ້ມູນຜະລິດຕະພັນ",
+      "lang":{
+        "lao":"ລາວ",
+        "Eng":"ອັງກິດ"
       },
-      "form": {
-        "category": "ປະເພດສິນຄ້າ",
-        "productname": "ຊື່ສິນຄ້າ",
-        "description": "ລາຍລະອຽດ",
-        "picture": "ອັບໂຫຼດຮູບພາບ",
-        "button": {
-          "save": "ບັນທຶກ",
-          "cancel": "ຍົກເລີກ"
+      "form":{
+        "category":"ປະເພດຜະລິດຕະພັນ",
+        "productname":"ຊື່ຜະລິດຕະພັນ",
+        "description":"ລາຍລະອຽດ",
+        "picture":"ອັບໂຫຼດຮູບພາບ",
+        "button":{
+          "save":"ບັນທຶກ",
+          "cancel":"ຍົກເລີກ"
         }
       }
     },
-    "Edit": {
-      "header": "ແກ້ໄຂຂໍ້ມູນສິນຄ້າ"
+    "Edit":{
+      "header":"ແກ້ໄຂຂໍ້ມູນຜະລິດຕະພັນ"
     }
+
   },
   "CateDataPackage": {
     "title": "ຂໍ້ມູນປະເພດຂອງແພັກເກັດ",
     "button": "ເພີ່ມ",
     "txtsearch": "ຄົ້ນຫາປະເພດຂອງແພັກເກັດ",
-    "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
+    "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
         {
@@ -797,36 +790,13 @@
     "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
-        {
-          "text": "ລຳດັບ",
-          "value": "No",
-          "sortable": false
-        },
-        {
-          "text": "ຮູບພາບ",
-          "value": "Picture",
-          "sortable": true
-        },
-        {
-          "text": "ປະເພດແພັກເກັດ",
-          "value": "CateDataPackage",
-          "sortable": true
-        },
-        {
-          "text": "ຊື່ແພັກເກັດ",
-          "value": "DataPackageName",
-          "sortable": false
-        },
-        {
-          "text": "ລາຍລະອຽດ",
-          "value": "description",
-          "sortable": false
-        },
-        {
-          "text": "ຈັດການ",
-          "value": "Actions",
-          "sortable": false
-        }
+        { "text": "ລຳດັບ", "value": "No", "sortable": false },
+        { "text": "ຮູບພາບ", "value": "Picture", "sortable": true },
+
+        { "text": "ຊື່ແພັກເກັດ", "value": "DataPackageName", "sortable": false },
+        { "text": "ປະເພດແພັກເກັດ", "value": "CateDataPackage", "sortable": true },
+        { "text": "ລາຍລະອຽດ", "value": "description", "sortable": false },
+        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
       ],
       "dontdata": "ບໍ່ມີຂໍ້ມູນ",
       "options": {
@@ -1283,5 +1253,10 @@
     "loginSuccess": "ເຂົ້າສູ່ລະບົບສຳເລັດ",
     "loginError": "ເຂົ້າສູ່ລະບົບບໍ່ສຳເລັດ",
     "permissionError": "ການລືບຂໍ້ມູນບໍ່ສຳເລັດ permission ນີ້ຖຶກໃຊ້ງານຢູ່"
+  },
+  "Modal":{
+    "confirmDelete":"ເຈົ້າຕ້ອງການລົບລາຍການນີ້ບໍ?",
+      "btnCancel":"ຍົກເລີກ",
+    "btnConfirm":"ລົບ"
   }
 }

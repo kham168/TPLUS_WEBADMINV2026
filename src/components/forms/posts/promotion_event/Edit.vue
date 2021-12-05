@@ -1,18 +1,18 @@
 <template>
-  <div id="Create">
-    <section class="banner-create">
-      <div class="banner-form">
+  <div id="Edit">
+    <section class="post-edit">
+      <div class="post-form">
         <div class="form-title">
-          <h1>{{ $t("Banner.Create.header") }}</h1>
+          <h1>{{ $t("Post.Edit.header") }}</h1>
         </div>
         <div class="lang-select-input">
           <v-tabs v-model="tab" color="primary" slider-color="primary">
             <v-tabs-slider color="primary"></v-tabs-slider>
             <v-tab
               :href="lang.key"
-              v-for="lang in $t('Banner.Create.lang')"
+              v-for="lang in $t('Post.Create.lang')"
               :key="lang.key"
-               @click="checkTabLang(lang)"
+                @click="checkTabLang(lang)"
             >
               {{ lang }}
             </v-tab>
@@ -20,68 +20,169 @@
           <div class="tab-content">
             <v-tabs-items v-model="tab">
               <v-tab-item
-                v-for="i in $t('Banner.Create.lang')"
+                v-for="i in $t('Post.Create.lang')"
                 :key="i"
                 :value="i.key"
               >
-                <div class="card-form" >
+                <div class="card-form">
                   <div class="form-content">
-                    <v-form  v-model="valid" ref="form" lazy-validation>
-                  
-                      <v-text-field
-                       v-show="isLaoTab"
-                         v-model="bannerName"
-                        :rules="[
-                        $myValidator.SimpleValidate($t('Validate.required')),
-                        $myValidator.MinlengthValidate($t('Validate.minmessage'),2)
-                        ]"
-                        :label="$t('Banner.Create.form.banner_name')"
-                        outlined
-                        required
-                      ></v-text-field>
-
-                       <v-text-field
-                      v-show="isEngTab"
-                      v-model="bannerNameEng"
-                        :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
-                        :label="$t('Banner.Create.form.banner_name')"
-                        outlined
-                        required
-                      ></v-text-field>
-
+                    <v-form v-model="valid" ref="form" lazy-validation>
+                 
                       <v-text-field
                       v-show="isLaoTab"
-                         v-model="link"
                         :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
-                        :label="$t('Banner.Create.form.link')"
+                        :label="$t('Post.Create.form.post_name')"
                         outlined
                         required
+                        v-model="postName"
+                      
+                      ></v-text-field>
+                        <v-text-field
+                        v-show="isEngTab"
+                        :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
+                        :label="$t('Post.Create.form.post_name')"
+                        outlined
+                        required
+                        v-model="postNameEng"
+                      
                       ></v-text-field>
 
-                      <v-text-field
-                      v-show="isEngTab"
-                         v-model="linkEng"
-                        :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
-                        :label="$t('Banner.Create.form.link')"
+           <v-select
+                        v-if="false"
+                       :items="cate_post['data']"
+                       item-text="name"
+                      item-value="id"
+                        
+                        v-model="catePostValue"
+                        :label="$t('Post.Create.form.category')"
+                        :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
                         outlined
                         required
-                      ></v-text-field>
+                      
+                      ></v-select>
+      <v-dialog
+      
+        ref="dialogStart"
+        v-model="modalStart"
+        :return-value.sync="dateStart"
+        persistent
+        width="290px"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-text-field
+            v-show="tab == 0"
+            :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
+             :label="$t('Post.Create.form.start_date')"
+              outlined
+
+            v-model="dateStart"
+           prepend-inner-icon="mdi-calendar"
+            readonly
+           
+            v-bind="attrs"
+            v-on="on"
+          ></v-text-field>
+        </template>
+        <v-date-picker
+          v-model="dateStart"
+          scrollable
+           locale="lo-LA"
+        >
+          <v-spacer></v-spacer>
+          <v-btn
+            text
+            color="primary"
+            @click="modalStart = false"
+          >
+            Cancel
+          </v-btn>
+          <v-btn
+            text
+            color="primary"
+            @click="$refs.dialogStart[0].save(dateStart)"
+          >
+            OK
+          </v-btn>
+        </v-date-picker>
+      </v-dialog>
+   
+
+   
+      <v-dialog
+        ref="dialogEnd"
+        v-model="modalEnd"
+        :return-value.sync="dateEnd"
+        persistent
+        width="290px"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-text-field
+            v-show="tab == 0"
+            :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
+            :label="$t('Post.Create.form.end_date')"
+            outlined
+
+            v-model="dateEnd"
+            prepend-inner-icon="mdi-calendar"
+            readonly
+            
+            v-bind="attrs"
+            v-on="on"
+          ></v-text-field>
+        </template>
+        <v-date-picker
+          v-model="dateEnd"
+          scrollable
+         locale="lo-LA"
+        >
+          <v-spacer></v-spacer>
+          <v-btn
+            text
+            color="primary"
+            @click="modalEnd = false"
+          >
+            Cancel
+          </v-btn>
+          <v-btn
+            text
+            color="primary"
+            @click="$refs.dialogEnd[0].save(dateEnd)"
+          >
+            OK
+          </v-btn>
+        </v-date-picker>
+      </v-dialog>
+  
+                        <v-select
+                          v-show="tab == 0"
+                      item-text="text"
+                      item-value="value"
+                        :items="$t('Post.status.item')"
+                      
+                        :label="$t('Post.Create.form.status')"
+                      
+                        outlined
+                        required
+                        v-model="statusValue"
+                        
+                      ></v-select>
 
                       <v-textarea
                       v-show="isLaoTab"
-                         v-model="description"
                         outlined
-                        :label="$t('Banner.Create.form.description')"
+                        :label="$t('Post.Create.form.description')"
+                        v-model="descriptionText"
                       ></v-textarea>
 
-                       <v-textarea
+                      <v-textarea
                       v-show="isEngTab"
-                         v-model="descriptionEng"
                         outlined
-                        :label="$t('Banner.Create.form.description')"
+                      
+                        :label="$t('Post.Create.form.description')"
+                        v-model="descriptionTextEng"
                       ></v-textarea>
-
-                      <div v-show="isLaoTab">
+                    
+                    <div v-show="isLaoTab">
                       
                         <div class="upload-image" v-if="previewImage[0] == null">
                        
@@ -227,19 +328,22 @@
                           </v-carousel>
                           
                         </div>
-                      </div> 
+                      </div>  
                     </v-form>
                     <div class="form-actions">
                       <v-btn plain @click="reset" class="mx-5">{{
-                        $t("Banner.Create.form.button.cancel")
+                        $t("Post.Create.form.button.cancel")
                       }}</v-btn>
-                      <v-btn :disabled="!valid" @click="submitForm" class="btn btn-create">
-                        {{ $t("Banner.Create.form.button.save") }}</v-btn
+                      <v-btn
+                        :disabled="!valid"
+                        @click="submitForm"
+                        class="btn btn-create"
+                      >
+                        {{ $t("Post.Create.form.button.save") }}</v-btn
                       >
                     </div>
                   </div>
                 </div>
-              
               </v-tab-item>
             </v-tabs-items>
           </div>
@@ -252,51 +356,110 @@
 <script>
 import {mapActions,mapGetters} from 'vuex'
 export default {
-  name: "Create",
+  name: "Edit",
 
   data() {
     return {
-      bannerName:'',
-      bannerNameEng:'',
-      link:'',
-      linkEng:'',
-      description:'',
-      descriptionEng:'',
-      uploadImage:[],
-      uploadImageEng:[],
-       isLaoTab:false,
+        isLaoTab:false,
       isEngTab:false,
-      tab: null,
+      postId:0,
+       descriptionText:'',
+      descriptionTextEng:'',
+      postName:'',
+      postNameEng:'',
+      statusValue:'',
+      catePostValue:'',
+         uploadImage: [],
+       uploadImageEng: [],
       previewImage: [],
        previewImageEng: [],
-      valid:true,
+
+         dateStart: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+    dateEnd: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+    modalStart: false,
+    modalEnd: false,
+
+      tab: null,
+  
+      valid: true,
     };
   },
 
+  created(){
+    this.getPromotionEventOne({'promotion_event_id':this.$route.params.promotion_event_id}).then(res=>{
+      if(res.success){
+           this.loadDataToComponent(res);
+      }
+    })
+  },
   mounted() {
-     this.checkTabLang('ລາວ')
+ 
+    this.getCatePostAll();
+    this.checkTabLang('ລາວ');
+
+
   },
 
   methods: {
-  onIncreaseImage(){
-      
-     this.$refs.uploader[0].click()
-    },
-    onIncreaseImageEng(){
-      
-     this.$refs.uploaderEng[0].click()
-    },
 
-     removeImage(index){
-         this.uploadImage.splice(index, 1);
-      this.previewImage.splice(index, 1);
-    },
-    removeImageEng(index){
-           this.uploadImageEng.splice(index, 1);
-      this.previewImageEng.splice(index, 1);
-    },
+ async convertUrlToFileImage(image) {
+  const response = await fetch(image);
+  // here image is url/location of image
+  const blob = await response.blob();
+  const file = new File([blob], image.split('/').pop(), {type: blob.type});
+ 
+  this.uploadImage.push(file)
+},
 
-    checkTabLang(lang){
+ async convertUrlToFileImageEng(image) {
+  const response = await fetch(image);
+  // here image is url/location of image
+  const blob = await response.blob();
+  const file = new File([blob], image.split('/').pop(), {type: blob.type});
+ 
+  this.uploadImageEng.push(file)
+},
+
+     loadDataToComponent(res){
+
+    let data = res.data;
+       
+
+            this.postId=data.id,
+      this.descriptionText=data.description,
+      this.descriptionTextEng=data.PostTrans[0].description,
+      this.postName=data.title,
+      this.postNameEng=data.PostTrans[0].title,
+      this.statusValue=data.status,
+      this.catePostValue=data.postTypeId,
+      this.dateStart = new Date(data.startDate).toISOString().substr(0, 10),
+      this.dateEnd = new Date(data.endDate).toISOString().substr(0, 10)
+
+      
+      for(let i=0;i<data.PostImages.length;i++){
+      
+         let url = data.PostImages[i].image;
+           this.previewImage.push(url);  
+      
+           this.convertUrlToFileImage(url)
+
+   
+      }
+
+       for(let i=0;i<data.PostImageTrans.length;i++){
+     
+      let url = data.PostImageTrans[i].image;
+     this.convertUrlToFileImageEng(url)
+      
+           this.previewImageEng.push(url);
+    
+        
+      }
+
+      
+    },
+   
+  checkTabLang(lang){
       console.log(lang)
       if(lang == 'ລາວ' ||lang== 'Lao'){
         this.isLaoTab = true
@@ -310,13 +473,25 @@ export default {
             console.log(this.isEngTab)
       }
     },
+  
 
-     UploadImage(e) {
+    onIncreaseImage(){
+      
+     this.$refs.uploader[0].click()
+    },
+    onIncreaseImageEng(){
+      
+     this.$refs.uploaderEng[0].click()
+    },
+   
+
+    UploadImage(e) {
   
       const img = e.target.files;
 
       for(let i = 0;i<img.length;i++){
         this.uploadImage.push(img[i])
+        console.log(this.uploadImage)
         const reader = new FileReader();
         reader.readAsDataURL(img[i]);
        reader.onload = (e) => {
@@ -333,7 +508,7 @@ export default {
       const img = e.target.files;
 
       for(let i = 0;i<img.length;i++){
-        this.uploadImageEng.push(img[i])
+         this.uploadImageEng.push(img[i])
         const reader = new FileReader();
         reader.readAsDataURL(img[i]);
        reader.onload = (e) => {
@@ -345,45 +520,62 @@ export default {
       };
     },
 
+    removeImage(index){
+      this.uploadImage.splice(index,1);
+      this.previewImage.splice(index, 1);
+    },
+    removeImageEng(index){
+       this.uploadImageEng.splice(index,1);
+      this.previewImageEng.splice(index, 1);
+    },
+
     submitForm () {
-    console.log(this.$refs.form[0].validate())
+    this.$refs.form[0].validate();
     if(this.$refs.form[0].validate()){
-      this.createBanner({
-    
-        'ban_name':this.bannerName,
-        'link':this.link,
-        'description':this.description,
-        'other_lang_ban_name':this.bannerNameEng,
-        'other_lang_link':this.linkEng,
-        'other_lang_description':this.descriptionEng,
-        'avatar':this.uploadImage,
-        'avatar_EN':this.uploadImageEng
+
+      this.updatePromotion({
+         'post_id':this.postId,
+         'post_type_id':this.catePostValue,
+                'title': this.postName,
+                'description':this.descriptionText,
+                'status':this.statusValue,
+                'start_date':this.dateStart,
+                'end_date':this.dateEnd,
+                'other_lang_title':this.postNameEng,
+                'other_lang_description':this.descriptionTextEng,
+               
+                'avatar':this.uploadImage,
+                'avatar_EN':this.uploadImageEng
       })
-
-      
-       console.log("create successful")
+      console.log('create successful')
     }else{
-      console.log("can not create")
+       console.log('can not create')
     }
-
   },
+
    reset(){
     this.$router.back();
     this.$refs.form[0].reset();
   },
 
-    ...mapActions({
-      createBanner:'Banner/createBanner'
-    })
+   ...mapActions({
+getCatePostAll:'CatePost/getCatePostAll',
+updatePromotionEvent:'PromotionEvent/updatePromotionEvent',
+getPromotionEventOne:'PromotionEvent/getPromotionEventOne'
 
+        })
   },
+    computed:{
+    ...mapGetters({
+        cate_post:'CatePost/cate_post',
+    
+        })
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-
-
-  .banner-form {
+  .post-form {
     .form-title {
       width: 100%;
       padding: 0.5rem 0;
@@ -423,8 +615,7 @@ export default {
               border: 1px solid $gray-color;
 
               .image {
-                width: 720px;
-                height: 300px;
+                width: 100%;
                 overflow: hidden;
                 object-fit: cover;
               }
@@ -456,7 +647,7 @@ export default {
                 opacity: 0;
               }
             }
-              .image {
+            .image {
               
                 max-width: 100%;
                 overflow: hidden;
@@ -474,26 +665,6 @@ export default {
                 
                   
               }
-
-               .image {
-              
-                max-width: 100%;
-                overflow: hidden;
-                object-fit: cover;
-
-               
-
-                    .image-files{
-                    max-width: 100%;
-                    display: block;
-                    margin-left: auto;
-                    margin-right: auto;
-                  }
-
-                
-                  
-              }
-
 
             .form-actions {
               width: 100%;
@@ -508,4 +679,3 @@ export default {
     }
   }
 </style>
-
