@@ -438,8 +438,6 @@
       "header":"Edit Banner"
     }
   },
-
-
   "CatePost": {
     "title": "Category Post",
     "button": "Create",
@@ -489,7 +487,6 @@
   }
 
   },
-
   "Post": {
     "title": "Post Data",
     "button": "Create",
@@ -545,7 +542,6 @@
     ]
   }
   },
-
   "PromotionEvent": {
     "title": "Promotion and Event Data",
     "button": "Create",
@@ -601,8 +597,6 @@
     ]
   }
   },
-
-
   "CateProduct": {
     "title": "Category Product",
     "button": "Create",
@@ -644,7 +638,6 @@
     }
 
   },
-
   "Product": {
     "title": "Products Data",
     "button": "Create",
@@ -687,7 +680,6 @@
       "header": "Edit Products"
     }
   },
-
   "CateDataPackage": {
     "title": "Category Data Package",
     "button": "Create",
@@ -729,7 +721,6 @@
     }
 
   },
-
   "DataPackage": {
     "title": "Data Package",
     "button": "Create",
@@ -882,6 +873,71 @@
         {
           "text": "Add Permission",
           "value": "addPermission",
+          "sortable": false
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": false
+        }
+      ],
+      "dontdata": "Dont have data",
+      "options": {
+        "edit": "Edit",
+        "iconEdit": "fas fa-edit",
+        "delete": "Delete",
+        "delicon": "fas fa-trash-alt"
+      }
+    },
+    "Create": {
+      "header": "Add User Role",
+      "lang": {
+        "Eng": "Roles"
+      },
+      "form": {
+        "userrole": "Role Name",
+        "name": "Role Name",
+        "description": "Description",
+        "button": {
+          "save": "Save",
+          "cancel": "Cancel"
+        }
+      }
+    },
+    "Edit": {
+      "header": "Edit User Roles"
+    }
+  },
+  "RoleUser": {
+    "title": "Permission",
+    "button": "Create",
+    "txtsearch": "Search data",
+    "loadingtext": "Loading..",
+    "table": {
+      "headers": [
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "Role name",
+          "value": "RoleName",
+          "sortable": false
+        },
+        {
+          "text": "Created",
+          "value": "createdAt",
+          "sortable": false
+        },
+        {
+          "text": "Updated",
+          "value": "updatedAt",
+          "sortable": false
+        },
+        {
+          "text": "Permission",
+          "value": "permission",
           "sortable": false
         },
         {

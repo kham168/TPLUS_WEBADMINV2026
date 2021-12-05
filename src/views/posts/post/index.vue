@@ -5,30 +5,32 @@
       <div class="header post-header">
         <h1>{{ $t("Post.title") }}</h1>
         <v-btn @click="CreatePost" class="btn btn-create">
-          <v-icon>fal fa-plus-circle</v-icon>{{ $t("Post.button") }}</v-btn
+          <v-icon>fal fa-plus-circle</v-icon>
+          {{ $t("Post.button") }}
+        </v-btn
         >
       </div>
 
       <div class="post-content">
         <v-data-table
-          :headers="$t('Post.table.headers')"
-          :items="post['data']"
-          :search="searchItem"
-          :loading="loading"
-          :loading-text="$t('Post.loadingtext')"
-          v-if="post['data'] != ''"
+            :headers="$t('Post.table.headers')"
+            :items="post['data']"
+            :search="searchItem"
+            :loading="loading"
+            :loading-text="$t('Post.loadingtext')"
+            v-if="post['data'] != ''"
         >
           <template v-slot:top>
             <v-toolbar flat>
               <v-text-field
-                :label="$t('Post.txtsearch')"
-                filled
-                rounded
-                dense
-                append-icon="fas fa-search"
-                single-line
-                hide-details
-                v-model="searchItem"
+                  :label="$t('Post.txtsearch')"
+                  filled
+                  rounded
+                  dense
+                  append-icon="fas fa-search"
+                  single-line
+                  hide-details
+                  v-model="searchItem"
               ></v-text-field>
               <v-spacer></v-spacer>
             </v-toolbar>
@@ -38,78 +40,82 @@
           <template v-slot:item="{item , index}">
             <tr class="table-content" v-if="isLaoLanguage">
               <td>{{ index + 1 }}</td>
-              <td><v-img :src="item.PostImages[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
+              <td>
+                <v-img :src="item.PostImages[0].image" alt="preview" max-height="50" max-width="50"></v-img>
+              </td>
               <td>{{ item.title }}</td>
-              <td>{{ item.postTypeId}}</td>
+              <td>{{ item.postTypeId }}</td>
               <td class="text-limit">{{ item.description }}</td>
               <td>{{ item.status }}</td>
 
               <td>
-               <v-menu offset-y>
-                 <template v-slot:activator="{on,attrs}">
-                   <v-btn icon v-on="on" v-bind="attrs">
-                  <v-icon small>fas fa-ellipsis-v</v-icon>
-                </v-btn>
-                 </template>
-                 <v-list>
-                   <v-list-item link @click="$router.push({name:'post.edit',params:{
+                <v-menu offset-y>
+                  <template v-slot:activator="{on,attrs}">
+                    <v-btn icon v-on="on" v-bind="attrs">
+                      <v-icon small>fas fa-ellipsis-v</v-icon>
+                    </v-btn>
+                  </template>
+                  <v-list>
+                    <v-list-item link @click="$router.push({name:'post.edit',params:{
                      'post_id':item.id,
      }}).catch(()=>{})">
-                     <v-list-item-icon>
-                       <v-icon class="mr-3" small>{{$t('Post.table.options.iconEdit')}}</v-icon>
-                       <v-list-item-title>
-                         {{$t('Post.title')}}
-                       </v-list-item-title>
-                     </v-list-item-icon>
-                   </v-list-item>
+                      <v-list-item-icon>
+                        <v-icon class="mr-3" small>{{ $t('Post.table.options.iconEdit') }}</v-icon>
+                        <v-list-item-title>
+                          {{ $t('Post.title') }}
+                        </v-list-item-title>
+                      </v-list-item-icon>
+                    </v-list-item>
                     <v-list-item link @click="onDelete(item.id)">
-                     <v-list-item-icon>
-                       <v-icon class="mr-3" small>{{$t('Post.table.options.delicon')}}</v-icon>
-                       <v-list-item-title>
-                         {{$t('Post.table.options.delete')}}
-                       </v-list-item-title>
-                     </v-list-item-icon>
-                   </v-list-item>
-                 </v-list>
-               </v-menu>
+                      <v-list-item-icon>
+                        <v-icon class="mr-3" small>{{ $t('Post.table.options.delicon') }}</v-icon>
+                        <v-list-item-title>
+                          {{ $t('Post.table.options.delete') }}
+                        </v-list-item-title>
+                      </v-list-item-icon>
+                    </v-list-item>
+                  </v-list>
+                </v-menu>
               </td>
             </tr>
             <tr class="table-content" v-else>
               <td>{{ index + 1 }}</td>
-              <td><v-img :src="item.PostImageTrans[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
+              <td>
+                <v-img :src="item.PostImageTrans[0].image" alt="preview" max-height="50" max-width="50"></v-img>
+              </td>
               <td>{{ item.PostTrans[0].title }}</td>
               <td>{{ item.postTypeId }}</td>
               <td class="text-limit">{{ item.PostTrans[0].description }}</td>
               <td>{{ item.status }}</td>
 
               <td>
-               <v-menu offset-y>
-                 <template v-slot:activator="{on,attrs}">
-                   <v-btn icon v-on="on" v-bind="attrs">
-                  <v-icon small>fas fa-ellipsis-v</v-icon>
-                </v-btn>
-                 </template>
-                 <v-list>
-                   <v-list-item link @click="$router.push({name:'post.edit',params:{
+                <v-menu offset-y>
+                  <template v-slot:activator="{on,attrs}">
+                    <v-btn icon v-on="on" v-bind="attrs">
+                      <v-icon small>fas fa-ellipsis-v</v-icon>
+                    </v-btn>
+                  </template>
+                  <v-list>
+                    <v-list-item link @click="$router.push({name:'post.edit',params:{
                      'post_id':item.id,
       }}).catch(()=>{})">
-                     <v-list-item-icon>
-                       <v-icon class="mr-3" small>{{$t('Post.table.options.iconEdit')}}</v-icon>
-                       <v-list-item-title>
-                         {{$t('Post.table.options.edit')}}
-                       </v-list-item-title>
-                     </v-list-item-icon>
-                   </v-list-item>
+                      <v-list-item-icon>
+                        <v-icon class="mr-3" small>{{ $t('Post.table.options.iconEdit') }}</v-icon>
+                        <v-list-item-title>
+                          {{ $t('Post.table.options.edit') }}
+                        </v-list-item-title>
+                      </v-list-item-icon>
+                    </v-list-item>
                     <v-list-item link @click="onDelete(item.id)">
-                     <v-list-item-icon>
-                       <v-icon class="mr-3" small>{{$t('Post.table.options.delicon')}}</v-icon>
-                       <v-list-item-title>
-                         {{$t('Post.table.options.delete')}}
-                       </v-list-item-title>
-                     </v-list-item-icon>
-                   </v-list-item>
-                 </v-list>
-               </v-menu>
+                      <v-list-item-icon>
+                        <v-icon class="mr-3" small>{{ $t('Post.table.options.delicon') }}</v-icon>
+                        <v-list-item-title>
+                          {{ $t('Post.table.options.delete') }}
+                        </v-list-item-title>
+                      </v-list-item-icon>
+                    </v-list-item>
+                  </v-list>
+                </v-menu>
               </td>
             </tr>
           </template>
@@ -122,9 +128,9 @@
           <h3>{{ $t("Post.table.dontdata") }}</h3>
         </div>
       </div>
-                   <ModalDelete>
+      <ModalDelete>
         <template v-slot="{close}">
-          <Delete :post_id="post_id" @close="close" />
+          <Delete :post_id="post_id" @close="close"/>
         </template>
       </ModalDelete>
     </section>
@@ -140,14 +146,14 @@ export default {
 
   name: "Post",
 
-components: {
+  components: {
     Delete
   },
   data() {
     return {
-      post_id:'',
-      isLaoLanguage:localStorage.getItem('lang') === 'la',
-      image:'@/src/assets/logo.png',
+      post_id: '',
+      isLaoLanguage: localStorage.getItem('lang') === 'la',
+      image: '@/src/assets/logo.png',
       loading: false,
 
       searchItem: "",
@@ -163,7 +169,7 @@ components: {
   },
 
   methods: {
-    load(){
+    load() {
       console.log('load')
 
 
@@ -171,33 +177,34 @@ components: {
 
     CreatePost() {
       this.$router
-        .push({
-          name: "post.create",
-        })
-        .catch(() => {});
+          .push({
+            name: "post.create",
+          })
+          .catch(() => {
+          });
     },
-     onDelete(post_id) {
-        this.post_id = post_id
+    onDelete(post_id) {
+      this.post_id = post_id
 
       this.$store.commit("modalDelete_State", true);
     },
 
-           ...mapActions({
-getPost:'Post/getPost',
-getCatePostOne:'CatePost/getCatePostOne'
+    ...mapActions({
+          getPost: 'Post/getPost',
+          getCatePostOne: 'CatePost/getCatePostOne'
 
 
         }
-        )
+    )
   },
 
-  computed:{
+  computed: {
     ...mapGetters({
-        post:'Post/post',
-        cate_post_one:'CatePost/cate_post_one'
+      post: 'Post/post',
+      cate_post_one: 'CatePost/cate_post_one'
 
 
-        })
+    })
   }
 };
 </script>
@@ -210,11 +217,12 @@ getCatePostOne:'CatePost/getCatePostOne'
   .post-content {
     width: 100%;
     padding: 1rem;
-     .text-limit{
- max-width: 200px;
- overflow: hidden;
- text-overflow: ellipsis;
- white-space: nowrap;
+
+    .text-limit {
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 }
