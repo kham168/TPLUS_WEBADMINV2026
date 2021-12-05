@@ -20,7 +20,12 @@ const mutations={
 }
 
 const actions={
- 
+  async getDataPackageOne ({commit},{package_id}) {
+    const data = await dataPackageService.getDataPackageOne({'package_id':package_id})
+  
+   
+    return data
+  },
 
     async getDataPackage ({commit}) {
         const data = await dataPackageService.getDataPackage()

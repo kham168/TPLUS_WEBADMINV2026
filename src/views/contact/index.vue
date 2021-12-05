@@ -38,7 +38,8 @@
               <td>{{ item.name }}</td>
           <td>{{ item.email }}</td>
           <td>{{ item.title }}</td>
-              <td>{{ item.description }}</td>
+              <td class="text-limit">{{ item.description }}</td>
+              <td><v-btn elevation="2" icon @click="onShow(item.id)"></v-btn></td>
              
               <td>
                <v-menu offset-y>
@@ -48,7 +49,7 @@
                 </v-btn>
                  </template>
                  <v-list>
-                   <v-list-item link @click="$router.push({name:'contact.edit',params: { 'contact_id':item.id,'name':item.name,'email':item.email,'title':item.title,'description':item.description }}).catch(()=>{})">
+                   <v-list-item link @click="$router.push({name:'contact.edit',params: { 'contact_id':item.id}}).catch(()=>{})">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('Contact.table.options.iconEdit')}}</v-icon>
                        <v-list-item-title>
@@ -56,7 +57,7 @@
                        </v-list-item-title>
                      </v-list-item-icon>
                    </v-list-item>
-                    <v-list-item link>
+                    <v-list-item link @click="onDelete(item.id)">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('Contact.table.options.delicon')}}</v-icon>
                        <v-list-item-title>
@@ -77,29 +78,39 @@
           <h3>{{ $t("Contact.table.dontdata") }}</h3>
         </div>
       </div>
+         <ModalDelete>
+        <template v-slot="{close}">
+          <Delete :contact_id="contact_id" @close="close" />
+        </template>
+      </ModalDelete>
+
+         <ModalShow>
+        <template v-slot="{close}">
+          <Show :contact_id="contact_id" @close="close" />
+        </template>
+      </ModalShow>
     </section>
   </div>
 </template>
 
 <script>
 import {mapActions,mapGetters} from 'vuex'
+import Delete from "../../components/forms/contact/Delete";
+import Show from "../../components/forms/contact/Show";
+import ModalShow from "../../components/Modals/modalShow";
 export default {
     name: 'Contact',
 
+  components: {
+    Delete,
+    Show,
+    ModalShow
+  },
     data() {
         return {
+          contact_id:'',
              loading: false,
-      myContact: [
-        {
-          ContactName: "M1",
-        Email: "tplus@gmail.com",
-         Tile: "None",
-          description: "1024MB",
-      
-        },
-     
-        
-      ],
+    
       searchItem: "",
         };
     },
@@ -116,15 +127,27 @@ export default {
         })
         .catch(() => {});
     },
+     onDelete(contact_id) {
+        this.contact_id = contact_id
+     
+      this.$store.commit("modalDelete_State", true);
+    },
+        onShow(contact_id) {
+        this.contact_id = contact_id
+     
+      this.$store.commit("modalShow_State", true);
+    },
 
     ...mapActions({
-      getContact:'Contact/getContact'
+      getContact:'Contact/getContact',
+  
     })
     },
 
     computed:{
       ...mapGetters({
-        contact:'Contact/contact'
+        contact:'Contact/contact',
+    
       })
     }
 };
@@ -138,7 +161,12 @@ export default {
   .contact-content {
     width: 100%;
     padding: 1rem;
-
+    .text-limit{
+ max-width: 200px;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ white-space: nowrap;
+    }
   }
 }
 </style>

@@ -38,7 +38,7 @@
               <td><v-img :src="item.BanImages[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
               <td>{{ item.banName }}</td>
               <td>{{ item.link }}</td>
-              <td>{{ item.description }}</td>
+              <td class="text-limit">{{ item.description }}</td>
   
               <td>
                <v-menu offset-y>
@@ -49,15 +49,8 @@
                  </template>
                  <v-list>
                    <v-list-item link @click="$router.push({name:'banner.edit',params:{
-                      'banId':item.id,
-        'bannerName':item.banName,
-      'bannerNameEng':item.BannerTrans[0].banName,
-      'link':item.link,
-      'linkEng':item.BannerTrans[0].link ,
-      'description':item.description,
-      'descriptionEng':item.BannerTrans[0].description,
-      'argImage':item.BanImages,
-      'argImageEng':item.BanImageTrans
+                      'banner_id':item.id,
+       
                    }}).catch(()=>{})">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('Banner.table.options.iconEdit')}}</v-icon>
@@ -66,7 +59,7 @@
                        </v-list-item-title>
                      </v-list-item-icon>
                    </v-list-item>
-                    <v-list-item link>
+                    <v-list-item link  @click="onDelete(item.id)">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('Banner.table.options.delicon')}}</v-icon>
                        <v-list-item-title>
@@ -83,7 +76,7 @@
               <td><v-img :src="item.BanImageTrans[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
               <td>{{ item.BannerTrans[0].banName }}</td>
               <td>{{ item.BannerTrans[0].link }}</td>
-              <td>{{ item.BannerTrans[0].description }}</td>
+              <td class="text-limit">{{ item.BannerTrans[0].description }}</td>
   
               <td>
                <v-menu offset-y>
@@ -94,15 +87,7 @@
                  </template>
                  <v-list>
                    <v-list-item link @click="$router.push({name:'banner.edit',params:{
-                      'banId':item.id,
-        'bannerName':item.banName,
-      'bannerNameEng':item.BannerTrans[0].banName,
-      'link':item.link,
-      'linkEng':item.BannerTrans[0].link ,
-      'description':item.description,
-      'descriptionEng':item.BannerTrans[0].description,
-      'argImage':item.BanImages,
-      'argImageEng':item.BanImageTrans
+                      'banner_id':item.id,
                    }}).catch(()=>{})">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('Banner.table.options.iconEdit')}}</v-icon>
@@ -111,7 +96,7 @@
                        </v-list-item-title>
                      </v-list-item-icon>
                    </v-list-item>
-                    <v-list-item link>
+                    <v-list-item link @click="onDelete(item.id)">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('Banner.table.options.delicon')}}</v-icon>
                        <v-list-item-title>
@@ -132,17 +117,26 @@
           <h3>{{ $t("Banner.table.dontdata") }}</h3>
         </div>
       </div>
+        <ModalDelete>
+        <template v-slot="{close}">
+          <Delete :banner_id="banner_id" @close="close" />
+        </template>
+      </ModalDelete>
     </section>
   </div>
 </template>
 
 <script>
-import {mapActions, mapGetters} from 'vuex'
+import {mapActions, mapGetters} from 'vuex';
+import Delete from "../../components/forms/banner/Delete";
 export default {
     name: 'Banner',
-
+  components: {
+    Delete
+  },
     data() {
         return {
+          banner_id:'',
           isLaoLanguage:localStorage.getItem('lang') === 'la',
              loading: false,
       
@@ -161,6 +155,11 @@ export default {
           name: "banner.create",
         })
         .catch(() => {});
+    },
+      onDelete(banner_id) {
+        this.banner_id = banner_id
+     
+      this.$store.commit("modalDelete_State", true);
     },
 
     ...mapActions({
@@ -187,7 +186,15 @@ getBanner:'Banner/getBanner',
   .banner-content {
     width: 100%;
     padding: 1rem;
+    .text-limit{
+ max-width: 200px;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ white-space: nowrap;
+    }
 
   }
 }
+
+
 </style>

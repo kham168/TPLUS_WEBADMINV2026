@@ -11,6 +11,16 @@ class DataPackageProvider extends HttpRequest {
 
 
 
+  async getDataPackageOne ({package_id}) {
+
+    //Call setHeader on class HttpRequest and write common header
+    //If write Header on class HttpRequest Should call like under method
+     this.setHeader({})
+   // example path http://128.199.104.34:7000/this.get()
+     const {data} = await this.get('/api/v1/packages/'+package_id)
+  
+     return data
+  }
 
   async getDataPackage () {
 
@@ -19,7 +29,7 @@ class DataPackageProvider extends HttpRequest {
      this.setHeader({})
    // example path http://128.199.104.34:7000/this.get()
      const {data} = await this.get('/api/v1/packages')
-     console.log(data)
+
      return data
   }
 

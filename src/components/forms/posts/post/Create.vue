@@ -28,19 +28,7 @@
                 <div class="card-form">
                   <div class="form-content">
                     <v-form  v-model="valid" ref="form" lazy-validation>
-                      <v-select
-                        v-show="tab == 0"
-                       :items="cate_post['data']"
-                       item-text="name"
-                      item-value="id"
-                        
-                        v-model="catePostValue"
-                        :label="$t('Post.Create.form.category')"
-                        
-                        outlined
-                        required
-                      
-                      ></v-select>
+                     
                       <v-text-field
                       v-show="isLaoTab"
                         :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
@@ -60,99 +48,20 @@
                       
                       ></v-text-field>
 
-          
-      <v-dialog
-      
-        ref="dialogStart"
-        v-model="modalStart"
-        :return-value.sync="dateStart"
-        persistent
-        width="290px"
-      >
-        <template v-slot:activator="{ on, attrs }">
-          <v-text-field
-            v-show="tab == 0"
-            :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
-             :label="$t('Post.Create.form.start_date')"
-              outlined
+                      <v-select
+                        v-show="tab == 0"
+                       :items="cate_post['data']"
+                       item-text="name"
+                      item-value="id"
+                         :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
+                        v-model="catePostValue"
+                        :label="$t('Post.Create.form.category')"
+                        
+                        outlined
+                        required
+                      
+                      ></v-select>
 
-            v-model="dateStart"
-           prepend-inner-icon="mdi-calendar"
-            readonly
-           
-            v-bind="attrs"
-            v-on="on"
-          ></v-text-field>
-        </template>
-        <v-date-picker
-          v-model="dateStart"
-          scrollable
-           locale="lo-LA"
-        >
-          <v-spacer></v-spacer>
-          <v-btn
-            text
-            color="primary"
-            @click="modalStart = false"
-          >
-            Cancel
-          </v-btn>
-          <v-btn
-            text
-            color="primary"
-            @click="$refs.dialogStart[0].save(dateStart)"
-          >
-            OK
-          </v-btn>
-        </v-date-picker>
-      </v-dialog>
-   
-
-   
-      <v-dialog
-        ref="dialogEnd"
-        v-model="modalEnd"
-        :return-value.sync="dateEnd"
-        persistent
-        width="290px"
-      >
-        <template v-slot:activator="{ on, attrs }">
-          <v-text-field
-            v-show="tab == 0"
-            :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
-            :label="$t('Post.Create.form.end_date')"
-            outlined
-
-            v-model="dateEnd"
-            prepend-inner-icon="mdi-calendar"
-            readonly
-            
-            v-bind="attrs"
-            v-on="on"
-          ></v-text-field>
-        </template>
-        <v-date-picker
-          v-model="dateEnd"
-          scrollable
-         locale="lo-LA"
-        >
-          <v-spacer></v-spacer>
-          <v-btn
-            text
-            color="primary"
-            @click="modalEnd = false"
-          >
-            Cancel
-          </v-btn>
-          <v-btn
-            text
-            color="primary"
-            @click="$refs.dialogEnd[0].save(dateEnd)"
-          >
-            OK
-          </v-btn>
-        </v-date-picker>
-      </v-dialog>
   
                         <v-select
                           v-show="tab == 0"
@@ -456,9 +365,11 @@ export default {
     },
 
     removeImage(index){
+      this.uploadImage.splice(index,1);
       this.previewImage.splice(index, 1);
     },
     removeImageEng(index){
+      this.uploadImageEng.splice(index,1);
       this.previewImageEng.splice(index, 1);
     },
 

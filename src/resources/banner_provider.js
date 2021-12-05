@@ -10,7 +10,16 @@ class BannerProvider extends HttpRequest {
   }
 
 
+  async getBannerOne ({banner_id}) {
 
+    //Call setHeader on class HttpRequest and write common header
+    //If write Header on class HttpRequest Should call like under method
+     this.setHeader({})
+   // example path http://128.199.104.34:7000/this.get()
+     const {data} = await this.get('/api/v1/banner/'+banner_id)
+ 
+     return data
+  }
 
   async getBanner () {
 
@@ -19,7 +28,7 @@ class BannerProvider extends HttpRequest {
      this.setHeader({})
    // example path http://128.199.104.34:7000/this.get()
      const {data} = await this.get('/api/v1/banner')
-     console.log(data)
+ 
      return data
   }
 
@@ -110,6 +119,7 @@ class BannerProvider extends HttpRequest {
 
 
   async deleteBanner ({ban_id}) {
+    console.log('ban_id:')
  
     this.setHeader({})
 

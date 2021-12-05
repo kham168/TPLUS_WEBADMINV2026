@@ -95,7 +95,7 @@ export default {
     return {
       catePostId:0,
       statusValue:false,
-      argStatus:{},
+ 
       name:'',
       nameEng:'',
       tab: null,
@@ -105,30 +105,28 @@ export default {
     };
   },
 
+  created(){
+    this.getCatePostOne({'cate_post_id':this.$route.params.cate_post_id}).then(res=>{
+      if(res.success){
+      this.loadDataToComponent(res);
+      }
+    });
+  },
+
   mounted() {
-    this.loadDataToComponent();
+   
     this.checkTabLang('ລາວ');
   },
 
   methods: {
 
-      selectStatus(){
-        this.statusValue=this.argStatus
-        console.log(this.statusValue)
-     
-      },
+    loadDataToComponent(res){
+      let data = res.data;
 
-
-    loadDataToComponent(){
-      let data = this.$route.params;
-   console.log(data)
-        this.catePostId=data.catePostId,
-     
-     
-   
-      this.statusValue=data.statusValue,
+        this.catePostId=data.id,
+      this.statusValue=data.is_active,
       this.name=data.name,
-      this.nameEng=data.nameEng
+      this.nameEng=data.PostTypesTrans[0].name
         
     },
 
@@ -152,7 +150,7 @@ export default {
 
     if(this.$refs.form[0].validate()){
 
-      console.log(this.nameEng)
+      console.log(this.statusValue)
   this.updateCatePost({
             'cate_post_id':this.catePostId,
             'cate_post_name':this.name,
@@ -171,7 +169,8 @@ export default {
   },
 
   ...mapActions({
-    updateCatePost:'CatePost/updateCatePost'
+    updateCatePost:'CatePost/updateCatePost',
+    getCatePostOne:'CatePost/getCatePostOne'
   })
 
   },

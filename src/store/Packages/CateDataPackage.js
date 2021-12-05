@@ -29,6 +29,8 @@ const actions={
     const data = await cateDataPackageProvider.getCateDataPackageOne({'cate_package_id':cate_package_id})
  
     commit('SET_CATE_DATA_PACKAGE_ONE', data)
+
+    return data
   },
 
     async getCateDataPackage ({commit}) {
@@ -38,7 +40,7 @@ const actions={
       },
 
       async createCateDataPackage({dispatch},{
-        cate_package_name,
+    cate_package_name,
     description,
     other_lang_cate_package_name,
     other_lang_description,

@@ -3,38 +3,36 @@ import HttpRequest from './http_request'
 
 //const token = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjM3NDc0NTE3LCJleHAiOjE2Mzc0NzgxMTd9.s6MGXug5OwyEDvW6J3xmbCZxGKrAIFllEWk2y0KuIyDHCW8UFL66HZxSBmZASsFuLi_jbrsVofqTeyVv01y7-Gacoq1bFlQnwiGGGVPksyc9_n6Y5VfkK3SgHnve6VyrMLdFA6-e2U24-9W9rzal0nTsQTN0ggt_zuSmVBLjW_kW0aXUfeero0krD08EQexPi9CwZlcJdswhYq1VmkHPExobl2gdLbF8AijfXd09V_jw_RvIZX-_RasAtVn6OY76pLAbOAL2QJwfzoTjhGNfMgvZiSbdEh8X3Ksde8DA7AIv180Gq9BiAY5GbHRv46NcnQvY7CGlZoeodY5Eku0M1g'
 
-class PostProvider extends HttpRequest {
+class PromotionEventProvider extends HttpRequest {
   constructor () {
     // api api
     super('http://128.199.104.34:7000')
   }
 
 
-  async getPostOne ({post_id}) {
+  async getPromotionEventOne ({promotion_event_id}) {
 
     //Call setHeader on class HttpRequest and write common header
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
    // example path http://128.199.104.34:7000/this.get()
-
-   console.log("post_id"+post_id)
-     const {data} = await this.get('/api/v1/posts/'+post_id)
-
+     const {data} = await this.get('/api/v1/posts/'+promotion_event_id)
+     console.log(data)
      return data
   }
 
-  async getPost () {
+  async getPromotionEvent () {
 
     //Call setHeader on class HttpRequest and write common header
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
    // example path http://128.199.104.34:7000/this.get()
      const {data} = await this.get('/api/v1/posts')
-
+     console.log(data)
      return data
   }
 
-  async createPost({
+  async createPromotionEvent({
     post_type_id,
     title,
     description,
@@ -54,8 +52,8 @@ class PostProvider extends HttpRequest {
       bodyFormData.append('title',title);
       bodyFormData.append('description',description);
       bodyFormData.append('status',status);
-      // bodyFormData.append('startDate',start_date);
-      // bodyFormData.append('endDate',end_date);
+      bodyFormData.append('startDate',start_date);
+      bodyFormData.append('endDate',end_date);
       bodyFormData.append('other_lang[0][title]',other_lang_title);
       bodyFormData.append('other_lang[0][description]',other_lang_description);
       bodyFormData.append('other_lang[0][language_id]',other_lang_id);
@@ -86,7 +84,7 @@ class PostProvider extends HttpRequest {
   }
   }
 
-  async updatePost(
+  async updatePromotionEvent(
     {
     post_id,
     post_type_id,
@@ -107,8 +105,8 @@ class PostProvider extends HttpRequest {
       bodyFormData.append('title',title);
       bodyFormData.append('description',description);
       bodyFormData.append('status',status);
-      // bodyFormData.append('startDate',start_date);
-      // bodyFormData.append('endDate',end_date);
+      bodyFormData.append('startDate',start_date);
+      bodyFormData.append('endDate',end_date);
       bodyFormData.append('other_lang[0][title]',other_lang_title);
       bodyFormData.append('other_lang[0][description]',other_lang_description);
       bodyFormData.append('other_lang[0][language_id]',other_lang_id);
@@ -137,15 +135,15 @@ class PostProvider extends HttpRequest {
   }
 
 
-  async deletePost ({post_id}) {
+  async deletePromotionEvent ({promotion_event_id}) {
  
     this.setHeader({})
 
    // example path http://128.199.104.34:7000/this.get()
-    const {data} = await this.delete('/api/v1/posts/'+post_id)
+    const {data} = await this.delete('/api/v1/posts/'+promotion_event_id)
   
     return data
   }
 }
 
-export default PostProvider
+export default PromotionEventProvider

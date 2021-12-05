@@ -26,17 +26,7 @@
                 <div class="card-form">
                   <div class="form-content">
                     <v-form v-model="valid" ref="form" lazy-validation>
-                      <v-select
-                        v-show="tab == 0"
-                        :items="cate_data_package['data']"
-                        item-text="name"
-                        item-value="id"
-                        v-model="catePackageValue"
-                        :label="$t('DataPackage.Create.form.category')"
-                        :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
-                        outlined
-                        required
-                      ></v-select>
+                     
                       <v-text-field
                       v-model="name"
                         v-show="isLaoTab"
@@ -53,6 +43,20 @@
                         outlined
                         required
                       ></v-text-field>
+
+                       <v-select
+                        v-show="tab == 0"
+                        :items="cate_data_package['data']"
+                        item-text="name"
+                        item-value="id"
+                        v-model="catePackageValue"
+                        :label="$t('DataPackage.Create.form.category')"
+                        :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
+                        outlined
+                        required
+                      ></v-select>
+
+                      
                       <v-textarea
                       v-model="description"
                         v-show="isLaoTab"
@@ -241,6 +245,7 @@
 </template>
 
 <script>
+import {mapActions,mapGetters} from 'vuex'
 export default {
   name: "Edit",
 
@@ -263,31 +268,38 @@ export default {
     };
   },
 
+  created(){
+    this.getDataPackageOne({'package_id':this.$route.params.data_package_id}).then(res=>{
+      if(res.success){
+            this.loadDataToComponent(res);
+      }
+    })
+  },
   mounted() {
-    this.loadDataToComponent();
+
     this.getCateDataPackage();
     this.checkTabLang('ລາວ');
   },
 
   methods: {
 
-    loadDataToComponent(){
+    loadDataToComponent(res){
 
-      let data = this.$route.params
-       this.dataPackageId=data.dataPackageId,
-      this.catePackageValue=data.catePackageValue,
+      let data = res.data
+       this.dataPackageId=data.id,
+      this.catePackageValue=data.catePackageId,
       this.name=data.name,
-      this.nameEng=data.nameEng,
+      this.nameEng=data.PackagesTrans[0].name,
       this.description=data.description,
-      this.descriptionEng=data.descriptionEng
+      this.descriptionEng=data.PackagesTrans[0].description
       
-      for(let i=0;i<data.argImage.length;i++){
-        this.uploadImage.push(data.argImage[i].image)
-      }
+      // for(let i=0;i<data.argImage.length;i++){
+      //   this.uploadImage.push(data.argImage[i].image)
+      // }
 
-      for(let i=0;i<data.argImageEng.length;i++){
-         this.uploadImageEng.push(data.argImageEng[i].image)
-      }
+      // for(let i=0;i<data.argImageEng.length;i++){
+      //    this.uploadImageEng.push(data.argImageEng[i].image)
+      // }
     },
    
  checkTabLang(lang){
@@ -385,8 +397,10 @@ export default {
   },
 
   ...mapActions({
+          getDataPackageOne:'DataPackage/getDataPackageOne',
     updateDataPackage:'DataPackage/updateDataPackage',
     getCateDataPackage:'CateDataPackage/getCateDataPackage'
+
   })
   },
 
@@ -471,6 +485,25 @@ export default {
                 opacity: 0;
               }
             }
+             .image {
+              
+                max-width: 100%;
+                overflow: hidden;
+                object-fit: cover;
+
+               
+
+                    .image-files{
+                    max-width: 100%;
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                  }
+
+                
+                  
+              }
+
 
             .form-actions {
               width: 100%;

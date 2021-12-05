@@ -48,10 +48,8 @@
                  </template>
                  <v-list>
                    <v-list-item link @click="$router.push({name:'cate_post.edit',params:{
-                         'catePostId':item.id,
-      'statusValue':{'value':item.is_active},
-      'name':item.name,
-      'nameEng':item.PostTypesTrans[0].name}}).catch(()=>{})">
+                         'cate_post_id':item.id,
+     }}).catch(()=>{})">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('CatePost.table.options.iconEdit')}}</v-icon>
                        <v-list-item-title>
@@ -59,7 +57,7 @@
                        </v-list-item-title>
                      </v-list-item-icon>
                    </v-list-item>
-                    <v-list-item link>
+                    <v-list-item link @click="onDelete(item.id)">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('CatePost.table.options.delicon')}}</v-icon>
                        <v-list-item-title>
@@ -86,10 +84,8 @@
                  </template>
                  <v-list>
                    <v-list-item link @click="$router.push({name:'cate_post.edit',params:{
-                         'catePostId':item.id,
-      'statusValue':{'value':item.is_active},
-      'name':item.name,
-      'nameEng':item.PostTypesTrans[0].name}}).catch(()=>{})">
+                         'cate_post_id':item.id
+     }}).catch(()=>{})">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('CatePost.table.options.iconEdit')}}</v-icon>
                        <v-list-item-title>
@@ -97,7 +93,7 @@
                        </v-list-item-title>
                      </v-list-item-icon>
                    </v-list-item>
-                    <v-list-item link>
+                    <v-list-item link @click="onDelete(item.id)">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('CatePost.table.options.delicon')}}</v-icon>
                        <v-list-item-title>
@@ -118,17 +114,27 @@
           <h3>{{ $t("CatePost.table.dontdata") }}</h3>
         </div>
       </div>
+             <ModalDelete>
+        <template v-slot="{close}">
+          <Delete :cate_post_id="cate_post_id" @close="close"/>
+        </template>
+      </ModalDelete>
     </section>
   </div>
 </template>
 
 <script>
 import {mapActions, mapGetters} from 'vuex'
+import Delete from "@/components/forms/posts/cate_post/Delete";
 export default {
   name: "CatePost",
 
+components: {
+    Delete
+  },
   data() {
     return {
+      cate_post_id:'',
       isLaoLanguage:localStorage.getItem('lang')==='la',
       loading: false,
      
@@ -148,6 +154,11 @@ export default {
           name: "cate_post.create",
         })
         .catch(() => {});
+    },
+         onDelete(cate_post_id) {
+        this.cate_post_id = cate_post_id
+     
+      this.$store.commit("modalDelete_State", true);
     },
 
     ...mapActions({
@@ -170,6 +181,8 @@ export default {
   .cate_post-content {
     width: 100%;
     padding: 1rem;
+    
+    
 
   }
 }

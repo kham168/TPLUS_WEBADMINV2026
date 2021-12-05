@@ -23,7 +23,11 @@ const mutations={
 
 const actions={
  
-  
+  async getProductOne ({commit},{product_id}) {
+    const data = await productProvider.getProductOne({'product_id':product_id})
+ 
+    return data
+  },
 
     async getProduct ({commit}) {
         const data = await productProvider.getProduct()

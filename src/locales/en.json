@@ -51,6 +51,11 @@
         "icon": "far fa-newspaper",
         "text": "Posts",
         "router": "/post"
+      },
+      {
+        "icon": "far fa-newspaper",
+        "text": "Promotion or Event",
+        "router": "/promotion_event"
       }
     ]
   },
@@ -479,13 +484,14 @@
     "table": {
       "headers": [
         { "text": "No", "value": "No", "sortable": false },
+        { "text": "Pictures", "value": "PostImageTrans[0].image", "sortable": false },
         { "text": "Post Name", "value": "PostTrans[0].title", "sortable": true },
         { "text": "Category", "value": "postTypeId", "sortable": true },
         { "text": "Description", "value": "PostTrans[0].description", "sortable": false },
         { "text": "Start Date", "value": "startDate", "sortable": false },
         { "text": "End Date", "value": "endDate", "sortable": false },
         { "text": "Status", "value": "status", "sortable": false },
-        { "text": "Pictures", "value": "PostImageTrans[0].image", "sortable": false },
+
         { "text": "Actions", "value": "Actions", "sortable": false }
       ],
       "dontdata": "Dont have data",
@@ -525,6 +531,63 @@
     ]
   }
   },
+
+  "PromotionEvent": {
+    "title": "Promotion and Event Data",
+    "button": "Create",
+    "txtsearch": "Search Promotion or Event",
+    "loadingtext": "Loading...",
+    "table": {
+      "headers": [
+        { "text": "No", "value": "No", "sortable": false },
+        { "text": "Pictures", "value": "PostImageTrans[0].image", "sortable": false },
+        { "text": "title", "value": "PostTrans[0].title", "sortable": true },
+        { "text": "Category", "value": "postTypeId", "sortable": true },
+        { "text": "Description", "value": "PostTrans[0].description", "sortable": false },
+        { "text": "Start Date", "value": "startDate", "sortable": false },
+        { "text": "End Date", "value": "endDate", "sortable": false },
+        { "text": "Status", "value": "status", "sortable": false },
+
+        { "text": "Actions", "value": "Actions", "sortable": false }
+      ],
+      "dontdata": "Dont have data",
+      "options":{
+        "edit": "Edit", "iconEdit": "fas fa-edit",
+        "delete": "Delete", "delicon": "fas fa-trash-alt"
+     }
+    },
+
+    "Create": {
+      "header": "Add Promotion or Event",
+      "lang": {
+        "lao": "Lao",
+        "Eng": "English"
+      },
+      "form": {
+        "category": "Categories",
+        "post_name": "title",
+        "description": "Description",
+        "picture": "Upload Image",
+        "start_date":"Start Date",
+        "end_date":"End Date",
+        "status":"Status",
+        "button": {
+          "save": "Save",
+          "cancel": "Cancel"
+        }
+      }
+    },
+    "Edit": {
+      "header": "Edit Promotion or Event"
+    },
+    "status":{
+      "item":[
+      {"text":"Open","value":"open"},
+      {"text":"Close","value":"close"}
+    ]
+  }
+  },
+
 
   "CateProduct": {
     "title": "Category Product",
@@ -576,10 +639,11 @@
     "table": {
       "headers": [
         { "text": "No", "value": "No", "sortable": false },
+        { "text": "Pictures", "value": "Picture", "sortable": false },
         { "text": "Product Name", "value": "ProductName", "sortable": true },
         { "text": "Category", "value": "CateProduct", "sortable": true },
         { "text": "Description", "value": "description", "sortable": false },
-        { "text": "Pictures", "value": "Picture", "sortable": false },
+     
         { "text": "Actions", "value": "Actions", "sortable": false }
       ],
       "dontdata": "Dont have data",
@@ -661,8 +725,9 @@
       "headers": [
         { "text": "No", "value": "No", "sortable": false },
         { "text": "Pictures", "value": "Picture", "sortable": true },
-        { "text": "Category", "value": "CateDataPackage", "sortable": true },
         { "text": "Data Package Name", "value": "DataPackageName", "sortable": false },
+        { "text": "Category", "value": "CateDataPackage", "sortable": true },
+    
         { "text": "Description", "value": "description", "sortable": false },
         { "text": "Actions", "value": "Actions", "sortable": false }
       ],
@@ -916,5 +981,10 @@
     "loginSuccess": "Login successful",
     "loginError": "Login failed.",
     "permissionError": "Failed to delete Permissions table is active"
+  },
+  "Modal":{
+    "confirmDelete":"Are you sure?",
+    "btnCancel":"Cancel",
+    "btnConfirm":"Delete"
   }
 }

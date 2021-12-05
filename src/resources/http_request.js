@@ -7,6 +7,8 @@ import Router from '@/router';
 
 
 
+
+
 class HttpRequest {
 
   //api 
@@ -39,7 +41,7 @@ class HttpRequest {
       console.log("response body:")
       console.log(response)
 
-      if(response.config.method=="post" && response.status == 200){
+       if(response.config.method=="post" && response.status == 200){
         setTimeout(() => {
           Store.dispatch({
           type:"action_Notifi_Success",
@@ -62,7 +64,7 @@ class HttpRequest {
           message:i18n.tc('Notification.delDataSuccess')
         })
        }, 300);
-       Router.back();
+       Store.commit("modalDelete_State", false);
       }
       return response
     }, function (error) {

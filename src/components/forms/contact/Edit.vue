@@ -71,7 +71,7 @@
 
 <script>
 
-import {mapActions} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 export default {
   name: "Edit",
 
@@ -88,22 +88,49 @@ export default {
     };
   },
 
+created(){
+  this.getContactOne({'contact_id':this.$route.params.contact_id}).then(res=>{
+    if(res.success){
+      this.loadDataToComponent()
+    }
+    })
+
+  
+  
+},
+
   mounted() {
-    this.contactId = this.$route.params.contact_id;
-    this.name = this.$route.params.name;
-    this.email = this.$route.params.email;
-    this.title = this.$route.params.title;
-    this.description = this.$route.params.description;
-    let data = this.$route.params;
-    console.log("data is", data);
+  
+  
+      
   },
 
   methods: {
-  
+   fetchContactOne() {
+      this.$axios.get(`position`).then((res) => {
+        if (res.status === 200) {
+          this.position = res.data.data;
+        }
+      }).catch((error) => {
+        console.log(error)
+      })
+    },
+
+    loadDataToComponent(){
+
+     
+      let data = this.contact_one['data'];
+      console.log("data:"+data);
+      
+     this.contactId = data.id;
+     this.name = data.name;
+     this.email = data.email;
+     this.title = data.title;
+     this.description = data.description;
+    },
 
     submitForm () {
-    this.$refs.form.validate();
-
+  
     if(this.$refs.form.validate()){
       this.updateContact({'contact_id':this.contactId,'name':this.name,'email':this.email,'title':this.title,'description':this.description})
       console.log('update successful')
@@ -117,9 +144,17 @@ export default {
   },
 
   ...mapActions({
-    updateContact:'Contact/updateContact'
+    updateContact:'Contact/updateContact',
+        getContactOne:'Contact/getContactOne',
   })
   },
+
+  computed:{
+    ...mapGetters({
+    contact_one:'Contact/contact_one',
+ 
+    })
+  }
 };
 </script>
 

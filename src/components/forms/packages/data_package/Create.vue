@@ -27,17 +27,7 @@
                 <div class="card-form">
                   <div class="form-content">
                     <v-form  v-model="valid" ref="form" lazy-validation>
-                      <v-select
-                        v-show="tab == 0"
-                        :items="cate_data_package['data']"
-                        item-text="name"
-                        item-value="id"
-                        v-model="catePackageValue"
-                        :label="$t('DataPackage.Create.form.category')"
-                        :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
-                        outlined
-                        required
-                      ></v-select>
+                     
                       <v-text-field
                       v-model="name"
                         v-show="isLaoTab"
@@ -54,6 +44,19 @@
                         outlined
                         required
                       ></v-text-field>
+
+                       <v-select
+                        v-show="tab == 0"
+                        :items="cate_data_package['data']"
+                        item-text="name"
+                        item-value="id"
+                        v-model="catePackageValue"
+                        :label="$t('DataPackage.Create.form.category')"
+                        :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
+                        outlined
+                        required
+                      ></v-select>
+                      
                       <v-textarea
                       v-model="description"
                         v-show="isLaoTab"
@@ -448,6 +451,25 @@ export default {
                 opacity: 0;
               }
             }
+             .image {
+              
+                max-width: 100%;
+                overflow: hidden;
+                object-fit: cover;
+
+               
+
+                    .image-files{
+                    max-width: 100%;
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                  }
+
+                
+                  
+              }
+
 
             .form-actions {
               width: 100%;

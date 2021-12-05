@@ -36,7 +36,7 @@
             <tr class="table-content" v-if="isLaoLanguage">
               <td>{{ index + 1 }}</td>
               <td>{{ item.name }}</td>
-              <td>{{ item.description }}</td>
+              <td class="text-limit">{{ item.description }}</td>
              
               <td>
                <v-menu offset-y>
@@ -46,7 +46,7 @@
                 </v-btn>
                  </template>
                  <v-list>
-                   <v-list-item link @click="$router.push({name:'cate_data_package.edit',params:{'cateId':item.id,'cateName':item.name,'cateDescription':item.description,'cateNameEng':item.CatePackageTrans[0].name ,'cateDescriptionEng':item.CatePackageTrans[0].description }}).catch(()=>{console.log('failed')})">
+                   <v-list-item link @click="$router.push({name:'cate_data_package.edit',params:{'cate_data_package_id':item.id}}).catch(()=>{console.log('failed')})">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('CateDataPackage.table.options.iconEdit')}}</v-icon>
                        <v-list-item-title>
@@ -54,7 +54,7 @@
                        </v-list-item-title>
                      </v-list-item-icon>
                    </v-list-item>
-                    <v-list-item link>
+                    <v-list-item link @click="onDelete(item.id)">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('CateDataPackage.table.options.delicon')}}</v-icon>
                        <v-list-item-title>
@@ -70,7 +70,7 @@
             <tr class="table-content" v-else>
               <td>{{ index + 1 }}</td>
               <td>{{ item.CatePackageTrans[0].name }}</td>
-              <td>{{ item.CatePackageTrans[0].description }}</td>
+              <td class="text-limit">{{ item.CatePackageTrans[0].description }}</td>
              
               <td>
                <v-menu offset-y>
@@ -80,7 +80,7 @@
                 </v-btn>
                  </template>
                  <v-list>
-                   <v-list-item link @click="$router.push({name:'cate_data_package.edit',params:{'cateId':item.id,'cateName':item.name,'cateDescription':item.description,'cateNameEng':item.CatePackageTrans[0].name ,'cateDescriptionEng':item.CatePackageTrans[0].description }}).catch(()=>{console.log('failed')})">
+                   <v-list-item link @click="$router.push({name:'cate_data_package.edit',params:{'cate_data_package_id':item.id}}).catch(()=>{console.log('failed')})">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('CateDataPackage.table.options.iconEdit')}}</v-icon>
                        <v-list-item-title>
@@ -88,7 +88,7 @@
                        </v-list-item-title>
                      </v-list-item-icon>
                    </v-list-item>
-                    <v-list-item link>
+                    <v-list-item link @click="onDelete(item.id)">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('CateDataPackage.table.options.delicon')}}</v-icon>
                        <v-list-item-title>
@@ -109,17 +109,28 @@
           <h3>{{ $t("CateDataPackage.table.dontdata") }}</h3>
         </div>
       </div>
+        <ModalDelete>
+        <template v-slot="{close}">
+          <Delete :cate_data_package_id="cate_package_id" @close="close"/>
+        </template>
+      </ModalDelete>
     </section>
+    
   </div>
 </template>
 
 <script>
 import {mapActions,mapGetters} from 'vuex'
+import Delete from "@/components/forms/packages/cate_data_package/Delete";
 export default {
     name: 'CateDataPackage',
 
+components: {
+    Delete
+  },
     data() {
         return {
+          cate_package_id:'',
           isLaoLanguage:localStorage.getItem('lang') === 'la',
              loading: false,
              searchItem: "",
@@ -137,6 +148,11 @@ export default {
           name: "cate_data_package.create",
         })
         .catch(() => {});
+    },
+    onDelete(cate_package_id) {
+        this.cate_package_id = cate_package_id
+     
+      this.$store.commit("modalDelete_State", true);
     },
 
     ...mapActions({
@@ -160,7 +176,12 @@ export default {
   .cate_data_package-content {
     width: 100%;
     padding: 1rem;
-
+    .text-limit{
+ max-width: 200px;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ white-space: nowrap;
+    }
   }
 }
 </style>

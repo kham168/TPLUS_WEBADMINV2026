@@ -110,22 +110,28 @@ export default {
       valid: true,
     };
   },
-
+  created(){
+    this.getCateProductOne({'cate_product_id':this.$route.params.cate_product_id}).then(res=>{
+      if(res.success){
+          this.loadDataToComponent(res);
+      }
+    })
+  },
   mounted() {
-    this.loadDataToComponent();
+  
     this.checkTabLang('ລາວ');
   },
 
   methods: {
 
-    loadDataToComponent(){
-      let data = this.$route.params;
+    loadDataToComponent(res){
+      let data = res.data;
 
-       this.cateId=data.cate_product_id,
+       this.cateId=data.id,
         this.cateName=data.cateName,
      this.description=data.description,
-      this.cateNameEng=data.cateNameEng,
-      this.descriptionEng=data.descriptionEng
+      this.cateNameEng=data.CateProductTrans[0].cateName,
+      this.descriptionEng=data.CateProductTrans[0].description
     },
    
  checkTabLang(lang){
@@ -165,7 +171,8 @@ export default {
     this.$refs.form[0].reset();
   },
    ...mapActions({
-    updateCateProduct:'CateProduct/updateCateProduct'
+    updateCateProduct:'CateProduct/updateCateProduct',
+    getCateProductOne:'CateProduct/getCateProductOne'
   })
   },
 };

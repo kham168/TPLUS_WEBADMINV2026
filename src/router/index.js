@@ -69,7 +69,7 @@ const routes = [
 
     },
     {
-      path:"edit",
+      path:"edit/:cate_post_id",
       name:"cate_post.edit",
       component: () => import(/* webpackChunkName:"cate_post Edit" */ '../components/forms/posts/cate_post/Edit.vue'),
       meta:{
@@ -110,7 +110,7 @@ const routes = [
           }
         },
         {
-          path:"edit",
+          path:"edit/:post_id",
           name:"post.edit",
           component:() => import(/* webpackChunkName: "post edit" */ '../components/forms/posts/post/Edit.vue'),
           meta:{
@@ -121,6 +121,45 @@ const routes = [
       ]
      },
 
+      //Promotion and event
+    {
+      path:"/promotion_event",
+      component:() => import(/* webpackChunkName: "post" */ '../views/posts/promotion_event/promotion_event.vue'),
+      meta:{
+        middleware:[Middleware.auth],
+        layout:'admin'
+      },
+
+      children:[
+       {
+         path:"",
+         name:"promotion_event.index",
+         component: () => import(/* webpackChunkName: "post index" */ '../views/posts/promotion_event/index.vue'),
+         meta:{
+          middleware:[Middleware.auth],
+          layout:'admin'
+         }
+       },
+        {
+          path:"create",
+          name:"promotion_event.create",
+          component: () => import(/* webpackChunkName: "post create" */ '../components/forms/posts/promotion_event/Create.vue'),
+          meta:{
+            middleware:[Middleware.auth],
+           layout:'admin'
+          }
+        },
+        {
+          path:"edit/:promotion_event_id",
+          name:"promotion_event.edit",
+          component:() => import(/* webpackChunkName: "post edit" */ '../components/forms/posts/promotion_event/Edit.vue'),
+          meta:{
+            middleware:[Middleware.auth],
+            layout:'admin'
+          }
+        }
+      ]
+     },
 
    //Category Product
    {
@@ -150,7 +189,7 @@ const routes = [
 
     },
     {
-      path:"edit",
+      path:"edit/:cate_product_id",
       name:"cate_product.edit",
       component: () => import(/* webpackChunkName:"Cate_product Edit" */ '../components/forms/products/cate_product/Edit.vue'),
       meta:{
@@ -191,7 +230,7 @@ const routes = [
        }
      },
      {
-       path:"edit",
+       path:"edit/:product_id",
        name:"product.edit",
        component:() => import(/* webpackChunkName: "ProductEdit" */ '../components/forms/products/Product/Edit.vue'),
        meta:{
@@ -404,7 +443,7 @@ const routes = [
 
     },
     {
-      path:"edit",
+      path:"edit/:cate_data_package_id",
       name:"cate_data_package.edit",
       component: () => import(/* webpackChunkName:"Data_package Edit" */ '../components/forms/packages/cate_data_package/Edit.vue'),
       meta:{
@@ -445,7 +484,7 @@ const routes = [
 
     },
     {
-      path:"edit",
+      path:"edit/:data_package_id",
       name:"data_package.edit",
       component: () => import(/* webpackChunkName:"Data_package Edit" */ '../components/forms/packages/data_package/Edit.vue'),
       meta:{
@@ -485,7 +524,7 @@ const routes = [
 
       },
       {
-        path:"edit",
+        path:"edit/:banner_id",
         name:"banner.edit",
         component: () => import(/* webpackChunkName:"Banner Edit" */ '../components/forms/banner/Edit.vue'),
         meta:{
@@ -496,6 +535,72 @@ const routes = [
       },
       ]
     },
+
+     //Logo
+     {
+      path: "/logo",
+      component: () => import(/* webpackChunkName:"Logo" */'../views/logo/index.vue'),
+      meta: {
+          layout: 'admin'
+      },
+      children: [
+          {
+              path: "",
+              name: "logo.index",
+              component: () => import(/* webpackChunkName:"Logo index" */'../views/logo/index.vue'),
+              meta: {
+                  layout: "admin"
+              }
+          },
+    
+          {
+              path: "edit",
+              name: "logo.edit",
+              component: () => import(/* webpackChunkName:"Logo Edit" */ '../components/forms/logo/Edit.vue'),
+              meta: {
+                  layout: 'admin',
+              }
+
+          },
+      ]
+  },
+  //Position
+  {
+      path: "/position",
+      component: () => import(/* webpackChunkName:"Position" */'../views/position/position'),
+      meta: {
+          layout: 'admin'
+      },
+      children: [
+          {
+              path: "",
+              name: "position.index",
+              component: () => import(/* webpackChunkName:"Position index" */'../views/position/index.vue'),
+              meta: {
+                  layout: "admin"
+              }
+          },
+          {
+              path: "create",
+              name: "position.create",
+              component: () => import(/* webpackChunkName:"Position Create" */ '../components/forms/position/Create.vue'),
+              meta: {
+                  layout: 'admin',
+              }
+
+          },
+
+          {
+              path: "edit",
+              name: "position.edit",
+              component: () => import(/* webpackChunkName:"Position Edit" */ '../components/forms/position/Edit.vue'),
+              meta: {
+                  layout: 'admin',
+              }
+
+          },
+      ]
+  },
 
     //Contact
     {
@@ -525,7 +630,7 @@ const routes = [
 
       // },
       {
-        path:"edit",
+        path:"edit/:contact_id",
         name:"contact.edit",
         component: () => import(/* webpackChunkName:"Contact Edit" */ '../components/forms/contact/Edit.vue'),
         meta:{

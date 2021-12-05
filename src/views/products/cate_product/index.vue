@@ -36,7 +36,7 @@
             <tr class="table-content" v-if="isLaoLanguage">
               <td>{{ index + 1 }}</td>
               <td>{{ item.cateName }}</td>
-              <td>{{ item.description }}</td>
+              <td class="text-limit">{{ item.description }}</td>
              
               <td>
                <v-menu offset-y>
@@ -46,7 +46,7 @@
                 </v-btn>
                  </template>
                  <v-list>
-                   <v-list-item link @click="$router.push({name:'cate_product.edit',params:{'cate_product_id':item.id,'cateName':item.cateName,'description':item.description,'cateNameEng':item.CateProductTrans[0].cateName,'descriptionEng':item.CateProductTrans[0].description}}).catch(()=>{})">
+                   <v-list-item link @click="$router.push({name:'cate_product.edit',params:{'cate_product_id':item.id}}).catch(()=>{})">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('CateProduct.table.options.iconEdit')}}</v-icon>
                        <v-list-item-title>
@@ -54,7 +54,7 @@
                        </v-list-item-title>
                      </v-list-item-icon>
                    </v-list-item>
-                    <v-list-item link>
+                    <v-list-item link  @click="onDelete(item.id)">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('CateProduct.table.options.delicon')}}</v-icon>
                        <v-list-item-title>
@@ -70,7 +70,7 @@
             <tr class="table-content" v-else>
               <td>{{ index + 1 }}</td>
               <td>{{ item.CateProductTrans[0].cateName }}</td>
-              <td>{{ item.CateProductTrans[0].description }}</td>
+              <td class="text-limit">{{ item.CateProductTrans[0].description }}</td>
              
               <td>
                <v-menu offset-y>
@@ -80,7 +80,7 @@
                 </v-btn>
                  </template>
                  <v-list>
-                   <v-list-item link @click="$router.push({name:'cate_product.edit',params:{'cate_product_id':item.id,'cateName':item.cateName,'description':item.description,'cateNameEng':item.CateProductTrans[0].cateName,'descriptionEng':item.CateProductTrans[0].description}}).catch(()=>{})">
+                   <v-list-item link @click="$router.push({name:'cate_product.edit',params:{'cate_product_id':item.id}}).catch(()=>{})">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('CateProduct.table.options.iconEdit')}}</v-icon>
                        <v-list-item-title>
@@ -88,7 +88,7 @@
                        </v-list-item-title>
                      </v-list-item-icon>
                    </v-list-item>
-                    <v-list-item link>
+                    <v-list-item link @click="onDelete(item.id)">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('CateProduct.table.options.delicon')}}</v-icon>
                        <v-list-item-title>
@@ -109,17 +109,27 @@
           <h3>{{ $t("CateProduct.table.dontdata") }}</h3>
         </div>
       </div>
+                         <ModalDelete>
+        <template v-slot="{close}">
+          <Delete :cate_product_id="cate_product_id" @close="close" />
+        </template>
+      </ModalDelete>
     </section>
   </div>
 </template>
 
 <script>
 import {mapActions,mapGetters} from 'vuex'
+import Delete from "@/components/forms/products/cate_product/Delete";
 export default {
     name: 'CateProduct',
 
+components: {
+    Delete
+  },
     data() {
         return {
+          cate_product_id:'',
           isLaoLanguage:localStorage.getItem('lang') === 'la',
              loading: false,
    
@@ -139,6 +149,11 @@ export default {
           name: "cate_product.create",
         })
         .catch(() => {});
+    },
+      onDelete(cate_product_id) {
+        this.cate_product_id = cate_product_id
+     
+      this.$store.commit("modalDelete_State", true);
     },
 
     ...mapActions({
@@ -163,7 +178,12 @@ export default {
   .cate_product-content {
     width: 100%;
     padding: 1rem;
-
+    .text-limit{
+ max-width: 200px;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ white-space: nowrap;
+    }
   }
 }
 </style>

@@ -1,27 +1,27 @@
 <template>
-  <div id="Post">
-    <section class="post-section">
+  <div id="PromotionEvent">
+    <section class="promotionEvent-section">
         
-      <div class="header post-header">
-        <h1>{{ $t("Post.title") }}</h1>
+      <div class="header promotionEvent-header">
+        <h1>{{ $t("PromotionEvent.title") }}</h1>
         <v-btn @click="CreatePost" class="btn btn-create">
-          <v-icon>fal fa-plus-circle</v-icon>{{ $t("Post.button") }}</v-btn
+          <v-icon>fal fa-plus-circle</v-icon>{{ $t("PromotionEvent.button") }}</v-btn
         >
       </div>
      
-      <div class="post-content">
+      <div class="promotionEvent-content">
         <v-data-table
-          :headers="$t('Post.table.headers')"
-          :items="post['data']"
+          :headers="$t('PromotionEvent.table.headers')"
+          :items="promotion_event['data']"
           :search="searchItem"
           :loading="loading"
-          :loading-text="$t('Post.loadingtext')"
-          v-if="post['data'] != ''"
+          :loading-text="$t('PromotionEvent.loadingtext')"
+          v-if="promotion_event['data'] != ''"
         >
           <template v-slot:top>
             <v-toolbar flat>
               <v-text-field
-                :label="$t('Post.txtsearch')"
+                :label="$t('PromotionEvent.txtsearch')"
                 filled
                 rounded
                 dense
@@ -42,6 +42,8 @@
               <td>{{ item.title }}</td>
               <td>{{ item.postTypeId}}</td>
               <td class="text-limit">{{ item.description }}</td>
+              <td>{{ item.startDate }}</td>
+              <td>{{ item.endDate }}</td>
               <td>{{ item.status }}</td>
             
               <td>
@@ -52,13 +54,13 @@
                 </v-btn>
                  </template>
                  <v-list>
-                   <v-list-item link @click="$router.push({name:'post.edit',params:{      
-                     'post_id':item.id,
-     }}).catch(()=>{})">
+                   <v-list-item link @click="$router.push({name:'promotionEvent.edit',params:{      
+                   'promotion_event_id':item.id,
+      }}).catch(()=>{})">
                      <v-list-item-icon>
-                       <v-icon class="mr-3" small>{{$t('Post.table.options.iconEdit')}}</v-icon>
+                       <v-icon class="mr-3" small>{{$t('PromotionEvent.table.options.iconEdit')}}</v-icon>
                        <v-list-item-title>
-                         {{$t('Post.title')}}
+                         {{$t('PromotionEvent.title')}}
                        </v-list-item-title>
                      </v-list-item-icon>
                    </v-list-item>
@@ -80,6 +82,8 @@
               <td>{{ item.PostTrans[0].title }}</td>
               <td>{{ item.postTypeId }}</td>
               <td class="text-limit">{{ item.PostTrans[0].description }}</td>
+              <td>{{ item.startDate }}</td>
+              <td>{{ item.endDate }}</td>
               <td>{{ item.status }}</td>
              
               <td>
@@ -90,21 +94,21 @@
                 </v-btn>
                  </template>
                  <v-list>
-                   <v-list-item link @click="$router.push({name:'post.edit',params:{      
-                     'post_id':item.id,
+                   <v-list-item link @click="$router.push({name:'promotionEvent.edit',params:{      
+                     'promotion_event_id':item.id,
       }}).catch(()=>{})">
                      <v-list-item-icon>
-                       <v-icon class="mr-3" small>{{$t('Post.table.options.iconEdit')}}</v-icon>
+                       <v-icon class="mr-3" small>{{$t('PromotionEvent.table.options.iconEdit')}}</v-icon>
                        <v-list-item-title>
-                         {{$t('Post.table.options.edit')}}
+                         {{$t('PromotionEvent.table.options.edit')}}
                        </v-list-item-title>
                      </v-list-item-icon>
                    </v-list-item>
                     <v-list-item link @click="onDelete(item.id)">
                      <v-list-item-icon>
-                       <v-icon class="mr-3" small>{{$t('Post.table.options.delicon')}}</v-icon>
+                       <v-icon class="mr-3" small>{{$t('PromotionEvent.table.options.delicon')}}</v-icon>
                        <v-list-item-title>
-                         {{$t('Post.table.options.delete')}}
+                         {{$t('PromotionEvent.table.options.delete')}}
                        </v-list-item-title>
                      </v-list-item-icon>
                    </v-list-item>
@@ -119,12 +123,12 @@
           <div class="image">
             <v-img src="@/assets/Images/NoData.png"></v-img>
           </div>
-          <h3>{{ $t("Post.table.dontdata") }}</h3>
+          <h3>{{ $t("PromotionEvent.table.dontdata") }}</h3>
         </div>
       </div>
                    <ModalDelete>
         <template v-slot="{close}">
-          <Delete :post_id="post_id" @close="close" />
+          <Delete :promotion_event_id="promotion_event_id" @close="close" />
         </template>
       </ModalDelete>
     </section>
@@ -134,18 +138,18 @@
 
 <script>
 import {mapActions, mapGetters} from 'vuex'
-import Delete from "@/components/forms/posts/post/Delete";
+import Delete from "@/components/forms/posts/promotion_event/Delete";
 
 export default {
   
-  name: "Post",
+  name: "PromotionEvent",
 
 components: {
     Delete
   },
   data() {
     return {
-      post_id:'',
+      promotion_event_id:'',
       isLaoLanguage:localStorage.getItem('lang') === 'la',
       image:'@/src/assets/logo.png',
       loading: false,
@@ -158,7 +162,7 @@ components: {
 
   mounted() {
     
-    this.getPost()
+    this.getPromotionEvent()
 
   },
 
@@ -176,14 +180,14 @@ components: {
         })
         .catch(() => {});
     },
-     onDelete(post_id) {
-        this.post_id = post_id
+     onDelete(promotion_event_id) {
+        this.promotion_event_id = promotion_event_id
      
       this.$store.commit("modalDelete_State", true);
     },
 
            ...mapActions({
-getPost:'Post/getPost',
+getPromotionEvent:'PromotionEvent/getPromotionEvent',
 getCatePostOne:'CatePost/getCatePostOne'
 
 
@@ -193,7 +197,7 @@ getCatePostOne:'CatePost/getCatePostOne'
  
   computed:{
     ...mapGetters({
-        post:'Post/post',
+        promotion_event:'PromotionEvent/promotion_event',
         cate_post_one:'CatePost/cate_post_one'
     
 
@@ -203,18 +207,19 @@ getCatePostOne:'CatePost/getCatePostOne'
 </script>
 
 <style lang="scss" scoped>
-.post-section {
+.promotionEvent-section {
   width: 100%;
   background-color: $white-color;
 
-  .post-content {
+  .promotionEvent-content {
     width: 100%;
     padding: 1rem;
-     .text-limit{
+    .text-limit{
  max-width: 200px;
  overflow: hidden;
  text-overflow: ellipsis;
  white-space: nowrap;
+
     }
   }
 }

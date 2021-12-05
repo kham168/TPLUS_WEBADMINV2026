@@ -10,7 +10,16 @@ class ProductProvider extends HttpRequest {
   }
 
 
+  async getProductOne ({product_id}) {
 
+    //Call setHeader on class HttpRequest and write common header
+    //If write Header on class HttpRequest Should call like under method
+     this.setHeader({})
+   // example path http://128.199.104.34:7000/this.get()
+     const {data} = await this.get('/api/v1/products/'+product_id)
+    
+     return data
+  }
 
   async getProduct () {
 
@@ -19,7 +28,7 @@ class ProductProvider extends HttpRequest {
      this.setHeader({})
    // example path http://128.199.104.34:7000/this.get()
      const {data} = await this.get('/api/v1/products')
-     console.log(data)
+ 
      return data
   }
 
@@ -39,13 +48,13 @@ class ProductProvider extends HttpRequest {
         bodyFormData.append('cateProductId[]',cate_product_id[i]);
       }
 
-      for(let i=0;i<cate_product_id.length;i++){
+      for(let i=0;i<avatar.length;i++){
         bodyFormData.append('avatar[]',avatar[i]);
       }
 
-      for(let i=0;i<avatar_EN.length;i++){
-        bodyFormData.append('avatar_EN[]',avatar_EN[i]);
-      }
+      // for(let i=0;i<avatar_EN.length;i++){
+      //   bodyFormData.append('avatar_EN[]',avatar_EN[i]);
+      // }
 
       bodyFormData.append('productName',product_name);
       bodyFormData.append('description',description);
@@ -84,9 +93,9 @@ class ProductProvider extends HttpRequest {
           bodyFormData.append('avatar[]',avatar[i]);
         }
   
-        for(let i=0;i<avatar_EN.length;i++){
-          bodyFormData.append('avatar_EN[]',avatar_EN[i]);
-        }
+        // for(let i=0;i<avatar_EN.length;i++){
+        //   bodyFormData.append('avatar_EN[]',avatar_EN[i]);
+        // }
   
         bodyFormData.append('productName',product_name);
         bodyFormData.append('description',description);
