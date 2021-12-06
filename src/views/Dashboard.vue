@@ -1,35 +1,607 @@
 <template>
-    <div id="Dashboard">
-        <h1>Dashboard page</h1>
-    </div>
+  <div id="Dashboard">
+    <v-row>
+      <v-col cols="12" md="8" lg="8">
+        <div class="dashboard-left">
+          <div class="banner-dashboard">
+            <div class="banner-image">
+              <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" width="220" height="220"
+                   viewBox="0 0 821.16801 687.80201" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <polygon points="755.994 674.556 743.734 674.555 737.902 627.268 755.996 627.268 755.994 674.556"
+                         fill="#9e616a"/>
+                <path
+                    d="M948.53667,792.539l-39.53076-.00146v-.5a15.3873,15.3873,0,0,1,15.38647-15.38623h.001l24.144.001Z"
+                    transform="translate(-189.41599 -106.099)" fill="#2f2e41"/>
+                <polygon points="708.994 674.556 696.734 674.555 690.902 627.268 708.996 627.268 708.994 674.556"
+                         fill="#9e616a"/>
+                <path
+                    d="M901.53667,792.539l-39.53076-.00146v-.5a15.3873,15.3873,0,0,1,15.38647-15.38623h.001l24.144.001Z"
+                    transform="translate(-189.41599 -106.099)" fill="#2f2e41"/>
+                <path id="ae5c11dc-7e77-468a-a39f-cc8da6ee1565-1265" data-name="Path 1495"
+                      d="M368.748,790.71V410.9a8.82,8.82,0,0,1,8.82-8.82h39.36a8.82,8.82,0,0,1,8.82,8.82h0V791.7Z"
+                      transform="translate(-189.41599 -106.099)" fill="#3f3d56"/>
+                <path id="bc696f83-47b6-45c9-967f-bb64f1f3bee5-1266" data-name="Path 1496"
+                      d="M498.748,791.9v-302a8.82,8.82,0,0,1,8.82-8.82h39.36a8.82,8.82,0,0,1,8.82,8.82h0V791.25Z"
+                      transform="translate(-189.41599 -106.099)" fill="#3f3d56"/>
+                <path
+                    d="M267.747,433.09884a2.9998,2.9998,0,0,1-2.23278-5.00244l131.60547-146.791L526.638,354.03488,656.92679,129.53732,789.65458,238.78244a3.00008,3.00008,0,1,1-3.813,4.63281L658.56937,138.66037,528.85819,362.16281,398.37614,288.8923,269.9816,432.10129A2.99144,2.99144,0,0,1,267.747,433.09884Z"
+                    transform="translate(-189.41599 -106.099)" fill="#3f3d56"/>
+                <circle id="a1f8771a-4bf9-4603-9747-6ae739e4ad47" data-name="Ellipse 300" cx="77.832" cy="324" r="28"
+                        fill="#ffed00"/>
+                <circle id="ffdbdf53-78c2-412f-9ede-372406e5d245" data-name="Ellipse 301" cx="207.832" cy="179" r="28"
+                        fill="#ccc"/>
+                <circle id="b7cff929-f00d-4f86-944c-e500b6ceb6ad" data-name="Ellipse 302" cx="337.832" cy="252" r="28"
+                        fill="#e6e6e6"/>
+                <circle id="eabc0b76-6faa-4fa0-934c-daff28b491dd" data-name="Ellipse 303" cx="467.832" cy="28" r="28"
+                        fill="#ffed00"/>
+                <circle id="a7ca0488-8ee6-49e2-b245-2872b84c042e" data-name="Ellipse 304" cx="717.832" cy="236.535"
+                        r="28" fill="#ffed00"/>
+                <path id="b579ef19-595a-43de-9b6d-0ead8268ca48-1267" data-name="Path 1507"
+                      d="M897.348,560.755c10.47981,1.26236,37.279-8.29806,38.73146,6.24641,13.7938,40.605,13.38448,196.25632,13.38448,196.25632l-21,1S911.683,640.58334,903.74813,614.12488c-3.98187,32.159-3.28421,155.13285-3.28421,155.13285l-19,1s-17.04317-104.7174-17.14045-135.45308c-2.07126-22.51351,3.00876-55.87593.83463-77.63979a83.21836,83.21836,0,0,0,32.19,3.59Z"
+                      transform="translate(-189.41599 -106.099)" fill="#3f3d56"/>
+                <path id="b3465432-03e0-48eb-8016-b04aa244e72c-1268" data-name="Path 1513"
+                      d="M758.748,790.554V352.8c0-5.614,3.949-10.166,8.82-10.166h39.36c4.871,0,8.82,4.551,8.82,10.166V791.7Z"
+                      transform="translate(-189.41599 -106.099)" fill="#3f3d56"/>
+                <path id="ac7870c5-efcc-4c4b-b17f-07e0bff4d096-1269" data-name="Path 1508"
+                      d="M861.698,442.955a130.65716,130.65716,0,0,0-15.31-24.17,38.322,38.322,0,0,1-3.4-4.64c-2.15-3.73-2.79-8.11-4.15-12.19-3.8-11.44-13.28-20.63-15.59-32.46-.84-4.3-7.93567,8.19791-6.07,13.53,3.33,9.65,3.76,19.87,8,29.19s9.22,18.26,12.88,27.79c2.08,5.41,3.74,11,6.79,16s7.81,9.19,13.56,9.94a33.44983,33.44983,0,0,1,1.63013-10.68C861.288,451.325,863.508,446.685,861.698,442.955Z"
+                      transform="translate(-189.41599 -106.099)" fill="#9e616a"/>
+                <path id="be4b35b3-6955-40b7-9549-45fdba6a2930-1270" data-name="Path 1509"
+                      d="M924.608,449.435a55.25867,55.25867,0,0,1,3.25-20.78c.92-2.55,2-5.14,1.91-7.85-.13-2.52-1.33-4.83-2.42-7.11-3.76-7.85-6.4-16.17-9-24.47l-5-15.65c-1.63018-1.19543,7.89-1.61,9.92,1.2,6.64,9.22,11.67,19.81,16.93005,29.88a50.57714,50.57714,0,0,1,3.42,7.49,41.18565,41.18565,0,0,1,1.8,12.94c0,8.19-1.07995,16.35-2.19995,24.47-.71,5.09-1.64,10.63-5.49,14C933.72793,458.435,929.708,453.435,924.608,449.435Z"
+                      transform="translate(-189.41599 -106.099)" fill="#9e616a"/>
+                <circle id="a7d383a2-21d6-4551-be8a-8c82a5e576cb" data-name="Ellipse 307" cx="708.75198" cy="314.48401"
+                        r="20.75" fill="#9e616a"/>
+                <path id="fb091cb1-8ad4-4d57-b74d-c940c723d6bf-1271" data-name="Path 1512"
+                      d="M881.29986,399.881a3.602,3.602,0,0,1,.75956-3.72335c.51814-.40831,1.20624-.56062,1.7617-.95027a7.602,7.602,0,0,0,1.89952-2.40314,10.31516,10.31516,0,0,1,12.909-3.27672c3.42909,1.79484,5.49957,5.38869,8.54935,7.80841,1.54823,1.25389,3.34408,2.18449,4.90161,3.43838a20.14613,20.14613,0,0,1,6.35451,10.27787,58.31035,58.31035,0,0,1,1.7617,12.12454,10.90476,10.90476,0,0,1-.142,3.68607,10.31659,10.31659,0,0,1-1.39586,2.84979c-3.13478,4.7493-7.26645,9.0623-12.4437,11.5131s-11.47477,2.84979-16.58055.285a2.84975,2.84975,0,0,1-1.27259-1.01658,3.65791,3.65791,0,0,1-.199-2.19382,15.01763,15.01763,0,0,0-1.65284-8.40634c-.95027-1.89951-2.37516-3.53373-3.13479-5.49956a19.15971,19.15971,0,0,1-.89328-6.81979C882.39205,411.59309,882.79831,405.63756,881.29986,399.881Z"
+                      transform="translate(-189.41599 -106.099)" fill="#2d293d"/>
+                <path id="ef6ae9ea-be37-4bc6-b1be-067860dc7e9d-1272" data-name="Path 1514"
+                      d="M238.747,791.149V579.808c0-2.71,3.949-4.908,8.82-4.908h39.36c4.871,0,8.82,2.2,8.82,4.908V791.7Z"
+                      transform="translate(-189.41599 -106.099)" fill="#3f3d56"/>
+                <path id="b4c810f7-8361-4f56-9780-d97c96bbbba4-1273" data-name="Path 944"
+                      d="M1009.585,793.901H190.416a1,1,0,1,1,0-2h819.168a1,1,0,0,1,0,2Z"
+                      transform="translate(-189.41599 -106.099)" fill="#e6e6e6"/>
+                <path id="b32730d1-ac43-40b1-a176-73e18bf362e5-1274" data-name="Path 1515"
+                      d="M628.747,790.405V293.635c0-6.371,3.949-11.536,8.82-11.536h39.36c4.871,0,8.82,5.165,8.82,11.536V791.7Z"
+                      transform="translate(-189.41599 -106.099)" fill="#ffed00"/>
+                <circle cx="627.18243" cy="265.36557" r="9" fill="#a0616a"/>
+                <circle cx="727.18243" cy="261.36557" r="9" fill="#a0616a"/>
+                <path
+                    d="M938.46807,478.875c.87817-.80359,8.0376-42.67377,7.99585-43.61731-.1106-5.15845-15.85-11.05-19-9-2.97187,1.93408-8.14667,24.12415-11.477,28.16529l-3.523-6.16529h-28l-1.69708,3.15174c-3.674-2.21338-6.97907-4.25409-8.15784-4.92933a5.30006,5.30006,0,0,0-1.311-.64495,20.31093,20.31093,0,0,1-8-3.76c-2.3-1.77-12.97412-20.30744-15.8341-19.81745-3.23.54-14.1247,9.96-14,19,1.37152-.02929,19.21374,35.64765,19.46411,36.97736,1.37,5.62,5.89392,87.57995,7.35394,91.4,6.726-.65,1.416-1.81,7.926,0,7.01,1.95,14.41-.16,21.64-.94a83.11362,83.11362,0,0,1,9.06-.4c11,.05,26.7.66,37.35,3.39.06006-6.98-6.06994-22.08-8.34-28.67a19.24793,19.24793,0,0,1,.03-5.94C930.23809,534.66508,936.09356,481.53978,938.46807,478.875Z"
+                    transform="translate(-189.41599 -106.099)" fill="#e6e6e6"/>
+              </svg>
+            </div>
+            <div class="dashboard-header">
+              <h1>Dashboard Analysis</h1>
+              <p>Welcome to TPLUS Admin</p>
+            </div>
+            <img :src="require('@/assets/Images/logo.png')" alt="">
+          </div>
+          <div class="banner-items">
+            <v-row>
+              <v-col cols="6" md="6" lg="6">
+                <div class="banner-item-card">
+                  <div class="banner-icon">
+                    <i class="fas fa-folder-open"></i>
+                  </div>
+                  <div class="banner-item-title">
+                    <h3>banner</h3>
+                    <p>view detail</p>
+                    <div class="btn-view-more">
+                      view <span><i class="fas fa-long-arrow-right"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </v-col>
+              <v-col cols="6" md="6" lg="6">
+                <div class="banner-item-card">
+                  <div class="banner-icon">
+                    <i class="fas fa-folder-open"></i>
+                  </div>
+                  <div class="banner-item-title">
+                    <h3>users</h3>
+                    <p>view detail</p>
+                    <div class="btn-view-more">
+                      view <span><i class="fas fa-long-arrow-right"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </v-col>
+              <v-col cols="6" md="6" lg="6">
+                <div class="banner-item-card">
+                  <div class="banner-icon">
+                    <i class="fas fa-folder-open"></i>
+                  </div>
+                  <div class="banner-item-title">
+                    <h3>product</h3>
+                    <p>view detail</p>
+                    <div class="btn-view-more">
+                      view <span><i class="fas fa-long-arrow-right"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </v-col>
+              <v-col cols="6" md="6" lg="6">
+                <div class="banner-item-card">
+                  <div class="banner-icon">
+                    <i class="fas fa-folder-open"></i>
+                  </div>
+                  <div class="banner-item-title">
+                    <h3>package</h3>
+                    <p>view detail</p>
+                    <div class="btn-view-more">
+                      view <span><i class="fas fa-long-arrow-right"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </v-col>
+              <v-col cols="6" md="6" lg="6">
+                <div class="banner-item-card">
+                  <div class="banner-icon">
+                    <i class="fas fa-folder-open"></i>
+                  </div>
+                  <div class="banner-item-title">
+                    <h3>topping</h3>
+                    <p>view detail</p>
+                    <div class="btn-view-more">
+                      view <span><i class="fas fa-long-arrow-right"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </v-col>
+
+              <v-col cols="6" md="6" lg="6">
+                <div class="banner-item-card">
+                  <div class="banner-icon">
+                    <i class="fas fa-folder-open"></i>
+                  </div>
+                  <div class="banner-item-title">
+                    <h3>topping</h3>
+                    <p>view detail</p>
+                    <div class="btn-view-more">
+                      view <span><i class="fas fa-long-arrow-right"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </v-col>
+
+
+            </v-row>
+          </div>
+        </div>
+      </v-col>
+      <v-col cols="12" md="4" lg="4">
+        <div class="dashboard-right">
+          <div class="dashboard-right-header">
+            <h3>Client Message <span><i class="far fa-comment-alt-lines"></i></span></h3>
+          </div>
+          <div class="message-content">
+            <v-row>
+              <v-col cols="12" md="12" lg="12">
+                <div class="card-message">
+                  <div class="message-image">
+                    <div class="images">
+                      <img
+                          src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                          alt="">
+                    </div>
+                  </div>
+                  <div class="message-detail">
+                    <h4>02098898854</h4>
+                    <p>Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
+                      Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. </p>
+                    <div class="message-icon">
+                      <i class="fas fa-paper-plane"></i>
+                    </div>
+                  </div>
+                </div>
+              </v-col>
+              <v-col cols="12" md="12" lg="12">
+                <div class="card-message">
+                  <div class="message-image">
+                    <div class="images">
+                      <img
+                          src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                          alt="">
+                    </div>
+                  </div>
+                  <div class="message-detail">
+                    <h4>02098898854</h4>
+                    <p>Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
+                      Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. </p>
+                    <div class="message-icon">
+                      <i class="fas fa-paper-plane"></i>
+                    </div>
+                  </div>
+                </div>
+              </v-col>
+              <v-col cols="12" md="12" lg="12">
+                <div class="card-message">
+                  <div class="message-image">
+                    <div class="images">
+                      <img
+                          src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                          alt="">
+                    </div>
+                  </div>
+                  <div class="message-detail">
+                    <h4>02098898854</h4>
+                    <p>Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
+                      Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. </p>
+                    <div class="message-icon">
+                      <i class="fas fa-paper-plane"></i>
+                    </div>
+                  </div>
+                </div>
+              </v-col>
+              <v-col cols="12" md="12" lg="12">
+                <div class="card-message">
+                  <div class="message-image">
+                    <div class="images">
+                      <img
+                          src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                          alt="">
+                    </div>
+                  </div>
+                  <div class="message-detail">
+                    <h4>02098898854</h4>
+                    <p>Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
+                      Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. </p>
+                    <div class="message-icon">
+                      <i class="fas fa-paper-plane"></i>
+                    </div>
+                  </div>
+                </div>
+              </v-col>
+              <v-col cols="12" md="12" lg="12">
+                <div class="card-message">
+                  <div class="message-image">
+                    <div class="images">
+                      <img
+                          src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                          alt="">
+                    </div>
+                  </div>
+                  <div class="message-detail">
+                    <h4>02098898854</h4>
+                    <p>Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
+                      Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. </p>
+                    <div class="message-icon">
+                      <i class="fas fa-paper-plane"></i>
+                    </div>
+                  </div>
+                </div>
+              </v-col>
+              <v-col cols="12" md="12" lg="12">
+                <div class="card-message">
+                  <div class="message-image">
+                    <div class="images">
+                      <img
+                          src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                          alt="">
+                    </div>
+                  </div>
+                  <div class="message-detail">
+                    <h4>02098898854</h4>
+                    <p>Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
+                      Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. </p>
+                    <div class="message-icon">
+                      <i class="fas fa-paper-plane"></i>
+                    </div>
+                  </div>
+                </div>
+              </v-col>
+              <v-col cols="12" md="12" lg="12">
+                <div class="card-message">
+                  <div class="message-image">
+                    <div class="images">
+                      <img
+                          src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                          alt="">
+                    </div>
+                  </div>
+                  <div class="message-detail">
+                    <h4>02098898854</h4>
+                    <p>Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
+                      Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. </p>
+                    <div class="message-icon">
+                      <i class="fas fa-paper-plane"></i>
+                    </div>
+                  </div>
+                </div>
+              </v-col>
+              <v-col cols="12" md="12" lg="12">
+                <div class="card-message">
+                  <div class="message-image">
+                    <div class="images">
+                      <img
+                          src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                          alt="">
+                    </div>
+                  </div>
+                  <div class="message-detail">
+                    <h4>02098898854</h4>
+                    <p>Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
+                      Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. </p>
+                    <div class="message-icon">
+                      <i class="fas fa-paper-plane"></i>
+                    </div>
+                  </div>
+                </div>
+              </v-col>
+              <v-col cols="12" md="12" lg="12">
+                <div class="card-message">
+                  <div class="message-image">
+                    <div class="images">
+                      <img
+                          src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                          alt="">
+                    </div>
+                  </div>
+                  <div class="message-detail">
+                    <h4>02098898854</h4>
+                    <p>Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
+                      Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. </p>
+                    <div class="message-icon">
+                      <i class="fas fa-paper-plane"></i>
+                    </div>
+                  </div>
+                </div>
+              </v-col>
+
+            </v-row>
+          </div>
+        </div>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script>
-export default {
-    name: 'Dashboard',
-
-    data() {
-        return {
-            
-        };
-    },
-
-    mounted() {
-        
-    },
-
-    methods: {
-        
-    },
-};
+export default {};
 </script>
 
 <style lang="scss" scoped>
-#Dashboard{
+#Dashboard {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+
+  .dashboard-left {
     width: 100%;
-    padding: 0;
-    margin: 0;
-    background-color: $white-color;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 5px 10px;
+
+    .banner-dashboard {
+      width: 100%;
+      height: 260px;
+      border-radius: 15px;
+      display: flex;
+      justify-content: flex-start;
+      padding-left: 40px;
+      align-items: center;
+      background: #ffffff;
+      position: relative;
+
+      img {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 30px;
+        right: 30px;
+      }
+
+      .banner-image {
+        width: 400px;
+        height: 240px;
+      }
+
+      .dashboard-header {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        h1 {
+          font-size: 30px;
+          font-weight: 900;
+        }
+
+        p {
+          font-size: 18px;
+        }
+      }
+
+    }
+
+    .banner-items {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      margin-top: 25px;
+
+      .banner-item-card {
+        width: 100%;
+        height: 120px;
+        background: #ffffff;
+        border-radius: 8px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding-left: 25px;
+        cursor: pointer;
+
+        .banner-icon {
+          width: 20%;
+          height: 75px;
+          border-radius: 50%;
+          background: #EEEEEE;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          i {
+            font-size: 2.5rem;
+            color: #3F3D56;
+          }
+        }
+
+        .banner-item-title {
+          width: 80%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding-left: 20px;
+          position: relative;
+
+          h3 {
+            font-size: 22px;
+            text-transform: capitalize;
+          }
+
+          .btn-view-more {
+            width: 100px;
+            height: 30px;
+            background: #3F3D56;
+            border: 1px solid #EEEEEE;
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            border-radius: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            font-family: $font-family;
+            text-transform: capitalize;
+            font-size: 14px;
+
+            i {
+              font-size: 20px;
+              margin-left: 10px;
+              margin-top: 4px;
+            }
+          }
+        }
+
+      }
+    }
+  }
+
+  .dashboard-right {
+    width: 100%;
+    min-height: 100vh;
+    overflow-y: auto;
+    background: #ffffff;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+
+    .dashboard-right-header {
+      width: 100%;
+      height: 60px;
+      display: flex;
+      border-bottom: 2px solid #EEEEEE;
+      justify-content: flex-start;
+      align-items: center;
+      padding-left: 20px;
+    }
+
+    .message-content {
+      width: 100%;
+      height: 90vh;
+      padding: 20px;
+
+      .card-message {
+        width: 100%;
+        height: 80px;
+        background: rgba(149, 175, 192, 0.2);
+        border: 2px solid #EEEEEE;
+        border-radius: 4px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        position: relative;
+
+
+        .message-image {
+          width: 20%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .images {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #ffffff;
+            overflow: hidden;
+
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+        }
+
+        .message-detail {
+          width: 80%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          padding-top: 2px;
+
+          h4 {
+            font-size: 14px;
+          }
+
+          p {
+            width: 220px;
+            font-size: 14px;
+            -webkit-box-orient: vertical;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: normal;
+            margin: 0;
+            padding: 0;
+
+          }
+
+          .message-icon {
+            width: 25px;
+            height: 25px;
+            padding: 5px;
+            border-radius: 18px;
+            background: #3F3D56;
+            position: absolute;
+            right: 10px;
+            bottom: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+
+            i {
+              font-size: 12px;
+              color: #ffffff;
+            }
+          }
+        }
+      }
+
+    }
+  }
 }
 </style>

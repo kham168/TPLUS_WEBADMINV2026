@@ -84,19 +84,13 @@ const actions = {
                                 router.push({
                                     name: "Dashboard"
                                 })
-                            }
-                            else if (roleUser.name === 'Employee') {
+                            } else if (roleUser.name === 'Employee') {
                                 router.push({
                                     name: "Dashboard"
                                 })
                             }
                         })
                         window.location.reload();
-                    } else {
-                        context.commit('error_msg_login', response.data.msg);
-                        setTimeout(() => {
-                            context.commit('error_msg_login', '');
-                        }, 3000);
                     }
                 }).catch(error => {
                 reject(error)

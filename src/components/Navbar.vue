@@ -28,14 +28,15 @@
                   :key="locale"
                   @click="switchLocales(locale)"
               >
-                <span class="locale--title">{{ localeNames[locale] }}</span>
+                <span class="locale--title">
+                  <span><i class="far fa-globe-europe"></i></span>{{ localeNames[locale] }}</span>
               </v-list-item>
             </v-list-item-group>
 
-            <div class="setting">
-              <v-icon>fas fa-cog</v-icon>
-              <h3>{{ $t("Navbar.setting") }}</h3>
-            </div>
+<!--            <div class="setting">-->
+<!--              <v-icon>fas fa-cog</v-icon>-->
+<!--              <h3>{{ $t("Navbar.setting") }}</h3>-->
+<!--            </div>-->
             <v-list-item link @click="LoggoutUser">
               <v-list-item-icon>
                 <v-icon medium>fas fa-power-off</v-icon>
@@ -185,7 +186,7 @@ export default {
   data() {
     return {
       locales: process.env.VUE_APP_I18N_SUPPORTED_LOCALE.split(","),
-      localeNames: {en: "EN", la: "LA"},
+      localeNames: {en: "English", la: "Lao"},
       drawer: true,
     };
   },
@@ -245,6 +246,15 @@ export default {
     display: flex;
     gap: 1rem;
     padding: 0 1rem;
+    font-size: 14px;
+  }
+}
+.locale--title{
+  padding: 0 8px;
+  span{
+    i{
+      font-size: 16px;
+    }
   }
 }
 
