@@ -6,11 +6,21 @@ import Login from "../components/Login.vue"
 import Topping from "../views/Topping/topping.vue"
 import ErrorRole from "../views/layout/errorRole"
 import store from "@/store/index.js"
+import Chatroom from "../components/Chatroom";
 
 
 Vue.use(VueRouter)
 
 const routes = [
+    {
+        path: "/chat-room",
+        name: "chatroom",
+        component: Chatroom,
+        meta: {
+            middleware: [Middleware.auth],
+            layout: 'admin',
+        }
+    },
     {
         path: "/access-denied",
         name: "ErrorRole",
@@ -79,178 +89,178 @@ const routes = [
                     layout: 'admin',
                 }
 
-    },
-    {
-      path:"edit/:cate_post_id",
-      name:"cate_post.edit",
-      component: () => import(/* webpackChunkName:"cate_post Edit" */ '../components/forms/posts/cate_post/Edit.vue'),
-      meta:{
-        middleware:[Middleware.auth],
-        layout:'admin',
-      }
+            },
+            {
+                path: "edit/:cate_post_id",
+                name: "cate_post.edit",
+                component: () => import(/* webpackChunkName:"cate_post Edit" */ '../components/forms/posts/cate_post/Edit.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: 'admin',
+                }
 
             },
         ]
     },
     //News and Activity
     {
-      path:"/post",
-      component:() => import(/* webpackChunkName: "post" */ '../views/posts/post/post.vue'),
-      meta:{
-        middleware:[Middleware.auth],
-        layout:'admin'
-      },
-
-      children:[
-       {
-         path:"",
-         name:"post.index",
-         component: () => import(/* webpackChunkName: "post index" */ '../views/posts/post/index.vue'),
-         meta:{
-          middleware:[Middleware.auth],
-          layout:'admin'
-         }
-       },
-        {
-          path:"create",
-          name:"post.create",
-          component: () => import(/* webpackChunkName: "post create" */ '../components/forms/posts/post/Create.vue'),
-          meta:{
-            middleware:[Middleware.auth],
-           layout:'admin'
-          }
+        path: "/post",
+        component: () => import(/* webpackChunkName: "post" */ '../views/posts/post/post.vue'),
+        meta: {
+            middleware: [Middleware.auth],
+            layout: 'admin'
         },
-        {
-          path:"edit/:post_id",
-          name:"post.edit",
-          component:() => import(/* webpackChunkName: "post edit" */ '../components/forms/posts/post/Edit.vue'),
-          meta:{
-            middleware:[Middleware.auth],
-            layout:'admin'
-          }
-        }
-      ]
-     },
 
-      //Promotion and event
+        children: [
+            {
+                path: "",
+                name: "post.index",
+                component: () => import(/* webpackChunkName: "post index" */ '../views/posts/post/index.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: 'admin'
+                }
+            },
+            {
+                path: "create",
+                name: "post.create",
+                component: () => import(/* webpackChunkName: "post create" */ '../components/forms/posts/post/Create.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: 'admin'
+                }
+            },
+            {
+                path: "edit/:post_id",
+                name: "post.edit",
+                component: () => import(/* webpackChunkName: "post edit" */ '../components/forms/posts/post/Edit.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: 'admin'
+                }
+            }
+        ]
+    },
+
+    //Promotion and event
     {
-      path:"/promotion_event",
-      component:() => import(/* webpackChunkName: "post" */ '../views/posts/promotion_event/promotion_event.vue'),
-      meta:{
-        middleware:[Middleware.auth],
-        layout:'admin'
-      },
-
-      children:[
-       {
-         path:"",
-         name:"promotion_event.index",
-         component: () => import(/* webpackChunkName: "post index" */ '../views/posts/promotion_event/index.vue'),
-         meta:{
-          middleware:[Middleware.auth],
-          layout:'admin'
-         }
-       },
-        {
-          path:"create",
-          name:"promotion_event.create",
-          component: () => import(/* webpackChunkName: "post create" */ '../components/forms/posts/promotion_event/Create.vue'),
-          meta:{
-            middleware:[Middleware.auth],
-           layout:'admin'
-          }
+        path: "/promotion_event",
+        component: () => import(/* webpackChunkName: "post" */ '../views/posts/promotion_event/promotion_event.vue'),
+        meta: {
+            middleware: [Middleware.auth],
+            layout: 'admin'
         },
-        {
-          path:"edit/:promotion_event_id",
-          name:"promotion_event.edit",
-          component:() => import(/* webpackChunkName: "post edit" */ '../components/forms/posts/promotion_event/Edit.vue'),
-          meta:{
-            middleware:[Middleware.auth],
-            layout:'admin'
-          }
-        }
-      ]
-     },
 
-   //Category Product
-   {
-    path:"/cate_product",
-    component:()=> import(/* webpackChunkName:"Cate_product" */'../views/products/cate_product/cate_product.vue'),
-    meta:{
-      middleware:[Middleware.auth],
-      layout:'admin'
+        children: [
+            {
+                path: "",
+                name: "promotion_event.index",
+                component: () => import(/* webpackChunkName: "post index" */ '../views/posts/promotion_event/index.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: 'admin'
+                }
+            },
+            {
+                path: "create",
+                name: "promotion_event.create",
+                component: () => import(/* webpackChunkName: "post create" */ '../components/forms/posts/promotion_event/Create.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: 'admin'
+                }
+            },
+            {
+                path: "edit/:promotion_event_id",
+                name: "promotion_event.edit",
+                component: () => import(/* webpackChunkName: "post edit" */ '../components/forms/posts/promotion_event/Edit.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: 'admin'
+                }
+            }
+        ]
     },
-    children:[
-     {
-      path:"",
-      name:"cate_product.index",
-      component:()=> import(/* webpackChunkName:"Cate_product index" */'../views/products/cate_product/index.vue'),
-      meta:{
-        middleware:[Middleware.auth],
-        layout:"admin"
-      }
-     },
-     {
-      path:"create",
-      name:"cate_product.create",
-      component: () => import(/* webpackChunkName:"Cate_product Create" */ '../components/forms/products/cate_product/Create.vue'),
-      meta:{
-        layout:'admin',
-      }
 
-    },
+    //Category Product
     {
-      path:"edit/:cate_product_id",
-      name:"cate_product.edit",
-      component: () => import(/* webpackChunkName:"Cate_product Edit" */ '../components/forms/products/cate_product/Edit.vue'),
-      meta:{
-        middleware:[Middleware.auth],
-        layout:'admin',
-      }
+        path: "/cate_product",
+        component: () => import(/* webpackChunkName:"Cate_product" */'../views/products/cate_product/cate_product.vue'),
+        meta: {
+            middleware: [Middleware.auth],
+            layout: 'admin'
+        },
+        children: [
+            {
+                path: "",
+                name: "cate_product.index",
+                component: () => import(/* webpackChunkName:"Cate_product index" */'../views/products/cate_product/index.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: "admin"
+                }
+            },
+            {
+                path: "create",
+                name: "cate_product.create",
+                component: () => import(/* webpackChunkName:"Cate_product Create" */ '../components/forms/products/cate_product/Create.vue'),
+                meta: {
+                    layout: 'admin',
+                }
 
+            },
+            {
+                path: "edit/:cate_product_id",
+                name: "cate_product.edit",
+                component: () => import(/* webpackChunkName:"Cate_product Edit" */ '../components/forms/products/cate_product/Edit.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: 'admin',
+                }
+
+            },
+        ]
     },
-    ]
-  },
 
-  //Product
-  {
-   path:"/product",
-   component:() => import(/* webpackChunkName: "Product" */ '../views/products/product/Product.vue'),
-   meta:{
-    middleware:[Middleware.auth],
-     layout:'admin'
-   },
-
-   children:[
+    //Product
     {
-      path:"",
-      name:"product.index",
-      component: () => import(/* webpackChunkName: "ProductIndex" */ '../views/products/product/index.vue'),
-      meta:{
-        middleware:[Middleware.auth],
-       layout:'admin'
-      }
+        path: "/product",
+        component: () => import(/* webpackChunkName: "Product" */ '../views/products/product/Product.vue'),
+        meta: {
+            middleware: [Middleware.auth],
+            layout: 'admin'
+        },
+
+        children: [
+            {
+                path: "",
+                name: "product.index",
+                component: () => import(/* webpackChunkName: "ProductIndex" */ '../views/products/product/index.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: 'admin'
+                }
+            },
+            {
+                path: "create",
+                name: "product.create",
+                component: () => import(/* webpackChunkName: "ProductCreate" */ '../components/forms/products/Product/Create.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: 'admin'
+                }
+            },
+            {
+                path: "edit/:product_id",
+                name: "product.edit",
+                component: () => import(/* webpackChunkName: "ProductEdit" */ '../components/forms/products/Product/Edit.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: 'admin'
+                }
+            }
+        ]
     },
-     {
-       path:"create",
-       name:"product.create",
-       component: () => import(/* webpackChunkName: "ProductCreate" */ '../components/forms/products/Product/Create.vue'),
-       meta:{
-        middleware:[Middleware.auth],
-        layout:'admin'
-       }
-     },
-     {
-       path:"edit/:product_id",
-       name:"product.edit",
-       component:() => import(/* webpackChunkName: "ProductEdit" */ '../components/forms/products/Product/Edit.vue'),
-       meta:{
-        middleware:[Middleware.auth],
-         layout:'admin'
-       }
-     }
-   ]
-  },
 
     //Logo
     {
@@ -517,15 +527,15 @@ const routes = [
                     layout: 'admin',
                 }
 
-    },
-    {
-      path:"edit/:cate_data_package_id",
-      name:"cate_data_package.edit",
-      component: () => import(/* webpackChunkName:"Data_package Edit" */ '../components/forms/packages/cate_data_package/Edit.vue'),
-      meta:{
-        middleware:[Middleware.auth],
-        layout:'admin',
-      }
+            },
+            {
+                path: "edit/:cate_data_package_id",
+                name: "cate_data_package.edit",
+                component: () => import(/* webpackChunkName:"Data_package Edit" */ '../components/forms/packages/cate_data_package/Edit.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: 'admin',
+                }
 
             },
         ]
@@ -558,55 +568,55 @@ const routes = [
                     layout: 'admin',
                 }
 
-    },
-    {
-      path:"edit/:data_package_id",
-      name:"data_package.edit",
-      component: () => import(/* webpackChunkName:"Data_package Edit" */ '../components/forms/packages/data_package/Edit.vue'),
-      meta:{
-        middleware:[Middleware.auth],
-        layout:'admin',
-      }
+            },
+            {
+                path: "edit/:data_package_id",
+                name: "data_package.edit",
+                component: () => import(/* webpackChunkName:"Data_package Edit" */ '../components/forms/packages/data_package/Edit.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: 'admin',
+                }
 
             },
         ]
     },
     //Banner
     {
-      path:"/banner",
-      component:()=> import(/* webpackChunkName:"Banner" */'../views/banner/banner.vue'),
-      meta:{
-        middleware:[Middleware.auth],
-        layout:'admin'
-      },
-      children:[
-       {
-        path:"",
-        name:"banner.index",
-        component:()=> import(/* webpackChunkName:"Banner index" */'../views/banner/index.vue'),
-        meta:{
-          middleware:[Middleware.auth],
-          layout:"admin"
-        }
-       },
-       {
-        path:"create",
-        name:"banner.create",
-        component: () => import(/* webpackChunkName:"Banner Create" */ '../components/forms/banner/Create.vue'),
-        meta:{
-          middleware:[Middleware.auth],
-          layout:'admin',
-        }
+        path: "/banner",
+        component: () => import(/* webpackChunkName:"Banner" */'../views/banner/banner.vue'),
+        meta: {
+            middleware: [Middleware.auth],
+            layout: 'admin'
+        },
+        children: [
+            {
+                path: "",
+                name: "banner.index",
+                component: () => import(/* webpackChunkName:"Banner index" */'../views/banner/index.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: "admin"
+                }
+            },
+            {
+                path: "create",
+                name: "banner.create",
+                component: () => import(/* webpackChunkName:"Banner Create" */ '../components/forms/banner/Create.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: 'admin',
+                }
 
-      },
-      {
-        path:"edit/:banner_id",
-        name:"banner.edit",
-        component: () => import(/* webpackChunkName:"Banner Edit" */ '../components/forms/banner/Edit.vue'),
-        meta:{
-          middleware:[Middleware.auth],
-          layout:'admin',
-        }
+            },
+            {
+                path: "edit/:banner_id",
+                name: "banner.edit",
+                component: () => import(/* webpackChunkName:"Banner Edit" */ '../components/forms/banner/Edit.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: 'admin',
+                }
 
             },
         ]
@@ -614,42 +624,42 @@ const routes = [
 
     //Contact
     {
-      path:"/contact",
-      component:()=> import(/* webpackChunkName:"Contact" */'../views/contact/contact.vue'),
-      meta:{
-        middleware:[Middleware.auth],
-        layout:'admin'
-      },
-      children:[
-       {
-        path:"",
-        name:"contact.index",
-        component:()=> import(/* webpackChunkName:"Contact index" */'../views/contact/index.vue'),
-        meta:{
-          middleware:[Middleware.auth],
-          layout:"admin"
-        }
-       },
-      //  {
-      //   path:"create",
-      //   name:"contact.create",
-      //   component: () => import(/* webpackChunkName:"Contact Create" */ '../components/forms/contact/Create.vue'),
-      //   meta:{
-      //     layout:'admin',
-      //   }
+        path: "/contact",
+        component: () => import(/* webpackChunkName:"Contact" */'../views/contact/contact.vue'),
+        meta: {
+            middleware: [Middleware.auth],
+            layout: 'admin'
+        },
+        children: [
+            {
+                path: "",
+                name: "contact.index",
+                component: () => import(/* webpackChunkName:"Contact index" */'../views/contact/index.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: "admin"
+                }
+            },
+            //  {
+            //   path:"create",
+            //   name:"contact.create",
+            //   component: () => import(/* webpackChunkName:"Contact Create" */ '../components/forms/contact/Create.vue'),
+            //   meta:{
+            //     layout:'admin',
+            //   }
 
-      // },
-      {
-        path:"edit/:contact_id",
-        name:"contact.edit",
-        component: () => import(/* webpackChunkName:"Contact Edit" */ '../components/forms/contact/Edit.vue'),
-        meta:{
-          middleware:[Middleware.auth],
-          layout:'admin',
-        }
+            // },
+            {
+                path: "edit/:contact_id",
+                name: "contact.edit",
+                component: () => import(/* webpackChunkName:"Contact Edit" */ '../components/forms/contact/Edit.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: 'admin',
+                }
 
-      },
-      ]
+            },
+        ]
     },
 
 
