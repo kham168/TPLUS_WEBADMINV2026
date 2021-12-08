@@ -3,20 +3,32 @@
     <div class="chat-room">
       <div class="chat-room-header">
         <div class="chat-room-profile">
-          <img src="https://media.istockphoto.com/photos/millennial-male-team-leader-organize-virtual-workshop-with-employees-picture-id1300972574?b=1&k=20&m=1300972574&s=170667a&w=0&h=2nBGC7tr0kWIU8zRQ3dMg-C5JLo9H2sNUuDjQ5mlYfo=" alt="">
+          <img
+              src="https://media.istockphoto.com/photos/millennial-male-team-leader-organize-virtual-workshop-with-employees-picture-id1300972574?b=1&k=20&m=1300972574&s=170667a&w=0&h=2nBGC7tr0kWIU8zRQ3dMg-C5JLo9H2sNUuDjQ5mlYfo="
+              alt="">
         </div>
         <div class="chat-room-name">
           <h3>0209988558</h3>
-          <p class="chat-room-status">Active</p>
+          <p class="chat-room-status">online</p>
         </div>
       </div>
-      <div class="chat-room-content">
-
+      <div class="chat-room-content" ref="scrollPosition">
+        <div class="chat-room-left">
+          <div class="show-text-message" v-for="(message,index) in message" :key="index">
+            {{ message.text }}
+          </div>
+        </div>
+        <div class="chat-room-right">
+          <div class="show-text-message" v-for="(message,index) in message" :key="index">
+            {{ message.text }}
+          </div>
+        </div>
       </div>
       <div class="chat-room-footer">
-        <div class="input-chat" contenteditable="true">
+        <div class="input-chat" ref="resetTextInput" contenteditable="true" @input="messageInput($event)"
+             @keyup.enter="sendMessage">
         </div>
-        <div class="btn-send-message">
+        <div class="btn-send-message" @click="sendMessage()">
           <i class="fal fa-paper-plane"></i>
         </div>
       </div>
@@ -26,7 +38,37 @@
 
 <script>
 export default {
-  name: "Chatroom"
+  name: "Chatroom",
+  data() {
+    return {
+      textMessage: "",
+      message: [],
+    }
+  },
+  methods: {
+    resetTextMessage() {
+      this.$refs.resetTextInput.innerHTML = ''
+    },
+    messageInput(e) {
+      this.textMessage = e.target.innerHTML
+    },
+    scrollToBottom() {
+      const el = this.$refs.scrollPosition;
+      if (el) {
+        this.$nextTick(() => {
+          el.scrollTo(0, el.scrollHeight + 400);
+        })
+
+      }
+    },
+    sendMessage() {
+      this.message.push({
+        text: this.textMessage
+      });
+      this.resetTextMessage();
+      this.scrollToBottom();
+    }
+  }
 }
 </script>
 
@@ -39,6 +81,7 @@ export default {
   position: relative;
   border-radius: 8px;
   overflow: hidden;
+  background: #e2e3e3;
 
   .chat-room-header {
     width: 100%;
@@ -54,27 +97,89 @@ export default {
       border-radius: 50%;
       background: #EEEEEE;
       overflow: hidden;
-      img{
+
+      img {
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
     }
-    .chat-room-name{
+
+    .chat-room-name {
       padding-left: 10px;
       padding-top: 14px;
-      .chat-room-status{
-        color: rgba(76, 209, 55,1.0);
+
+      .chat-room-status {
+        color: rgba(76, 209, 55, 1.0);
       }
     }
   }
 
   .chat-room-content {
     width: 100%;
-    height: 60vh;
-    overflow: auto;
-    background: #ededed;
+    height: 400px;
+    display: flex;
+    margin-bottom: 40px;
+    overflow-y: auto;
+
+    .chat-room-left {
+      flex: 1;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+
+      .show-text-message {
+        display: flex;
+        width: min-content;
+        white-space: nowrap;
+        min-height: 40px;
+        background: #FFFFFF;
+        margin: 10px 20px;
+        padding: 8px 30px;
+        border-radius: 0 20px 20px 20px;
+      }
+    }
+
+    .chat-room-right {
+      flex: 1;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-end;
+      padding-top: 40px;
+
+      .show-text-message {
+        display: flex;
+        width: min-content;
+        white-space: nowrap;
+        flex-direction: column;
+        min-height: 40px;
+        background: #FFFFFF;
+        margin: 10px 20px;
+        padding: 8px 30px;
+        border-radius: 20px 0 20px 20px;
+      }
+    }
+
   }
+
+  .chat-room-content::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  .chat-room-content::-webkit-scrollbar-track {
+    background-color: #e3e3e3;
+    padding: 4px;
+  }
+
+  .chat-room-content::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+    border-radius: 30px;
+    padding: 2px;
+    background: #e2e3e3;
+  }
+
 
   .chat-room-footer {
     width: 100%;
@@ -120,4 +225,5 @@ export default {
     }
   }
 }
+
 </style>
