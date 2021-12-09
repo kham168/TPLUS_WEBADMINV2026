@@ -22,6 +22,7 @@ const mutations={
 const actions={
  
   async getPromotionEventOne ({commit},{promotion_event_id}) {
+      console.log(promotion_event_id)
     const data = await promotionEventService.getPromotionEventOne({'promotion_event_id':promotion_event_id})
 
     return data

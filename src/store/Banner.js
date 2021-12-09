@@ -22,6 +22,12 @@ const mutations={
 }
 
 const actions={
+
+    async orderBanner ({dispatch},{res}) {
+        await bannerProvider.orderBanner({'res':res})
+        dispatch('getBanner',{ root: true });
+
+    },
  
   async getBannerOne ({commit},{banner_id}) {
     const data = await bannerProvider.getBannerOne({'banner_id':banner_id})
@@ -33,6 +39,8 @@ const actions={
         const data = await bannerProvider.getBanner()
      
         commit('SET_BANNER', data)
+
+        return data
       },
 
       async createBanner({dispatch},{

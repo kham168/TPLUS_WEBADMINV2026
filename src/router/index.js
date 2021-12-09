@@ -571,6 +571,7 @@ const routes = [
             },
         ]
     },
+
     //Banner
     {
       path:"/banner",

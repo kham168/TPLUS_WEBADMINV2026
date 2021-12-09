@@ -40,10 +40,15 @@
               <td>{{ index + 1 }}</td>
               <td><v-img :src="item.PostImages[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
               <td>{{ item.title }}</td>
-              <td>{{ item.postTypeId}}</td>
-              <td class="text-limit">{{ item.description }}</td>
+              <td ><span v-for="data in item.newsCategories">{{ data.name}}</span></td>
+              <td style="   max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;">{{ item.description }}</td>
               <td>{{ item.status }}</td>
-
+              <td><v-btn icon @click="onShow(item.id)"> <v-icon large>
+                mdi-eye
+              </v-icon></v-btn></td>
               <td>
                <v-menu offset-y>
                  <template v-slot:activator="{on,attrs}">
@@ -78,10 +83,15 @@
               <td>{{ index + 1 }}</td>
               <td><v-img :src="item.PostImageTrans[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
               <td>{{ item.PostTrans[0].title }}</td>
-              <td>{{ item.postTypeId }}</td>
-              <td class="text-limit">{{ item.PostTrans[0].description }}</td>
+              <td>{{ item.newsCategories[0].name }}</td>
+              <td style="   max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;">{{ item.PostTrans[0].description }}</td>
               <td>{{ item.status }}</td>
-
+              <td><v-btn icon @click="onShow(item.id)"> <v-icon large>
+                mdi-eye
+              </v-icon></v-btn></td>
               <td>
                <v-menu offset-y>
                  <template v-slot:activator="{on,attrs}">
@@ -127,6 +137,11 @@
           <Delete :post_id="post_id" @close="close" />
         </template>
       </ModalDelete>
+      <ModalShow>
+        <template v-slot="{close}">
+          <Show :post_id="post_id" @close="close" />
+        </template>
+      </ModalShow>
     </section>
   </div>
 
@@ -135,13 +150,16 @@
 <script>
 import {mapActions, mapGetters} from 'vuex'
 import Delete from "@/components/forms/posts/post/Delete";
-
+import Show from "@/components/forms/posts/post/Show";
+import ModalShow from "@/components/Modals/modalShow";
 export default {
 
   name: "Post",
 
 components: {
-    Delete
+    Delete,
+    Show,
+    ModalShow
   },
   data() {
     return {
@@ -181,6 +199,11 @@ components: {
 
       this.$store.commit("modalDelete_State", true);
     },
+    onShow(post_id) {
+      this.post_id = post_id
+
+      this.$store.commit("modalShow_State", true);
+    },
 
            ...mapActions({
 getPost:'Post/getPost',
@@ -210,12 +233,8 @@ getCatePostOne:'CatePost/getCatePostOne'
   .post-content {
     width: 100%;
     padding: 1rem;
-     .text-limit{
- max-width: 200px;
- overflow: hidden;
- text-overflow: ellipsis;
- white-space: nowrap;
-    }
+
+
   }
 }
 </style>

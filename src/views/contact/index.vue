@@ -38,8 +38,13 @@
               <td>{{ item.name }}</td>
           <td>{{ item.email }}</td>
           <td>{{ item.title }}</td>
-              <td class="text-limit">{{ item.description }}</td>
-              <td><v-btn elevation="2" icon @click="onShow(item.id)"></v-btn></td>
+              <td style=" max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;" >{{ item.description}}</td>
+              <td><v-btn icon @click="onShow(item.id)"> <v-icon large>
+                mdi-eye
+              </v-icon></v-btn></td>
              
               <td>
                <v-menu offset-y>
@@ -161,12 +166,9 @@ export default {
   .contact-content {
     width: 100%;
     padding: 1rem;
-    .text-limit{
- max-width: 200px;
- overflow: hidden;
- text-overflow: ellipsis;
- white-space: nowrap;
-    }
+
   }
+
+
 }
 </style>

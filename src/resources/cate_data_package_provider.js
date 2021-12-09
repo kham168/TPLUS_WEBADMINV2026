@@ -58,7 +58,7 @@ class CateDataPackageProvider extends HttpRequest {
     
    }
 
-   console.log(arg)
+
  
     this.setHeader({
       'Content-Type': 'application/x-www-form-urlencoded',

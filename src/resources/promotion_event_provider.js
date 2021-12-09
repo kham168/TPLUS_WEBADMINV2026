@@ -17,7 +17,7 @@ class PromotionEventProvider extends HttpRequest {
      this.setHeader({})
    // example path http://128.199.104.34:7000/this.get()
      const {data} = await this.get('/api/v1/posts/'+promotion_event_id)
-     console.log(data)
+
      return data
   }
 
@@ -28,7 +28,7 @@ class PromotionEventProvider extends HttpRequest {
      this.setHeader({})
    // example path http://128.199.104.34:7000/this.get()
      const {data} = await this.get('/api/v1/posts')
-     console.log(data)
+
      return data
   }
 
@@ -48,6 +48,7 @@ class PromotionEventProvider extends HttpRequest {
   {
     try{
       var bodyFormData = new FormData();
+      bodyFormData.append('newsCategoryId[]',"");
       bodyFormData.append('postTypeId',post_type_id);
       bodyFormData.append('title',title);
       bodyFormData.append('description',description);
@@ -61,16 +62,14 @@ class PromotionEventProvider extends HttpRequest {
       
       for(let i =0;i<avatar.length;i++){
         bodyFormData.append('avatar[]',avatar[i]);
-        console.log('avatar'+i);
-        console.log(avatar[i]);
+
       }
       for(let i =0;i<avatar_EN.length;i++){
         bodyFormData.append('avatar_EN[]',avatar_EN[i]);
-        console.log('avatar_EN'+i);
-        console.log(avatar_EN[i]);
+
       }
     
-      //console.log(bodyFormData);
+
  
     this.setHeader({
       'Content-Type': 'multipart/form-data',
@@ -99,9 +98,9 @@ class PromotionEventProvider extends HttpRequest {
     avatar,
     avatar_EN}
     ){
-      console.log(avatar);
+
       var bodyFormData = new FormData();
-     // bodyFormData.append('postTypeId',post_type_id);
+      bodyFormData.append('newsCategoryId[]',"");
       bodyFormData.append('title',title);
       bodyFormData.append('description',description);
       bodyFormData.append('status',status);
@@ -113,16 +112,14 @@ class PromotionEventProvider extends HttpRequest {
 
       for(let i =0;i<avatar.length;i++){
         bodyFormData.append('avatar[]',avatar[i]);
-        console.log('avatar'+i);
-        console.log(avatar[i]);
+
       }
       for(let i =0;i<avatar_EN.length;i++){
         bodyFormData.append('avatar_EN[]',avatar_EN[i]);
-        console.log('avatar_EN'+i);
-        console.log(avatar_EN[i]);
+
       }
     
-      console.log(bodyFormData);
+
  
     this.setHeader({
       'Content-Type': 'multipart/form-data',

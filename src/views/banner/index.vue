@@ -2,10 +2,22 @@
    <div id="Banner">
     <section class="banner-section">
       <div class="header banner-header">
-        <h1>{{ $t("Banner.title") }}</h1>
-        <v-btn @click="CreateBanner" class="btn btn-create">
-          <v-icon>fal fa-plus-circle</v-icon>{{ $t("Banner.button") }}</v-btn
-        >
+
+        <v-row>
+          <h1>{{ $t("Banner.title") }}</h1>
+          <v-btn @click="saveChangeOrderBanner" class="btn btn-create ml-5" v-show="checkbox">
+            <v-icon>mdi-checkbox-marked-circle</v-icon>{{ $t("Banner.Create.form.button.save") }}</v-btn>
+
+
+        </v-row>
+
+
+
+          <v-btn @click="CreateBanner" class="btn btn-create">
+            <v-icon>fal fa-plus-circle</v-icon>{{ $t("Banner.button") }}</v-btn>
+
+
+
       </div>
       <div class="banner-content">
         <v-data-table
@@ -15,26 +27,70 @@
           :loading="loading"
           :loading-text="$t('Banner.loadingtext')"
           v-if="banner['data'] != ''"
+
+
         >
+          <template v-slot:header.No="props">
+
+
+                <v-checkbox
+                    class="checkbox"
+                    v-model="checkbox">
+
+            <template v-slot:label>
+              <span id="checkboxLabel" style=" font-size: 12px;font-weight: bold">{{props.header.text}}</span>
+            </template>
+
+                </v-checkbox>
+
+
+
+
+          </template>
+
           <template v-slot:top>
+
             <v-toolbar flat>
-              <v-text-field
-                :label="$t('Banner.txtsearch')"
-                filled
-                rounded
-                dense
-                append-icon="fas fa-search"
-                single-line
-                hide-details
-                v-model="searchItem"
-              ></v-text-field>
+
+
+               <v-text-field
+                   :label="$t('Banner.txtsearch')"
+                   filled
+                   rounded
+                   dense
+                   append-icon="fas fa-search"
+                   single-line
+                   hide-details
+                   v-model="searchItem"
+               ></v-text-field>
+
+
+
+
               <v-spacer></v-spacer>
+
             </v-toolbar>
           </template>
+
           <!-- table content -->
-          <template v-slot:item="{ item, index }">
-            <tr class="table-content" v-if="isLaoLanguage">
-              <td>{{ index + 1 }}</td>
+          <template v-slot:body="props">
+            <draggable
+                :disabled="!checkbox"
+                :list="banner['data']"
+                tag="tbody"
+                :move="checkMove"
+
+                v-if="isLaoLanguage"
+            >
+            <tr class="table-content"  v-for="(item, index) in props.items"
+                :key="index">
+
+              <td> <v-icon
+                  small
+                  class="grab-icon"
+              >
+                mdi-arrow-all
+              </v-icon> <span>&nbsp</span> {{ index + 1 }}</td>
               <td><v-img :src="item.BanImages[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
               <td>{{ item.banName }}</td>
               <td>{{ item.link }}</td>
@@ -71,13 +127,26 @@
                </v-menu>
               </td>
             </tr>
-            <tr class="table-content" v-else>
-              <td>{{ index + 1 }}</td>
+            </draggable>
+
+            <draggable
+                v-model="props.items"
+                tag="tbody"
+                :move="checkMove"
+                v-else
+            >
+            <tr class="table-content" >
+              <td> <v-icon
+                  small
+                  class="grab-icon"
+              >
+                mdi-arrow-all
+              </v-icon> <span>&nbsp</span> {{ index + 1 }}</td>
               <td><v-img :src="item.BanImageTrans[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
               <td>{{ item.BannerTrans[0].banName }}</td>
               <td>{{ item.BannerTrans[0].link }}</td>
               <td class="text-limit">{{ item.BannerTrans[0].description }}</td>
-  
+
               <td>
                <v-menu offset-y>
                  <template v-slot:activator="{on,attrs}">
@@ -108,8 +177,12 @@
                </v-menu>
               </td>
             </tr>
+            </draggable>
           </template>
+
         </v-data-table>
+
+
         <div class="Table-empty" v-else>
           <div class="image">
             <v-img src="@/assets/Images/NoData.png"></v-img>
@@ -117,35 +190,51 @@
           <h3>{{ $t("Banner.table.dontdata") }}</h3>
         </div>
       </div>
+
+
+
         <ModalDelete>
         <template v-slot="{close}">
           <Delete :banner_id="banner_id" @close="close" />
         </template>
       </ModalDelete>
     </section>
+
   </div>
 </template>
 
 <script>
+import draggable from 'vuedraggable';
 import {mapActions, mapGetters} from 'vuex';
 import Delete from "../../components/forms/banner/Delete";
+
 export default {
     name: 'Banner',
   components: {
-    Delete
+    Delete,
+    draggable,
   },
     data() {
         return {
+          checkbox: false,
           banner_id:'',
           isLaoLanguage:localStorage.getItem('lang') === 'la',
              loading: false,
       
       searchItem: "",
+          list:[],
         };
     },
 
     mounted() {
-        this.getBanner()
+      this.getBanner().then(res=>{
+        if(res.success){
+          for(let i=0;i<res['data'].length;i++){
+            this.list.push({"id":res['data'][i].id});
+          }
+        }
+
+      });
     },
 
     methods: {
@@ -161,9 +250,18 @@ export default {
      
       this.$store.commit("modalDelete_State", true);
     },
+      checkMove: function(e) {
+        window.console.log("Future index: " + e.draggedContext.futureIndex);
+
+      },
+
+      saveChangeOrderBanner(){
+        this.orderBanner({'res':this.banner['data']})
+      },
 
     ...mapActions({
 getBanner:'Banner/getBanner',
+      orderBanner:'Banner/orderBanner'
 
 
         } )
@@ -186,6 +284,8 @@ getBanner:'Banner/getBanner',
   .banner-content {
     width: 100%;
     padding: 1rem;
+
+
     .text-limit{
  max-width: 200px;
  overflow: hidden;
@@ -193,6 +293,9 @@ getBanner:'Banner/getBanner',
  white-space: nowrap;
     }
 
+    grab-icon {
+      cursor: move;
+    }
   }
 }
 

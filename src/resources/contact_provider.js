@@ -16,7 +16,7 @@ class ContactProvider extends HttpRequest {
      this.setHeader({})
    // example path http://128.199.104.34:7000/this.get()
      const {data} = await this.get('/api/v1/contact/'+contact_id)
-     console.log(data)
+
      return data
   }
  
@@ -27,7 +27,7 @@ class ContactProvider extends HttpRequest {
      this.setHeader({})
    // example path http://128.199.104.34:7000/this.get()
      const {data} = await this.get('/api/v1/contact')
-     console.log(data)
+
      return data
   }
 

@@ -10,16 +10,16 @@ class CatePostProvider extends HttpRequest {
   }
 
 
-  async getCatePostOne ({cate_post_id}) {
-
-    //Call setHeader on class HttpRequest and write common header
-    //If write Header on class HttpRequest Should call like under method
-     this.setHeader({})
-   // example path http://128.199.104.34:7000/this.get()
-     const {data} = await this.get('/api/v1/postTypes/'+cate_post_id)
-     console.log(data)
-     return data
-  }
+  // async getCatePostOne ({cate_post_id}) {
+  //
+  //   //Call setHeader on class HttpRequest and write common header
+  //   //If write Header on class HttpRequest Should call like under method
+  //    this.setHeader({})
+  //  // example path http://128.199.104.34:7000/this.get()
+  //    const {data} = await this.get('/api/v1/news-Category/'+cate_post_id)
+  //
+  //    return data
+  // }
 
   async getCatePostAll () {
 
@@ -27,8 +27,8 @@ class CatePostProvider extends HttpRequest {
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
    // example path http://128.199.104.34:7000/this.get()
-     const {data} = await this.get('/api/v1/postTypes')
-     console.log(data)
+     const {data} = await this.get('/api/v1/news-Category')
+
      return data
   }
 
@@ -56,7 +56,7 @@ class CatePostProvider extends HttpRequest {
     this.setHeader({
       'Content-Type': 'application/x-www-form-urlencoded',
     })
-    const {data} = await this.create('/api/v1/postTypes',arg)
+    const {data} = await this.create('/api/v1/news-Category',arg)
     
 
     return data
@@ -73,7 +73,7 @@ class CatePostProvider extends HttpRequest {
     ){
       let arg={
         'name':cate_post_name,
-        'is_active':is_active,
+        //'is_active':is_active,
         'other_lang':[{
          'name':other_lang_cate_post_name,
         
@@ -82,12 +82,12 @@ class CatePostProvider extends HttpRequest {
 
         
       }
- console.log(arg)
+
     this.setHeader({
       'Content-Type': 'application/x-www-form-urlencoded',
     })
 
-    const {data} = await this.update('/api/v1/postTypes/'+cate_post_id,arg)
+    const {data} = await this.update('/api/v1/news-Category/'+cate_post_id,arg)
   
   
     return data
@@ -99,7 +99,7 @@ class CatePostProvider extends HttpRequest {
     this.setHeader({})
 
    // example path http://128.199.104.34:7000/this.get()
-    const {data} = await this.delete('/api/v1/postTypes/'+cate_post_id)
+    const {data} = await this.delete('/api/v1/news-Category/'+cate_post_id)
   
     return data
   }

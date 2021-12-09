@@ -17,7 +17,7 @@ class PostProvider extends HttpRequest {
      this.setHeader({})
    // example path http://128.199.104.34:7000/this.get()
 
-   console.log("post_id"+post_id)
+
      const {data} = await this.get('/api/v1/posts/'+post_id)
 
      return data
@@ -35,27 +35,24 @@ class PostProvider extends HttpRequest {
   }
 
   async createPost({
-    post_type_id,
+
     title,
     description,
     status,
-    start_date,
-    end_date,
     other_lang_title,
     other_lang_description,
     other_lang_id,
     avatar,
-    avatar_EN
+    avatar_EN,
+                     newsCategoryId
   })
   {
     try{
       var bodyFormData = new FormData();
-      bodyFormData.append('postTypeId',post_type_id);
+      bodyFormData.append('postTypeId',2);
       bodyFormData.append('title',title);
       bodyFormData.append('description',description);
       bodyFormData.append('status',status);
-      // bodyFormData.append('startDate',start_date);
-      // bodyFormData.append('endDate',end_date);
       bodyFormData.append('other_lang[0][title]',other_lang_title);
       bodyFormData.append('other_lang[0][description]',other_lang_description);
       bodyFormData.append('other_lang[0][language_id]',other_lang_id);
@@ -63,16 +60,17 @@ class PostProvider extends HttpRequest {
       
       for(let i =0;i<avatar.length;i++){
         bodyFormData.append('avatar[]',avatar[i]);
-        console.log('avatar'+i);
-        console.log(avatar[i]);
+
       }
       for(let i =0;i<avatar_EN.length;i++){
         bodyFormData.append('avatar_EN[]',avatar_EN[i]);
-        console.log('avatar_EN'+i);
-        console.log(avatar_EN[i]);
+
       }
-    
-      //console.log(bodyFormData);
+
+      for(let i =0;i<newsCategoryId.length;i++){
+        bodyFormData.append('newsCategoryId[]',newsCategoryId[i]);
+
+      }
  
     this.setHeader({
       'Content-Type': 'multipart/form-data',
@@ -89,42 +87,40 @@ class PostProvider extends HttpRequest {
   async updatePost(
     {
     post_id,
-    post_type_id,
     title,
     description,
     status,
-    start_date,
-    end_date,
     other_lang_title,
     other_lang_description,
     other_lang_id,
     avatar,
-    avatar_EN}
+    avatar_EN,
+      newsCategoryId}
     ){
-      console.log(avatar);
+
       var bodyFormData = new FormData();
-     // bodyFormData.append('postTypeId',post_type_id);
       bodyFormData.append('title',title);
       bodyFormData.append('description',description);
       bodyFormData.append('status',status);
-      // bodyFormData.append('startDate',start_date);
-      // bodyFormData.append('endDate',end_date);
       bodyFormData.append('other_lang[0][title]',other_lang_title);
       bodyFormData.append('other_lang[0][description]',other_lang_description);
       bodyFormData.append('other_lang[0][language_id]',other_lang_id);
 
       for(let i =0;i<avatar.length;i++){
         bodyFormData.append('avatar[]',avatar[i]);
-        console.log('avatar'+i);
-        console.log(avatar[i]);
+
       }
       for(let i =0;i<avatar_EN.length;i++){
         bodyFormData.append('avatar_EN[]',avatar_EN[i]);
-        console.log('avatar_EN'+i);
-        console.log(avatar_EN[i]);
+
       }
+
+    for(let i =0;i<newsCategoryId.length;i++){
+      bodyFormData.append('newsCategoryId[]',newsCategoryId[i]);
+
+    }
     
-      console.log(bodyFormData);
+
  
     this.setHeader({
       'Content-Type': 'multipart/form-data',

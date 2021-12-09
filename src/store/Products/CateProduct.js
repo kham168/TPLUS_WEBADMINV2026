@@ -29,7 +29,7 @@ const actions={
 
   async getCateProductOne ({commit},{cate_product_id}) {
     const data = await catProductProvider.getCateProductOne({'cate_product_id':cate_product_id})
-    console.log(data)
+
     commit('SET_CATE_PRODUCT_ONE', data)
     return data
   },

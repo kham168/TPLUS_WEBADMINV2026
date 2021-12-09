@@ -47,19 +47,7 @@
                         required
                       ></v-text-field>
 
-                       <v-select
-                        v-show="isLaoTab"
-                       :items="$t('CatePost.Status.item')"
-                       item-text="text"
-                      item-value="value"
-                        
-                        v-model="statusValue"
-                        :label="$t('CatePost.Create.form.status')"
-                       
-                        outlined
-                        required
-                      
-                      ></v-select>
+
                     
                     </v-form>
                     <div class="form-actions">
@@ -94,7 +82,7 @@ export default {
   data() {
     return {
       catePostId:0,
-      statusValue:false,
+
  
       name:'',
       nameEng:'',
@@ -154,8 +142,7 @@ export default {
   this.updateCatePost({
             'cate_post_id':this.catePostId,
             'cate_post_name':this.name,
-        'other_lang_cate_post_name':this.nameEng,
-        'is_active':this.statusValue
+        'other_lang_cate_post_name':this.nameEng
     })
 
     console.log('update successful')
@@ -170,7 +157,7 @@ export default {
 
   ...mapActions({
     updateCatePost:'CatePost/updateCatePost',
-    getCatePostOne:'CatePost/getCatePostOne'
+
   })
 
   },
