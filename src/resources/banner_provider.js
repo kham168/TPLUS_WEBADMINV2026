@@ -9,6 +9,20 @@ class BannerProvider extends HttpRequest {
     super('http://128.199.104.34:7000')
   }
 
+    async orderBanner({ res})
+    {
+        let banner_list=[];
+        for(let i =0;i<res.length;i++){
+            banner_list.push({'id':res[i].id})
+        }
+
+        this.setHeader({})
+
+        const {data} = await this.create('/api/v1/banner-order',banner_list)
+
+        return data
+    }
+
 
   async getBannerOne ({banner_id}) {
 
@@ -45,8 +59,7 @@ class BannerProvider extends HttpRequest {
     avatar_EN
   })
   {
-    console.log(avatar)
-    console.log(avatar_EN)
+
       var bodyFormData = new FormData();
       bodyFormData.append('banName',ban_name);
       bodyFormData.append('link',link);
@@ -89,8 +102,7 @@ class BannerProvider extends HttpRequest {
     avatar,
     avatar_EN}
     ){
-      console.log(avatar)
-      console.log(avatar_EN)
+
         var bodyFormData = new FormData();
         bodyFormData.append('banName',ban_name);
         bodyFormData.append('link',link);
@@ -119,7 +131,7 @@ class BannerProvider extends HttpRequest {
 
 
   async deleteBanner ({ban_id}) {
-    console.log('ban_id:')
+
  
     this.setHeader({})
 

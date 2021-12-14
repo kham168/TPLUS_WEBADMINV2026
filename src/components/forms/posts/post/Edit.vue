@@ -68,7 +68,7 @@
                         :items="$t('Post.status.item')"
                       
                         :label="$t('Post.Create.form.status')"
-                      
+                          multiple
                         outlined
                         required
                         v-model="statusValue"
@@ -276,7 +276,7 @@ export default {
       postName:'',
       postNameEng:'',
       statusValue:'',
-      catePostValue:'',
+      catePostValue:[],
          uploadImage: [],
        uploadImageEng: [],
       previewImage: [],
@@ -443,16 +443,13 @@ export default {
     if(this.$refs.form[0].validate()){
 
       this.updatePost({
+        'newsCategoryId':this.catePostValue,
          'post_id':this.postId,
-         'post_type_id':this.catePostValue,
                 'title': this.postName,
                 'description':this.descriptionText,
                 'status':this.statusValue,
-                'start_date':this.dateStart,
-                'end_date':this.dateEnd,
                 'other_lang_title':this.postNameEng,
                 'other_lang_description':this.descriptionTextEng,
-               
                 'avatar':this.uploadImage,
                 'avatar_EN':this.uploadImageEng
       })

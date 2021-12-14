@@ -40,12 +40,19 @@
               <td>{{ index + 1 }}</td>
               <td><v-img :src="item.PostImages[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
               <td>{{ item.title }}</td>
-              <td>{{ item.postTypeId}}</td>
-              <td class="text-limit">{{ item.description }}</td>
+              <td v-if="item.postTypeId === 1">ໂປຣໂມຊັນ</td>
+              <td v-else-if="item.postTypeId === 3">ກິດຈະກຳ</td>
+              <td style="   max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;">{{ item.description }}</td>
               <td>{{ item.startDate }}</td>
               <td>{{ item.endDate }}</td>
+
               <td>{{ item.status }}</td>
-            
+              <td><v-btn icon @click="onShow(item.id)"> <v-icon large>
+                mdi-eye
+              </v-icon></v-btn></td>
               <td>
                <v-menu offset-y>
                  <template v-slot:activator="{on,attrs}">
@@ -54,7 +61,7 @@
                 </v-btn>
                  </template>
                  <v-list>
-                   <v-list-item link @click="$router.push({name:'promotionEvent.edit',params:{      
+                   <v-list-item link @click="$router.push({name:'promotion_event.edit',params:{
                    'promotion_event_id':item.id,
       }}).catch(()=>{})">
                      <v-list-item-icon>
@@ -81,11 +88,17 @@
               <td><v-img :src="item.PostImageTrans[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
               <td>{{ item.PostTrans[0].title }}</td>
               <td>{{ item.postTypeId }}</td>
-              <td class="text-limit">{{ item.PostTrans[0].description }}</td>
+              <td style="   max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;">{{ item.PostTrans[0].description }}</td>
               <td>{{ item.startDate }}</td>
               <td>{{ item.endDate }}</td>
               <td>{{ item.status }}</td>
-             
+              <td>{{ item.status }}</td>
+              <td><v-btn icon @click="onShow(item.id)"> <v-icon large>
+                mdi-eye
+              </v-icon></v-btn></td>
               <td>
                <v-menu offset-y>
                  <template v-slot:activator="{on,attrs}">
@@ -131,6 +144,12 @@
           <Delete :promotion_event_id="promotion_event_id" @close="close" />
         </template>
       </ModalDelete>
+
+      <ModalShow>
+        <template v-slot="{close}">
+          <Show :promotion_event_id="promotion_event_id" @close="close" />
+        </template>
+      </ModalShow>
     </section>
   </div>
   
@@ -139,13 +158,16 @@
 <script>
 import {mapActions, mapGetters} from 'vuex'
 import Delete from "@/components/forms/posts/promotion_event/Delete";
-
+import Show from "@/components/forms/posts/promotion_event/Show";
+import ModalShow from "@/components/Modals/modalShow";
 export default {
   
   name: "PromotionEvent",
 
 components: {
-    Delete
+    Delete,
+  Show,
+  ModalShow
   },
   data() {
     return {
@@ -176,7 +198,7 @@ components: {
     CreatePost() {
       this.$router
         .push({
-          name: "post.create",
+          name: "promotion_event.create",
         })
         .catch(() => {});
     },
@@ -184,6 +206,11 @@ components: {
         this.promotion_event_id = promotion_event_id
      
       this.$store.commit("modalDelete_State", true);
+    },
+    onShow(promotion_event_id) {
+      this.promotion_event_id = promotion_event_id
+
+      this.$store.commit("modalShow_State", true);
     },
 
            ...mapActions({

@@ -21,43 +21,41 @@ const mutations={
 
 const actions={
     async getPostOne ({commit},{post_id}) {
-      console.log(post_id)
+
         const data = await postService.getPostOne({'post_id':post_id})
         return data
       },
 
     async getPost ({commit}) {
         const data = await postService.getPost()
-        console.log('data der')
-        console.log(data)
+
         commit('SET_POST', data)
       },
 
       async createPost({dispatch},{
-        post_type_id,
+
         title,
         description,
         status,
-        start_date,
-        end_date,
         other_lang_title,
         other_lang_description,
-    
         avatar,
-        avatar_EN}){
+        avatar_EN,
+          newsCategoryId}
+
+      ){
 
             let arg={
                 'post_type_id':post_type_id,
                 'title': title,
                 'description':description,
                 'status':status,
-                'start_date':start_date,
-                'end_date':end_date,
                 'other_lang_title':other_lang_title,
                 'other_lang_description':other_lang_description,
                 'other_lang_id':2,
                 'avatar':avatar,
-                'avatar_EN':avatar_EN
+                'avatar_EN':avatar_EN,
+                'newsCategoryId':newsCategoryId,
             }
          await postService.createPost(arg)
         dispatch('getPost',{ root: true });
@@ -65,42 +63,38 @@ const actions={
 
       async updatePost({dispatch },{
           post_id,
-        post_type_id,
         title,
         description,
         status,
-        start_date,
-        end_date,
         other_lang_title,
         other_lang_description,
   
         avatar,
-        avatar_EN}){
+        avatar_EN,
+          newsCategoryId}){
             
             let arg={
                 'post_id':post_id,
-                'post_type_id':post_type_id,
                 'title': title,
                 'description':description,
                 'status':status,
-                'start_date':start_date,
-                'end_date':end_date,
                 'other_lang_title':other_lang_title,
                 'other_lang_description':other_lang_description,
                 'other_lang_id':2,
                 'avatar':avatar,
-                'avatar_EN':avatar_EN
+                'avatar_EN':avatar_EN,
+                'newsCategoryId':newsCategoryId,
             }
          await postService.updatePost(arg)
         dispatch('getPost',{ root: true });
         
-        //commit('SET_POST',data)
+
       },
 
       async deletePost ({dispatch},{post_id}) {
         await postService.deletePost({'post_id':post_id})
         dispatch('getPost',{ root: true });
-       // commit('SET_POST', data)
+
       },
 }
 

@@ -39,8 +39,13 @@
                  <td>{{ item.productName }}</td>
               <td ><p v-for="data in item.ProductCategories" :key="data.id" >{{data.cateProductId}}</p></td>
           
-              <td class="text-limit">{{ item.description }}</td>
-  
+              <td style="   max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;">{{ item.description }}</td>
+              <td><v-btn icon @click="onShow(item.id)"> <v-icon large>
+                mdi-eye
+              </v-icon></v-btn></td>
               <td>
                <v-menu offset-y>
                  <template v-slot:activator="{on,attrs}">
@@ -79,8 +84,13 @@
               <td ><p v-for="data in item.ProductCategories" :key="data.id" >{{data.cateProductId}}</p></td>
           
            
-              <td class="text-limit">{{ item.description }}</td>
-  
+              <td style="   max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;">{{ item.description }}</td>
+               <td><v-btn icon @click="onShow(item.id)"> <v-icon large>
+                 mdi-eye
+               </v-icon></v-btn></td>
               <td>
                <v-menu offset-y>
                  <template v-slot:activator="{on,attrs}">
@@ -126,6 +136,12 @@
           <Delete :product_id="product_id" @close="close" />
         </template>
       </ModalDelete>
+
+      <ModalShow>
+        <template v-slot="{close}">
+          <Show :product_id="product_id" @close="close" />
+        </template>
+      </ModalShow>
     </section>
   </div>
 </template>
@@ -133,11 +149,15 @@
 <script>
 import {mapActions,mapGetters} from 'vuex'
 import Delete from "@/components/forms/products/Product/Delete";
+import Show from "@/components/forms/products/Product/Show";
+import ModalShow from "@/components/Modals/modalShow";
 export default {
   name: "Product",
 
 components: {
-    Delete
+    Delete,
+  Show,
+  ModalShow
   },
   data() {
     return {
@@ -170,6 +190,11 @@ components: {
         this.product_id = product_id
      
       this.$store.commit("modalDelete_State", true);
+    },
+    onShow(product_id) {
+      this.product_id = product_id
+
+      this.$store.commit("modalShow_State", true);
     },
 
     ...mapActions({

@@ -17,7 +17,7 @@ class CateProductProvider extends HttpRequest {
      this.setHeader({})
    // example path http://128.199.104.34:7000/this.get()
      const {data} = await this.get('/api/v1/categoryProducts/'+cate_product_id)
-     console.log(data)
+
      return data
   }
 
@@ -28,7 +28,7 @@ class CateProductProvider extends HttpRequest {
      this.setHeader({})
    // example path http://128.199.104.34:7000/this.get()
      const {data} = await this.get('/api/v1/categoryProducts')
-     console.log(data)
+
      return data
   }
 

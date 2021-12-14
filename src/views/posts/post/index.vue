@@ -44,10 +44,15 @@
                 <v-img :src="item.PostImages[0].image" alt="preview" max-height="50" max-width="50"></v-img>
               </td>
               <td>{{ item.title }}</td>
-              <td>{{ item.postTypeId }}</td>
-              <td class="text-limit">{{ item.description }}</td>
+              <td ><span v-for="data in item.newsCategories">{{ data.name}}</span></td>
+              <td style="   max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;">{{ item.description }}</td>
               <td>{{ item.status }}</td>
-
+              <td><v-btn icon @click="onShow(item.id)"> <v-icon large>
+                mdi-eye
+              </v-icon></v-btn></td>
               <td>
                 <v-menu offset-y>
                   <template v-slot:activator="{on,attrs}">
@@ -80,42 +85,45 @@
             </tr>
             <tr class="table-content" v-else>
               <td>{{ index + 1 }}</td>
-              <td>
-                <v-img :src="item.PostImageTrans[0].image" alt="preview" max-height="50" max-width="50"></v-img>
-              </td>
+              <td><v-img :src="item.PostImageTrans[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
               <td>{{ item.PostTrans[0].title }}</td>
-              <td>{{ item.postTypeId }}</td>
-              <td class="text-limit">{{ item.PostTrans[0].description }}</td>
+              <td>{{ item.newsCategories[0].name }}</td>
+              <td style="   max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;">{{ item.PostTrans[0].description }}</td>
               <td>{{ item.status }}</td>
-
+              <td><v-btn icon @click="onShow(item.id)"> <v-icon large>
+                mdi-eye
+              </v-icon></v-btn></td>
               <td>
-                <v-menu offset-y>
-                  <template v-slot:activator="{on,attrs}">
-                    <v-btn icon v-on="on" v-bind="attrs">
-                      <v-icon small>fas fa-ellipsis-v</v-icon>
-                    </v-btn>
-                  </template>
-                  <v-list>
-                    <v-list-item link @click="$router.push({name:'post.edit',params:{
+               <v-menu offset-y>
+                 <template v-slot:activator="{on,attrs}">
+                   <v-btn icon v-on="on" v-bind="attrs">
+                  <v-icon small>fas fa-ellipsis-v</v-icon>
+                </v-btn>
+                 </template>
+                 <v-list>
+                   <v-list-item link @click="$router.push({name:'post.edit',params:{
                      'post_id':item.id,
       }}).catch(()=>{})">
-                      <v-list-item-icon>
-                        <v-icon class="mr-3" small>{{ $t('Post.table.options.iconEdit') }}</v-icon>
-                        <v-list-item-title>
-                          {{ $t('Post.table.options.edit') }}
-                        </v-list-item-title>
-                      </v-list-item-icon>
-                    </v-list-item>
+                     <v-list-item-icon>
+                       <v-icon class="mr-3" small>{{$t('Post.table.options.iconEdit')}}</v-icon>
+                       <v-list-item-title>
+                         {{$t('Post.table.options.edit')}}
+                       </v-list-item-title>
+                     </v-list-item-icon>
+                   </v-list-item>
                     <v-list-item link @click="onDelete(item.id)">
-                      <v-list-item-icon>
-                        <v-icon class="mr-3" small>{{ $t('Post.table.options.delicon') }}</v-icon>
-                        <v-list-item-title>
-                          {{ $t('Post.table.options.delete') }}
-                        </v-list-item-title>
-                      </v-list-item-icon>
-                    </v-list-item>
-                  </v-list>
-                </v-menu>
+                     <v-list-item-icon>
+                       <v-icon class="mr-3" small>{{$t('Post.table.options.delicon')}}</v-icon>
+                       <v-list-item-title>
+                         {{$t('Post.table.options.delete')}}
+                       </v-list-item-title>
+                     </v-list-item-icon>
+                   </v-list-item>
+                 </v-list>
+               </v-menu>
               </td>
             </tr>
           </template>
@@ -128,11 +136,16 @@
           <h3>{{ $t("Post.table.dontdata") }}</h3>
         </div>
       </div>
-      <ModalDelete>
+                   <ModalDelete>
         <template v-slot="{close}">
-          <Delete :post_id="post_id" @close="close"/>
+          <Delete :post_id="post_id" @close="close" />
         </template>
       </ModalDelete>
+      <ModalShow>
+        <template v-slot="{close}">
+          <Show :post_id="post_id" @close="close" />
+        </template>
+      </ModalShow>
     </section>
   </div>
 
@@ -141,19 +154,22 @@
 <script>
 import {mapActions, mapGetters} from 'vuex'
 import Delete from "@/components/forms/posts/post/Delete";
-
+import Show from "@/components/forms/posts/post/Show";
+import ModalShow from "@/components/Modals/modalShow";
 export default {
 
   name: "Post",
 
-  components: {
-    Delete
+components: {
+    Delete,
+    Show,
+    ModalShow
   },
   data() {
     return {
-      post_id: '',
-      isLaoLanguage: localStorage.getItem('lang') === 'la',
-      image: '@/src/assets/logo.png',
+      post_id:'',
+      isLaoLanguage:localStorage.getItem('lang') === 'la',
+      image:'@/src/assets/logo.png',
       loading: false,
 
       searchItem: "",
@@ -169,7 +185,7 @@ export default {
   },
 
   methods: {
-    load() {
+    load(){
       console.log('load')
 
 
@@ -177,34 +193,38 @@ export default {
 
     CreatePost() {
       this.$router
-          .push({
-            name: "post.create",
-          })
-          .catch(() => {
-          });
+        .push({
+          name: "post.create",
+        })
+        .catch(() => {});
     },
-    onDelete(post_id) {
-      this.post_id = post_id
+     onDelete(post_id) {
+        this.post_id = post_id
 
       this.$store.commit("modalDelete_State", true);
     },
+    onShow(post_id) {
+      this.post_id = post_id
 
-    ...mapActions({
-          getPost: 'Post/getPost',
-          getCatePostOne: 'CatePost/getCatePostOne'
+      this.$store.commit("modalShow_State", true);
+    },
+
+           ...mapActions({
+getPost:'Post/getPost',
+getCatePostOne:'CatePost/getCatePostOne'
 
 
         }
-    )
+        )
   },
 
-  computed: {
+  computed:{
     ...mapGetters({
-      post: 'Post/post',
-      cate_post_one: 'CatePost/cate_post_one'
+        post:'Post/post',
+        cate_post_one:'CatePost/cate_post_one'
 
 
-    })
+        })
   }
 };
 </script>
@@ -218,12 +238,7 @@ export default {
     width: 100%;
     padding: 1rem;
 
-    .text-limit {
-      max-width: 200px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
+
   }
 }
 </style>

@@ -36,7 +36,10 @@
             <tr class="table-content" v-if="isLaoLanguage">
               <td>{{ index + 1 }}</td>
               <td>{{ item.cateName }}</td>
-              <td class="text-limit">{{ item.description }}</td>
+              <td style=" max-width: 200px;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ white-space: nowrap;">{{ item.description }}</td>
              
               <td>
                <v-menu offset-y>
@@ -70,7 +73,10 @@
             <tr class="table-content" v-else>
               <td>{{ index + 1 }}</td>
               <td>{{ item.CateProductTrans[0].cateName }}</td>
-              <td class="text-limit">{{ item.CateProductTrans[0].description }}</td>
+              <td style=" max-width: 200px;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ white-space: nowrap;">{{ item.CateProductTrans[0].description }}</td>
              
               <td>
                <v-menu offset-y>
@@ -178,12 +184,7 @@ components: {
   .cate_product-content {
     width: 100%;
     padding: 1rem;
-    .text-limit{
- max-width: 200px;
- overflow: hidden;
- text-overflow: ellipsis;
- white-space: nowrap;
-    }
+
   }
 }
 </style>

@@ -400,9 +400,9 @@
     "loadingtext": "Loading...",
     "table": {
       "headers": [
-        { "text": "No", "value": "No", "sortable": false },
+        { "text": "No", "value": "No", "sortable": false,"checked": false },
         { "text": "Piccture", "value": "BannerTrans[0].image[0]", "sortable": false },
-        { "text": "Banner Name", "value": "BannerTrans[0].banName", "sortable": true },
+        { "text": "Banner Name", "value": "BannerTrans[0].banName", "sortable": false },
         { "text": "Link", "value": "BannerTrans[0].link", "sortable": false },
         { "text": "Description", "value": "BannerTrans[0].description", "sortable": false },
 

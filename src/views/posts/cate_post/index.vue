@@ -36,8 +36,8 @@
             <tr class="table-content" v-if="isLaoLanguage">
               <td>{{ index + 1 }}</td>
               <td>{{ item.name }}</td>
-              <td v-if="item.is_active === true">ເປີດ</td>
-            <td v-else>ປິດ</td>
+
+
         
               <td>
                <v-menu offset-y>
@@ -73,8 +73,8 @@
             <tr class="table-content" v-else>
               <td>{{ index + 1 }}</td>
               <td>{{ item.PostTypesTrans[0].name }}</td>
-              <td v-if="item.is_active == true"> Open </td>
-            <td v-else> Close </td>
+
+
               <td>
                <v-menu offset-y>
                  <template v-slot:activator="{on,attrs}">
@@ -144,7 +144,7 @@ components: {
 
   mounted() {
     this.getCatePostAll();
-    console.log(this.getCatePostAll());
+
   },
 
   methods: {

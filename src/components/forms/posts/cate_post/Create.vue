@@ -79,7 +79,7 @@ export default {
       isLaoTab:false,
       isEngTab:false,
       tab: null,
-      previewImage: null,
+
       valid:true,
     };
   },

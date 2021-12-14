@@ -402,6 +402,7 @@
           "text": "ລຳດັບ",
           "value": "No",
           "sortable": false
+
         },
         {
           "text": "ຮູບພາບ",
@@ -411,7 +412,7 @@
         {
           "text": "ຊື່ປ້າຍໂຄສະນາ",
           "value": "banName",
-          "sortable": true
+          "sortable": false
         },
         {
           "text": "ລິ້ງ",

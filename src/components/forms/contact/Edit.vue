@@ -106,15 +106,7 @@ created(){
   },
 
   methods: {
-   fetchContactOne() {
-      this.$axios.get(`position`).then((res) => {
-        if (res.status === 200) {
-          this.position = res.data.data;
-        }
-      }).catch((error) => {
-        console.log(error)
-      })
-    },
+
 
     loadDataToComponent(){
 

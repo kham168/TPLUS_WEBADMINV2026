@@ -21,15 +21,11 @@ class HttpRequest {
 
     this.axiosInstance.interceptors.request.use(function (config) {
       // Do something before request is sent
-      console.log("config")
-      console.log(config)
+
       return config
     }, function (error) {
       // Do something with request error
 
-      console.log(error.response.data);
-      console.log("Error request status:"+error.response.status);
-      console.log(error.response.headers);
 
       return Promise.reject(error)
     })
@@ -48,7 +44,11 @@ class HttpRequest {
           message:i18n.tc('Notification.saveDataSuccess')
         })
        }, 300);
-       Router.back();
+
+        if(response.message=="Updated order banner successfully"){
+          Router.back();
+        }
+
       }else if(response.config.method=="put" && response.status == 200){
         setTimeout(() => {
           Store.dispatch({
@@ -56,6 +56,7 @@ class HttpRequest {
           message:i18n.tc('Notification.editDataSuccess')
         })
        }, 300);
+
        Router.back();
       }else if(response.config.method=="delete" && response.status == 200){
         setTimeout(() => {

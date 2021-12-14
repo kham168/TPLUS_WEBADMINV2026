@@ -56,7 +56,7 @@
                          :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
                         v-model="catePostValue"
                         :label="$t('Post.Create.form.category')"
-                        
+                        multiple
                         outlined
                         required
                       
@@ -274,7 +274,7 @@ export default {
       postName:'',
       postNameEng:'',
       statusValue:'',
-      catePostValue:'',
+      catePostValue:[],
       uploadImage:[],
       uploadImageEng:[],
       tab: null,
@@ -379,12 +379,10 @@ export default {
 
       this.createPost({
       
-         'post_type_id':this.catePostValue,
+         'newsCategoryId':this.catePostValue,
                 'title': this.postName,
                 'description':this.descriptionText,
                 'status':this.statusValue,
-                'start_date':this.dateStart,
-                'end_date':this.dateEnd,
                 'other_lang_title':this.postNameEng,
                 'other_lang_description':this.descriptionTextEng,
                
