@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["User"],{c6a9:function(e,n,t){"use strict";t.r(n);var r=function(){var e=this,n=e.$createElement,t=e._self._c||n;return t("div",[t("router-view")],1)},u=[],c={name:"User",data:function(){return{}},mounted:function(){},methods:{}},o=c,a=t("2877"),s=Object(a["a"])(o,r,u,!1,null,"de33c78e",null);n["default"]=s.exports}}]);
-//# sourceMappingURL=User.f8802c79.js.map
