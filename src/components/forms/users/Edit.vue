@@ -10,6 +10,7 @@
             <v-row>
               <v-col cols="6">
                 <v-text-field
+                    v-if="users.Employee"
                     :label="$t('Users.Create.form.firstname')"
                     v-model="users.Employee.firtName"
                     required
@@ -21,6 +22,7 @@
               </v-col>
               <v-col cols="6">
                 <v-text-field
+                    v-if="users.Employee"
                     :label="$t('Users.Create.form.lastname')"
                     v-model="users.Employee.surName"
                     required
@@ -187,6 +189,7 @@ export default {
     this.$store.dispatch("users/fetchUser", this.user_id).then((res) => {
       if (res.status === 200) {
         this.users = res.data.data;
+        console.log(this.users,5555555555)
       }
     })
   }
