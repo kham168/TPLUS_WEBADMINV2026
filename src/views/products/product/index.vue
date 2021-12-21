@@ -37,7 +37,7 @@
               <td>{{ index + 1 }}</td>
                 <td><v-img :src="item.ProductImages[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
                  <td>{{ item.productName }}</td>
-              <td ><p v-for="data in item.ProductCategories" :key="data.id" >{{data.cateProductId}}</p></td>
+              <td ><p v-for="data in item.cateProducts" :key="data.id" >{{data.cateName}}</p></td>
           
               <td style="   max-width: 200px;
         overflow: hidden;
@@ -81,7 +81,7 @@
               <td>{{ index + 1 }}</td>
                 <td><v-img :src="item.ProductImages[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
                 <td>{{ item.ProductTrans[0].productName }}</td>
-              <td ><p v-for="data in item.ProductCategories" :key="data.id" >{{data.cateProductId}}</p></td>
+              <td ><p v-for="data in item.cateProducts" :key="data.id" >{{data.CateProductTrans[0].cateName}}</p></td>
           
            
               <td style="   max-width: 200px;

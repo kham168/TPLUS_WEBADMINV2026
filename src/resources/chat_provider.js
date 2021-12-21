@@ -28,7 +28,7 @@ class ChatProvider extends HttpRequest {
         //Call setHeader on class HttpRequest and write common header
         //If write Header on class HttpRequest Should call like under method
         this.setHeader({
-          //  'Authorization':token
+            'Authorization':token
         })
         // example path http://128.199.104.34:7000/this.get()
         const {data} = await this.get('/api/v1/admin/chat/'+chat_room_id)
@@ -41,7 +41,7 @@ class ChatProvider extends HttpRequest {
         //Call setHeader on class HttpRequest and write common header
         //If write Header on class HttpRequest Should call like under method
         this.setHeader({
-          //  'Authorization':token
+            'Authorization':token
         })
         // example path http://128.199.104.34:7000/this.get()
         const {data} = await this.get('/api/v1/chat')
@@ -55,14 +55,15 @@ class ChatProvider extends HttpRequest {
 
         this.setHeader({
             'Content-Type': 'application/x-www-form-urlencoded',
-           // 'Authorization':token
+            'Authorization':token
         })
 
         let args={
-            'message':message
+            'message':message,
+            'room_id':chat_room_id
         }
 
-        const {data} = await this.create('/api/v1/admin/chat/'+chat_room_id,args)
+        const {data} = await this.create('/api/v1/admin/chat',args)
 
         return data
     }
@@ -71,7 +72,7 @@ class ChatProvider extends HttpRequest {
 
         this.setHeader({
             'Content-Type': 'application/x-www-form-urlencoded',
-          //  'Authorization':token
+            'Authorization':token
         })
 
         var args={}

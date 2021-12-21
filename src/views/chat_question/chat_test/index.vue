@@ -124,7 +124,7 @@ export default {
 
   created() {
 
-    this.socket = io("http://25.10.235.85:7000");
+    this.socket = io("http://128.199.104.34:81");
 
 
   },

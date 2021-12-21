@@ -41,8 +41,9 @@ class ChatQuestionProvider extends HttpRequest {
 
         //Call setHeader on class HttpRequest and write common header
         //If write Header on class HttpRequest Should call like under method
-        this.setHeader({
+        this.setHeaderBaseQuestion({
          //   'Authorization':tokenClient1
+
         })
         // example path http://128.199.104.34:7000/this.get()
         const {data} = await this.get('/api/v1/baseQuestion')
@@ -67,17 +68,21 @@ class ChatQuestionProvider extends HttpRequest {
 
 
                              }) {
-        let arg = [{
-            "question": question,
-             "answer": answer,
-            "languageId": "1",
-            "image":image
-        }, {
-            "question": questionEng,
-             "answer": answerEng,
-            "languageId": "2",
-            "image":imageEng
-        }]
+        let arg = [];
+
+        if(answer == null || answer == ''){
+            arg = [{
+                "question": question,  "languageId": "1","image":image
+            }, {
+                "question": questionEng, "languageId": "2","image":imageEng
+            }]
+        }else{
+            arg = [{
+                "question": question,"answer":answer,  "languageId": "1"
+            }, {
+                "question": questionEng,"answer":answerEng,"languageId": "2"
+            }]
+        }
 
 
         this.setHeader({

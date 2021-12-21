@@ -820,6 +820,7 @@
         "data_package_name": "ຊື່ແພັກເກັດ",
         "description": "ລາຍລະອຽດ",
         "picture": "ອັບໂຫຼດຮູບພາບ",
+        "code": "Code",
         "button": {
           "save": "ບັນທຶກ",
           "cancel": "ຍົກເລີກ"
@@ -1248,6 +1249,7 @@
   },
   "ChatQuestion": {
     "title": "ຂໍ້ມູນຄຳຖາມ",
+    "subtitle":"ຂໍ້ມູນຄຳຖາມຊັ້ນທີ2",
     "button": "ເພີ່ມ",
     "txtsearch": "ຄົ້ນຫາຄຳຖາມ",
     "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ...",

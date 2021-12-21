@@ -27,7 +27,14 @@
                 <div class="card-form">
                   <div class="form-content">
                     <v-form ref="form" v-model="valid" lazy-validation>
-
+                      <v-text-field
+                          v-show="isLaoTab"
+                          v-model="code"
+                          :label="$t('DataPackage.Create.form.code')"
+                          :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
+                          outlined
+                          required
+                      ></v-text-field>
                       <v-text-field
                           v-show="isLaoTab"
                           v-model="name"
@@ -45,53 +52,48 @@
                           required
                       ></v-text-field>
 
-                      <v-select
-                          v-show="tab == 0"
-                          v-model="catePackageValue"
-                          :items="cate_data_package['data']"
-                          :label="$t('DataPackage.Create.form.category')"
-                          :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
-                          item-text="detail"
-                          item-value="id"
-                          outlined
-                          required
-                      ></v-select>
 
 
-                      <div v-show="isLaoTab">
 
-                        <div v-if="previewImage[0] == null" class="upload-image">
+                      <div v-show="isLaoTab" >
 
-                          <div class="content">
+
+
+                        <v-row justify="end" v-show="previewImage !== null ">
+                          <v-btn
+                              class="mx-2"
+                              fab
+                              dark
+                              small
+                              color="error"
+                              @click="removeImage"
+                          >
+                            <v-icon dark>
+                              mdi-close
+                            </v-icon>
+                          </v-btn>
+                        </v-row>
+                        <div class="upload-image mt-3">
+
+                          <div class="content" v-show="previewImage === null">
                             <i class="fas fa-plus-circle"></i>
                             <h3>{{ $t("Post.Create.form.picture") }}</h3>
+
                           </div>
+                          <img class="image-files" :src="previewImage" v-show="previewImage !== null"/>
+
                           <input
-                              accept="image/*"
+
+                              type="file"
                               class="choose-file"
                               name="upload-image"
-                              type="file"
+                              accept="image/*"
                               @change="UploadImage"
                           />
                         </div>
 
 
-                        <div v-else class="image">
-                          <v-carousel height="100%">
-                            <v-carousel-item v-for="(imageFiles,index) in previewImage" :key="index">
 
-                              <v-layout row>
-                                <v-flex v-for="j in 1" :key="j" align-self-center>
-
-                                  <img :src="imageFiles" class="image-files">
-
-                                </v-flex>
-
-                              </v-layout>
-                            </v-carousel-item>
-                          </v-carousel>
-
-                        </div>
                       </div>
 
 
@@ -125,6 +127,7 @@ export default {
 
   data() {
     return {
+      code:'',
       catePackageValue: '',
       name: '',
       nameEng: '',
@@ -133,16 +136,16 @@ export default {
       tab: null,
       isLaoTab: false,
       isEngTab: false,
-      uploadImage: [],
+      uploadImage: null,
 
-      previewImage: [],
+      previewImage: null,
 
       valid: true,
     };
   },
 
   mounted() {
-    this.getCateDataPackage();
+
     this.checkTabLang('ລາວ');
   },
 
@@ -164,39 +167,35 @@ export default {
 
 
     UploadImage(e) {
-      console.log('e')
-      console.log(e)
-      console.log('e.target.files')
-      console.log(e.target.files)
-      const img = e.target.files;
 
-      for (let i = 0; i < img.length; i++) {
+      const img = e.target.files[0];
 
-        this.uploadImage.push(img[i])
-        const reader = new FileReader();
-        reader.readAsDataURL(img[i]);
-        reader.onload = (e) => {
-          console.log(e);
-          this.previewImage.push(e.target.result);
-          console.log(this.previewImage[i]);
-        }
+
+      this.uploadImage=img
+      const reader = new FileReader();
+      reader.readAsDataURL(img);
+      reader.onload = (e) => {
+
+        this.previewImage=e.target.result;
 
       }
-      ;
+
+
     },
 
-
-    removeImage(index) {
-      this.previewImage.splice(index, 1);
+    removeImage()
+    {
+      this.uploadImage = null;
+      this.previewImage=null;
     },
 
 
     submitForm() {
       if (this.$refs.form[0].validate()) {
         this.createDataPackage({
-          'code': this.catePackageValue,
+          'code': this.code,
           'la_name': this.name,
-          'en_name': this.description,
+          'en_name': this.nameEng,
           'avatar': this.uploadImage,
         })
       } else {
@@ -212,13 +211,13 @@ export default {
 
     ...mapActions({
       createDataPackage: 'DataPackage/createDataPackage',
-      getCateDataPackage: 'CateDataPackage/getCateDataPackage'
+
     })
   },
 
   computed: {
     ...mapGetters({
-      cate_data_package: 'CateDataPackage/cate_data_package'
+
     })
   }
 };

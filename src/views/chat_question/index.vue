@@ -10,11 +10,11 @@
       <div class="cate_post-content">
         <v-data-table
             :headers="$t('ChatQuestion.table.headers')"
-            :items="chat_question['data']"
+            :items="chat_base_question['baseQuestionData']"
             :search="searchItem"
             :loading="loading"
             :loading-text="$t('ChatQuestion.loadingtext')"
-            v-if="chat_question['data'] != []"
+            v-if="chat_base_question['data'] != []"
         >
           <template v-slot:top>
             <v-toolbar flat>
@@ -35,8 +35,8 @@
           <template v-slot:item="{ item, index }">
             <tr class="table-content" v-if="isLaoLanguage" @click="onClickRow(item.id)">
               <td>{{ index + 1 }}</td>
-              <td>{{ item.ChatQuestionTrans[0].question }}</td>
-              <td v-if="item.ChatQuestionTrans[0].answer != ''">{{ item.ChatQuestionTrans[0].answer }}</td>
+              <td>{{ item.question }}</td>
+              <td v-if="item.answer != ''">{{ item.answer }}</td>
              <td v-else> <v-chip
 
                  dark
@@ -77,8 +77,8 @@
 
             <tr class="table-content" v-else @click="onClickRow(item.id)">
               <td>{{ index + 1 }}</td>
-              <td>{{ item.ChatQuestionTrans[1].question }}</td>
-              <td v-if="item.ChatQuestionTrans[1].answer != ''">{{ item.ChatQuestionTrans[1].answer }}</td>
+              <td>{{ item.question }}</td>
+              <td v-if="item.answer != ''">{{ item.answer }}</td>
               <td v-else> <v-chip
 
                   dark
@@ -155,7 +155,7 @@ export default {
   },
 
   mounted() {
-    this.getChatQuestion();
+    this.getChatBaseQuestion();
 
   },
 
@@ -186,12 +186,12 @@ export default {
     },
 
     ...mapActions({
-      getChatQuestion:'ChatQuestion/getChatQuestion'
+      getChatBaseQuestion:'ChatQuestion/getChatBaseQuestion'
     })
   },
   computed:{
     ...mapGetters({
-      chat_question:'ChatQuestion/chat_question'
+      chat_base_question:'ChatQuestion/chat_base_question'
     })
   }
 };

@@ -28,7 +28,6 @@
                 <div class="card-form">
                   <div class="form-content">
                     <v-form ref="form" v-model="valid" lazy-validation>
-                      {{"luy"}}
                       <v-text-field
                           v-show="isLaoTab"
                           v-model="postName"

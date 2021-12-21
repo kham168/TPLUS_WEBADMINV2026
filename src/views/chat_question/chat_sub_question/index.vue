@@ -2,8 +2,8 @@
   <div id="ChatQuestion">
     <section class="chat_question-section">
       <div class="header chat_question-header">
-        {{"sub"}}
-        <h1>{{ $t("ChatQuestion.title") }}</h1>
+
+        <h1>{{ $t("ChatQuestion.subtitle") }}</h1>
         <v-btn @click="CreateChatQuestion" class="btn btn-create">
           <v-icon>fal fa-plus-circle</v-icon>{{ $t("ChatQuestion.button") }}</v-btn
         >

@@ -4,8 +4,7 @@
       <div class="header data_package-header">
         <h1>{{ $t("DataPackage.title") }}</h1>
 
-          <v-btn @click="CreateDataPackage" class="btn btn-create">
-            <v-icon>fal fa-plus-circle</v-icon>{{ $t("DataPackage.button") }}</v-btn>
+
           <v-btn @click="CreateDataPackage" class="btn btn-create">
             <v-icon>fal fa-plus-circle</v-icon>{{ $t("DataPackage.button") }}</v-btn>
 

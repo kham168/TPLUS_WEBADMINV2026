@@ -762,6 +762,7 @@
         "data_package_name": "Data Package Name",
         "description": "Description",
         "picture": "Upload Image",
+        "code": "Code",
         "button": {
           "save": "Save",
           "cancel": "Cancel"
@@ -1044,6 +1045,7 @@
 
   "ChatQuestion": {
     "title": "Question",
+    "subtitle":"SubQuestion",
     "button": "Create",
     "txtsearch": "Search Question",
     "loadingtext":"Loading...",

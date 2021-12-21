@@ -91,14 +91,20 @@ class HttpRequest {
     // this.axiosInstance.defaults.headers.common[header.key] = header.value
     this.axiosInstance.defaults.headers.common = header
      this.axiosInstance.defaults.headers.common['Authorization'] = 'Bearer '+User.state.token
-    this.axiosInstance.defaults.headers.common['content_language'] = 'en'
-
+      this.axiosInstance.defaults.headers.common['content_language'] = 'en'
     this.axiosInstance.defaults.headers.common['Accept'] = 'application/json'
     this.axiosInstance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
-  
-  
-    
-   
+
+  }
+
+  setHeaderBaseQuestion (header) {
+    // this.axiosInstance.defaults.headers.common[header.key] = header.value
+    this.axiosInstance.defaults.headers.common = header
+    this.axiosInstance.defaults.headers.common['Authorization'] = 'Bearer '+User.state.token
+    this.axiosInstance.defaults.headers.common['content_language'] = localStorage.getItem('lang')
+    this.axiosInstance.defaults.headers.common['Accept'] = 'application/json'
+    this.axiosInstance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+
   }
 
   get (methodName, data) {

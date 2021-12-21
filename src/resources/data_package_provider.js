@@ -40,7 +40,7 @@ class DataPackageProvider extends HttpRequest {
         bodyFormData.append('code', code);
         bodyFormData.append('la_name', la_name);
         bodyFormData.append('en_name', en_name);
-        bodyFormData.append('avatar[]', avatar[0]);
+        bodyFormData.append('avatar[]', avatar);
 
 
         this.setHeader({
@@ -55,11 +55,12 @@ class DataPackageProvider extends HttpRequest {
     async updateDataPackage({
                                 package_id, code, la_name, en_name, avatar,
                             }) {
+        console.log(code)
         var bodyFormData = new FormData();
         bodyFormData.append('code', code);
         bodyFormData.append('la_name', la_name);
         bodyFormData.append('en_name', en_name);
-        bodyFormData.append('avatar[]', avatar[0]);
+        bodyFormData.append('avatar[]', avatar);
 
         this.setHeader({
             'Content-Type': 'multipart/form-data',

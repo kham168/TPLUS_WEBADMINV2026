@@ -13,7 +13,7 @@ Vue.use(VueRouter)
 
 const routes = [
     {
-        path: "/chat-room",
+        path: "/chat-room/:chat_room_id/user/:user_id",
         name: "chatroom",
         component: Chatroom,
         meta: {

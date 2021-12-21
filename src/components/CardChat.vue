@@ -15,10 +15,9 @@
               </div>
             </div>
             <div class="message-detail">
-              <h4>02098898854</h4>
-              <p>Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
-                Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. </p>
-              <div class="message-icon" @click="toChatroom">
+              <h4>020{{ data.User.phone }}</h4>
+              <p>{{ data.lasted_message }}</p>
+              <div class="message-icon" @click="toChatroom({'chat_room_id':data.id,'user_id':data.User.id})">
                 <i class="fas fa-paper-plane"></i>
               </div>
             </div>
@@ -39,9 +38,10 @@ export default {
     this.getChatRoom();
   },
   methods: {
-    toChatroom() {
+    toChatroom({chat_room_id,user_id}) {
       this.$router.push({
-        name: "chatroom"
+        name: "chatroom",
+        params:{'chat_room_id':chat_room_id,'user_id':user_id}
       })
     },
 

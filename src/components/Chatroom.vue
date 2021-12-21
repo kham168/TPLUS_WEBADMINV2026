@@ -52,11 +52,13 @@ export default {
       textAdmin:'',
       socket:null,
       adminMessageBox: [],
+      user_id:0,
     }
   },
   created() {
     this.socket = io("http://25.10.235.85:7000");
 
+    this.user_id=this.$route.params.user_id;
   },
   mounted() {
     this.socket.emit("connection");
@@ -75,7 +77,7 @@ export default {
 
     });
 
-    this.getChatRoomOne({'chat_room_id':2}).then(res=>{
+    this.getChatRoomOne({'chat_room_id':this.$route.params.chat_room_id}).then(res=>{
 
       for(let i=0;i<res['messages'].length;i++){
         try{
