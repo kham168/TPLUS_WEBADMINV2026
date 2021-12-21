@@ -3,10 +3,14 @@
     <section class="data_package-section">
       <div class="header data_package-header">
         <h1>{{ $t("DataPackage.title") }}</h1>
-        <v-btn @click="CreateDataPackage" class="btn btn-create">
-          <v-icon>fal fa-plus-circle</v-icon>{{ $t("DataPackage.button") }}</v-btn
-        >
+
+          <v-btn @click="CreateDataPackage" class="btn btn-create">
+            <v-icon>fal fa-plus-circle</v-icon>{{ $t("DataPackage.button") }}</v-btn>
+          <v-btn @click="CreateDataPackage" class="btn btn-create">
+            <v-icon>fal fa-plus-circle</v-icon>{{ $t("DataPackage.button") }}</v-btn>
+
       </div>
+
       <div class="data_package-content">
         <v-data-table
           :headers="$t('DataPackage.table.headers')"
@@ -36,13 +40,9 @@
             <tr class="table-content" v-if="isLaoLanguage">
               <td>{{ index + 1 }}</td>
               <td><v-img :src="item.image" alt="preview" max-height="50" max-width="50"></v-img></td>
-                 <td>{{ item.name }}</td>
-              <!-- <td @load="getCateDataPackageOne({'cate_data_package_id':item.catePackageId})" v-for="data in cate_data_package_one['data']" :key="data.id">
-                <p>{{ data.name }}</p></td> -->
-           
-              <td class="text-limit">{{ item.description }}</td>
-           
-             
+              <td>{{ item.code }}</td>
+              <td>{{ item.la_name }}</td>
+
               <td>
                <v-menu offset-y>
                  <template v-slot:activator="{on,attrs}">
@@ -77,11 +77,11 @@
 
             <tr class="table-content" v-else>
               <td>{{ index + 1 }}</td>
-              <td><v-img :src="item.PackagesTrans[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
-                 <td>{{ item.PackagesTrans[0].name }}</td>
-              <td>{{ item.catePackageId }}</td>
+              <td><v-img :src="item.image" alt="preview" max-height="50" max-width="50"></v-img></td>
+                 <td>{{ item.code }}</td>
+              <td>{{ item.en_name }}</td>
            
-              <td class="text-limit">{{ item.PackagesTrans[0].description }}</td>
+
            
              
               <td>
@@ -138,6 +138,7 @@
 
 import {mapActions,mapGetters} from 'vuex'
 import Delete from "@/components/forms/packages/data_package/Delete";
+
 export default {
     name: 'DataPackage',
 

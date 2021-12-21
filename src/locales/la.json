@@ -24,6 +24,11 @@
       "icon": "fas fa-border-top",
       "text": "Topping",
       "router": "/topping"
+    },
+    {
+      "icon": "fas fa-home-lg-alt",
+      "text": "ແຊັດ",
+      "router": "/chat_question"
     }
   ],
   "Postmenu": {
@@ -36,13 +41,13 @@
       },
       {
         "icon": "far fa-newspaper",
-        "text": "ຂໍ້ມູນໂພສ",
-        "router": "/post"
+        "text": "ຂໍ້ມູນໂປຣໂມຊັນ",
+        "router": "/promotion"
       },
       {
         "icon": "far fa-newspaper",
-        "text": "ຂໍ້ມູນໂປຣໂມຊັ່ນແລະອີເວັ້ນ",
-        "router": "/promotion_event"
+        "text": "ອີເວັ້ນ",
+        "router": "/event"
       }
     ]
   },
@@ -424,6 +429,7 @@
           "value": "description",
           "sortable": false
         },
+        { "text": "ວິວ", "value": "view", "sortable": false },
         {
           "text": "ຈັດການ",
           "value": "Actions",
@@ -475,11 +481,6 @@
           "text": "ຊື່ປະເພດຂອງໂພສ",
           "value": "CatePostName",
           "sortable": true
-        },
-        {
-          "text": "ສະຖານະ",
-          "value": "description",
-          "sortable": false
         },
         {
           "text": "ຈັດການ",
@@ -604,6 +605,7 @@
         { "text": "ເວລາເປີດ", "value": "startDate", "sortable": false },
         { "text": "ເວລາປິດ", "value": "endDate", "sortable": false },
         { "text": "ສະຖານະ", "value": "status", "sortable": false },
+        { "text": "ວິວ", "value": "view", "sortable": false },
         { "text": "ຈັດການ", "value": "Actions", "sortable": false }
       ],
       "dontdata":"ບໍ່ມີຂໍ້ມູນ",
@@ -793,10 +795,10 @@
       "headers": [
         { "text": "ລຳດັບ", "value": "No", "sortable": false },
         { "text": "ຮູບພາບ", "value": "Picture", "sortable": true },
-
+        { "text": "Code", "value": "code", "sortable": true },
         { "text": "ຊື່ແພັກເກັດ", "value": "DataPackageName", "sortable": false },
-        { "text": "ປະເພດແພັກເກັດ", "value": "CateDataPackage", "sortable": true },
-        { "text": "ລາຍລະອຽດ", "value": "description", "sortable": false },
+
+
         { "text": "ຈັດການ", "value": "Actions", "sortable": false }
       ],
       "dontdata": "ບໍ່ມີຂໍ້ມູນ",
@@ -1244,6 +1246,54 @@
       "header": "Edit User Roles"
     }
   },
+  "ChatQuestion": {
+    "title": "ຂໍ້ມູນຄຳຖາມ",
+    "button": "ເພີ່ມ",
+    "txtsearch": "ຄົ້ນຫາຄຳຖາມ",
+    "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ...",
+    "table": {
+      "headers": [
+        { "text": "ລຳດັບ", "value": "No", "sortable": false },
+        { "text": "ຄຳຖາາມ", "value": "question", "sortable": true },
+
+        { "text": "ຄຳຕອບ", "value": "Answer", "sortable": false },
+        { "text": "Actions", "value": "Actions", "sortable": false }
+      ],
+      "dontdata": "ບໍ່ມີຂໍ່ມູນ",
+      "options": {
+        "edit": "ແກ້ໄຂ",
+        "iconEdit": "fas fa-edit",
+        "delete": "ລົບ",
+        "delicon": "fas fa-trash-alt"
+      }
+    },
+    "Create":{
+      "header":"ເພີ່ມຄຳຖາມ",
+      "lang":{
+        "lao":"ລາວ",
+        "Eng":"ອັງກິດ"
+      },
+      "form":{
+
+        "question":"ຄຳຖາມ",
+        "answer":"ຄຳຕອບ",
+        "category": "ຮູບແບບຄຳຕອບ",
+        "button":{
+          "save":"ບັນທຶກ",
+          "cancel":"ຍົກເລິກ"
+        }
+      }
+    },
+    "Edit":{
+      "header":"ແກ້ໄຂຄຳຖາມ"
+    },
+
+    "itemOption":[
+      {"name":"ແບບຂຽນ","id":1},
+      {"name":"ແບບຮູບ","id":2}
+    ]
+  },
+
   "Notification": {
     "saveDataSuccess": "ທ່ານບັນທຶກຂໍ້ມູນສຳເລັດ...ແລ້ວ",
     "editDataSuccess": "ທ່ານແກ້ໄຂຂໍ້ມູນສຳເລັດ...ແລ້ວ",

@@ -112,9 +112,9 @@ export default {
       let data = res.data;
 
         this.catePostId=data.id,
-      this.statusValue=data.is_active,
+
       this.name=data.name,
-      this.nameEng=data.PostTypesTrans[0].name
+      this.nameEng=data.NewsCategoryTrans[0].name
         
     },
 
@@ -157,6 +157,7 @@ export default {
 
   ...mapActions({
     updateCatePost:'CatePost/updateCatePost',
+    getCatePostOne:'CatePost/getCatePostOne'
 
   })
 

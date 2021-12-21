@@ -12,15 +12,19 @@
           <p class="chat-room-status">online</p>
         </div>
       </div>
-      <div class="chat-room-content" ref="scrollPosition">
-        <div class="chat-room-left">
-          <div class="show-text-message" v-for="(message,index) in message" :key="index">
-            {{ message.text }}
+      <div class="chat-room-content" ref="scrollPosition"  v-for="(element,index) in adminMessageBox" :key="index">
+        <div class="chat-room-left" v-if="element.send_by === 3">
+          {{'user'}}
+          <div class="show-text-message">
+
+            {{ element.message }}
           </div>
         </div>
-        <div class="chat-room-right">
-          <div class="show-text-message" v-for="(message,index) in message" :key="index">
-            {{ message.text }}
+        <div class="chat-room-right" v-else>
+          {{'admin'}}
+          <div class="show-text-message">
+
+            {{ element.message }}
           </div>
         </div>
       </div>
@@ -37,13 +41,51 @@
 </template>
 
 <script>
+import {mapActions, mapGetters} from "vuex";
+import {io} from "socket.io-client";
+
 export default {
   name: "Chatroom",
   data() {
     return {
       textMessage: "",
-      message: [],
+      textAdmin:'',
+      socket:null,
+      adminMessageBox: [],
     }
+  },
+  created() {
+    this.socket = io("http://25.10.235.85:7000");
+
+  },
+  mounted() {
+    this.socket.emit("connection");
+    console.log(this.socket);
+
+    this.socket.on("receive_message",(message)=>{
+      console.log(message)
+
+      //check bot chat
+      if(message.bot){
+        console.log("bot chat")
+      }else{
+        this.adminMessageBox.push(message)
+
+      }
+
+    });
+
+    this.getChatRoomOne({'chat_room_id':2}).then(res=>{
+
+      for(let i=0;i<res['messages'].length;i++){
+        try{
+          this.adminMessageBox.push(res['messages'][i])
+        }catch (e){
+          console.log(e)
+        }
+      }
+
+    });
   },
   methods: {
     resetTextMessage() {
@@ -67,8 +109,22 @@ export default {
       });
       this.resetTextMessage();
       this.scrollToBottom();
-    }
-  }
+    },
+
+
+    ...mapActions({
+      getChatRoomOne:'Chat/getChatRoomOne',
+      sendMessage:'Chat/sendMessage',
+
+    })
+  },
+  computed:{
+    ...mapGetters({
+
+      chat_room_one:'Chat/chat_room_one',
+
+    })
+  },
 }
 </script>
 

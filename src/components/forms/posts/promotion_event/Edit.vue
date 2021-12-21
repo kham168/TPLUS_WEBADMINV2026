@@ -166,20 +166,10 @@
 
                       ></v-select>
 
-                      <v-textarea
-                          v-show="isLaoTab"
-                          v-model="descriptionText"
-                          :label="$t('Post.Create.form.description')"
-                          outlined
-                      ></v-textarea>
+                      <vue-editor  v-show="isLaoTab" v-model="descriptionText" id="editor1" :editor-toolbar="customToolbar"  class="mb-10" ref="editor1" />
 
-                      <v-textarea
-                          v-show="isEngTab"
-                          v-model="descriptionTextEng"
+                      <vue-editor v-show="isEngTab" v-model="descriptionTextEng" id="editor2" :editor-toolbar="customToolbar" class="mb-10" ref="editor2" />
 
-                          :label="$t('Post.Create.form.description')"
-                          outlined
-                      ></v-textarea>
 
                       <div v-show="isLaoTab">
 
@@ -356,10 +346,11 @@
 
 <script>
 import {mapActions, mapGetters} from 'vuex'
+import {VueEditor} from "vue2-editor";
 
 export default {
   name: "Edit",
-
+  components: { VueEditor },
   data() {
     return {
       isLaoTab: false,
@@ -388,6 +379,23 @@ export default {
       tab: null,
 
       valid: true,
+
+      customToolbar : [
+        [{ 'font': [] }],
+        [{ 'header': [false, 1, 2, 3, 4, 5, 6, ] }],
+        [{ 'size': ['small', false, 'large', 'huge'] }],
+        ['bold', 'italic', 'underline', 'strike'],
+        [{'align': ''}, {'align': 'center'}, {'align': 'right'}, {'align': 'justify'}],
+        [{ 'header': 1 }, { 'header': 2 }],
+        ['blockquote', 'code-block'],
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        [{ 'script': 'sub'}, { 'script': 'super' }],
+        [{ 'indent': '-1'}, { 'indent': '+1' }],
+        [{ 'color': [] }, { 'background': [] }],
+        // ['link', 'image', 'video', 'formula'],
+        [{ 'direction': 'rtl' }],
+        ['clean'],
+      ]
     };
   },
 

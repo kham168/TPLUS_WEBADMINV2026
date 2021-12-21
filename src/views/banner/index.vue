@@ -26,6 +26,7 @@
           :search="searchItem"
           :loading="loading"
           :loading-text="$t('Banner.loadingtext')"
+
           v-if="banner['data'] != ''"
 
 
@@ -91,11 +92,13 @@
               >
                 mdi-arrow-all
               </v-icon> <span>&nbsp</span> {{ index + 1 }}</td>
-              <td><v-img :src="item.BanImages[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
+              <td><v-img :src="item.image" alt="preview" max-height="50" max-width="50"></v-img></td>
               <td>{{ item.banName }}</td>
               <td>{{ item.link }}</td>
               <td class="text-limit">{{ item.description }}</td>
-  
+              <td><v-btn icon @click="onShow(item.id)"> <v-icon large>
+                mdi-eye
+              </v-icon></v-btn></td>
               <td>
                <v-menu offset-y>
                  <template v-slot:activator="{on,attrs}">
@@ -131,22 +134,27 @@
 
             <draggable
                 v-model="props.items"
+                :disabled="!checkbox"
+                :list="banner['data']"
                 tag="tbody"
                 :move="checkMove"
                 v-else
             >
-            <tr class="table-content" >
+              <tr class="table-content"  v-for="(item, index) in props.items"
+                  :key="index">
               <td> <v-icon
                   small
                   class="grab-icon"
               >
                 mdi-arrow-all
               </v-icon> <span>&nbsp</span> {{ index + 1 }}</td>
-              <td><v-img :src="item.BanImageTrans[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
+              <td><v-img :src="item.BannerTrans[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
               <td>{{ item.BannerTrans[0].banName }}</td>
               <td>{{ item.BannerTrans[0].link }}</td>
               <td class="text-limit">{{ item.BannerTrans[0].description }}</td>
-
+                <td><v-btn icon @click="onShow(item.id)"> <v-icon large>
+                  mdi-eye
+                </v-icon></v-btn></td>
               <td>
                <v-menu offset-y>
                  <template v-slot:activator="{on,attrs}">
@@ -198,6 +206,20 @@
           <Delete :banner_id="banner_id" @close="close" />
         </template>
       </ModalDelete>
+
+      <ModalShow>
+        <template v-slot="{close}">
+          <Show
+              :bannerName="bannerName"
+              :bannerNameEng="bannerNameEng"
+              :link="link"
+              :linkEng="linkEng"
+              :description="description"
+              :descriptionEng="descriptionEng"
+              :previewImage="previewImage"
+              :previewImageEng="previewImageEng" @close="close" />
+        </template>
+      </ModalShow>
     </section>
 
   </div>
@@ -207,11 +229,14 @@
 import draggable from 'vuedraggable';
 import {mapActions, mapGetters} from 'vuex';
 import Delete from "../../components/forms/banner/Delete";
-
+import Show from "../../components/forms/banner/Show";
+import ModalShow from "../../components/Modals/modalShow";
 export default {
     name: 'Banner',
   components: {
     Delete,
+    Show,
+    ModalShow,
     draggable,
   },
     data() {
@@ -223,6 +248,15 @@ export default {
       
       searchItem: "",
           list:[],
+
+          bannerName:'',
+          bannerNameEng:'',
+          link:'',
+          linkEng:'',
+          description:'',
+          descriptionEng:'',
+          previewImage: null,
+          previewImageEng: null,
         };
     },
 
@@ -238,6 +272,22 @@ export default {
     },
 
     methods: {
+
+      loadDataToComponent(res){
+        let data = res.data
+
+
+            this.bannerName=data.banName,
+            this.bannerNameEng=data.BannerTrans[0].banName,
+            this.link=data.link,
+            this.linkEng=data.BannerTrans[0].link,
+            this.description=data.description,
+            this.descriptionEng=data.BannerTrans[0].description
+        this.previewImage=data.image
+        this.previewImageEng=data.BannerTrans[0].image
+
+      },
+
         CreateBanner() {
       this.$router
         .push({
@@ -250,6 +300,14 @@ export default {
      
       this.$store.commit("modalDelete_State", true);
     },
+      onShow(banner_id){
+        this.getBannerOne({'banner_id':banner_id}).then(res=>{
+          if(res.success){
+            this.loadDataToComponent(res);
+            this.$store.commit("modalShow_State", true);
+          }
+        })
+      },
       checkMove: function(e) {
         window.console.log("Future index: " + e.draggedContext.futureIndex);
 
@@ -261,7 +319,8 @@ export default {
 
     ...mapActions({
 getBanner:'Banner/getBanner',
-      orderBanner:'Banner/orderBanner'
+      orderBanner:'Banner/orderBanner',
+      getBannerOne:'Banner/getBannerOne'
 
 
         } )

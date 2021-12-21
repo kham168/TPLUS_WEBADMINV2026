@@ -10,6 +10,9 @@ import Contact from "@/store/Contact"
 import Product from "@/store/Products/Product.js"
 import CateProduct from "@/store/Products/CateProduct.js"
 import PromotionEvent from "@/store/Posts/PromotionEvent.js"
+import ChatQuestion from "@/store/ChatQuestion.js"
+import Chat from "@/store/Chat.js"
+import Topping from "@/store/Topping.js"
 //get all users
 import users from "./Users"
 import logo from "@/store/logo"
@@ -107,7 +110,10 @@ export default new Vuex.Store({
         Contact,
         Product,
         CateProduct,
-        PromotionEvent
+        PromotionEvent,
+        ChatQuestion,
+        Chat,
+        Topping
     },
 
 })

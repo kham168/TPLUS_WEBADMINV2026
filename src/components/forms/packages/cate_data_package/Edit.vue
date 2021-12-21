@@ -6,17 +6,7 @@
           <h1>{{ $t("CateDataPackage.Edit.header") }}</h1>
         </div>
         <div class="lang-select-input">
-          <v-tabs v-model="tab" color="primary" slider-color="primary">
-            <v-tabs-slider color="primary"></v-tabs-slider>
-            <v-tab
-              :href="lang.key"
-              v-for="lang in $t('CateDataPackage.Create.lang')"
-              :key="lang.key"
-                @click="checkTabLang(lang)"
-            >
-              {{ lang }}
-            </v-tab>
-          </v-tabs>
+
           <div class="tab-content">
             <v-tabs-items v-model="tab">
               <v-tab-item
@@ -30,7 +20,7 @@
                     <v-form v-model="valid" ref="form" lazy-validation>
                     
                       <v-text-field
-                      v-show="isLaoTab"
+
                       v-model="cate_package_name"
                         :rules="[
                           $myValidator.SimpleValidate($t('Validate.required')),
@@ -40,31 +30,17 @@
                         required
                       ></v-text-field>
 
-                       <v-text-field
-                        v-show="isEngTab"
-                       v-model="other_lang_cate_package_name"
-                        :rules="[
-                          $myValidator.SimpleValidate($t('Validate.required')),
-                        ]"
-                        :label="$t('CateDataPackage.Create.form.cate_data_package_name')"
-                        outlined
-                        required
-                      ></v-text-field>
+
 
 
                       <v-textarea
-                       v-show="isLaoTab"
+
                       v-model="description"
                         outlined
                         :label="$t('CateDataPackage.Create.form.description')"
                       ></v-textarea>
 
-                       <v-textarea
-                         v-show="isEngTab"
-                       v-model="other_lang_description"
-                        outlined
-                        :label="$t('CateDataPackage.Create.form.description')"
-                      ></v-textarea>
+
                     
                     </v-form>
                     <div class="form-actions">
@@ -110,46 +86,28 @@ export default {
   },
 
   created(){
-    this.getCateDataPackageOne({'cate_package_id':this.$route.params.cate_data_package_id}).then(res=>{
-      if(res.success){
-        this.loadDataToComponent(res);
-      }
-    })
+
+        this.loadDataToComponent(this.$route);
+
   },
   mounted() {
-     this.checkTabLang('ລາວ')
+
   },
 
   methods: {
 
     loadDataToComponent(res){
-      let data = res.data
+      let data = res.params
  this.cate_package_id = data.id;
    this.cate_package_name= data.name;
    this.description = data.description;
-   this.other_lang_cate_package_name = data.CatePackageTrans[0].name;
-   this.other_lang_description = data.CatePackageTrans[0].description
     },
 
-   checkTabLang(lang){
-      console.log(lang)
-      if(lang == 'ລາວ' ||lang== 'Lao'){
-        this.isLaoTab = true
-        this.isEngTab = false
-        console.log("lao "+this.isLaoTab)
-         console.log(this.isEngTab)
-      }else{
-         this.isLaoTab = false
-         this.isEngTab = true
-            console.log("lao "+this.isLaoTab)
-            console.log(this.isEngTab)
-      }
-    },
 
     submitForm () {
     this.$refs.form[0].validate();
     if(this.$refs.form[0].validate()){
-    this.updateCateDataPackage({'cate_package_id':this.cate_package_id,'cate_package_name':this.cate_package_name,'description':this.description,'other_lang_cate_package_name':this.other_lang_cate_package_name,'other_lang_description':this.other_lang_description})
+    this.updateCateDataPackage({'cate_package_id':this.cate_package_id,'mainProduct':this.cate_package_name,'description':this.description})
     console.log('update successful')
     }else{
      console.log('can not update')
@@ -162,7 +120,7 @@ export default {
 
   ...mapActions({
     updateCateDataPackage:'CateDataPackage/updateCateDataPackage',
-    getCateDataPackageOne:'CateDataPackage/getCateDataPackageOne'
+
   })
   },
 };

@@ -33,10 +33,10 @@
           </template>
           <!-- table content -->
           <template v-slot:item="{ item, index }">
-            <tr class="table-content" v-if="isLaoLanguage">
+            <tr class="table-content" >
               <td>{{ index + 1 }}</td>
-              <td>{{ item.name }}</td>
-              <td class="text-limit">{{ item.description }}</td>
+              <td>{{ item.mainProduct }}</td>
+              <td class="text-limit">{{ item.detail }}</td>
              
               <td>
                <v-menu offset-y>
@@ -46,7 +46,7 @@
                 </v-btn>
                  </template>
                  <v-list>
-                   <v-list-item link @click="$router.push({name:'cate_data_package.edit',params:{'cate_data_package_id':item.id}}).catch(()=>{console.log('failed')})">
+                   <v-list-item link @click="$router.push({name:'cate_data_package.edit',params:{'cate_data_package_id':item.id,'name':item.mainProduct,'description':item.detail}}).catch(()=>{console.log('failed')})">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('CateDataPackage.table.options.iconEdit')}}</v-icon>
                        <v-list-item-title>
@@ -54,7 +54,7 @@
                        </v-list-item-title>
                      </v-list-item-icon>
                    </v-list-item>
-                    <v-list-item link @click="onDelete(item.id)">
+                    <v-list-item link @click="onDelete(item.id)" v-if="false">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('CateDataPackage.table.options.delicon')}}</v-icon>
                        <v-list-item-title>
@@ -67,39 +67,6 @@
               </td>
             </tr>
 
-            <tr class="table-content" v-else>
-              <td>{{ index + 1 }}</td>
-              <td>{{ item.CatePackageTrans[0].name }}</td>
-              <td class="text-limit">{{ item.CatePackageTrans[0].description }}</td>
-             
-              <td>
-               <v-menu offset-y>
-                 <template v-slot:activator="{on,attrs}">
-                   <v-btn icon v-on="on" v-bind="attrs">
-                  <v-icon small>fas fa-ellipsis-v</v-icon>
-                </v-btn>
-                 </template>
-                 <v-list>
-                   <v-list-item link @click="$router.push({name:'cate_data_package.edit',params:{'cate_data_package_id':item.id}}).catch(()=>{console.log('failed')})">
-                     <v-list-item-icon>
-                       <v-icon class="mr-3" small>{{$t('CateDataPackage.table.options.iconEdit')}}</v-icon>
-                       <v-list-item-title>
-                         {{$t('CateDataPackage.table.options.edit')}}
-                       </v-list-item-title>
-                     </v-list-item-icon>
-                   </v-list-item>
-                    <v-list-item link @click="onDelete(item.id)">
-                     <v-list-item-icon>
-                       <v-icon class="mr-3" small>{{$t('CateDataPackage.table.options.delicon')}}</v-icon>
-                       <v-list-item-title>
-                         {{$t('CateDataPackage.table.options.delete')}}
-                       </v-list-item-title>
-                     </v-list-item-icon>
-                   </v-list-item>
-                 </v-list>
-               </v-menu>
-              </td>
-            </tr>
           </template>
         </v-data-table>
         <div class="Table-empty" v-else>

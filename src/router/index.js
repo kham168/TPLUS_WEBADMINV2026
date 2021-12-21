@@ -142,10 +142,10 @@ const routes = [
         ]
     },
 
-    //Promotion and event
+    //Promotion
     {
-        path: "/promotion_event",
-        component: () => import(/* webpackChunkName: "post" */ '../views/posts/promotion_event/promotion_event.vue'),
+        path: "/promotion",
+        component: () => import(/* webpackChunkName: "post" */ '../views/posts/promotion/promotion.vue'),
         meta: {
             middleware: [Middleware.auth],
             layout: 'admin'
@@ -154,8 +154,8 @@ const routes = [
         children: [
             {
                 path: "",
-                name: "promotion_event.index",
-                component: () => import(/* webpackChunkName: "post index" */ '../views/posts/promotion_event/index.vue'),
+                name: "promotion.index",
+                component: () => import(/* webpackChunkName: "post index" */ '../views/posts/promotion/index.vue'),
                 meta: {
                     middleware: [Middleware.auth],
                     layout: 'admin'
@@ -163,7 +163,7 @@ const routes = [
             },
             {
                 path: "create",
-                name: "promotion_event.create",
+                name: "promotion.create",
                 component: () => import(/* webpackChunkName: "post create" */ '../components/forms/posts/promotion_event/Create.vue'),
                 meta: {
                     middleware: [Middleware.auth],
@@ -172,7 +172,47 @@ const routes = [
             },
             {
                 path: "edit/:promotion_event_id",
-                name: "promotion_event.edit",
+                name: "promotion.edit",
+                component: () => import(/* webpackChunkName: "post edit" */ '../components/forms/posts/promotion_event/Edit.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: 'admin'
+                }
+            }
+        ]
+    },
+
+    //Event
+    {
+        path: "/event",
+        component: () => import(/* webpackChunkName: "post" */ '../views/posts/event/event.vue'),
+        meta: {
+            middleware: [Middleware.auth],
+            layout: 'admin'
+        },
+
+        children: [
+            {
+                path: "",
+                name: "event.index",
+                component: () => import(/* webpackChunkName: "post index" */ '../views/posts/event/index.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: 'admin'
+                }
+            },
+            {
+                path: "create",
+                name: "event.create",
+                component: () => import(/* webpackChunkName: "post create" */ '../components/forms/posts/event/Create.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: 'admin'
+                }
+            },
+            {
+                path: "edit/:promotion_event_id",
+                name: "event.edit",
                 component: () => import(/* webpackChunkName: "post edit" */ '../components/forms/posts/promotion_event/Edit.vue'),
                 meta: {
                     middleware: [Middleware.auth],
@@ -529,7 +569,7 @@ const routes = [
 
             },
             {
-                path: "edit/:cate_data_package_id",
+                path: "edit/:cate_data_package_id:name:description",
                 name: "cate_data_package.edit",
                 component: () => import(/* webpackChunkName:"Data_package Edit" */ '../components/forms/packages/cate_data_package/Edit.vue'),
                 meta: {
@@ -663,7 +703,135 @@ const routes = [
         ]
     },
 
+    //Chat Question
+    {
+        path: "/chat_question",
+        component: () => import(/* webpackChunkName:"chat_question" */'../views/chat_question/chat_question.vue'),
+        meta: {
+            middleware: [Middleware.auth],
+            layout: 'admin',
 
+
+        },
+        children: [
+            {
+                path: "",
+                name: "chat_question.index",
+                component: () => import(/* webpackChunkName:"chat_question index" */'../views/chat_question/index.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: "admin",
+
+
+                }
+            },
+            {
+                path: "create",
+                name: "chat_question.create",
+                component: () => import(/* webpackChunkName:"chat_question Create" */ '../components/forms/chat_question/Create.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: 'admin',
+
+                }
+
+            },
+            {
+                path: "edit/:chat_question_id",
+                name: "chat_question.edit",
+                component: () => import(/* webpackChunkName:"chat_question Edit" */ '../components/forms/chat_question/Edit.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: 'admin',
+
+                }
+
+            },
+        ]
+    },
+
+    //Chat Sub Question
+    {
+        path: "/chat_sub_question",
+        component: () => import(/* webpackChunkName:"chat_sub_question" */'../views/chat_question/chat_sub_question/chat_sub_question.vue'),
+        meta: {
+            middleware: [Middleware.auth],
+            layout: 'admin',
+
+
+        },
+        children: [
+            {
+                path: ":chat_question_id",
+                name: "chat_sub_question.index",
+                component: () => import(/* webpackChunkName:"chat_sub_question index" */'../views/chat_question/chat_sub_question/index.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: "admin",
+                }
+            },
+            {
+                path: "create/:chat_question_id",
+                name: "chat_sub_question.create",
+                component: () => import(/* webpackChunkName:"chat_sub_question Create" */ '../components/forms/chat_question/chat_sub_question/Create.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: 'admin',
+
+                }
+
+            },
+
+        ]
+    },
+
+    {
+        path: "/chat_test",
+        component: () => import(/* webpackChunkName:"chat_sub_question" */'../views/chat_question/chat_test/chat_test.vue'),
+        meta: {
+            middleware: [Middleware.auth],
+            layout: 'admin',
+
+
+        },
+        children: [
+            {
+                path: "",
+                name: "chat_test.index",
+                component: () => import(/* webpackChunkName:"chat_sub_question index" */'../views/chat_question/chat_test/index.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: "admin",
+                }
+            },
+
+
+        ]
+    },
+
+    {
+        path: "/chat_test2",
+        component: () => import(/* webpackChunkName:"chat_sub_question" */'../views/chat_question/chat_test2/chat_test2.vue'),
+        meta: {
+            middleware: [Middleware.auth],
+            layout: 'admin',
+
+
+        },
+        children: [
+            {
+                path: "",
+                name: "chat_test2.index",
+                component: () => import(/* webpackChunkName:"chat_sub_question index" */'../views/chat_question/chat_test2/index.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: "admin",
+                }
+            },
+
+
+        ]
+    },
     //jobRecruit
     // {
     //     path: "/jobRecruit",
@@ -754,6 +922,8 @@ router.beforeEach((to, from, next) => {
         next()
     }
 })
+
+
 
 
 export default router

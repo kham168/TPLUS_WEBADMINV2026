@@ -16,7 +16,7 @@
           :search="searchItem"
           :loading="loading"
           :loading-text="$t('PromotionEvent.loadingtext')"
-          v-if="promotion_event['data'] != ''"
+          v-if="isData"
         >
           <template v-slot:top>
             <v-toolbar flat>
@@ -36,23 +36,27 @@
           <!-- table content -->
         
           <template v-slot:item="{item , index}">
-            <tr class="table-content" v-if="isLaoLanguage">
-              <td>{{ index + 1 }}</td>
-              <td><v-img :src="item.PostImages[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
-              <td>{{ item.title }}</td>
-              <td v-if="item.postTypeId === 1">ໂປຣໂມຊັນ</td>
-              <td v-else-if="item.postTypeId === 3">ກິດຈະກຳ</td>
+
+            <tr class="table-content" v-if="isLaoLanguage" v-for="(items,indexs) in item.Posts">
+
+              <td>{{ indexs + 1 }}</td>
+              <td><v-img :src="items.PostImages[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
+              <td>{{ items.title }}</td>
+              <td>{{item.name}}</td>
+
               <td style="   max-width: 200px;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;">{{ item.description }}</td>
-              <td>{{ item.startDate }}</td>
-              <td>{{ item.endDate }}</td>
+        white-space: nowrap;">{{ items.description }}</td>
+              <td>{{ items.startDate }}</td>
+              <td>{{ items.endDate }}</td>
 
-              <td>{{ item.status }}</td>
-              <td><v-btn icon @click="onShow(item.id)"> <v-icon large>
+              <td>{{ items.status }}</td>
+              <td><v-btn icon @click="onShow(items.id)"> <v-icon large>
                 mdi-eye
-              </v-icon></v-btn></td>
+              </v-icon></v-btn>
+
+              </td>
               <td>
                <v-menu offset-y>
                  <template v-slot:activator="{on,attrs}">
@@ -61,8 +65,8 @@
                 </v-btn>
                  </template>
                  <v-list>
-                   <v-list-item link @click="$router.push({name:'promotion_event.edit',params:{
-                   'promotion_event_id':item.id,
+                   <v-list-item link @click="$router.push({name:'promotion.edit',params:{
+                   'promotion_event_id':items.id,
       }}).catch(()=>{})">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('PromotionEvent.table.options.iconEdit')}}</v-icon>
@@ -71,7 +75,7 @@
                        </v-list-item-title>
                      </v-list-item-icon>
                    </v-list-item>
-                    <v-list-item link @click="onDelete(item.id)">
+                    <v-list-item link @click="onDelete(items.id)">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('Post.table.options.delicon')}}</v-icon>
                        <v-list-item-title>
@@ -83,20 +87,20 @@
                </v-menu>
               </td>
             </tr>
-            <tr class="table-content" v-else>
-              <td>{{ index + 1 }}</td>
-              <td><v-img :src="item.PostImageTrans[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
-              <td>{{ item.PostTrans[0].title }}</td>
-              <td>{{ item.postTypeId }}</td>
+            <tr class="table-content" v-else >
+              <td>{{ indexs + 1 }}</td>
+              <td><v-img :src="items.PostImageTrans[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
+              <td>{{ items.PostTrans[0].title }}</td>
+              <td>{{ item.PostTypesTrans[0].name }}</td>
               <td style="   max-width: 200px;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;">{{ item.PostTrans[0].description }}</td>
-              <td>{{ item.startDate }}</td>
-              <td>{{ item.endDate }}</td>
-              <td>{{ item.status }}</td>
-              <td>{{ item.status }}</td>
-              <td><v-btn icon @click="onShow(item.id)"> <v-icon large>
+        white-space: nowrap;">{{ items.PostTrans[0].description }}</td>
+              <td>{{ items.startDate }}</td>
+              <td>{{ items.endDate }}</td>
+
+              <td>{{ items.status }}</td>
+              <td><v-btn icon @click="onShow(items.id)"> <v-icon large>
                 mdi-eye
               </v-icon></v-btn></td>
               <td>
@@ -107,8 +111,8 @@
                 </v-btn>
                  </template>
                  <v-list>
-                   <v-list-item link @click="$router.push({name:'promotionEvent.edit',params:{      
-                     'promotion_event_id':item.id,
+                   <v-list-item link @click="$router.push({name:'promotionEvent.edit',params:{
+                     'promotion_event_id':items.id,
       }}).catch(()=>{})">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('PromotionEvent.table.options.iconEdit')}}</v-icon>
@@ -117,7 +121,7 @@
                        </v-list-item-title>
                      </v-list-item-icon>
                    </v-list-item>
-                    <v-list-item link @click="onDelete(item.id)">
+                    <v-list-item link @click="onDelete(items.id)">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('PromotionEvent.table.options.delicon')}}</v-icon>
                        <v-list-item-title>
@@ -129,6 +133,9 @@
                </v-menu>
               </td>
             </tr>
+
+
+
           </template>
           
         </v-data-table>
@@ -147,7 +154,18 @@
 
       <ModalShow>
         <template v-slot="{close}">
-          <Show :promotion_event_id="promotion_event_id" @close="close" />
+          <Show
+              :descriptionText="descriptionText"
+              :descriptionTextEng="descriptionTextEng"
+              :postName="postName"
+              :postNameEng="postNameEng"
+              :statusValue="statusValue"
+              :catePostValue="catePostValue"
+              :dateStart="dateStart"
+              :dateEnd="dateEnd"
+              :previewImage="previewImage"
+              :previewImageEng="previewImageEng"
+              @close="close" />
         </template>
       </ModalShow>
     </section>
@@ -177,14 +195,33 @@ components: {
       loading: false,
     
       searchItem: "",
-   
+      isData : false,
+
+
+      descriptionText:'' ,
+      descriptionTextEng:'' ,
+      postName:'' ,
+      postNameEng:'' ,
+      statusValue:'' ,
+      catePostValue:'' ,
+      dateStart:'' ,
+      dateEnd:'' ,
+      previewImage:[],
+      previewImageEng:[],
  
     };
   },
 
-  mounted() {
-    
-    this.getPromotionEvent()
+  created() {
+    this.getPromotion().then(res=>{
+      if(res.data[0].Posts.length >0){
+        this.isData = true
+      }
+    });
+
+
+
+
 
   },
 
@@ -198,7 +235,8 @@ components: {
     CreatePost() {
       this.$router
         .push({
-          name: "promotion_event.create",
+          name: "promotion.create",
+
         })
         .catch(() => {});
     },
@@ -206,16 +244,60 @@ components: {
         this.promotion_event_id = promotion_event_id
      
       this.$store.commit("modalDelete_State", true);
+
     },
     onShow(promotion_event_id) {
-      this.promotion_event_id = promotion_event_id
 
-      this.$store.commit("modalShow_State", true);
+      this.getPromotionEventOne({'promotion_event_id': promotion_event_id}).then(res => {
+        if (res.success) {
+
+          this.loadDataToComponent(res)
+
+          this.$store.commit("modalShow_State", true);
+        }
+      });
+
+
+    },
+
+    loadDataToComponent(res) {
+
+      let data = res.data;
+      this.previewImage=[];
+      this.previewImageEng=[];
+
+      this.descriptionText = data.description;
+          this.descriptionTextEng = data.PostTrans[0].description;
+          this.postName = data.title;
+          this.postNameEng = data.PostTrans[0].title;
+          this.statusValue = data.status;
+          this.catePostValue = data.postTypeId;
+          this.dateStart = new Date(data.startDate).toISOString().substr(0, 10);
+          this.dateEnd = new Date(data.endDate).toISOString().substr(0, 10);
+
+
+      for (let i = 0; i < data.PostImages.length; i++) {
+
+        let url = data.PostImages[i].image;
+        this.previewImage.push(url);
+
+
+      }
+
+      for (let i = 0; i < data.PostImageTrans.length; i++) {
+
+        let url = data.PostImageTrans[i].image;
+
+        this.previewImageEng.push(url);
+
+      }
+
+
     },
 
            ...mapActions({
-getPromotionEvent:'PromotionEvent/getPromotionEvent',
-getCatePostOne:'CatePost/getCatePostOne'
+getPromotion:'PromotionEvent/getPromotion',
+                 getPromotionEventOne: 'PromotionEvent/getPromotionEventOne'
 
 
         } 
@@ -224,8 +306,8 @@ getCatePostOne:'CatePost/getCatePostOne'
  
   computed:{
     ...mapGetters({
-        promotion_event:'PromotionEvent/promotion_event',
-        cate_post_one:'CatePost/cate_post_one'
+      promotion_event:'PromotionEvent/promotion_event',
+
     
 
         })

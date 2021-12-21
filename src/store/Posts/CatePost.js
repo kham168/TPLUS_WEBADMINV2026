@@ -4,33 +4,33 @@ const catPostProvider = new CatePostProvider()
 
 const state={
     cate_post:{},
-   // cate_post_one:{},
+    cate_post_one:{},
   
 }
 
 const getters={
     cate_post:state=>state.cate_post,
-   // cate_post_one:state=>state.cate_post_one,
+   cate_post_one:state=>state.cate_post_one,
 }
 
 const mutations={
   SET_CATE_POST(state,data){
       state.cate_post = data;
     },
-    // SET_CATE_POST_ONE(state,data){
-    //     state.cate_post_one = data;
-    //   },
+    SET_CATE_POST_ONE(state,data){
+        state.cate_post_one = data;
+      },
   
 }
 
 const actions={
  
-    // async getCatePostOne ({commit},{cate_post_id}) {
-    //     const data = await catPostProvider.getCatePostOne({'cate_post_id':cate_post_id})
-    //
-    //     commit('SET_CATE_POST_ONE', data)
-    //     return data
-    //   },
+    async getCatePostOne ({commit},{cate_post_id}) {
+        const data = await catPostProvider.getCatePostOne({'cate_post_id':cate_post_id})
+
+        commit('SET_CATE_POST_ONE', data)
+        return data
+      },
 
     async getCatePostAll ({commit}) {
         const data = await catPostProvider.getCatePostAll()
