@@ -38,7 +38,7 @@
               <td>{{ item.name }}</td>
 
 
-        
+
               <td>
                <v-menu offset-y>
                  <template v-slot:activator="{on,attrs}">
@@ -72,7 +72,7 @@
 
             <tr class="table-content" v-else>
               <td>{{ index + 1 }}</td>
-              <td>{{ item.PostTypesTrans[0].name }}</td>
+              <td>{{ item.NewsCategoryTrans[0].name }}</td>
 
 
               <td>

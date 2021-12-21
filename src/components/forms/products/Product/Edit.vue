@@ -143,79 +143,7 @@
                         </div>
                       </div>    
                   
-                   <div v-show="isEngTab">
-                      
-                        <div class="upload-image" v-if="uploadImageEng == null">
-                       
-                        <div class="content" >
-                          <i class="fas fa-plus-circle"></i>
-                          <h3>{{ $t("Post.Create.form.picture") }}</h3>
-                        </div>
-                        <input
-                         multiple
-                        
-                          type="file"
-                          class="choose-file"
-                          name="upload-image"
-                          accept="image/*"
-                          @change="UploadImageEng"
-                        />
-                      </div>
 
-
-                      <div class="image" v-else>
-                          <v-carousel height="100%">
-                            <v-carousel-item :key="index" v-for="(imageFilesEng,index) in previewImageEng">
-                              <div class="increase-decrease-image">
-                                 <v-btn
-                                  class="mx-2"
-                                  fab
-                                  dark
-                                  small
-                                  color="primary"
-                                  @click="removeImageEng(index)"
-                                >
-                                  <v-icon dark>
-                                    mdi-minus
-                                  </v-icon>
-                                </v-btn>
-
-
-                                 <v-btn
-                                  class="mx-2"
-                                  fab
-                                  dark
-                                  small
-                                  color="success"
-                                  @click="onIncreaseImageEng"
-                                >
-                                  <v-icon dark>
-                                    mdi-plus
-                                  </v-icon>
-                                </v-btn>
-                                 <input
-                         multiple
-                         
-                          type="file"
-                           class="d-none"
-                           ref="uploaderEng"
-                          accept="image/*"
-                          @change="UploadImageEng"
-                        />
-                        </div>
-                              <v-layout row >
-                                <v-flex  :key="j" v-for="j in 1" align-self-center >
-
-                                     <img class="image-files" :src="imageFilesEng"  >
-
-                                </v-flex>
-                               
-                              </v-layout>
-                            </v-carousel-item>
-                          </v-carousel>
-                          
-                        </div>
-                      </div>   
                     </v-form>
                     <div class="form-actions">
                       <v-btn plain @click="reset" class="mx-5">{{
@@ -290,14 +218,14 @@ async convertUrlToFileImage(image) {
   this.uploadImage.push(file)
 },
 
- async convertUrlToFileImageEng(image) {
-  const response = await fetch(image);
-  // here image is url/location of image
-  const blob = await response.blob();
-  const file = new File([blob], image.split('/').pop(), {type: blob.type});
- 
-  this.uploadImageEng.push(file)
-},
+//  async convertUrlToFileImageEng(image) {
+//   const response = await fetch(image);
+//   // here image is url/location of image
+//   const blob = await response.blob();
+//   const file = new File([blob], image.split('/').pop(), {type: blob.type});
+//
+//   this.uploadImageEng.push(file)
+// },
 
     loadDataToComponent(res){
      let data = res.data;
@@ -321,13 +249,6 @@ async convertUrlToFileImage(image) {
     
        }
 
-         for(let i=0;i<data.ProductImages.length;i++){
-
-        
-          this.previewImageEng.push(data.ProductImages[i].image)
-          this.convertUrlToFileImageEng(data.ProductImages[i].image)
-        
-       }
        
     
     },
@@ -403,7 +324,7 @@ async convertUrlToFileImage(image) {
     this.$refs.form[0].validate();
     if(this.$refs.form[0].validate()){
 
-      this.createProduct({
+      this.updateProduct({
         'product_id':this.productId,
          'cate_product_id':this.productTypeValue,
                 'product_name': this.productName,
@@ -426,7 +347,7 @@ async convertUrlToFileImage(image) {
 
              ...mapActions({
 getCateProduct:'CateProduct/getCateProduct',
-createProduct:'Product/createProduct',
+updateProduct:'Product/updateProduct',
 getProductOne:'Product/getProductOne'
 
         })

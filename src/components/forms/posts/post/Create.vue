@@ -77,20 +77,11 @@
                         
                       ></v-select>
 
-                      <v-textarea
-                      v-show="isLaoTab"
-                        outlined
-                        :label="$t('Post.Create.form.description')"
-                        v-model="descriptionText"
-                      ></v-textarea>
 
-                      <v-textarea
-                      v-show="isEngTab"
-                        outlined
-                      
-                        :label="$t('Post.Create.form.description')"
-                        v-model="descriptionTextEng"
-                      ></v-textarea>
+
+                      <vue-editor  v-show="isLaoTab" v-model="descriptionText" id="editor1" :editor-toolbar="customToolbar"  class="mb-10" ref="editor1" />
+
+                      <vue-editor v-show="isEngTab" v-model="descriptionTextEng" id="editor2" :editor-toolbar="customToolbar" class="mb-10" ref="editor2" />
                     
                     <div v-show="isLaoTab">
                       
@@ -101,7 +92,7 @@
                           <h3>{{ $t("Post.Create.form.picture") }}</h3>
                         </div>
                         <input
-                         multiple
+
                         
                           type="file"
                           class="choose-file"
@@ -115,43 +106,7 @@
                       <div class="image" v-else>
                           <v-carousel height="100%">
                             <v-carousel-item :key="index" v-for="(imageFiles,index) in previewImage">
-                              <div class="increase-decrease-image">
-                                 <v-btn
-                                  class="mx-2"
-                                  fab
-                                  dark
-                                  small
-                                  color="primary"
-                                  @click="removeImage(index)"
-                                >
-                                  <v-icon dark>
-                                    mdi-minus
-                                  </v-icon>
-                                </v-btn>
 
-
-                                 <v-btn
-                                  class="mx-2"
-                                  fab
-                                  dark
-                                  small
-                                  color="success"
-                                  @click="onIncreaseImage"
-                                >
-                                  <v-icon dark>
-                                    mdi-plus
-                                  </v-icon>
-                                </v-btn>
-                                 <input
-                         multiple
-                         
-                          type="file"
-                           class="d-none"
-                           ref="uploader"
-                          accept="image/*"
-                          @change="UploadImage"
-                        />
-                        </div>
                               <v-layout row >
                                 <v-flex  :key="j" v-for="j in 1" align-self-center >
 
@@ -175,7 +130,7 @@
                           <h3>{{ $t("Post.Create.form.picture") }}</h3>
                         </div>
                         <input
-                         multiple
+
                         
                           type="file"
                           class="choose-file"
@@ -189,43 +144,7 @@
                       <div class="image" v-else>
                           <v-carousel height="100%">
                             <v-carousel-item :key="index" v-for="(imageFilesEng,index) in previewImageEng">
-                              <div class="increase-decrease-image">
-                                 <v-btn
-                                  class="mx-2"
-                                  fab
-                                  dark
-                                  small
-                                  color="primary"
-                                  @click="removeImageEng(index)"
-                                >
-                                  <v-icon dark>
-                                    mdi-minus
-                                  </v-icon>
-                                </v-btn>
 
-
-                                 <v-btn
-                                  class="mx-2"
-                                  fab
-                                  dark
-                                  small
-                                  color="success"
-                                  @click="onIncreaseImageEng"
-                                >
-                                  <v-icon dark>
-                                    mdi-plus
-                                  </v-icon>
-                                </v-btn>
-                                 <input
-                         multiple
-                         
-                          type="file"
-                           class="d-none"
-                           ref="uploaderEng"
-                          accept="image/*"
-                          @change="UploadImageEng"
-                        />
-                        </div>
                               <v-layout row >
                                 <v-flex  :key="j" v-for="j in 1" align-self-center >
 
@@ -261,14 +180,16 @@
 
 <script>
 import {mapActions, mapGetters} from 'vuex'
-
+import { VueEditor } from "vue2-editor";
 export default {
   name: "Create",
 
+  components: { VueEditor },
+
   data() {
     return {
-      descriptionText:'',
-      descriptionTextEng:'',
+      descriptionText:this.$i18n.t('Post.Create.form.description'),
+      descriptionTextEng:this.$i18n.t('Post.Create.form.description'),
       isLaoTab:false,
       isEngTab:false,
       postName:'',
@@ -288,6 +209,23 @@ export default {
  
       modalStart: false,
     modalEnd: false,
+
+      customToolbar : [
+        [{ 'font': [] }],
+        [{ 'header': [false, 1, 2, 3, 4, 5, 6, ] }],
+        [{ 'size': ['small', false, 'large', 'huge'] }],
+        ['bold', 'italic', 'underline', 'strike'],
+        [{'align': ''}, {'align': 'center'}, {'align': 'right'}, {'align': 'justify'}],
+        [{ 'header': 1 }, { 'header': 2 }],
+        ['blockquote', 'code-block'],
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        [{ 'script': 'sub'}, { 'script': 'super' }],
+        [{ 'indent': '-1'}, { 'indent': '+1' }],
+        [{ 'color': [] }, { 'background': [] }],
+        // ['link', 'image', 'video', 'formula'],
+        [{ 'direction': 'rtl' }],
+        ['clean'],
+      ]
    
     };
   },
@@ -299,19 +237,17 @@ export default {
   },
 
   methods: {
-    
+
     checkTabLang(lang){
-      console.log(lang)
+
       if(lang == 'ລາວ' ||lang== 'Lao'){
         this.isLaoTab = true
         this.isEngTab = false
-        console.log("lao"+this.isLaoTab)
-         console.log(this.isEngTab)
+
       }else{
          this.isLaoTab = false
          this.isEngTab = true
-            console.log("lao"+this.isLaoTab)
-            console.log(this.isEngTab)
+
       }
     },
   

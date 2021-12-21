@@ -34,46 +34,34 @@ const actions={
       },
 
       async createDataPackage({dispatch},{
-        cate_package_id,
-    name,
-    description,
-    other_lang_name,
-    other_lang_description,
-    avatar,
-    avatar_EN}){
+          code,
+          la_name,
+          en_name,
+          avatar,}){
 
-            let arg={
-                'cate_package_id':cate_package_id,
-                'name': name,
-                'description':description,
-                'other_lang_name':other_lang_name,
-                'other_lang_description':other_lang_description,
-                'avatar':avatar,
-                'avatar_EN':avatar_EN
-            }
+          let arg={
+              'code':code,
+              'la_name': la_name,
+              'en_name':en_name,
+              'avatar':avatar
+          }
          await dataPackageService.createDataPackage(arg)
         dispatch('getDataPackage',{ root: true });
       },
 
       async updateDataPackage({dispatch },{
           package_id,
-          cate_package_id,
-          name,
-          description,
-          other_lang_name,
-          other_lang_description,
-          avatar,
-          avatar_EN}){
+          code,
+          la_name,
+          en_name,
+          avatar,}){
             
             let arg={
                 'package_id':package_id,
-                'cate_package_id':cate_package_id,
-                'name': name,
-                'description':description,
-                'other_lang_name':other_lang_name,
-                'other_lang_description':other_lang_description,
-                'avatar':avatar,
-                'avatar_EN':avatar_EN
+                'code':code,
+                'la_name': la_name,
+                'en_name':en_name,
+                'avatar':avatar
             }
          await dataPackageService.updateDataPackage(arg)
         dispatch('getDataPackage',{ root: true });

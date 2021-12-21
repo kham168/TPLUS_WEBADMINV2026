@@ -48,19 +48,6 @@
 
                       ></v-text-field>
 
-                      <v-select
-                          v-show="tab == 0"
-                          v-model="catePostValue"
-                          :items="cate_post_item"
-                          :label="$t('Post.Create.form.category')"
-                          :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
-                          item-text="name"
-                          item-value="id"
-
-                          outlined
-                          required
-
-                      ></v-select>
 
 
                       <v-dialog
@@ -169,20 +156,11 @@
 
                       ></v-select>
 
-                      <v-textarea
-                          v-show="isLaoTab"
-                          v-model="descriptionText"
-                          :label="$t('Post.Create.form.description')"
-                          outlined
-                      ></v-textarea>
 
-                      <v-textarea
-                          v-show="isEngTab"
-                          v-model="descriptionTextEng"
+                      <vue-editor  v-show="isLaoTab" v-model="descriptionText" id="editor1" :editor-toolbar="customToolbar"  class="mb-10" ref="editor1" />
 
-                          :label="$t('Post.Create.form.description')"
-                          outlined
-                      ></v-textarea>
+                      <vue-editor v-show="isEngTab" v-model="descriptionTextEng" id="editor2" :editor-toolbar="customToolbar" class="mb-10" ref="editor2" />
+
 
                       <div v-show="isLaoTab">
 
@@ -355,18 +333,15 @@
 
 <script>
 import {mapActions, mapGetters} from 'vuex'
-
+import { VueEditor } from "vue2-editor";
 export default {
   name: "Create",
-
+  components: { VueEditor },
   data() {
     return {
-      cate_post_item: [
-        {"id": 1, "name": "ໂປຣໂມຊັນ",},
-        {"id": 3, "name": "ກິດຈະກຳ"},
-      ],
-      descriptionText: '',
-      descriptionTextEng: '',
+      cate_post_item:0,
+      descriptionText:this.$i18n.t('Post.Create.form.description'),
+      descriptionTextEng:this.$i18n.t('Post.Create.form.description'),
       isLaoTab: false,
       isEngTab: false,
       postName: '',
@@ -386,14 +361,35 @@ export default {
 
       modalStart: false,
       modalEnd: false,
-
+      customToolbar : [
+        [{ 'font': [] }],
+        [{ 'header': [false, 1, 2, 3, 4, 5, 6, ] }],
+        [{ 'size': ['small', false, 'large', 'huge'] }],
+        ['bold', 'italic', 'underline', 'strike'],
+        [{'align': ''}, {'align': 'center'}, {'align': 'right'}, {'align': 'justify'}],
+        [{ 'header': 1 }, { 'header': 2 }],
+        ['blockquote', 'code-block'],
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        [{ 'script': 'sub'}, { 'script': 'super' }],
+        [{ 'indent': '-1'}, { 'indent': '+1' }],
+        [{ 'color': [] }, { 'background': [] }],
+        // ['link', 'image', 'video', 'formula'],
+        [{ 'direction': 'rtl' }],
+        ['clean'],
+      ]
     };
   },
 
+  created() {
+
+
+
+  },
   mounted() {
     this.checkTabLang('ລາວ')
 
-    this.getCatePostAll()
+
+
   },
 
   methods: {

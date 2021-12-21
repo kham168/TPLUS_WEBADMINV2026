@@ -16,6 +16,7 @@
     </div>
     <div class="show-body">
 
+
       <v-tabs-items v-model="tab">
         <v-tab-item
             v-for="i in $t('Post.Create.lang')"
@@ -54,7 +55,7 @@
           <v-row class="body-4">
             <v-col align="left" cols="12">
 
-              <h2>{{ $t('Post.Create.form.status') }}</h2>
+              <h2>{{ $t('Post.Create.form.start_date') }}</h2>
               <p> {{ dateStart }}</p>
 
             </v-col>
@@ -64,7 +65,7 @@
           <v-row class="body-5">
             <v-col align="left" cols="12">
 
-              <h2>{{ $t('Post.Create.form.status') }}</h2>
+              <h2>{{ $t('Post.Create.form.end_date') }}</h2>
               <p> {{ dateEnd }}</p>
 
             </v-col>
@@ -142,68 +143,42 @@ export default {
     return {
       btnLoading: false,
       postId: 0,
-      descriptionText: '',
-      descriptionTextEng: '',
-      postName: '',
-      postNameEng: '',
-      statusValue: '',
-      catePostValue: '',
-      dateStart:'',
-      dateEnd:'',
-      previewImage: [],
-      previewImageEng: [],
+      // descriptionText: '',
+      // descriptionTextEng: '',
+      // postName: '',
+      // postNameEng: '',
+      // statusValue: '',
+      // catePostValue: '',
+      // dateStart:'',
+      // dateEnd:'',
+      // previewImage: [],
+      // previewImageEng: [],
       tab: null,
     }
   },
   created() {
-    this.getPromotionEventOne({'promotion_event_id': this.promotion_event_id}).then(res => {
-      if (res.success) {
-        this.loadDataToComponent(res)
 
 
-      }
-    });
+
+  },
+
+  mounted() {
+
   },
   props: {
-    promotion_event_id: {}
+    descriptionText:'' ,
+    descriptionTextEng:'' ,
+    postName:'' ,
+    postNameEng:'' ,
+    statusValue:'' ,
+    catePostValue:'' ,
+    dateStart:'' ,
+    dateEnd:'' ,
+    previewImage:[],
+    previewImageEng:[],
   },
   methods: {
-    loadDataToComponent(res) {
 
-      let data = res.data;
-
-
-
-          this.descriptionText = data.description,
-          this.descriptionTextEng = data.PostTrans[0].description,
-          this.postName = data.title,
-          this.postNameEng = data.PostTrans[0].title,
-          this.statusValue = data.status,
-          this.catePostValue = data.postTypeId,
-          this.dateStart = new Date(data.startDate).toISOString().substr(0, 10),
-          this.dateEnd = new Date(data.endDate).toISOString().substr(0, 10)
-
-
-      for (let i = 0; i < data.PostImages.length; i++) {
-
-        let url = data.PostImages[i].image;
-        this.previewImage.push(url);
-
-
-      }
-
-      for (let i = 0; i < data.PostImageTrans.length; i++) {
-
-        let url = data.PostImageTrans[i].image;
-
-
-        this.previewImageEng.push(url);
-
-
-      }
-
-
-    },
     ...mapActions({
       getPromotionEventOne: 'PromotionEvent/getPromotionEventOne'
     })

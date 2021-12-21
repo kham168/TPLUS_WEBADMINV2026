@@ -10,7 +10,8 @@ import Router from '@/router';
 
 
 class HttpRequest {
-
+//http://128.199.104.34:7000
+  //http://25.10.235.85:7000
   //api 
   constructor (url = 'http://128.199.104.34:7000') {
     // this.axios = axios
@@ -33,11 +34,11 @@ class HttpRequest {
     // Add a response interceptor
     this.axiosInstance.interceptors.response.use(function (response) {
       // Do something with response data
-      console.log("response status:"+response.status)
+       console.log("response status:"+response.status)
       console.log("response body:")
       console.log(response)
 
-       if(response.config.method=="post" && response.status == 200){
+       if(response.config.method=="post" && response.status == 200 || response.status == 201){
         setTimeout(() => {
           Store.dispatch({
           type:"action_Notifi_Success",
@@ -46,6 +47,13 @@ class HttpRequest {
        }, 300);
 
         if(response.message=="Updated order banner successfully"){
+
+        }else if(response.config.url == "/api/v1/chat") {
+
+        }else if(response.message=="Updated new position topping successfully."){
+
+        }
+        else {
           Router.back();
         }
 
@@ -82,8 +90,7 @@ class HttpRequest {
   setHeader (header) {
     // this.axiosInstance.defaults.headers.common[header.key] = header.value
     this.axiosInstance.defaults.headers.common = header
-    this.axiosInstance.defaults.headers.common['Authorization'] = 'Bearer '+User.state.token
-   
+     this.axiosInstance.defaults.headers.common['Authorization'] = 'Bearer '+User.state.token
     this.axiosInstance.defaults.headers.common['content_language'] = 'en'
 
     this.axiosInstance.defaults.headers.common['Accept'] = 'application/json'

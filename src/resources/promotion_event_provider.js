@@ -9,6 +9,16 @@ class PromotionEventProvider extends HttpRequest {
     super('http://128.199.104.34:7000')
   }
 
+  async getEvent () {
+
+    //Call setHeader on class HttpRequest and write common header
+    //If write Header on class HttpRequest Should call like under method
+    this.setHeader({})
+    // example path http://128.199.104.34:7000/this.get()
+    const {data} = await this.get('/api/v1/posts-event')
+
+    return data
+  }
 
   async getPromotionEventOne ({promotion_event_id}) {
 
@@ -21,13 +31,13 @@ class PromotionEventProvider extends HttpRequest {
      return data
   }
 
-  async getPromotionEvent () {
+  async getPromotion () {
 
     //Call setHeader on class HttpRequest and write common header
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
    // example path http://128.199.104.34:7000/this.get()
-     const {data} = await this.get('/api/v1/posts')
+     const {data} = await this.get('/api/v1/posts-promotion')
 
      return data
   }
@@ -47,6 +57,8 @@ class PromotionEventProvider extends HttpRequest {
   })
   {
     try{
+
+      console.log(post_type_id)
       var bodyFormData = new FormData();
       bodyFormData.append('newsCategoryId[]',"");
       bodyFormData.append('postTypeId',post_type_id);

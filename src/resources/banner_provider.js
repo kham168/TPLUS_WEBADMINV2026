@@ -69,13 +69,13 @@ class BannerProvider extends HttpRequest {
       bodyFormData.append('other_lang[0][description]',other_lang_description);
       bodyFormData.append('other_lang[0][language_id]',2);
 
-      for(let i =0;i<avatar.length;i++){
-        bodyFormData.append('avatar[]',avatar[i]);
-      }
 
-      for(let i =0;i<avatar_EN.length;i++){
-        bodyFormData.append('avatar_EN[]',avatar_EN[i]);
-      }
+        bodyFormData.append('avatar[]',avatar);
+
+
+
+        bodyFormData.append('avatar_EN[]',avatar_EN);
+
     
      
  
@@ -111,13 +111,13 @@ class BannerProvider extends HttpRequest {
         bodyFormData.append('other_lang[0][link]',other_lang_link);
         bodyFormData.append('other_lang[0][description]',other_lang_description);
         bodyFormData.append('other_lang[0][language_id]',2);
-        for(let i =0;i<avatar.length;i++){
-          bodyFormData.append('avatar[]',avatar[i]);
-        }
+
+          bodyFormData.append('avatar[]',avatar);
+
   
-        for(let i =0;i<avatar_EN.length;i++){
-          bodyFormData.append('avatar_EN[]',avatar_EN[i]);
-        }
+
+          bodyFormData.append('avatar_EN[]',avatar_EN);
+
  
     this.setHeader({
       'Content-Type': 'multipart/form-data',

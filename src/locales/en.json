@@ -24,6 +24,11 @@
       "icon": "fas fa-border-top",
       "text": "Topping",
       "router": "/topping"
+    },
+    {
+      "icon": "fas fa-home-lg-alt",
+      "text": "Chat",
+      "router": "/chat_question"
     }
   ],
   "Topping": {
@@ -37,15 +42,17 @@
         "text": "Category Post",
         "router": "/cate_post"
       },
+
       {
         "icon": "far fa-newspaper",
-        "text": "Posts",
-        "router": "/post"
+        "text": "Promotion",
+        "router": "/promotion"
       },
+
       {
         "icon": "far fa-newspaper",
-        "text": "Promotion or Event",
-        "router": "/promotion_event"
+        "text": "Event",
+        "router": "/event"
       }
     ]
   },
@@ -405,7 +412,7 @@
         { "text": "Banner Name", "value": "BannerTrans[0].banName", "sortable": false },
         { "text": "Link", "value": "BannerTrans[0].link", "sortable": false },
         { "text": "Description", "value": "BannerTrans[0].description", "sortable": false },
-
+        { "text": "View", "value": "view", "sortable": false },
         { "text": "Actions", "value": "Actions", "sortable": false }
       ],
       "dontdata": "Don't have data",
@@ -438,8 +445,6 @@
       "header":"Edit Banner"
     }
   },
-
-
   "CatePost": {
     "title": "Category Post",
     "button": "Create",
@@ -489,7 +494,6 @@
   }
 
   },
-
   "Post": {
     "title": "Post Data",
     "button": "Create",
@@ -545,7 +549,6 @@
     ]
   }
   },
-
   "PromotionEvent": {
     "title": "Promotion and Event Data",
     "button": "Create",
@@ -560,6 +563,7 @@
         { "text": "Description", "value": "PostTrans[0].description", "sortable": false },
         { "text": "Start Date", "value": "startDate", "sortable": false },
         { "text": "End Date", "value": "endDate", "sortable": false },
+        { "text": "View", "value": "view", "sortable": false },
         { "text": "Status", "value": "status", "sortable": false },
 
         { "text": "Actions", "value": "Actions", "sortable": false }
@@ -601,8 +605,6 @@
     ]
   }
   },
-
-
   "CateProduct": {
     "title": "Category Product",
     "button": "Create",
@@ -644,7 +646,6 @@
     }
 
   },
-
   "Product": {
     "title": "Products Data",
     "button": "Create",
@@ -687,7 +688,6 @@
       "header": "Edit Products"
     }
   },
-
   "CateDataPackage": {
     "title": "Category Data Package",
     "button": "Create",
@@ -696,7 +696,7 @@
     "table": {
       "headers": [
         { "text": "No", "value": "No", "sortable": false },
-        { "text": "Category Data Package Name", "value": "CateDataPackageName", "sortable": true },
+        { "text": "Category Package Name", "value": "CateDataPackageName", "sortable": true },
 
         { "text": "Description", "value": "description", "sortable": false },
         { "text": "Actions", "value": "Actions", "sortable": false }
@@ -729,7 +729,6 @@
     }
 
   },
-
   "DataPackage": {
     "title": "Data Package",
     "button": "Create",
@@ -739,10 +738,9 @@
       "headers": [
         { "text": "No", "value": "No", "sortable": false },
         { "text": "Pictures", "value": "Picture", "sortable": true },
-        { "text": "Data Package Name", "value": "DataPackageName", "sortable": false },
-        { "text": "Category", "value": "CateDataPackage", "sortable": true },
+        { "text": "Code", "value": "CateDataPackage", "sortable": true },
+        { "text": "Package Name", "value": "DataPackageName", "sortable": false },
 
-        { "text": "Description", "value": "description", "sortable": false },
         { "text": "Actions", "value": "Actions", "sortable": false }
       ],
       "dontdata": "Don't have data",
@@ -917,6 +915,71 @@
       "header": "Edit User Roles"
     }
   },
+  "RoleUser": {
+    "title": "Permission",
+    "button": "Create",
+    "txtsearch": "Search data",
+    "loadingtext": "Loading..",
+    "table": {
+      "headers": [
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "Role name",
+          "value": "RoleName",
+          "sortable": false
+        },
+        {
+          "text": "Created",
+          "value": "createdAt",
+          "sortable": false
+        },
+        {
+          "text": "Updated",
+          "value": "updatedAt",
+          "sortable": false
+        },
+        {
+          "text": "Permission",
+          "value": "permission",
+          "sortable": false
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": false
+        }
+      ],
+      "dontdata": "Dont have data",
+      "options": {
+        "edit": "Edit",
+        "iconEdit": "fas fa-edit",
+        "delete": "Delete",
+        "delicon": "fas fa-trash-alt"
+      }
+    },
+    "Create": {
+      "header": "Add User Role",
+      "lang": {
+        "Eng": "Roles"
+      },
+      "form": {
+        "userrole": "Role Name",
+        "name": "Role Name",
+        "description": "Description",
+        "button": {
+          "save": "Save",
+          "cancel": "Cancel"
+        }
+      }
+    },
+    "Edit": {
+      "header": "Edit User Roles"
+    }
+  },
   "permissionRole": {
     "title": "Permission",
     "button": "Create",
@@ -978,6 +1041,56 @@
       "header": "Edit User Roles"
     }
   },
+
+  "ChatQuestion": {
+    "title": "Question",
+    "button": "Create",
+    "txtsearch": "Search Question",
+    "loadingtext":"Loading...",
+    "table": {
+      "headers": [
+        { "text": "No", "value": "No", "sortable": false },
+        { "text": "Question", "value": "question", "sortable": true },
+
+        { "text": "Answer", "value": "Answer", "sortable": false },
+        { "text": "Actions", "value": "Actions", "sortable": false }
+      ],
+      "dontdata": "Don't have data",
+      "options": {
+        "edit": "Edit",
+        "iconEdit": "fas fa-edit",
+        "delete": "Delete",
+        "delicon": "fas fa-trash-alt"
+      }
+    },
+    "Create":{
+      "header":"Add Question",
+      "lang":{
+        "lao":"Lao",
+        "Eng":"English"
+      },
+      "form":{
+
+        "question":"Question",
+        "answer":"Answer",
+        "category": "Type of Answer",
+        "button":{
+          "save":"Save",
+          "cancel":"Cancel"
+        }
+      }
+    },
+    "Edit":{
+      "header":"Edit Question"
+    },
+    "itemOption":[
+      {"name":"Write","id":1},
+      {"name":"ແບບຮູບ","id":2}
+    ]
+
+
+  },
+
   "Validate": {
     "required": "Please!! input data",
     "email": "E-mail must not be valid",

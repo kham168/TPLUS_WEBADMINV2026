@@ -10,6 +10,19 @@ import "../src/plugins/Axios"
 import ModalDelete from "@/components/Modals/modalDelete"
 import ModalAdd from "@/components/Modals/modalAdd"
 import ModalShow from "@/components/Modals/modalShow"
+// import VueSocketIO from 'vue-socket.io'
+//
+// Vue.use(new VueSocketIO({
+//     debug: true,
+//     connection: 'http://25.10.235.85:7000',
+//     vuex: {
+//         store,
+//         actionPrefix: 'SOCKET_',
+//         mutationPrefix: 'SOCKET_'
+//     },
+//     // options: { path: "/my-app/" } //Optional options
+// }))
+
 
 Vue.config.productionTip = false
 Vue.prototype.$myValidator = validate;
