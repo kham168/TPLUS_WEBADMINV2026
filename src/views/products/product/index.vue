@@ -139,7 +139,17 @@
 
       <ModalShow>
         <template v-slot="{close}">
-          <Show :product_id="product_id" @close="close" />
+          <Show
+              :productTypeValue="productTypeValue"
+              :productTypeValueEng="productTypeValueEng"
+              :productName="productName"
+          :productNameEng="productNameEng"
+          :description="description"
+          :descriptionEng="descriptionEng"
+          :previewImage="previewImage"
+          :previewImageEng="previewImageEng"
+
+              @close="close" />
         </template>
       </ModalShow>
     </section>
@@ -165,6 +175,16 @@ components: {
       isLaoLanguage:localStorage.getItem('lang') === 'la',
       loading: false,
       searchItem: "",
+
+
+      productTypeValue:[],
+      productTypeValueEng:[],
+      productName:'',
+      productNameEng:'',
+      description:'',
+      descriptionEng:'',
+      previewImage: [],
+      previewImageEng: [],
     };
   },
 
@@ -192,14 +212,52 @@ components: {
       this.$store.commit("modalDelete_State", true);
     },
     onShow(product_id) {
-      this.product_id = product_id
+      this.productTypeValue=[];
+      this.productTypeValueEng=[];
+      this.previewImage=[];
+      this.previewImageEng=[];
 
+      this.getProductOne({'product_id':product_id}).then(res=>{
+        this.loadDataToComponent(res)
+      })
       this.$store.commit("modalShow_State", true);
+    },
+
+    loadDataToComponent(res){
+      let data = res.data;
+
+
+      this.productName=data.productName
+      this.productNameEng=data.ProductTrans[0].productName
+      this.description=data.description
+      this.descriptionEng=data.ProductTrans[0].description
+
+      for(let i=0;i<data.cateProducts.length;i++){
+
+        this.productTypeValue.push(data.cateProducts[i].cateName)
+
+      }
+      for(let i=0;i<data.cateProducts.length;i++){
+
+        this.productTypeValueEng.push(data.cateProducts[i].CateProductTrans[0].cateName)
+
+      }
+
+      for(let i=0;i<data.ProductImages.length;i++){
+
+        this.previewImage.push(data.ProductImages[i].image)
+
+
+      }
+
+
+
     },
 
     ...mapActions({
       getProduct:'Product/getProduct',
-      getCateProductOne:'CateProduct/getCateProductOne'
+      getCateProductOne:'CateProduct/getCateProductOne',
+      getProductOne:'Product/getProductOne'
     })
   },
 

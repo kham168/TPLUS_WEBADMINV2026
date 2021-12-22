@@ -1,7 +1,7 @@
 <template>
   <div class="chat-test">
     <v-row>
-
+{{clientMessageBox}}
       <v-col cols-6>
         <h1>Client</h1>
         <div>
@@ -58,23 +58,16 @@
           <div v-for="data in chat_base_question['baseQuestionData']  ">
 
 
-            <v-btn class="mb-5" @click="sendMessageClient1({'message':'','question_id':data.chatQuestionId})">{{data.question}}</v-btn>
+            <v-btn class="mb-5" @click="functionSendMessage({'message':'','question_id':data.chatQuestionId})">{{data.question}}</v-btn>
 
           </div>
 
         </div>
 
-        <v-text-field v-model="textClient" v-if="previewImage[0] == null"></v-text-field>
-        <v-row v-else no-gutters justify="start">
-
-            <div style="background-color: red" v-for="(items,index) in previewImage">
-              <v-img :src=items max-height="50" max-width="50"></v-img>
-            </div>
+        <v-text-field v-model="textClient" ></v-text-field>
 
 
-        </v-row>
-
-        <v-btn @click="sendMessageClient1({'message':textClient,'question_id':0})">Send</v-btn>
+        <v-btn @click="functionSendMessage({'message':textClient,'question_id':0})">Send</v-btn>
 
         <input
             v-if="previewImage[0] == null"
@@ -102,8 +95,8 @@
 import {mapActions,mapGetters} from 'vuex';
 
 import {io} from 'socket.io-client';
-import Vue from "vue";
-const eventBus = new Vue();
+
+
 export default {
   name: "index",
 
@@ -124,13 +117,11 @@ export default {
 
   created() {
 
-    this.socket = io("http://128.199.104.34:81");
-
-
+    this.socket = io("http://25.10.235.85:7000");
   },
 
   mounted() {
-
+    document.addEventListener("backbutton", this.yourCallBackFunction, false);
 
     this.socket.emit("connection");
     console.log(this.socket);
@@ -146,8 +137,11 @@ export default {
     });
 
     this.getChatRoomClient1().then(res=>{
+      console.log(res)
 
-      this.loadMessage(res);
+        this.socket.emit("join_channel",res.channel)
+        this.loadMessage(res);
+
 
     });
 
@@ -155,7 +149,20 @@ export default {
 
   },
   methods:{
+    yourCallBackFunction () {
+      // Your logic
+      console.log("tester")
+    },
+    functionSendMessage({message,question_id}){
+      this.sendMessageClient1({'message':message,'question_id':question_id}).then(
+          res=>{
+           console.log(res)
+              //this.clientMessageBox.push(res.message)
+              // this.socket.emit("join_channel",res.channel)
 
+          }
+      )
+    },
     UploadImage(e) {
 
       const img = e.target.files;
@@ -262,11 +269,12 @@ export default {
 
   beforeDestroy() {
     console.log("beforeDestroy")
-
+    document.removeEventListener("backbutton", this.yourCallBackFunction);
   },
 
   destroyed() {
     console.log('destroyed')
+
   },
 
 

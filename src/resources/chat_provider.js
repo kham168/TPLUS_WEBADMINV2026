@@ -9,6 +9,18 @@ class ChatProvider extends HttpRequest {
         super('http://128.199.104.34:7000')
     }
 
+    async getChatRoomUnRead({token}) {
+
+        //Call setHeader on class HttpRequest and write common header
+        //If write Header on class HttpRequest Should call like under method
+        this.setHeader({
+            //  'Authorization':token
+        })
+        // example path http://128.199.104.34:7000/this.get()
+        const {data} = await this.get('/api/v1/admin/chat?filter=unread')
+
+        return data
+    }
 
     async getChatRoom({token}) {
 
@@ -18,7 +30,7 @@ class ChatProvider extends HttpRequest {
           //  'Authorization':token
         })
         // example path http://128.199.104.34:7000/this.get()
-        const {data} = await this.get('/api/v1/admin/chat?filter=read')
+        const {data} = await this.get('/api/v1/admin/chat')
 
         return data
     }
@@ -28,7 +40,7 @@ class ChatProvider extends HttpRequest {
         //Call setHeader on class HttpRequest and write common header
         //If write Header on class HttpRequest Should call like under method
         this.setHeader({
-            'Authorization':token
+          //  'Authorization':token
         })
         // example path http://128.199.104.34:7000/this.get()
         const {data} = await this.get('/api/v1/admin/chat/'+chat_room_id)
@@ -41,7 +53,7 @@ class ChatProvider extends HttpRequest {
         //Call setHeader on class HttpRequest and write common header
         //If write Header on class HttpRequest Should call like under method
         this.setHeader({
-            'Authorization':token
+         //   'Authorization':token
         })
         // example path http://128.199.104.34:7000/this.get()
         const {data} = await this.get('/api/v1/chat')
@@ -55,7 +67,7 @@ class ChatProvider extends HttpRequest {
 
         this.setHeader({
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization':token
+          //  'Authorization':token
         })
 
         let args={
@@ -72,7 +84,7 @@ class ChatProvider extends HttpRequest {
 
         this.setHeader({
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization':token
+          //  'Authorization':token
         })
 
         var args={}

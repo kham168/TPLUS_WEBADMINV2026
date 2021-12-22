@@ -12,11 +12,11 @@
       <div class="post-content">
         <v-data-table
           :headers="$t('Post.table.headers')"
-          :items="post['data']"
+          :items="post.data[0]['Posts']"
           :search="searchItem"
           :loading="loading"
           :loading-text="$t('Post.loadingtext')"
-          v-if="post['data'] != ''"
+          v-if="post.data[0]['Posts'] != ''"
         >
           <template v-slot:top>
             <v-toolbar flat>
@@ -40,11 +40,11 @@
               <td>{{ index + 1 }}</td>
               <td><v-img :src="item.PostImages[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
               <td>{{ item.title }}</td>
-              <td ><span v-for="data in item.newsCategories">{{ data.name}}</span></td>
+              <td ><p v-for="data in item.newsCategories">{{ data.name}}</p></td>
               <td style="   max-width: 200px;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;">{{ item.description }}</td>
+        white-space: nowrap;" v-html="item.description"></td>
               <td>{{ item.status }}</td>
               <td><v-btn icon @click="onShow(item.id)"> <v-icon large>
                 mdi-eye
@@ -83,11 +83,11 @@
               <td>{{ index + 1 }}</td>
               <td><v-img :src="item.PostImageTrans[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
               <td>{{ item.PostTrans[0].title }}</td>
-              <td>{{ item.newsCategories[0].name }}</td>
+              <td><p v-for="element in item.newsCategories">{{element.NewsCategoryTrans[0].name}}</p></td>
               <td style="   max-width: 200px;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;">{{ item.PostTrans[0].description }}</td>
+        white-space: nowrap;" v-html="item.PostTrans[0].description"></td>
               <td>{{ item.status }}</td>
               <td><v-btn icon @click="onShow(item.id)"> <v-icon large>
                 mdi-eye
@@ -137,9 +137,20 @@
           <Delete :post_id="post_id" @close="close" />
         </template>
       </ModalDelete>
+
       <ModalShow>
         <template v-slot="{close}">
-          <Show :post_id="post_id" @close="close" />
+          <Show
+          :descriptionText="descriptionText"
+          :descriptionTextEng="descriptionTextEng"
+          :postName="postName"
+          :postNameEng="postNameEng"
+          :statusValue="statusValue"
+          :catePostValue="catePostValue"
+
+          :previewImage="previewImage"
+          :previewImageEng="previewImageEng"
+              @close="close" />
         </template>
       </ModalShow>
     </section>
@@ -170,7 +181,15 @@ components: {
 
       searchItem: "",
 
+      descriptionText: '',
+      descriptionTextEng: '',
+      postName: '',
+      postNameEng: '',
+      statusValue: '',
+      catePostValue:[],
 
+      previewImage: [],
+      previewImageEng: [],
     };
   },
 
@@ -181,8 +200,39 @@ components: {
   },
 
   methods: {
-    load(){
-      console.log('load')
+
+    loadDataToComponent(res) {
+
+      let data = res.data;
+      this.previewImage=[];
+      this.previewImageEng=[];
+
+          this.descriptionText = data.description,
+          this.descriptionTextEng = data.PostTrans[0].description,
+          this.postName = data.title,
+          this.postNameEng = data.PostTrans[0].title,
+
+          this.catePostValue = data.newsCategories,
+
+          this.dateStart = new Date(data.startDate).toISOString().substr(0, 10),
+          this.dateEnd = new Date(data.endDate).toISOString().substr(0, 10)
+
+      console.log(data)
+
+      for (let i = 0; i < data.PostImages.length; i++) {
+
+        let url = data.PostImages[i].image;
+        this.previewImage.push(url);
+
+
+      }
+
+      for (let i = 0; i < data.PostImageTrans.length; i++) {
+
+        let url = data.PostImageTrans[i].image;
+        this.previewImageEng.push(url);
+
+      }
 
 
     },
@@ -200,15 +250,19 @@ components: {
       this.$store.commit("modalDelete_State", true);
     },
     onShow(post_id) {
-      this.post_id = post_id
 
+  this.getPostOne({'post_id':post_id}).then(res=>{
+    if(res.success){
+      this.loadDataToComponent(res);
+    }
+  }),
       this.$store.commit("modalShow_State", true);
     },
 
            ...mapActions({
 getPost:'Post/getPost',
-getCatePostOne:'CatePost/getCatePostOne'
-
+getCatePostOne:'CatePost/getCatePostOne',
+                 getPostOne: 'Post/getPostOne'
 
         }
         )

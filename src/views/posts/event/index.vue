@@ -3,7 +3,7 @@
     <section class="promotionEvent-section">
 
       <div class="header promotionEvent-header">
-        <h1>{{ $t("PromotionEvent.title") }}</h1>
+        <h1>{{ $t("PromotionEvent.title_event") }}</h1>
         <v-btn @click="CreatePost" class="btn btn-create">
           <v-icon>fal fa-plus-circle</v-icon>{{ $t("PromotionEvent.button") }}</v-btn
         >
@@ -22,7 +22,7 @@
           <template v-slot:top>
             <v-toolbar flat>
               <v-text-field
-                  :label="$t('PromotionEvent.txtsearch')"
+                  :label="$t('PromotionEvent.txtsearch_event')"
                   filled
                   rounded
                   dense
@@ -46,7 +46,7 @@
               <td style="   max-width: 200px;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;">{{ items.description }}</td>
+        white-space: nowrap;" v-html="`${ items.description }`"></td>
               <td>{{ items.startDate }}</td>
               <td>{{ items.endDate }}</td>
 
@@ -68,7 +68,7 @@
                       <v-list-item-icon>
                         <v-icon class="mr-3" small>{{$t('PromotionEvent.table.options.iconEdit')}}</v-icon>
                         <v-list-item-title>
-                          {{$t('PromotionEvent.title')}}
+                          {{$t('PromotionEvent.table.options.edit')}}
                         </v-list-item-title>
                       </v-list-item-icon>
                     </v-list-item>
@@ -92,7 +92,7 @@
               <td style="   max-width: 200px;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;">{{ items.PostTrans[0].description }}</td>
+        white-space: nowrap;" v-html="`${ items.PostTrans[0].description }`"></td>
               <td>{{ items.startDate }}</td>
               <td>{{ items.endDate }}</td>
               <td>{{ items.status }}</td>
@@ -148,7 +148,18 @@
 
       <ModalShow>
         <template v-slot="{close}">
-          <Show :promotion_event_id="promotion_event_id" @close="close" />
+          <Show
+              :descriptionText="descriptionText"
+              :descriptionTextEng="descriptionTextEng"
+              :postName="postName"
+              :postNameEng="postNameEng"
+              :statusValue="statusValue"
+              :catePostValue="catePostValue"
+              :dateStart="dateStart"
+              :dateEnd="dateEnd"
+              :previewImage="previewImage"
+              :previewImageEng="previewImageEng"
+              @close="close" />
         </template>
       </ModalShow>
     </section>
@@ -180,7 +191,16 @@ export default {
       searchItem: "",
       isData:false,
 
-
+      descriptionText:'' ,
+      descriptionTextEng:'' ,
+      postName:'' ,
+      postNameEng:'' ,
+      statusValue:'' ,
+      catePostValue:'' ,
+      dateStart:'' ,
+      dateEnd:'' ,
+      previewImage:[],
+      previewImageEng:[],
     };
   },
 
@@ -196,8 +216,37 @@ export default {
 
 
   methods: {
-    load(){
-      console.log('load')
+    loadDataToComponent(res) {
+
+      let data = res.data;
+      this.previewImage=[];
+      this.previewImageEng=[];
+
+      this.descriptionText = data.description;
+      this.descriptionTextEng = data.PostTrans[0].description;
+      this.postName = data.title;
+      this.postNameEng = data.PostTrans[0].title;
+      this.statusValue = data.status;
+      this.catePostValue = data.postTypeId;
+      this.dateStart = new Date(data.startDate).toISOString().substr(0, 10);
+      this.dateEnd = new Date(data.endDate).toISOString().substr(0, 10);
+
+
+      for (let i = 0; i < data.PostImages.length; i++) {
+
+        let url = data.PostImages[i].image;
+        this.previewImage.push(url);
+
+
+      }
+
+      for (let i = 0; i < data.PostImageTrans.length; i++) {
+
+        let url = data.PostImageTrans[i].image;
+
+        this.previewImageEng.push(url);
+
+      }
 
 
     },
@@ -217,14 +266,22 @@ export default {
     },
 
     onShow(promotion_event_id) {
-      this.promotion_event_id = promotion_event_id;
 
-      this.$store.commit("modalShow_State", true);
+      this.getPromotionEventOne({'promotion_event_id': promotion_event_id}).then(res => {
+        if (res.success) {
+
+          this.loadDataToComponent(res)
+
+          this.$store.commit("modalShow_State", true);
+        }
+      });
+
+
     },
 
     ...mapActions({
           getEvent:'PromotionEvent/getEvent',
-
+      getPromotionEventOne:'PromotionEvent/getPromotionEventOne'
 
 
         }

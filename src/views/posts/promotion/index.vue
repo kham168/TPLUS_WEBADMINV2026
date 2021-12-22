@@ -3,7 +3,7 @@
     <section class="promotionEvent-section">
         
       <div class="header promotionEvent-header">
-        <h1>{{ $t("PromotionEvent.title") }}</h1>
+        <h1>{{ $t("PromotionEvent.title_promotion") }}</h1>
         <v-btn @click="CreatePost" class="btn btn-create">
           <v-icon>fal fa-plus-circle</v-icon>{{ $t("PromotionEvent.button") }}</v-btn
         >
@@ -21,7 +21,7 @@
           <template v-slot:top>
             <v-toolbar flat>
               <v-text-field
-                :label="$t('PromotionEvent.txtsearch')"
+                :label="$t('PromotionEvent.txtsearch_promotion')"
                 filled
                 rounded
                 dense
@@ -47,7 +47,7 @@
               <td style="   max-width: 200px;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;">{{ items.description }}</td>
+        white-space: nowrap;" v-html="`${ items.description }`"></td>
               <td>{{ items.startDate }}</td>
               <td>{{ items.endDate }}</td>
 
@@ -71,7 +71,7 @@
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('PromotionEvent.table.options.iconEdit')}}</v-icon>
                        <v-list-item-title>
-                         {{$t('PromotionEvent.title')}}
+                         {{$t('PromotionEvent.table.options.edit')}}
                        </v-list-item-title>
                      </v-list-item-icon>
                    </v-list-item>
@@ -95,7 +95,7 @@
               <td style="   max-width: 200px;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;">{{ items.PostTrans[0].description }}</td>
+        white-space: nowrap;" v-html="`${ items.PostTrans[0].description }`"></td>
               <td>{{ items.startDate }}</td>
               <td>{{ items.endDate }}</td>
 

@@ -33,7 +33,7 @@
           </template>
           <!-- table content -->
           <template v-slot:item="{ item, index }">
-            <tr class="table-content" v-if="isLaoLanguage" @click="onClickRow(item.id)">
+            <tr class="table-content" v-if="isLaoLanguage" >
               <td>{{ index + 1 }}</td>
               <td>{{ item.question }}</td>
               <td v-if="item.answer != ''">{{ item.answer }}</td>
@@ -52,8 +52,16 @@
                     </v-btn>
                   </template>
                   <v-list>
+                    <v-list-item link @click="onClickRow(item.chatQuestionId)">
+                      <v-list-item-icon>
+                        <v-icon class="mr-3" small>{{$t('ChatQuestion.table.options.subQuestionIcon')}}</v-icon>
+                        <v-list-item-title>
+                          {{$t('ChatQuestion.table.options.subQuestion')}}
+                        </v-list-item-title>
+                      </v-list-item-icon>
+                    </v-list-item>
                     <v-list-item link @click="$router.push({name:'chat_question.edit',params:{
-                         'chat_question_id':item.id,
+                         'chat_question_id':item.chatQuestionId,
      }}).catch(()=>{})">
                       <v-list-item-icon>
                         <v-icon class="mr-3" small>{{$t('ChatQuestion.table.options.iconEdit')}}</v-icon>
@@ -62,7 +70,7 @@
                         </v-list-item-title>
                       </v-list-item-icon>
                     </v-list-item>
-                    <v-list-item link @click="onDelete(item.id)">
+                    <v-list-item link @click="onDelete(item.chatQuestionId)">
                       <v-list-item-icon>
                         <v-icon class="mr-3" small>{{$t('ChatQuestion.table.options.delicon')}}</v-icon>
                         <v-list-item-title>
@@ -75,7 +83,7 @@
               </td>
             </tr>
 
-            <tr class="table-content" v-else @click="onClickRow(item.id)">
+            <tr class="table-content" v-else>
               <td>{{ index + 1 }}</td>
               <td>{{ item.question }}</td>
               <td v-if="item.answer != ''">{{ item.answer }}</td>
@@ -93,8 +101,16 @@
                     </v-btn>
                   </template>
                   <v-list>
+                    <v-list-item link @click="onClickRow(item.chatQuestionId)">
+                      <v-list-item-icon>
+                        <v-icon class="mr-3" small>{{$t('ChatQuestion.table.options.subQuestionIcon')}}</v-icon>
+                        <v-list-item-title>
+                          {{$t('ChatQuestion.table.options.subQuestion')}}
+                        </v-list-item-title>
+                      </v-list-item-icon>
+                    </v-list-item>
                     <v-list-item link @click="$router.push({name:'chat_question.edit',params:{
-                         'chat_question_id':item.id
+                         'chat_question_id':item.chatQuestionId
      }}).catch(()=>{})">
                       <v-list-item-icon>
                         <v-icon class="mr-3" small>{{$t('ChatQuestion.table.options.iconEdit')}}</v-icon>
@@ -103,7 +119,7 @@
                         </v-list-item-title>
                       </v-list-item-icon>
                     </v-list-item>
-                    <v-list-item link @click="onDelete(item.id)">
+                    <v-list-item link @click="onDelete(item.chatQuestionId)">
                       <v-list-item-icon>
                         <v-icon class="mr-3" small>{{$t('ChatQuestion.table.options.delicon')}}</v-icon>
                         <v-list-item-title>

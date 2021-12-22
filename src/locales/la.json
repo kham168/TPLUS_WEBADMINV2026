@@ -26,8 +26,8 @@
       "router": "/topping"
     },
     {
-      "icon": "fas fa-home-lg-alt",
-      "text": "ແຊັດ",
+      "icon": "fas fa-robot",
+      "text": "ແຊັດບອທ",
       "router": "/chat_question"
     }
   ],
@@ -38,6 +38,11 @@
         "icon": "fas fa-boxes",
         "text": "ປະເພດຂອງໂພສ",
         "router": "/cate_post"
+      },
+      {
+        "icon": "far fa-newspaper",
+        "text": "ຂໍ້ມູນຂ່າວ",
+        "router": "/post"
       },
       {
         "icon": "far fa-newspaper",
@@ -540,9 +545,8 @@
         { "text": "ຫົວຂໍ້", "value": "title", "sortable": true },
         { "text": "ປະເພດຂອງໂພສ", "value": "postTypeId", "sortable": true },
         { "text": "ລາຍລະອຽດ", "value": "description", "sortable": false },
-        { "text": "ເວລາເປີດ", "value": "startDate", "sortable": false },
-        { "text": "ເວລາປິດ", "value": "endDate", "sortable": false },
         { "text": "ສະຖານະ", "value": "status", "sortable": false },
+        { "text": "ວິວ", "value": "view", "sortable": false },
         { "text": "ຈັດການ", "value": "Actions", "sortable": false }
       ],
       "dontdata": "ບໍ່ມີຂໍ້ມູນ",
@@ -591,9 +595,11 @@
   },
 
   "PromotionEvent": {
-    "title": "ຂໍ້ມູນໂປຣໂມຊັ່ນຫຼືອີເວັ້ນ",
+    "title_promotion": "ຂໍ້ມູນໂປຣໂມຊັ່ນ",
+    "title_event": "ຂໍ້ມູນອີເວັ້ນ",
     "button": "ເພີ່ມ",
-    "txtsearch": "ຄົ້ນຫາໂປຣໂມຊັ່ນຫຼືອີເວັ້ນ",
+    "txtsearch_promotion": "ຄົ້ນຫາໂປຣໂມຊັ່ນ",
+    "txtsearch_event": "ຄົ້ນຫາອີເວັ້ນ",
     "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
@@ -616,7 +622,8 @@
     },
 
     "Create":{
-      "header":"ເພີ່ມຂໍ້ມູນໂພສ",
+      "header_promotion":"ເພີ່ມຂໍ້ມູນໂປຣໂມຊັ້ນ",
+      "header_event":"ເພີ່ມຂໍ້ມູນອີເວັ້ນ",
       "lang":{
         "lao":"ລາວ",
         "Eng":"ອັງກິດ"
@@ -636,7 +643,7 @@
       }
     },
     "Edit":{
-      "header":"ແກ້ໄຂຂໍ້ມູນໂປຣໂມຊັ່ນຫຼືອີເວັ້ນ"
+      "header":"ແກ້ໄຂຂໍ້ມູນໂປຣໂມຊັ່ນ ຫຼື ອີເວັ້ນ"
     },
     "status":{
       "item":[
@@ -700,7 +707,7 @@
         { "text": "ຊື່ຜະລິດຕະພັນ", "value": "ProductName", "sortable": true },
         { "text": "ປະເພດຜະລິດຕະພັນ", "value": "CateProduct", "sortable": true },
         { "text": "ລາຍລະອຽດ", "value": "description", "sortable": false },
-
+        { "text": "ວິວ", "value": "view", "sortable": false },
         { "text": "ຈັດການ", "value": "Actions", "sortable": false }
       ],
       "dontdata":"ບໍ່ມີຂໍ້ມູນ",
@@ -806,7 +813,9 @@
         "edit": "ແກ້ໄຂ",
         "iconEdit": "fas fa-edit",
         "delete": "ລົບຂໍ້ມູນ",
-        "delicon": "fas fa-trash-alt"
+        "delicon": "fas fa-trash-alt",
+        "simtype": "ຕື່ມປະເພດຊິມ",
+        "simtypeIcon": "fas fa-sim-card"
       }
     },
     "Create": {
@@ -1249,9 +1258,10 @@
   },
   "ChatQuestion": {
     "title": "ຂໍ້ມູນຄຳຖາມ",
-    "subtitle":"ຂໍ້ມູນຄຳຖາມຊັ້ນທີ2",
+    "subtitle":"ຂໍ້ມູນຄຳຖາມຮອງ",
     "button": "ເພີ່ມ",
     "txtsearch": "ຄົ້ນຫາຄຳຖາມ",
+    "txtsearch_subquestion": "ຄົ້ນຫາຄຳຖາມຮອງ",
     "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ...",
     "table": {
       "headers": [
@@ -1266,11 +1276,14 @@
         "edit": "ແກ້ໄຂ",
         "iconEdit": "fas fa-edit",
         "delete": "ລົບ",
-        "delicon": "fas fa-trash-alt"
+        "delicon": "fas fa-trash-alt",
+        "subQuestionIcon": "far fa-question-circle",
+        "subQuestion": "ຄຳຖາມຮອງ"
       }
     },
     "Create":{
       "header":"ເພີ່ມຄຳຖາມ",
+      "header_subquestion":"ເພີ່ມຄຳຖາມຮອງ",
       "lang":{
         "lao":"ລາວ",
         "Eng":"ອັງກິດ"
@@ -1287,7 +1300,8 @@
       }
     },
     "Edit":{
-      "header":"ແກ້ໄຂຄຳຖາມ"
+      "header":"ແກ້ໄຂຄຳຖາມ",
+      "header_subquestion":"ແກ້ໄຂຄຳຖາມຮອງ"
     },
 
     "itemOption":[

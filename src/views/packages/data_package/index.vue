@@ -50,6 +50,14 @@
                 </v-btn>
                  </template>
                  <v-list>
+                   <v-list-item link @click="onSimType(item.id)">
+                     <v-list-item-icon>
+                       <v-icon class="mr-3" small>{{$t('DataPackage.table.options.simtypeIcon')}}</v-icon>
+                       <v-list-item-title>
+                         {{$t('DataPackage.table.options.simtype')}}
+                       </v-list-item-title>
+                     </v-list-item-icon>
+                   </v-list-item>
                    <v-list-item link @click="$router.push({name:'data_package.edit',params:{
                       'data_package_id':item.id,
  
@@ -91,6 +99,14 @@
                 </v-btn>
                  </template>
                  <v-list>
+                   <v-list-item link @click="onSimType(item.id)">
+                     <v-list-item-icon>
+                       <v-icon class="mr-3" small>{{$t('DataPackage.table.options.simtypeIcon')}}</v-icon>
+                       <v-list-item-title>
+                         {{$t('DataPackage.table.options.simtype')}}
+                       </v-list-item-title>
+                     </v-list-item-icon>
+                   </v-list-item>
                    <v-list-item link @click="$router.push({name:'data_package.edit',params:{
                       'data_package_id':item.id,
      
@@ -110,6 +126,7 @@
                        </v-list-item-title>
                      </v-list-item-icon>
                    </v-list-item>
+
                  </v-list>
                </v-menu>
               </td>
@@ -150,6 +167,7 @@ components: {
           isLaoLanguage:localStorage.getItem('lang') === 'la',
              loading: false,
          searchItem: "",
+
         };
     },
 
@@ -158,6 +176,14 @@ components: {
     },
 
     methods: {
+      onSimType(data_package_id) {
+        this.$router
+            .push({
+              name: "data_package.simtype",
+              params:{'data_package_id':data_package_id,}
+            })
+            .catch(() => {});
+      },
         CreateDataPackage() {
       this.$router
         .push({

@@ -41,12 +41,12 @@ const actions={
         other_lang_description,
         avatar,
         avatar_EN,
-          newsCategoryId}
+        newsCategoryId}
 
       ){
 
             let arg={
-                'post_type_id':post_type_id,
+
                 'title': title,
                 'description':description,
                 'status':status,

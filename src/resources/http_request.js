@@ -54,7 +54,7 @@ class HttpRequest {
 
         }
         else {
-          Router.back();
+         // Router.back();
         }
 
       }else if(response.config.method=="put" && response.status == 200){
@@ -94,7 +94,6 @@ class HttpRequest {
       this.axiosInstance.defaults.headers.common['content_language'] = 'en'
     this.axiosInstance.defaults.headers.common['Accept'] = 'application/json'
     this.axiosInstance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
-
   }
 
   setHeaderBaseQuestion (header) {

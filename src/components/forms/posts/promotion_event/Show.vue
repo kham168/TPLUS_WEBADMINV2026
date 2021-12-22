@@ -23,7 +23,7 @@
             :key="i"
             :value="i.key"
         >
-          <v-row class="body-1">
+          <v-row class="body-1 pt-5">
             <v-col align="left" cols="12">
 
               <h2> {{ $t('Post.Create.form.post_name') }}</h2>

@@ -32,7 +32,7 @@
         <div class="input-chat" ref="resetTextInput" contenteditable="true" @input="messageInput($event)"
              @keyup.enter="sendMessage">
         </div>
-        <div class="btn-send-message" @click="sendMessage()">
+        <div class="btn-send-message" @click="sendMessage({'message':textMessage,'chat_room_id':chat_room_id})">
           <i class="fal fa-paper-plane"></i>
         </div>
       </div>
@@ -53,12 +53,14 @@ export default {
       socket:null,
       adminMessageBox: [],
       user_id:0,
+      chat_room_id:0,
     }
   },
   created() {
     this.socket = io("http://25.10.235.85:7000");
 
     this.user_id=this.$route.params.user_id;
+    this.chat_room_id=this.$route.params.chat_room_id;
   },
   mounted() {
     this.socket.emit("connection");
@@ -78,7 +80,7 @@ export default {
     });
 
     this.getChatRoomOne({'chat_room_id':this.$route.params.chat_room_id}).then(res=>{
-
+      this.socket.emit("join_channel",res.channel)
       for(let i=0;i<res['messages'].length;i++){
         try{
           this.adminMessageBox.push(res['messages'][i])
@@ -90,6 +92,11 @@ export default {
     });
   },
   methods: {
+
+    functionSendMessage(){
+
+    },
+
     resetTextMessage() {
       this.$refs.resetTextInput.innerHTML = ''
     },
@@ -105,13 +112,13 @@ export default {
 
       }
     },
-    sendMessage() {
-      this.message.push({
-        text: this.textMessage
-      });
-      this.resetTextMessage();
-      this.scrollToBottom();
-    },
+    // sendMessage() {
+    //   this.message.push({
+    //     text: this.textMessage
+    //   });
+    //   this.resetTextMessage();
+    //   this.scrollToBottom();
+    // },
 
 
     ...mapActions({

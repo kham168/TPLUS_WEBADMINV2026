@@ -3,9 +3,10 @@
     <div class="dashboard-right-header">
       <h3>Client Message <span><i class="far fa-comment-alt-lines"></i></span></h3>
     </div>
+
     <div class="message-content">
       <v-row>
-        <v-col cols="12" md="12" lg="12" v-for="(data,index) in chat_room['allChatRoom']">
+        <v-col cols="12" md="12" lg="12" v-for="(data,index) in chat_room_unread['allChatRoom']">
           <div class="card-message">
             <div class="message-image">
               <div class="images">
@@ -35,9 +36,13 @@ export default {
   name: "CardChat",
 
   created() {
-    this.getChatRoom();
+
+  },
+  mounted() {
+    this.getChatRoomUnRead().then(res=>console.log(res));
   },
   methods: {
+
     toChatroom({chat_room_id,user_id}) {
       this.$router.push({
         name: "chatroom",
@@ -46,14 +51,16 @@ export default {
     },
 
     ...mapActions({
-      getChatRoom:'Chat/getChatRoom'
+      getChatRoomUnRead:'Chat/getChatRoomUnRead'
     }),
 
 
   },
 
   computed:{
-
+  ...mapGetters({
+    chat_room_unread:'Chat/chat_room_unread'
+  })
   }
 }
 </script>

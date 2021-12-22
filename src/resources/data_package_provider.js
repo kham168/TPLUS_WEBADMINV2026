@@ -8,7 +8,49 @@ class DataPackageProvider extends HttpRequest {
         // api api
         super('http://128.199.104.34:7000')
     }
+    async removeSimTypeOne({package_id,simTypeId}) {
 
+        //Call setHeader on class HttpRequest and write common header
+        //If write Header on class HttpRequest Should call like under method
+        this.setHeader({})
+        console.log(package_id)
+        console.log(simTypeId)
+        // example path http://128.199.104.34:7000/this.get()
+        const {data} = await this.delete("/api/v1/packages/"+package_id+"/simTypes/"+simTypeId)
+
+        return data
+    }
+
+    async packageSimTypeOne({package_id}) {
+
+        //Call setHeader on class HttpRequest and write common header
+        //If write Header on class HttpRequest Should call like under method
+        this.setHeader({})
+
+        // example path http://128.199.104.34:7000/this.get()
+        const {data} = await this.get("/api/v1/packages-simTypes/"+package_id)
+
+        return data
+    }
+
+    async fillSimType({package_id,simTypeId}) {
+
+        //Call setHeader on class HttpRequest and write common header
+        //If write Header on class HttpRequest Should call like under method
+        this.setHeader({})
+
+        let args=[]
+
+        for(let i=0;i<simTypeId.length;i++){
+            args.push({
+                'simTypeId':simTypeId[i]
+            })
+        }
+        // example path http://128.199.104.34:7000/this.get()
+        const {data} = await this.create("/api/v1/packages/"+package_id+"/simTypes",args)
+
+        return data
+    }
 
     async getDataPackageOne({package_id}) {
 

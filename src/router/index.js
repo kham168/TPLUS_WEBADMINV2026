@@ -619,6 +619,16 @@ const routes = [
                 }
 
             },
+            {
+                path: "simtype/:data_package_id",
+                name: "data_package.simtype",
+                component: () => import(/* webpackChunkName:"Data_package Create" */ '../views/packages/data_package/fill_simtype.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: 'admin',
+                }
+
+            },
         ]
     },
 
@@ -787,26 +797,12 @@ const routes = [
 
     {
         path: "/chat_test",
-        component: () => import(/* webpackChunkName:"chat_sub_question" */'../views/chat_question/chat_test/chat_test.vue'),
+        name: "chat_test.index",
+        component: () => import(/* webpackChunkName:"chat_sub_question index" */'../views/chat_question/chat_test/index.vue'),
         meta: {
             middleware: [Middleware.auth],
-            layout: 'admin',
-
-
-        },
-        children: [
-            {
-                path: "",
-                name: "chat_test.index",
-                component: () => import(/* webpackChunkName:"chat_sub_question index" */'../views/chat_question/chat_test/index.vue'),
-                meta: {
-                    middleware: [Middleware.auth],
-                    layout: "admin",
-                }
-            },
-
-
-        ]
+            layout: "admin",
+        }
     },
 
     {
