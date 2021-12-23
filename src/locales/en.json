@@ -24,15 +24,25 @@
       "icon": "fas fa-border-top",
       "text": "Topping",
       "router": "/topping"
-    },
-    {
-      "icon": "fas fa-robot",
-      "text": "Chat Bot",
-      "router": "/chat_question"
     }
+
   ],
-  "Topping": {
-    "title": "Topping management"
+
+  "Chatmenu": {
+    "title": "Chat",
+    "subtitle": [
+      {
+        "icon": "fas fa-comment-dots",
+        "text": "Chat List",
+        "router": "/chat_list"
+      },
+      {
+        "icon": "fas fa-robot",
+        "text": "Chat Bot",
+        "router": "/chat_question"
+      }
+
+    ]
   },
   "Postmenu": {
     "title": "Posts",

@@ -82,7 +82,27 @@
               </v-list-item-icon>
               <v-list-item-title v-text="item.text"></v-list-item-title>
             </v-list-item>
-
+            <v-list-group color="black">
+              <template v-slot:activator>
+                <v-list-item-icon>
+                  <v-icon>fas fa-comments</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>{{ $t('Chatmenu.title') }}</v-list-item-title>
+              </template>
+              <v-list-item
+                  link
+                  v-for="subtitle in $t('Chatmenu.subtitle')"
+                  :key="subtitle.key"
+                  @click="$router.push(subtitle.router)"
+              >
+                <v-list-item-icon>
+                  <v-icon small>{{ subtitle.icon }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>
+                  {{ subtitle.text }}
+                </v-list-item-title>
+              </v-list-item>
+            </v-list-group>
             <v-list-group color="black">
               <template v-slot:activator>
                 <v-list-item-icon>

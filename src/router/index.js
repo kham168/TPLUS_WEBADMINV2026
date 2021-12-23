@@ -713,6 +713,20 @@ const routes = [
         ]
     },
 
+    //Chat List
+    {
+        path: "/chat_list",
+        name: "chat_list.index",
+        component: () => import(/* webpackChunkName:"chat_question" */'../views/chat_list/index.vue'),
+        meta: {
+            middleware: [Middleware.auth],
+            layout: 'admin',
+
+
+        },
+
+    },
+
     //Chat Question
     {
         path: "/chat_question",

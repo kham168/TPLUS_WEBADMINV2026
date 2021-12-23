@@ -24,13 +24,25 @@
       "icon": "fas fa-border-top",
       "text": "Topping",
       "router": "/topping"
-    },
-    {
-      "icon": "fas fa-robot",
-      "text": "ແຊັດບອທ",
-      "router": "/chat_question"
     }
+
   ],
+  "Chatmenu": {
+    "title": "ແຊັດ",
+    "subtitle": [
+      {
+        "icon": "fas fa-comment-dots",
+        "text": "ລາຍການແຊັດ",
+        "router": "/chat_list"
+      },
+      {
+        "icon": "fas fa-robot",
+        "text": "ແຊັດບອທ",
+        "router": "/chat_question"
+      }
+
+    ]
+  },
   "Postmenu": {
     "title": "ຂໍ້ມູນໂພສ",
     "subtitle": [
