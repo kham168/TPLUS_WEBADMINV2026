@@ -7,32 +7,38 @@
               src="https://media.istockphoto.com/photos/millennial-male-team-leader-organize-virtual-workshop-with-employees-picture-id1300972574?b=1&k=20&m=1300972574&s=170667a&w=0&h=2nBGC7tr0kWIU8zRQ3dMg-C5JLo9H2sNUuDjQ5mlYfo="
               alt="">
         </div>
+
         <div class="chat-room-name">
           <h3>0209988558</h3>
           <p class="chat-room-status">online</p>
         </div>
       </div>
-      <div class="chat-room-content" ref="scrollPosition"  v-for="(element,index) in adminMessageBox" :key="index">
-        <div class="chat-room-left" v-if="element.send_by === 3">
-          {{'user'}}
-          <div class="show-text-message">
+      <div class="chat-room-content" ref="scrollPosition"  >
+        <v-row >
+          <v-col cols="12" class="pa-2" v-for="(element,index) in adminMessageBox" :key="index">
+            <div class="chat-room-left" v-if="element.send_by === user_id">
 
-            {{ element.message }}
-          </div>
-        </div>
-        <div class="chat-room-right" v-else>
-          {{'admin'}}
-          <div class="show-text-message">
+              <div class="show-text-message">
 
-            {{ element.message }}
-          </div>
-        </div>
+                {{ element.message }}
+              </div>
+            </div>
+            <div class="chat-room-right" v-else>
+
+              <div class="show-text-message">
+
+                {{ element.message }}
+              </div>
+            </div>
+          </v-col>
+        </v-row>
+
       </div>
       <div class="chat-room-footer">
         <div class="input-chat" ref="resetTextInput" contenteditable="true" @input="messageInput($event)"
-             @keyup.enter="sendMessage">
+             @keyup.enter="functionSendMessage">
         </div>
-        <div class="btn-send-message" @click="sendMessage({'message':textMessage,'chat_room_id':chat_room_id})">
+        <div class="btn-send-message" @click="functionSendMessage">
           <i class="fal fa-paper-plane"></i>
         </div>
       </div>
@@ -57,7 +63,7 @@ export default {
     }
   },
   created() {
-    this.socket = io("http://25.10.235.85:7000");
+    this.socket = io("http://128.199.104.34:7000");
 
     this.user_id=this.$route.params.user_id;
     this.chat_room_id=this.$route.params.chat_room_id;
@@ -80,6 +86,7 @@ export default {
     });
 
     this.getChatRoomOne({'chat_room_id':this.$route.params.chat_room_id}).then(res=>{
+
       this.socket.emit("join_channel",res.channel)
       for(let i=0;i<res['messages'].length;i++){
         try{
@@ -94,6 +101,11 @@ export default {
   methods: {
 
     functionSendMessage(){
+      this.sendMessage({'message':this.textMessage,'chat_room_id':this.chat_room_id}).then((res)=>{
+        console.log(res)
+        this.resetTextMessage()
+        this.scrollToBottom()
+      });
 
     },
 
@@ -184,8 +196,8 @@ export default {
     width: 100%;
     height: 400px;
     display: flex;
-    margin-bottom: 40px;
     overflow-y: auto;
+
 
     .chat-room-left {
       flex: 1;
@@ -212,7 +224,7 @@ export default {
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-end;
-      padding-top: 40px;
+
 
       .show-text-message {
         display: flex;
@@ -221,7 +233,7 @@ export default {
         flex-direction: column;
         min-height: 40px;
         background: #FFFFFF;
-        margin: 10px 20px;
+        margin: 10px 20px 0px 0px;
         padding: 8px 30px;
         border-radius: 20px 0 20px 20px;
       }

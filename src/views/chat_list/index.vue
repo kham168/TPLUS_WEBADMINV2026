@@ -12,7 +12,7 @@
 
 
 
-      <v-col cols="12" md="12" lg="12" v-if="chat_room['allChatRoom'] != ''" v-show="!firstLoad">
+      <v-col cols="12" md="12" lg="12" v-if="list_chat_room != ''" v-show="!firstLoad">
         <div class="dashboard-right">
           <div class="dashboard-right-header">
             <h3>Client Message <span><i class="far fa-comment-alt-lines"></i></span></h3>
@@ -20,7 +20,7 @@
 
           <div class="message-content">
             <v-row>
-              <v-col cols="12" md="12" lg="12" v-for="(data,index) in chat_room['allChatRoom']">
+              <v-col cols="12" md="12" lg="12" v-for="(data,index) in list_chat_room">
                 <div class="card-message">
                   <div class="message-image">
                     <div class="images">
@@ -57,23 +57,52 @@
 
 <script>
 import {mapActions,mapGetters} from 'vuex';
+
+import {io} from "socket.io-client";
 export default {
   name: "CardChat",
 
   data(){
     return{
       firstLoad:true,
+      socket:null,
+      list_chat_room:[],
     }
   },
   created() {
-
+    this.socket = io("http://128.199.104.34:7000");
   },
   mounted() {
+
+
+    this.socket.emit("connection");
+    console.log(this.socket);
+
+    this.socket.on("new_message_by_snipermonkey_2077",(message)=>{
+      console.log(message)
+      for(let i=0;i<this.list_chat_room.length;i++){
+        if(message.id == this.list_chat_room[i].id){
+          this.list_chat_room.slice(i,1);
+          this.list_chat_room.unshift(message);
+          break;
+        }else if(message.id != this.list_chat_room[i].id && i == this.list_chat_room.length-1){
+          this.list_chat_room.unshift(message);
+        }
+      }
+
+    });
+
     this.getChatRoom().then(res=>{
       console.log(res)
       if(res.success){
+        this.socket.emit("new_message_room_by_snipermonkey_2077")
+
+        for(let i=0;i<res.allChatRoom.length;i++){
+          this.list_chat_room.push(res.allChatRoom[i])
+        }
 
         this.firstLoad=false;
+
       }
     });
   },

@@ -48,13 +48,13 @@ class HttpRequest {
 
         if(response.message=="Updated order banner successfully"){
 
-        }else if(response.config.url == "/api/v1/chat") {
+        }else if(response.config.url == `/api/v1/admin/chat/${response.data.message.chat_room_id}`) {
 
         }else if(response.message=="Updated new position topping successfully."){
 
         }
         else {
-         // Router.back();
+          Router.back();
         }
 
       }else if(response.config.method=="put" && response.status == 200){

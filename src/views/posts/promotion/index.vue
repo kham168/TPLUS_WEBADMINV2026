@@ -14,7 +14,7 @@
           <v-icon>fal fa-plus-circle</v-icon>{{ $t("PromotionEvent.button") }}</v-btn
         >
       </div>
-     
+
       <div class="promotionEvent-content" v-show="!firstLoad">
         <v-data-table
           :headers="$t('PromotionEvent.table.headers')"
@@ -22,7 +22,7 @@
           :search="searchItem"
           :loading="loading"
           :loading-text="$t('PromotionEvent.loadingtext')"
-          v-if="isData"
+          v-if="promotion_event.data[0].Posts !== ''"
         >
           <template v-slot:top>
             <v-toolbar flat>
@@ -57,7 +57,12 @@
               <td>{{ items.startDate }}</td>
               <td>{{ items.endDate }}</td>
 
-              <td>{{ items.status }}</td>
+              <td> <v-chip
+                  :color="getColor( item.Posts[index].status)"
+                  dark
+              >
+                {{  item.Posts[index].status }}
+              </v-chip></td>
               <td><v-btn icon @click="onShow(items.id)"> <v-icon large>
                 mdi-eye
               </v-icon></v-btn>
@@ -105,7 +110,12 @@
               <td>{{ items.startDate }}</td>
               <td>{{ items.endDate }}</td>
 
-              <td>{{ items.status }}</td>
+              <td> <v-chip
+                  :color="getColor( item.Posts[index].status)"
+                  dark
+              >
+                {{  item.Posts[index].status }}
+              </v-chip></td>
               <td><v-btn icon @click="onShow(items.id)"> <v-icon large>
                 mdi-eye
               </v-icon></v-btn></td>
@@ -218,27 +228,25 @@ components: {
     };
   },
 
-  created() {
+  mounted() {
+
+
     this.getPromotion().then(res=>{
       console.log(res)
-      if(res.data[0].Posts.length >0){
-        this.isData = true;
-      }else if(res.success){
+      if(res.success){
         this.firstLoad=false;
       }
     });
 
 
 
-
-
   },
 
   methods: {
-    load(){
-      console.log('load')
+    getColor(status) {
+      if (status == 'open') return 'green'
 
-    
+      else return 'red'
     },
 
     CreatePost() {

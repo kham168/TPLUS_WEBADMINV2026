@@ -21,7 +21,7 @@
             :search="searchItem"
             :loading="loading"
             :loading-text="$t('PromotionEvent.loadingtext')"
-            v-if="isData"
+            v-if="event.data[0].Posts !==''"
         >
           <template v-slot:top>
             <v-toolbar flat>
@@ -54,7 +54,12 @@
               <td>{{ items.startDate }}</td>
               <td>{{ items.endDate }}</td>
 
-              <td>{{ item.Posts[index].status }}</td>
+              <td> <v-chip
+                  :color="getColor( item.Posts[index].status)"
+                  dark
+              >
+                {{ item.Posts[index].status }}
+              </v-chip></td>
               <td><v-btn icon @click="onShow(items.id)"> <v-icon large>
                 mdi-eye
               </v-icon></v-btn></td>
@@ -99,7 +104,12 @@
         white-space: nowrap;" v-html="`${ items.PostTrans[0].description }`"></td>
               <td>{{ items.startDate }}</td>
               <td>{{ items.endDate }}</td>
-              <td>{{ items.status }}</td>
+              <td> <v-chip
+                  :color="getColor( item.Posts[index].status)"
+                  dark
+              >
+                {{ item.Posts[index].status }}
+              </v-chip></td>
 
               <td><v-btn icon @click="onShow(items.id)"> <v-icon large>
                 mdi-eye
@@ -213,9 +223,7 @@ export default {
 
   created() {
     this.getEvent().then(res=>{
-      if(res.data[0].Posts.length > 0){
-        this.isData = true;
-      }else if(res.success){
+if(res.success){
         this.firstLoad=false;
       }
     })
@@ -225,6 +233,13 @@ export default {
 
 
   methods: {
+
+    getColor(status) {
+      if (status == 'open') return 'green'
+
+      else return 'red'
+    },
+
     loadDataToComponent(res) {
 
       let data = res.data;
