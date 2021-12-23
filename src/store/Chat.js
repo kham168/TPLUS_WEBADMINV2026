@@ -59,12 +59,15 @@ const actions={
         const data = await chatProvider.getChatRoomUnRead({'token':tokenAdmin})
 
         commit('SET_CHAT_ROOM_UNREAD', data)
+        return data
     },
 
     async getChatRoom ({commit}) {
         const data = await chatProvider.getChatRoom({'token':tokenAdmin})
 
         commit('SET_CHAT_ROOM', data)
+
+        return data
     },
 
     //delete when test complete

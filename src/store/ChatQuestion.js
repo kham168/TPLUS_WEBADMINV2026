@@ -53,6 +53,7 @@ const actions={
       const data = await chatQuestionProvider.getChatBaseQuestion()
 
       commit('SET_CHAT_BASE_QUESTION',data)
+        return data
     },
 
     async getChatSubQuestion({commit},{chat_question_id}) {

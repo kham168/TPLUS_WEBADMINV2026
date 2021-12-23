@@ -110,7 +110,7 @@ export default {
       previewImage: [],
       uploadImage:[],
 
-      imageUrl:'http://25.10.235.85:7000/images/chat-questions/',
+      imageUrl:'http://128.199.104.34:7000/images/chat-questions/',
 
     }
   },

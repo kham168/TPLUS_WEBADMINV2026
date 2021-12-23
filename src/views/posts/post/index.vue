@@ -1,22 +1,28 @@
 <template>
   <div id="Post">
     <section class="post-section">
+      <v-skeleton-loader
+          class="mx-auto"
 
-      <div class="header post-header">
+          type="table"
+
+          v-if="firstLoad"
+      ></v-skeleton-loader>
+      <div class="header post-header" v-show="!firstLoad">
         <h1>{{ $t("Post.title") }}</h1>
         <v-btn @click="CreatePost" class="btn btn-create">
           <v-icon>fal fa-plus-circle</v-icon>{{ $t("Post.button") }}</v-btn
         >
       </div>
 
-      <div class="post-content">
+      <div class="post-content" v-show="!firstLoad">
         <v-data-table
           :headers="$t('Post.table.headers')"
-          :items="post.data[0]['Posts']"
+          :items="post.data[0].Posts"
           :search="searchItem"
-          :loading="loading"
+
           :loading-text="$t('Post.loadingtext')"
-          v-if="post.data[0]['Posts'] != ''"
+          v-if="post.data[0].Posts != ''"
         >
           <template v-slot:top>
             <v-toolbar flat>
@@ -177,7 +183,7 @@ components: {
       post_id:'',
       isLaoLanguage:localStorage.getItem('lang') === 'la',
       image:'@/src/assets/logo.png',
-      loading: false,
+      loading: true,
 
       searchItem: "",
 
@@ -190,12 +196,17 @@ components: {
 
       previewImage: [],
       previewImageEng: [],
+      firstLoad:true,
     };
   },
 
   mounted() {
 
-    this.getPost()
+    this.getPost().then((res)=>{
+      if(res.success){
+        this.firstLoad=false;
+      }
+    })
 
   },
 

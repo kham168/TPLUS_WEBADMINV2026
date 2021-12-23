@@ -1,7 +1,12 @@
 <template>
    <div id="DataPackage">
     <section class="data_package-section">
-      <div class="header data_package-header">
+      <v-skeleton-loader
+          class="mx-auto"
+          type="table"
+          v-if="firstLoad"
+      ></v-skeleton-loader>
+      <div class="header data_package-header" v-show="!firstLoad">
         <h1>{{ $t("DataPackage.title") }}</h1>
 
 
@@ -10,7 +15,7 @@
 
       </div>
 
-      <div class="data_package-content">
+      <div class="data_package-content" v-show="!firstLoad">
         <v-data-table
           :headers="$t('DataPackage.table.headers')"
           :items="data_package['data']"
@@ -167,12 +172,15 @@ components: {
           isLaoLanguage:localStorage.getItem('lang') === 'la',
              loading: false,
          searchItem: "",
+          firstLoad:true,
 
         };
     },
 
     mounted() {
-        this.getDataPackage();
+        this.getDataPackage().then((res)=>{
+          this.firstLoad = false;
+        });
     },
 
     methods: {

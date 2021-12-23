@@ -1,16 +1,20 @@
 <template>
   <div id="PromotionEvent">
     <section class="promotionEvent-section">
+      <v-skeleton-loader
+          class="mx-auto"
+          type="table"
+          v-if="firstLoad"
+      ></v-skeleton-loader>
 
-      <div class="header promotionEvent-header">
+      <div class="header promotionEvent-header" v-show="!firstLoad">
         <h1>{{ $t("PromotionEvent.title_event") }}</h1>
         <v-btn @click="CreatePost" class="btn btn-create">
           <v-icon>fal fa-plus-circle</v-icon>{{ $t("PromotionEvent.button") }}</v-btn
         >
       </div>
 
-
-      <div class="promotionEvent-content">
+      <div class="promotionEvent-content" v-show="!firstLoad">
         <v-data-table
             :headers="$t('PromotionEvent.table.headers')"
             :items="event['data']"
@@ -140,6 +144,7 @@
           <h3>{{ $t("PromotionEvent.table.dontdata") }}</h3>
         </div>
       </div>
+
       <ModalDelete>
         <template v-slot="{close}">
           <Delete :promotion_event_id="promotion_event_id" @close="close" />
@@ -201,6 +206,8 @@ export default {
       dateEnd:'' ,
       previewImage:[],
       previewImageEng:[],
+
+      firstLoad:true
     };
   },
 
@@ -208,6 +215,8 @@ export default {
     this.getEvent().then(res=>{
       if(res.data[0].Posts.length > 0){
         this.isData = true;
+      }else if(res.success){
+        this.firstLoad=false;
       }
     })
 

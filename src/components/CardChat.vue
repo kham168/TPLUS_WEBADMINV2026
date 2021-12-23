@@ -6,7 +6,15 @@
 
     <div class="message-content">
       <v-row>
-        <v-col cols="12" md="12" lg="12" v-for="(data,index) in chat_room_unread['allChatRoom']">
+        <v-col cols="12" md="12" lg="12" v-for="i in 4" :key="i" v-if="firstLoad">
+          <v-card >
+            <v-skeleton-loader
+                class="mb-5"
+                type="list-item-avatar, list-item-two-line,actions"
+            ></v-skeleton-loader>
+          </v-card>
+        </v-col>
+        <v-col cols="12" md="12" lg="12" v-for="(data,index) in chat_room_unread['allChatRoom']" v-if="chat_room_unread['allChatRoom']!=''" v-show="!firstLoad">
           <div class="card-message">
             <div class="message-image">
               <div class="images">
@@ -24,6 +32,12 @@
             </div>
           </div>
         </v-col>
+        <v-col cols="12" md="12" lg="12" v-if="chat_room_unread['allChatRoom']==''">
+          <div class="image">
+            <v-img src="@/assets/Images/NoData.png"></v-img>
+          </div>
+          <h3 class="text-center">No Data</h3>
+        </v-col>
 
       </v-row>
     </div>
@@ -35,11 +49,20 @@ import {mapActions,mapGetters} from 'vuex';
 export default {
   name: "CardChat",
 
+  data(){
+    return{
+      firstLoad:true
+    }
+  },
   created() {
 
   },
   mounted() {
-    this.getChatRoomUnRead().then(res=>console.log(res));
+    this.getChatRoomUnRead().then((res)=>{
+      if(res.success){
+        this.firstLoad=false
+      }
+    });
   },
   methods: {
 

@@ -1,13 +1,18 @@
 <template>
   <div id="ChatQuestion">
     <section class="chat_question-section">
-      <div class="header chat_question-header">
+      <v-skeleton-loader
+          class="mx-auto"
+          type="table"
+          v-if="firstLoad"
+      ></v-skeleton-loader>
+      <div class="header chat_question-header" v-show="!firstLoad">
         <h1>{{ $t("ChatQuestion.title") }}</h1>
-        <v-btn @click="CreateChatQuestion" class="btn btn-create">
+        <v-btn @click="CreateChatQuestion" class="btn btn-create" >
           <v-icon>fal fa-plus-circle</v-icon>{{ $t("ChatQuestion.button") }}</v-btn
         >
       </div>
-      <div class="cate_post-content">
+      <div class="cate_post-content" v-show="!firstLoad">
         <v-data-table
             :headers="$t('ChatQuestion.table.headers')"
             :items="chat_base_question['baseQuestionData']"
@@ -167,11 +172,16 @@ export default {
       loading: false,
 
       searchItem: "",
+      firstLoad:true,
     };
   },
 
   mounted() {
-    this.getChatBaseQuestion();
+    this.getChatBaseQuestion().then((res)=>{
+      if(res.success){
+        this.firstLoad=false;
+      }
+    });
 
   },
 

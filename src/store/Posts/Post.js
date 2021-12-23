@@ -30,6 +30,7 @@ const actions={
         const data = await postService.getPost()
 
         commit('SET_POST', data)
+        return data
       },
 
       async createPost({dispatch},{

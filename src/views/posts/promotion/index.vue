@@ -1,15 +1,21 @@
 <template>
   <div id="PromotionEvent">
     <section class="promotionEvent-section">
-        
-      <div class="header promotionEvent-header">
+      <v-skeleton-loader
+          class="mx-auto"
+
+          type="table"
+
+          v-if="firstLoad"
+      ></v-skeleton-loader>
+      <div class="header promotionEvent-header" v-show="!firstLoad">
         <h1>{{ $t("PromotionEvent.title_promotion") }}</h1>
         <v-btn @click="CreatePost" class="btn btn-create">
           <v-icon>fal fa-plus-circle</v-icon>{{ $t("PromotionEvent.button") }}</v-btn
         >
       </div>
      
-      <div class="promotionEvent-content">
+      <div class="promotionEvent-content" v-show="!firstLoad">
         <v-data-table
           :headers="$t('PromotionEvent.table.headers')"
           :items="promotion_event['data']"
@@ -208,14 +214,17 @@ components: {
       dateEnd:'' ,
       previewImage:[],
       previewImageEng:[],
- 
+      firstLoad:true,
     };
   },
 
   created() {
     this.getPromotion().then(res=>{
+      console.log(res)
       if(res.data[0].Posts.length >0){
-        this.isData = true
+        this.isData = true;
+      }else if(res.success){
+        this.firstLoad=false;
       }
     });
 

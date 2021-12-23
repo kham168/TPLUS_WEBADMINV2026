@@ -1,13 +1,18 @@
 <template>
    <div id="CateProduct">
     <section class="cate_product-section">
-      <div class="header cate_product-header">
+      <v-skeleton-loader
+          class="mx-auto"
+          type="table"
+          v-if="firstLoad"
+      ></v-skeleton-loader>
+      <div class="header cate_product-header" v-show="!firstLoad">
         <h1>{{ $t("CateProduct.title") }}</h1>
-        <v-btn @click="CreateCateProduct" class="btn btn-create">
+        <v-btn @click="CreateCateProduct" class="btn btn-create" >
           <v-icon>fal fa-plus-circle</v-icon>{{ $t("CateProduct.button") }}</v-btn
         >
       </div>
-      <div class="cate_product-content">
+      <div class="cate_product-content" v-show="!firstLoad">
         <v-data-table
           :headers="$t('CateProduct.table.headers')"
           :items="cate_product['data']"
@@ -141,11 +146,18 @@ components: {
    
 
       searchItem: "",
+          firstLoad:true,
         };
     },
 
     mounted() {
-        this.getCateProduct();
+        this.getCateProduct().then((res)=>{
+          if(res.success){
+            this.firstLoad = false
+
+          }
+            }
+        );
     },
 
     methods: {

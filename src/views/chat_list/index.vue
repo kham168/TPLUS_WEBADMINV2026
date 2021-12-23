@@ -1,7 +1,18 @@
 <template>
   <div>
     <section>
-      <v-col cols="12" md="4" lg="4" v-if="chat_room['allChatRoom'] != ''">
+      <v-card v-for="i in 4" :key="i" v-if="firstLoad">
+        <v-skeleton-loader
+            class="mb-5"
+            type="list-item-avatar, list-item-two-line,actions"
+        ></v-skeleton-loader>
+      </v-card>
+
+
+
+
+
+      <v-col cols="12" md="12" lg="12" v-if="chat_room['allChatRoom'] != ''" v-show="!firstLoad">
         <div class="dashboard-right">
           <div class="dashboard-right-header">
             <h3>Client Message <span><i class="far fa-comment-alt-lines"></i></span></h3>
@@ -49,11 +60,22 @@ import {mapActions,mapGetters} from 'vuex';
 export default {
   name: "CardChat",
 
+  data(){
+    return{
+      firstLoad:true,
+    }
+  },
   created() {
 
   },
   mounted() {
-    this.getChatRoom().then(res=>console.log(res));
+    this.getChatRoom().then(res=>{
+      console.log(res)
+      if(res.success){
+
+        this.firstLoad=false;
+      }
+    });
   },
   methods: {
 
@@ -79,6 +101,112 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.dashboard-right {
+  width: 100%;
+  min-height: 100vh;
+  overflow-y: auto;
+  background: #ffffff;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
 
+  .dashboard-right-header {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    border-bottom: 2px solid #EEEEEE;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 20px;
+  }
+
+  .message-content {
+    width: 100%;
+    height: 90vh;
+    padding: 20px;
+
+    .card-message {
+      width: 100%;
+      height: 130px;
+      background: rgba(149, 175, 192, 0.2);
+      border: 2px solid #EEEEEE;
+      border-radius: 4px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      position: relative;
+
+
+      .message-image {
+        width: 20%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .images {
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          background: #ffffff;
+          overflow: hidden;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+
+      .message-detail {
+        width: 80%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding-top: 2px;
+
+        h4 {
+          font-size: 24px;
+        }
+
+        p {
+          width: 220px;
+          font-size: 14px;
+          -webkit-box-orient: vertical;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: normal;
+          margin: 0;
+          padding: 0;
+
+        }
+
+        .message-icon {
+          width: 36px;
+          height: 36px;
+          padding: 5px;
+          border-radius: 18px;
+          background: #3F3D56;
+          position: absolute;
+          right: 10px;
+          bottom: 8px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+
+          i {
+            font-size: 14px;
+            color: #ffffff;
+          }
+        }
+      }
+    }
+
+  }
+}
 </style>

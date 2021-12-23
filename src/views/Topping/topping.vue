@@ -11,7 +11,7 @@
 
           <v-checkbox
               v-model="checkbox1"
-              :label="`ຈັດການ`"
+              :label="$t('Topping.manage')"
           ></v-checkbox>
           <div class="preview">
             <draggable v-model="list" :disabled="!checkbox1">
@@ -173,7 +173,7 @@ export default {
 .ActiveBox {
   width: 100%;
   height: 50px;
-  background-color: #1e1c1c;
+  background-color: #343131;
   border-radius: 0.3rem;
   text-align: center;
   padding: 10px;

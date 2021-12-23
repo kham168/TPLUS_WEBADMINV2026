@@ -38,6 +38,7 @@ const actions={
         const data = await catProductProvider.getCateProduct()
      
         commit('SET_CATE_PRODUCT', data)
+        return data
       },
 
       async createCateProduct({dispatch},{

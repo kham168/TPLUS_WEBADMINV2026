@@ -33,6 +33,7 @@ const actions={
         const data = await productProvider.getProduct()
      
         commit('SET_PRODUCT', data)
+        return data
       },
 
       async createProduct({dispatch},{

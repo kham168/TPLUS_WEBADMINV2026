@@ -1,7 +1,12 @@
 <template>
   <div id="ChatQuestion">
     <section class="chat_question-section">
-      <div class="header chat_question-header">
+      <v-skeleton-loader
+          class="mx-auto"
+          type="table"
+          v-if="firstLoad"
+      ></v-skeleton-loader>
+      <div class="header chat_question-header" v-show="!firstLoad">
 
         <h1><span @click="onBack" style="margin-right: 10px;color: #4b96da;cursor: pointer">
           <i class="fas fa-arrow-circle-left"></i></span>{{ $t("ChatQuestion.subtitle") }}</h1>
@@ -10,14 +15,14 @@
         >
       </div>
 
-      <div class="cate_post-content">
+      <div class="cate_post-content" v-show="!firstLoad">
         <v-data-table
             :headers="$t('ChatQuestion.table.headers')"
             :items="chat_sub_question['subQuestionData']"
             :search="searchItem"
             :loading="loading"
             :loading-text="$t('ChatQuestion.loadingtext')"
-            v-if="chat_sub_question['subQuestionData'] != []"
+            v-if="chat_sub_question['subQuestionData'] != ''"
         >
           <template v-slot:top>
             <v-toolbar flat>
@@ -168,6 +173,7 @@ export default {
       loading: false,
 
       searchItem: "",
+      firstLoad:true,
     };
   },
 
@@ -175,7 +181,7 @@ export default {
     this.getChatSubQuestion({'chat_question_id':this.$route.params.chat_question_id}).then(
         res=>{
           if(res.success){
-            console.log("success")
+           this.firstLoad=false
           }
         }
     );

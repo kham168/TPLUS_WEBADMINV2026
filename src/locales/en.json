@@ -120,6 +120,10 @@
       }
     ]
   },
+  "Topping": {
+    "title": "Management Topping",
+    "manage": "Manage"
+  },
   "Navbar": {
     "selectLanguage": "Languages",
     "setting": "Setting",
@@ -746,6 +750,7 @@
   "DataPackage": {
     "title": "Data Package",
     "button": "Create",
+    "button_fill": "Fill Sim Types",
     "txtsearch": "Search Data Package",
     "loadingtext":"Loading...",
     "table": {
@@ -755,6 +760,14 @@
         { "text": "Code", "value": "CateDataPackage", "sortable": true },
         { "text": "Package Name", "value": "DataPackageName", "sortable": false },
 
+        { "text": "Actions", "value": "Actions", "sortable": false }
+      ],
+      "headers_simtype": [
+        { "text": "No", "value": "No", "sortable": false },
+        { "text": "Pictures", "value": "Picture", "sortable": true },
+        { "text": "Code", "value": "CateDataPackage", "sortable": true },
+        { "text": "Package Name", "value": "DataPackageName", "sortable": false },
+        { "text": "Sim Type", "value": "simtype", "sortable": false },
         { "text": "Actions", "value": "Actions", "sortable": false }
       ],
       "dontdata": "Don't have data",

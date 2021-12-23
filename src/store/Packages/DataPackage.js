@@ -30,6 +30,7 @@ const actions={
     async removeSimTypeOne ({commit,dispatch},{package_id,simTypeId}) {
         await dataPackageService.removeSimTypeOne({'package_id':package_id,'simTypeId':simTypeId})
         dispatch('packageSimTypeOne',{ root: true,'package_id':package_id});
+
     },
 
     async packageSimTypeOne ({commit},{package_id}) {
@@ -50,7 +51,6 @@ const actions={
 
   async getDataPackageOne ({commit},{package_id}) {
     const data = await dataPackageService.getDataPackageOne({'package_id':package_id})
-
       commit('SET_DATA_PACKAGE_ONE', data)
    
     return data
@@ -60,6 +60,7 @@ const actions={
         const data = await dataPackageService.getDataPackage()
       
         commit('SET_DATA_PACKAGE', data)
+        return data
       },
 
       async createDataPackage({dispatch},{

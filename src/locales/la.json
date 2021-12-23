@@ -119,7 +119,8 @@
     ]
   },
   "Topping": {
-    "title": "ຈັດການ Topping"
+    "title": "ຈັດການ Topping",
+    "manage": "ຈັດການ"
   },
   "Navbar": {
     "selectLanguage": "ເລືອກພາສາ",
@@ -808,6 +809,7 @@
   "DataPackage": {
     "title": "ຂໍ້ມູນແພັກເກັດ",
     "button": "ເພີ່ມ",
+    "button_fill": "ຕື່ມປະເພດຊິມ",
     "txtsearch": "ຄົ້ນຫາແພັກເກັດ",
     "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
@@ -818,6 +820,14 @@
         { "text": "ຊື່ແພັກເກັດ", "value": "DataPackageName", "sortable": false },
 
 
+        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
+      ],
+      "headers_simtype": [
+        { "text": "ລຳດັບ", "value": "No", "sortable": false },
+        { "text": "ຮູບພາບ", "value": "Picture", "sortable": true },
+        { "text": "Code", "value": "code", "sortable": true },
+        { "text": "ຊື່ແພັກເກັດ", "value": "DataPackageName", "sortable": false },
+        { "text": "ປະເພດຊິມ", "value": "simtypes", "sortable": false },
         { "text": "ຈັດການ", "value": "Actions", "sortable": false }
       ],
       "dontdata": "ບໍ່ມີຂໍ້ມູນ",
@@ -1283,6 +1293,7 @@
         { "text": "ຄຳຕອບ", "value": "Answer", "sortable": false },
         { "text": "Actions", "value": "Actions", "sortable": false }
       ],
+
       "dontdata": "ບໍ່ມີຂໍ່ມູນ",
       "options": {
         "edit": "ແກ້ໄຂ",

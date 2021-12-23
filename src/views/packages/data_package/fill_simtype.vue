@@ -1,18 +1,23 @@
 <template>
   <div id="DataPackage">
     <section class="data_package-section">
-      <div class="header data_package-header">
+      <v-skeleton-loader
+          class="mx-auto"
+          type="table"
+          v-if="firstLoad"
+      ></v-skeleton-loader>
+      <div class="header data_package-header" v-show="!firstLoad">
         <h1><span @click="onBack" style="margin-right: 10px;color: #4b96da;cursor: pointer">
           <i class="fas fa-arrow-circle-left"></i></span>{{ $t("DataPackage.title") }}</h1>
 
         <v-btn @click="onCreate" class="btn btn-create">
-          <v-icon>fal fa-plus-circle</v-icon>{{ $t("DataPackage.button") }}</v-btn>
+          <v-icon>fal fa-plus-circle</v-icon>{{ $t("DataPackage.button_fill") }}</v-btn>
 
       </div>
 
-      <div class="data_package-content">
+      <div class="data_package-content" v-show="!firstLoad">
         <v-data-table
-            :headers="$t('DataPackage.table.headers')"
+            :headers="$t('DataPackage.table.headers_simtype')"
             :items="package_simtype_one"
             :search="searchItem"
             :loading="loading"
@@ -42,7 +47,10 @@
               <td><v-img :src="item.image" alt="preview" max-height="50" max-width="50"></v-img></td>
               <td>{{ item.code }}</td>
               <td>{{ item.la_name }}</td>
-              <td><p v-for="element in item.simTypes">{{element.detail}}</p></td>
+
+              <td><p v-for="element in item.simTypes">{{element.detail}}</p>
+                <v-icon color="red" v-if="item.simTypes.length===0">mdi-minus</v-icon>
+              </td>
 
               <td>
                 <v-menu offset-y>
@@ -72,8 +80,10 @@
               <td>{{ item.code }}</td>
               <td>{{ item.en_name }}</td>
 
-
-
+              <td >
+                <p v-for="element in item.simTypes" >{{element.detail}}</p>
+                <v-icon color="red" v-if="item.simTypes.length===0">mdi-minus</v-icon>
+              </td>
 
               <td>
                 <v-menu offset-y>
@@ -148,14 +158,15 @@ export default {
       isLaoLanguage:localStorage.getItem('lang') === 'la',
       loading: false,
       searchItem: "",
-      data_package_one:[]
+      data_package_one:[],
+      firstLoad:true,
 
     };
   },
 
   created() {
     this.packageSimTypeOne({'package_id':this.$route.params.data_package_id}).then(res=>{
-      console.log(res)
+      this.firstLoad=false;
     });
 
   },

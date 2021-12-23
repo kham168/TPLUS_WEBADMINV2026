@@ -1,13 +1,19 @@
 <template>
   <div id="Product">
     <section class="product--section">
-      <div class="header product-header">
+      <v-skeleton-loader
+          class="mx-auto"
+          type="table"
+          v-if="firstLoad"
+      ></v-skeleton-loader>
+
+      <div class="header product-header" v-show="!firstLoad">
         <h1>{{ $t("Product.title") }}</h1>
-        <v-btn @click="CreateProduct" class="btn btn-create">
+        <v-btn @click="CreateProduct" class="btn btn-create" >
           <v-icon>fal fa-plus-circle</v-icon>{{ $t("Product.button") }}</v-btn
         >
       </div>
-      <div class="product-content">
+      <div class="product-content" v-show="!firstLoad">
         <v-data-table
           :headers="$t('Product.table.headers')"
           :items="product['data']"
@@ -185,12 +191,17 @@ components: {
       descriptionEng:'',
       previewImage: [],
       previewImageEng: [],
+      firstLoad:true,
     };
   },
 
   mounted() {
    
-    this.getProduct();
+    this.getProduct().then((res)=>{
+      if(res.success){
+        this.firstLoad=false;
+      }
+    });
   },
 
 
