@@ -52,9 +52,9 @@ class ProductProvider extends HttpRequest {
         bodyFormData.append('avatar[]',avatar[i]);
       }
 
-      // for(let i=0;i<avatar_EN.length;i++){
-      //   bodyFormData.append('avatar_EN[]',avatar_EN[i]);
-      // }
+      for(let i=0;i<avatar_EN.length;i++){
+        bodyFormData.append('avatar_EN[]',avatar_EN[i]);
+      }
 
       bodyFormData.append('productName',product_name);
       bodyFormData.append('description',description);
@@ -93,9 +93,9 @@ class ProductProvider extends HttpRequest {
           bodyFormData.append('avatar[]',avatar[i]);
         }
   
-        // for(let i=0;i<avatar_EN.length;i++){
-        //   bodyFormData.append('avatar_EN[]',avatar_EN[i]);
-        // }
+        for(let i=0;i<avatar_EN.length;i++){
+          bodyFormData.append('avatar_EN[]',avatar_EN[i]);
+        }
   
         bodyFormData.append('productName',product_name);
         bodyFormData.append('description',description);

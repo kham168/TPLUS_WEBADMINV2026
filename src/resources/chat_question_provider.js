@@ -2,7 +2,7 @@ import HttpRequest from './http_request'
 
 
 const tokenAdmin = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicGhvbmUiOiI1MjQxNjM2MiIsImlhdCI6MTYzOTY2NzUwNiwiZXhwIjoxNjcxMjI1MTA2fQ.jOegLlq-FdgkxBYwXF0Kuq5BeSdq_zaxGbiEFFgcFK-avI2MiyY8A7jFXmG3WEYLhJu4jg8X447Wm1k47_23ooEGlBJ-CznndAjqzlOwRjnmA-To7rbGhaN-2K7oqelobE7LkD7AbMEUn_Bt4OmME7KYtghvCrdsZ_eeylzDhvXUFY1oOLyj7FkMFTYjBxL4_lhUy7NBaB7jlRGJDDtcGZ7oK10D1u8On95U5vkgN64pFzPRx7SuFcp6Bz3cs-04A2PZ6CO2bikPCLHSGtmrjqSOKLClJyEP5lVixAXqKcjbQfVOSgnBF8jPk_PfFiSPeC6p1o8Sjm9mKbb-7ylNlg'
-const tokenClient1 = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywicGhvbmUiOiI1NTU1NTU1NSIsImlhdCI6MTYzOTY2NzM0NywiZXhwIjoxNjcxMjI0OTQ3fQ.i_Gp7kgvYoQPx9yi-r1bQOBQSbjqCdgRmjKo7-2l5Are_mcL0yKxYy6bNsnT040w0UaS6uEBbM8iHQxRoEC5v-11E2H074ghtR3rj12AfsR73y4NtfHHUBMOh-8IE3WA1y80p02DeugAZlh-ffGfgXJ-ZUrW0msArKpYPuXbXFovh6WnZe3mrePMGsKpzvJuFrX8dxfE1I_04RMFQiHSJnHD6SRlt_NUx8DD_fTBV92UcqT419YWPkL5s9ez7draz2d_YA03oKICIvn6at3M_fxbphCjCY0k2909WneiHmneZYK9Q3sdhtX-9xz2zE87KQcbLUa5poFbLxKMv18R8w";
+const tokenClient1 = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywicGhvbmUiOiI1NTU1NTU1NSIsImlhdCI6MTY0MDA4MTU2MiwiZXhwIjoxNjcxNjM5MTYyfQ.Xp6KNcYO5AjgL6lzrs-9uPhZjlajWZKg-5lvDvJ0IsTRZXnYejoDB6d-X7YRJUNMvuh2Y7zTwXgWHrpVH8YY3ug26U0xPEzDuSMV4gwzb314q2gMljO8BcxO-KujaqSfhbsZmGgbSUZsXqVK5Lxt-Le58fcQVLbGYJcoRszIvIdaAOamD7HteYbAWqmfaiqwZlUNTnU2MrTQMSSpPzdm3xyWruQ3NxsrkDrGyYyRlmSGoAB0-QygyFl681tnz2Qj0IGjg0t4zMtq1Ki4Lfj9UBhT9EtWSEtv8lIo3jtMhv32OladNSm9TWWgbCYtSIpN9nK1P2gmd6EWl5HTlSvXiA";
 
 class ChatQuestionProvider extends HttpRequest {
     constructor() {
@@ -41,8 +41,9 @@ class ChatQuestionProvider extends HttpRequest {
 
         //Call setHeader on class HttpRequest and write common header
         //If write Header on class HttpRequest Should call like under method
-        this.setHeader({
-         //   'Authorization':tokenClient1
+        this.setHeaderBaseQuestion({
+           // 'Authorization':tokenClient1
+
         })
         // example path http://128.199.104.34:7000/this.get()
         const {data} = await this.get('/api/v1/baseQuestion')
@@ -67,17 +68,21 @@ class ChatQuestionProvider extends HttpRequest {
 
 
                              }) {
-        let arg = [{
-            "question": question,
-             "answer": answer,
-            "languageId": "1",
-            "image":image
-        }, {
-            "question": questionEng,
-             "answer": answerEng,
-            "languageId": "2",
-            "image":imageEng
-        }]
+        let arg = [];
+
+        if(answer == null || answer == ''){
+            arg = [{
+                "question": question,  "languageId": "1","image":image
+            }, {
+                "question": questionEng, "languageId": "2","image":imageEng
+            }]
+        }else{
+            arg = [{
+                "question": question,"answer":answer,  "languageId": "1"
+            }, {
+                "question": questionEng,"answer":answerEng,"languageId": "2"
+            }]
+        }
 
 
         this.setHeader({

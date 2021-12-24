@@ -30,6 +30,7 @@ const actions={
         const data = await postService.getPost()
 
         commit('SET_POST', data)
+        return data
       },
 
       async createPost({dispatch},{
@@ -41,12 +42,12 @@ const actions={
         other_lang_description,
         avatar,
         avatar_EN,
-          newsCategoryId}
+        newsCategoryId}
 
       ){
 
             let arg={
-                'post_type_id':post_type_id,
+
                 'title': title,
                 'description':description,
                 'status':status,

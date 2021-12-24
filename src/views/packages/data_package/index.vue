@@ -1,17 +1,21 @@
 <template>
    <div id="DataPackage">
     <section class="data_package-section">
-      <div class="header data_package-header">
+      <v-skeleton-loader
+          class="mx-auto"
+          type="table"
+          v-if="firstLoad"
+      ></v-skeleton-loader>
+      <div class="header data_package-header" v-show="!firstLoad">
         <h1>{{ $t("DataPackage.title") }}</h1>
 
-          <v-btn @click="CreateDataPackage" class="btn btn-create">
-            <v-icon>fal fa-plus-circle</v-icon>{{ $t("DataPackage.button") }}</v-btn>
+
           <v-btn @click="CreateDataPackage" class="btn btn-create">
             <v-icon>fal fa-plus-circle</v-icon>{{ $t("DataPackage.button") }}</v-btn>
 
       </div>
 
-      <div class="data_package-content">
+      <div class="data_package-content" v-show="!firstLoad">
         <v-data-table
           :headers="$t('DataPackage.table.headers')"
           :items="data_package['data']"
@@ -51,6 +55,14 @@
                 </v-btn>
                  </template>
                  <v-list>
+                   <v-list-item link @click="onSimType(item.id)">
+                     <v-list-item-icon>
+                       <v-icon class="mr-3" small>{{$t('DataPackage.table.options.simtypeIcon')}}</v-icon>
+                       <v-list-item-title>
+                         {{$t('DataPackage.table.options.simtype')}}
+                       </v-list-item-title>
+                     </v-list-item-icon>
+                   </v-list-item>
                    <v-list-item link @click="$router.push({name:'data_package.edit',params:{
                       'data_package_id':item.id,
  
@@ -92,6 +104,14 @@
                 </v-btn>
                  </template>
                  <v-list>
+                   <v-list-item link @click="onSimType(item.id)">
+                     <v-list-item-icon>
+                       <v-icon class="mr-3" small>{{$t('DataPackage.table.options.simtypeIcon')}}</v-icon>
+                       <v-list-item-title>
+                         {{$t('DataPackage.table.options.simtype')}}
+                       </v-list-item-title>
+                     </v-list-item-icon>
+                   </v-list-item>
                    <v-list-item link @click="$router.push({name:'data_package.edit',params:{
                       'data_package_id':item.id,
      
@@ -111,6 +131,7 @@
                        </v-list-item-title>
                      </v-list-item-icon>
                    </v-list-item>
+
                  </v-list>
                </v-menu>
               </td>
@@ -151,14 +172,26 @@ components: {
           isLaoLanguage:localStorage.getItem('lang') === 'la',
              loading: false,
          searchItem: "",
+          firstLoad:true,
+
         };
     },
 
     mounted() {
-        this.getDataPackage();
+        this.getDataPackage().then((res)=>{
+          this.firstLoad = false;
+        });
     },
 
     methods: {
+      onSimType(data_package_id) {
+        this.$router
+            .push({
+              name: "data_package.simtype",
+              params:{'data_package_id':data_package_id,}
+            })
+            .catch(() => {});
+      },
         CreateDataPackage() {
       this.$router
         .push({

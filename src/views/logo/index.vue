@@ -1,14 +1,21 @@
 <template>
   <div id="Logo">
     <section class="logo-section">
-      <div class="header logo-header">
+      <v-skeleton-loader
+          class="mx-auto"
+
+          type="table"
+          :loading="loading"
+          v-if="firstLoad"
+      ></v-skeleton-loader>
+      <div class="header logo-header" v-show="!firstLoad">
         <h1>{{ $t("Logo.title") }}</h1>
         <!--        <v-btn @click="CreateLogo" class="btn btn-create">-->
         <!--          <v-icon>fal fa-plus-circle</v-icon>-->
         <!--          {{ $t("Logo.button") }}-->
         <!--        </v-btn>-->
       </div>
-      <div class="logo-content">
+      <div class="logo-content" v-show="!firstLoad">
         <v-data-table
             :headers="$t('Logo.table.headers')"
             :items="logo"
@@ -101,6 +108,7 @@ export default {
       loading: false,
       searchItem: "",
       logo: [],
+      firstLoad:true
     };
   },
 
@@ -109,6 +117,7 @@ export default {
       this.$axios.get(`siteInfo`).then((res) => {
         if (res.status === 200) {
           this.logo = res.data.data;
+          this.firstLoad=false
         }
       })
     },

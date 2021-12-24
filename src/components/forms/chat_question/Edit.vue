@@ -291,6 +291,7 @@ export default {
       this.questionEng=data[1].question;
 
       if(data[0].image_option){
+        this.optionAnswer=2;
         const img=`http://25.10.235.85:7000/images/chat-questions/${data[0].answer}`;
         const imgEng=`http://25.10.235.85:7000/images/chat-questions/${data[1].answer}`;
         this.convertURLtoFile(img).then(
@@ -320,6 +321,7 @@ export default {
         )
 
       }else{
+        this.optionAnswer=1;
         this.answer=data[0].answer;
         this.answerEng=data[0].answer;
       }
@@ -347,6 +349,8 @@ export default {
           'chat_question_id':this.$route.params.chat_question_id,
           'question':this.question,
           'questionEng':this.question,
+          'answer':this.answer,
+          'answerEng':this.answerEng,
 
           'image':this.previewImage,
           'imageEng':this.previewImageEng

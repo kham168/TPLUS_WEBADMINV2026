@@ -1,27 +1,33 @@
 <template>
   <div id="PromotionEvent">
     <section class="promotionEvent-section">
-        
-      <div class="header promotionEvent-header">
-        <h1>{{ $t("PromotionEvent.title") }}</h1>
+      <v-skeleton-loader
+          class="mx-auto"
+
+          type="table"
+
+          v-if="firstLoad"
+      ></v-skeleton-loader>
+      <div class="header promotionEvent-header" v-show="!firstLoad">
+        <h1>{{ $t("PromotionEvent.title_promotion") }}</h1>
         <v-btn @click="CreatePost" class="btn btn-create">
           <v-icon>fal fa-plus-circle</v-icon>{{ $t("PromotionEvent.button") }}</v-btn
         >
       </div>
-     
-      <div class="promotionEvent-content">
+
+      <div class="promotionEvent-content" v-show="!firstLoad">
         <v-data-table
           :headers="$t('PromotionEvent.table.headers')"
           :items="promotion_event['data']"
           :search="searchItem"
           :loading="loading"
           :loading-text="$t('PromotionEvent.loadingtext')"
-          v-if="isData"
+          v-if="promotion_event.data[0].Posts !== ''"
         >
           <template v-slot:top>
             <v-toolbar flat>
               <v-text-field
-                :label="$t('PromotionEvent.txtsearch')"
+                :label="$t('PromotionEvent.txtsearch_promotion')"
                 filled
                 rounded
                 dense
@@ -47,11 +53,16 @@
               <td style="   max-width: 200px;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;">{{ items.description }}</td>
+        white-space: nowrap;" v-html="`${ items.description }`"></td>
               <td>{{ items.startDate }}</td>
               <td>{{ items.endDate }}</td>
 
-              <td>{{ items.status }}</td>
+              <td> <v-chip
+                  :color="getColor( item.Posts[index].status)"
+                  dark
+              >
+                {{  item.Posts[index].status }}
+              </v-chip></td>
               <td><v-btn icon @click="onShow(items.id)"> <v-icon large>
                 mdi-eye
               </v-icon></v-btn>
@@ -71,7 +82,7 @@
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('PromotionEvent.table.options.iconEdit')}}</v-icon>
                        <v-list-item-title>
-                         {{$t('PromotionEvent.title')}}
+                         {{$t('PromotionEvent.table.options.edit')}}
                        </v-list-item-title>
                      </v-list-item-icon>
                    </v-list-item>
@@ -95,11 +106,16 @@
               <td style="   max-width: 200px;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;">{{ items.PostTrans[0].description }}</td>
+        white-space: nowrap;" v-html="`${ items.PostTrans[0].description }`"></td>
               <td>{{ items.startDate }}</td>
               <td>{{ items.endDate }}</td>
 
-              <td>{{ items.status }}</td>
+              <td> <v-chip
+                  :color="getColor( item.Posts[index].status)"
+                  dark
+              >
+                {{  item.Posts[index].status }}
+              </v-chip></td>
               <td><v-btn icon @click="onShow(items.id)"> <v-icon large>
                 mdi-eye
               </v-icon></v-btn></td>
@@ -208,28 +224,29 @@ components: {
       dateEnd:'' ,
       previewImage:[],
       previewImageEng:[],
- 
+      firstLoad:true,
     };
   },
 
-  created() {
+  mounted() {
+
+
     this.getPromotion().then(res=>{
-      if(res.data[0].Posts.length >0){
-        this.isData = true
+      console.log(res)
+      if(res.success){
+        this.firstLoad=false;
       }
     });
-
-
 
 
 
   },
 
   methods: {
-    load(){
-      console.log('load')
+    getColor(status) {
+      if (status == 'open') return 'green'
 
-    
+      else return 'red'
     },
 
     CreatePost() {

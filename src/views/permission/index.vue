@@ -1,7 +1,14 @@
 <template>
   <div id="Index">
     <section class="permisstion-container">
-      <div class="header permission-header">
+      <v-skeleton-loader
+          class="mx-auto"
+
+          type="table"
+          :loading="loading"
+          v-if="firstLoad"
+      ></v-skeleton-loader>
+      <div class="header permission-header" v-show="!firstLoad">
         <h1>{{ $t("permission.title") }}</h1>
         <v-btn @click="onCreate" class="btn btn-create">
           <v-icon>fal fa-plus-circle</v-icon>
@@ -9,7 +16,7 @@
         </v-btn
         >
       </div>
-      <div class="permission-content">
+      <div class="permission-content" v-show="!firstLoad">
         <v-data-table
             :headers="$t('permission.table.headers')"
             :items="listPermission"
@@ -108,6 +115,7 @@ export default {
       searchItem: "",
       loading: false,
       permission_id: "",
+      firstLoad:true,
     };
   },
   methods: {
@@ -133,6 +141,7 @@ export default {
       this.$axios.get(`permissions`).then((res) => {
         if (res.status === 200) {
           this.listPermission = res.data.data;
+          this.firstLoad=false
         }
       }).catch((error) => {
         if (error.response.status === 403) {

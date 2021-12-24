@@ -314,14 +314,12 @@ export default {
     if(this.$refs.form[0].validate()){
 
       this.createPost({
-      
-         'newsCategoryId':this.catePostValue,
+                'newsCategoryId':this.catePostValue,
                 'title': this.postName,
                 'description':this.descriptionText,
                 'status':this.statusValue,
                 'other_lang_title':this.postNameEng,
                 'other_lang_description':this.descriptionTextEng,
-               
                 'avatar':this.uploadImage,
                 'avatar_EN':this.uploadImageEng
       })

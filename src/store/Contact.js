@@ -56,6 +56,8 @@ const actions={
 
 
         commit('SET_CONTACT', data)
+
+        return data
       },
 
       async createContact({dispatch},{

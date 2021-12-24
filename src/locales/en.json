@@ -24,15 +24,25 @@
       "icon": "fas fa-border-top",
       "text": "Topping",
       "router": "/topping"
-    },
-    {
-      "icon": "fas fa-home-lg-alt",
-      "text": "Chat",
-      "router": "/chat_question"
     }
+
   ],
-  "Topping": {
-    "title": "Topping management"
+
+  "Chatmenu": {
+    "title": "Chat",
+    "subtitle": [
+      {
+        "icon": "fas fa-comment-dots",
+        "text": "Chat List",
+        "router": "/chat_list"
+      },
+      {
+        "icon": "fas fa-robot",
+        "text": "Chat Bot",
+        "router": "/chat_question"
+      }
+
+    ]
   },
   "Postmenu": {
     "title": "Posts",
@@ -42,7 +52,11 @@
         "text": "Category Post",
         "router": "/cate_post"
       },
-
+      {
+        "icon": "far fa-newspaper",
+        "text": "Post",
+        "router": "/post"
+      },
       {
         "icon": "far fa-newspaper",
         "text": "Promotion",
@@ -105,6 +119,10 @@
         "router": "/permission"
       }
     ]
+  },
+  "Topping": {
+    "title": "Management Topping",
+    "manage": "Manage"
   },
   "Navbar": {
     "selectLanguage": "Languages",
@@ -454,8 +472,6 @@
       "headers": [
         { "text": "No", "value": "No", "sortable": false },
         { "text": "Category Post Name", "value": "CatePostName", "sortable": true },
-
-        { "text": "Status", "value": "description", "sortable": false },
         { "text": "Actions", "value": "Actions", "sortable": false }
       ],
       "dontdata": "Don't have data",
@@ -506,10 +522,8 @@
         { "text": "Post Name", "value": "PostTrans[0].title", "sortable": true },
         { "text": "Category", "value": "postTypeId", "sortable": true },
         { "text": "Description", "value": "PostTrans[0].description", "sortable": false },
-        { "text": "Start Date", "value": "startDate", "sortable": false },
-        { "text": "End Date", "value": "endDate", "sortable": false },
         { "text": "Status", "value": "status", "sortable": false },
-
+        { "text": "View", "value": "view", "sortable": false },
         { "text": "Actions", "value": "Actions", "sortable": false }
       ],
       "dontdata": "Dont have data",
@@ -550,9 +564,11 @@
   }
   },
   "PromotionEvent": {
-    "title": "Promotion and Event Data",
+    "title_promotion": "Promotion",
+    "title_event": "Event",
     "button": "Create",
-    "txtsearch": "Search Promotion or Event",
+    "txtsearch_promotion": "Search Promotion",
+    "txtsearch_event": "Search Event",
     "loadingtext": "Loading...",
     "table": {
       "headers": [
@@ -576,7 +592,8 @@
     },
 
     "Create": {
-      "header": "Add Promotion or Event",
+      "header_promotion": "Add Promotion",
+      "header_event": "Add Event",
       "lang": {
         "lao": "Lao",
         "Eng": "English"
@@ -597,6 +614,7 @@
     },
     "Edit": {
       "header": "Edit Promotion or Event"
+
     },
     "status":{
       "item":[
@@ -658,7 +676,7 @@
         { "text": "Product Name", "value": "ProductName", "sortable": true },
         { "text": "Category", "value": "CateProduct", "sortable": true },
         { "text": "Description", "value": "description", "sortable": false },
-
+        { "text": "View", "value": "view", "sortable": false },
         { "text": "Actions", "value": "Actions", "sortable": false }
       ],
       "dontdata": "Dont have data",
@@ -732,6 +750,7 @@
   "DataPackage": {
     "title": "Data Package",
     "button": "Create",
+    "button_fill": "Fill Sim Types",
     "txtsearch": "Search Data Package",
     "loadingtext":"Loading...",
     "table": {
@@ -743,12 +762,22 @@
 
         { "text": "Actions", "value": "Actions", "sortable": false }
       ],
+      "headers_simtype": [
+        { "text": "No", "value": "No", "sortable": false },
+        { "text": "Pictures", "value": "Picture", "sortable": true },
+        { "text": "Code", "value": "CateDataPackage", "sortable": true },
+        { "text": "Package Name", "value": "DataPackageName", "sortable": false },
+        { "text": "Sim Type", "value": "simtype", "sortable": false },
+        { "text": "Actions", "value": "Actions", "sortable": false }
+      ],
       "dontdata": "Don't have data",
       "options": {
         "edit": "Edit",
         "iconEdit": "fas fa-edit",
         "delete": "Delete",
-        "delicon": "fas fa-trash-alt"
+        "delicon": "fas fa-trash-alt",
+        "simtype": "Fill Sim Type",
+        "simtypeIcon": "fas fa-sim-card"
       }
     },
     "Create": {
@@ -762,6 +791,7 @@
         "data_package_name": "Data Package Name",
         "description": "Description",
         "picture": "Upload Image",
+        "code": "Code",
         "button": {
           "save": "Save",
           "cancel": "Cancel"
@@ -1044,14 +1074,15 @@
 
   "ChatQuestion": {
     "title": "Question",
+    "subtitle":"Sub Question",
     "button": "Create",
     "txtsearch": "Search Question",
+    "txtsearch_subquestion": "Search Sub Question",
     "loadingtext":"Loading...",
     "table": {
       "headers": [
         { "text": "No", "value": "No", "sortable": false },
         { "text": "Question", "value": "question", "sortable": true },
-
         { "text": "Answer", "value": "Answer", "sortable": false },
         { "text": "Actions", "value": "Actions", "sortable": false }
       ],
@@ -1060,11 +1091,14 @@
         "edit": "Edit",
         "iconEdit": "fas fa-edit",
         "delete": "Delete",
-        "delicon": "fas fa-trash-alt"
+        "delicon": "fas fa-trash-alt",
+        "subQuestionIcon": "far fa-question-circle",
+        "subQuestion": "Sub Question"
       }
     },
     "Create":{
       "header":"Add Question",
+      "header_subquestion":"Add Sub Question",
       "lang":{
         "lao":"Lao",
         "Eng":"English"
@@ -1081,11 +1115,12 @@
       }
     },
     "Edit":{
-      "header":"Edit Question"
+      "header":"Edit Question",
+      "header":"Edit Sub Question"
     },
     "itemOption":[
       {"name":"Write","id":1},
-      {"name":"ແບບຮູບ","id":2}
+      {"name":"Picture","id":2}
     ]
 
 

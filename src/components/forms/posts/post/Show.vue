@@ -32,7 +32,7 @@
 
           </v-row>
 
-          <v-row class="body-2">
+          <v-row class="body-2" v-if="tab===0">
             <v-col align="left" cols="12">
 
               <h2> {{ $t('Post.Create.form.category') }}</h2>
@@ -41,12 +41,21 @@
             </v-col>
           </v-row>
 
+          <v-row class="body-2" v-else>
+            <v-col align="left" cols="12">
+
+              <h2> {{ $t('Post.Create.form.category') }}</h2>
+              <p v-for="data in catePostValue"> {{ data.NewsCategoryTrans[0].name }}</p>
+
+            </v-col>
+          </v-row>
+
           <v-row class="body-3">
             <v-col align="left" cols="12">
 
               <h2>{{ $t('Post.Create.form.description') }}</h2>
-              <p v-if="tab===0"> {{ descriptionText }}</p>
-              <p v-else> {{ descriptionTextEng }}</p>
+              <p v-if="tab===0" v-html="descriptionText"> </p>
+              <p v-else v-html="descriptionTextEng"></p>
             </v-col>
 
           </v-row>
@@ -105,77 +114,35 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+
 
 export default {
   data() {
     return {
       btnLoading: false,
       postId: 0,
-      descriptionText: '',
-      descriptionTextEng: '',
-      postName: '',
-      postNameEng: '',
-      statusValue: '',
-      catePostValue:[],
 
-      previewImage: [],
-      previewImageEng: [],
       tab: null,
     }
   },
   created() {
-    this.getPostOne({'post_id': this.post_id}).then(res => {
-      if (res.success) {
-        this.loadDataToComponent(res)
 
-      }
-    });
   },
   props: {
-    post_id: {}
+    post_id: {},
+
+    descriptionText: '',
+    descriptionTextEng: '',
+    postName: '',
+    postNameEng: '',
+    statusValue: '',
+    catePostValue:[],
+
+    previewImage: [],
+    previewImageEng: [],
   },
   methods: {
-    loadDataToComponent(res) {
 
-      let data = res.data;
-
-
-      this.postId = data.id,
-          this.descriptionText = data.description,
-          this.descriptionTextEng = data.PostTrans[0].description,
-          this.postName = data.title,
-          this.postNameEng = data.PostTrans[0].title,
-
-          this.catePostValue = data.newsCategories,
-          this.dateStart = new Date(data.startDate).toISOString().substr(0, 10),
-          this.dateEnd = new Date(data.endDate).toISOString().substr(0, 10)
-
-      console.log(data)
-
-      for (let i = 0; i < data.PostImages.length; i++) {
-
-        let url = data.PostImages[i].image;
-        this.previewImage.push(url);
-
-
-      }
-
-      for (let i = 0; i < data.PostImageTrans.length; i++) {
-
-        let url = data.PostImageTrans[i].image;
-
-
-        this.previewImageEng.push(url);
-
-
-      }
-
-
-    },
-    ...mapActions({
-      getPostOne: 'Post/getPostOne'
-    })
 
   }
 }

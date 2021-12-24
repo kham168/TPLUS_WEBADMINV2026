@@ -141,8 +141,80 @@
                           </v-carousel>
                           
                         </div>
-                      </div>    
-                  
+                      </div>
+                      <div v-show="isEngTab">
+
+                        <div class="upload-image" v-if="previewImageEng[0] == null">
+
+                          <div class="content" >
+                            <i class="fas fa-plus-circle"></i>
+                            <h3>{{ $t("Post.Create.form.picture") }}</h3>
+                          </div>
+                          <input
+                              multiple
+
+                              type="file"
+                              class="choose-file"
+                              name="upload-image"
+                              accept="image/*"
+                              @change="UploadImageEng"
+                          />
+                        </div>
+
+
+                        <div class="image" v-else>
+                          <v-carousel height="100%">
+                            <v-carousel-item :key="index" v-for="(imageFiles,index) in previewImageEng">
+                              <div class="increase-decrease-image">
+                                <v-btn
+                                    class="mx-2"
+                                    fab
+                                    dark
+                                    small
+                                    color="primary"
+                                    @click="removeImageEng(index)"
+                                >
+                                  <v-icon dark>
+                                    mdi-minus
+                                  </v-icon>
+                                </v-btn>
+
+
+                                <v-btn
+                                    class="mx-2"
+                                    fab
+                                    dark
+                                    small
+                                    color="success"
+                                    @click="onIncreaseImageEng"
+                                >
+                                  <v-icon dark>
+                                    mdi-plus
+                                  </v-icon>
+                                </v-btn>
+                                <input
+                                    multiple
+
+                                    type="file"
+                                    class="d-none"
+                                    ref="uploader"
+                                    accept="image/*"
+                                    @change="UploadImageEng"
+                                />
+                              </div>
+                              <v-layout row >
+                                <v-flex  :key="j" v-for="j in 1" align-self-center >
+
+                                  <img class="image-files" :src="imageFiles"  >
+
+                                </v-flex>
+
+                              </v-layout>
+                            </v-carousel-item>
+                          </v-carousel>
+
+                        </div>
+                      </div>
 
                     </v-form>
                     <div class="form-actions">
@@ -236,9 +308,9 @@ async convertUrlToFileImage(image) {
           this.description=data.description
        this.descriptionEng=data.ProductTrans[0].description
  
-       for(let i=0;i<data.ProductCategories.length;i++){
+       for(let i=0;i<data.cateProducts.length;i++){
        
-         this.productTypeValue.push(data.ProductCategories[i].cateProductId)
+         this.productTypeValue.push(data.cateProducts[i].id)
      
        }
 

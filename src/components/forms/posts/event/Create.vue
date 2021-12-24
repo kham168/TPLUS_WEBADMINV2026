@@ -3,13 +3,13 @@
     <section class="post-create">
       <div class="post-form">
         <div class="form-title">
-          <h1>{{ $t("Post.Create.header") }}</h1>
+          <h1>{{ $t("PromotionEvent.Create.header_event") }}</h1>
         </div>
         <div class="lang-select-input">
           <v-tabs v-model="tab" color="primary" slider-color="primary">
             <v-tabs-slider color="primary"></v-tabs-slider>
             <v-tab
-                v-for="lang in $t('Post.Create.lang')"
+                v-for="lang in $t('PromotionEvent.Create.lang')"
                 :key="lang.key"
                 :href="lang.key"
                 @click="checkTabLang(lang)"
@@ -20,7 +20,7 @@
           <div class="tab-content">
             <v-tabs-items v-model="tab">
               <v-tab-item
-                  v-for="i in $t('Post.Create.lang')"
+                  v-for="i in $t('PromotionEvent.Create.lang')"
                   :key="i"
                   :value="i.key"
 
@@ -28,11 +28,10 @@
                 <div class="card-form">
                   <div class="form-content">
                     <v-form ref="form" v-model="valid" lazy-validation>
-                      {{"luy"}}
                       <v-text-field
                           v-show="isLaoTab"
                           v-model="postName"
-                          :label="$t('Post.Create.form.post_name')"
+                          :label="$t('PromotionEvent.Create.form.post_name')"
                           :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
                           outlined
                           required
@@ -41,7 +40,7 @@
                       <v-text-field
                           v-show="isEngTab"
                           v-model="postNameEng"
-                          :label="$t('Post.Create.form.post_name')"
+                          :label="$t('PromotionEvent.Create.form.post_name')"
                           :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
                           outlined
                           required
@@ -62,7 +61,7 @@
                           <v-text-field
                               v-show="tab == 0"
                               v-model="dateStart"
-                              :label="$t('Post.Create.form.start_date')"
+                              :label="$t('PromotionEvent.Create.form.start_date')"
                               :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
 
                               outlined
@@ -108,7 +107,7 @@
                           <v-text-field
                               v-show="tab == 0"
                               v-model="dateEnd"
-                              :label="$t('Post.Create.form.end_date')"
+                              :label="$t('PromotionEvent.Create.form.end_date')"
                               :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
 
                               outlined
@@ -145,8 +144,8 @@
                       <v-select
                           v-show="tab == 0"
                           v-model="statusValue"
-                          :items="$t('Post.status.item')"
-                          :label="$t('Post.Create.form.status')"
+                          :items="$t('PromotionEvent.status.item')"
+                          :label="$t('PromotionEvent.Create.form.status')"
 
                           :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
                           item-text="text"
@@ -167,7 +166,7 @@
 
                           <div class="content">
                             <i class="fas fa-plus-circle"></i>
-                            <h3>{{ $t("Post.Create.form.picture") }}</h3>
+                            <h3>{{ $t("PromotionEvent.Create.form.picture") }}</h3>
                           </div>
                           <input
                               accept="image/*"
@@ -241,7 +240,7 @@
 
                           <div class="content">
                             <i class="fas fa-plus-circle"></i>
-                            <h3>{{ $t("Post.Create.form.picture") }}</h3>
+                            <h3>{{ $t("PromotionEvent.Create.form.picture") }}</h3>
                           </div>
                           <input
                               accept="image/*"
@@ -311,11 +310,11 @@
                     </v-form>
                     <div class="form-actions">
                       <v-btn class="mx-5" plain @click="reset">{{
-                          $t("Post.Create.form.button.cancel")
+                          $t("PromotionEvent.Create.form.button.cancel")
                         }}
                       </v-btn>
                       <v-btn :disabled="!valid" class="btn btn-create" @click="submitForm">
-                        {{ $t("Post.Create.form.button.save") }}
+                        {{ $t("PromotionEvent.Create.form.button.save") }}
                       </v-btn
                       >
                     </div>

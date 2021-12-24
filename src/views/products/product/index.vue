@@ -1,13 +1,19 @@
 <template>
   <div id="Product">
     <section class="product--section">
-      <div class="header product-header">
+      <v-skeleton-loader
+          class="mx-auto"
+          type="table"
+          v-if="firstLoad"
+      ></v-skeleton-loader>
+
+      <div class="header product-header" v-show="!firstLoad">
         <h1>{{ $t("Product.title") }}</h1>
-        <v-btn @click="CreateProduct" class="btn btn-create">
+        <v-btn @click="CreateProduct" class="btn btn-create" >
           <v-icon>fal fa-plus-circle</v-icon>{{ $t("Product.button") }}</v-btn
         >
       </div>
-      <div class="product-content">
+      <div class="product-content" v-show="!firstLoad">
         <v-data-table
           :headers="$t('Product.table.headers')"
           :items="product['data']"
@@ -37,7 +43,7 @@
               <td>{{ index + 1 }}</td>
                 <td><v-img :src="item.ProductImages[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
                  <td>{{ item.productName }}</td>
-              <td ><p v-for="data in item.ProductCategories" :key="data.id" >{{data.cateProductId}}</p></td>
+              <td ><p v-for="data in item.cateProducts" :key="data.id" >{{data.cateName}}</p></td>
           
               <td style="   max-width: 200px;
         overflow: hidden;
@@ -81,7 +87,7 @@
               <td>{{ index + 1 }}</td>
                 <td><v-img :src="item.ProductImages[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
                 <td>{{ item.ProductTrans[0].productName }}</td>
-              <td ><p v-for="data in item.ProductCategories" :key="data.id" >{{data.cateProductId}}</p></td>
+              <td ><p v-for="data in item.cateProducts" :key="data.id" >{{data.CateProductTrans[0].cateName}}</p></td>
           
            
               <td style="   max-width: 200px;
@@ -139,7 +145,17 @@
 
       <ModalShow>
         <template v-slot="{close}">
-          <Show :product_id="product_id" @close="close" />
+          <Show
+              :productTypeValue="productTypeValue"
+              :productTypeValueEng="productTypeValueEng"
+              :productName="productName"
+          :productNameEng="productNameEng"
+          :description="description"
+          :descriptionEng="descriptionEng"
+          :previewImage="previewImage"
+          :previewImageEng="previewImageEng"
+
+              @close="close" />
         </template>
       </ModalShow>
     </section>
@@ -165,12 +181,27 @@ components: {
       isLaoLanguage:localStorage.getItem('lang') === 'la',
       loading: false,
       searchItem: "",
+
+
+      productTypeValue:[],
+      productTypeValueEng:[],
+      productName:'',
+      productNameEng:'',
+      description:'',
+      descriptionEng:'',
+      previewImage: [],
+      previewImageEng: [],
+      firstLoad:true,
     };
   },
 
   mounted() {
    
-    this.getProduct();
+    this.getProduct().then((res)=>{
+      if(res.success){
+        this.firstLoad=false;
+      }
+    });
   },
 
 
@@ -192,14 +223,52 @@ components: {
       this.$store.commit("modalDelete_State", true);
     },
     onShow(product_id) {
-      this.product_id = product_id
+      this.productTypeValue=[];
+      this.productTypeValueEng=[];
+      this.previewImage=[];
+      this.previewImageEng=[];
 
+      this.getProductOne({'product_id':product_id}).then(res=>{
+        this.loadDataToComponent(res)
+      })
       this.$store.commit("modalShow_State", true);
+    },
+
+    loadDataToComponent(res){
+      let data = res.data;
+
+
+      this.productName=data.productName
+      this.productNameEng=data.ProductTrans[0].productName
+      this.description=data.description
+      this.descriptionEng=data.ProductTrans[0].description
+
+      for(let i=0;i<data.cateProducts.length;i++){
+
+        this.productTypeValue.push(data.cateProducts[i].cateName)
+
+      }
+      for(let i=0;i<data.cateProducts.length;i++){
+
+        this.productTypeValueEng.push(data.cateProducts[i].CateProductTrans[0].cateName)
+
+      }
+
+      for(let i=0;i<data.ProductImages.length;i++){
+
+        this.previewImage.push(data.ProductImages[i].image)
+
+
+      }
+
+
+
     },
 
     ...mapActions({
       getProduct:'Product/getProduct',
-      getCateProductOne:'CateProduct/getCateProductOne'
+      getCateProductOne:'CateProduct/getCateProductOne',
+      getProductOne:'Product/getProductOne'
     })
   },
 

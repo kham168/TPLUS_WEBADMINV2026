@@ -1,14 +1,21 @@
 <template>
   <div id="">
     <section class="user-container">
-      <div class="header user-header">
+      <v-skeleton-loader
+          class="mx-auto"
+
+          type="table"
+          :loading="loading"
+          v-if="firstLoad"
+      ></v-skeleton-loader>
+      <div class="header user-header" v-show="!firstLoad">
         <h1>{{ $t('Users.title') }}</h1>
         <v-btn @click="onCreate" class="btn btn-create">
           <v-icon>fal fa-plus-circle</v-icon>
           {{ $t('Users.button') }}
         </v-btn>
       </div>
-      <div class="user-content">
+      <div class="user-content" v-show="!firstLoad">
         <v-data-table
             :headers="$t('Users.table.headers')"
             :items="listUser"
@@ -120,6 +127,7 @@ export default {
       searchItem: null,
       loading: false,
       listUser: [],
+      firstLoad:true,
     };
   },
   methods: {
@@ -143,6 +151,7 @@ export default {
       this.$axios.get(`users`).then((res) => {
         if (res.status === 200) {
           this.listUser = res.data.data;
+          this.firstLoad=false
         }
       }).catch((error) => {
         if (error.response.status === 403) {

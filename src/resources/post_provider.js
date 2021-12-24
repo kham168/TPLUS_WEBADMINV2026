@@ -45,7 +45,8 @@ class PostProvider extends HttpRequest {
     other_lang_id,
     avatar,
     avatar_EN,
-                     newsCategoryId
+    newsCategoryId
+
   })
   {
     try{
