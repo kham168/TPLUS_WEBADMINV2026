@@ -30,9 +30,9 @@
                     </div>
                   </div>
                   <div class="message-detail">
-                    <h4>020{{ data.User.phone }}</h4>
+                    <h4>{{ data.User.phone }}</h4>
                     <p>{{ data.lasted_message }}</p>
-                    <div class="message-icon" @click="toChatroom({'chat_room_id':data.id,'user_id':data.User.id})">
+                    <div class="message-icon" @click="toChatroom({'chat_room_id':data.id,'user_id':data.created_by})">
                       <i class="fas fa-paper-plane"></i>
                     </div>
                   </div>
@@ -82,7 +82,7 @@ export default {
       console.log(message)
       for(let i=0;i<this.list_chat_room.length;i++){
         if(message.id == this.list_chat_room[i].id){
-          this.list_chat_room.slice(i,1);
+          this.list_chat_room.splice(i,1);
           this.list_chat_room.unshift(message);
           break;
         }else if(message.id != this.list_chat_room[i].id && i == this.list_chat_room.length-1){
@@ -95,7 +95,7 @@ export default {
     this.getChatRoom().then(res=>{
       console.log(res)
       if(res.success){
-        this.socket.emit("new_message_room_by_snipermonkey_2077")
+        this.socket.emit("join_channel","new_message_room_by_snipermonkey_2077")
 
         for(let i=0;i<res.allChatRoom.length;i++){
           this.list_chat_room.push(res.allChatRoom[i])

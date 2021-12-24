@@ -9,8 +9,8 @@
         </div>
 
         <div class="chat-room-name">
-          <h3>0209988558</h3>
-          <p class="chat-room-status">online</p>
+          <h3>{{ phone }}</h3>
+
         </div>
       </div>
       <div class="chat-room-content" ref="scrollPosition"  >
@@ -60,6 +60,8 @@ export default {
       adminMessageBox: [],
       user_id:0,
       chat_room_id:0,
+
+      phone:'',
     }
   },
   created() {
@@ -87,6 +89,7 @@ export default {
 
     this.getChatRoomOne({'chat_room_id':this.$route.params.chat_room_id}).then(res=>{
 
+      this.phone = res.chat_room_data.User.phone;
       this.socket.emit("join_channel",res.channel)
       for(let i=0;i<res['messages'].length;i++){
         try{
