@@ -113,7 +113,8 @@ export default {
       this.$refs.resetTextInput.innerHTML = ''
     },
     messageInput(e) {
-      this.textMessage = e.target.innerHTML
+      this.textMessage = e.target.innerHTML;
+      this.textMessage = e.target.innerHTML.replace("<div><br></div>", '');
     },
     scrollToBottom() {
       const el = this.$refs.scrollPosition;
@@ -197,6 +198,7 @@ export default {
     height: 400px;
     display: flex;
     overflow-y: auto;
+    overflow-x: hidden;
 
 
     .chat-room-left {
