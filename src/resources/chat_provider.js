@@ -1,4 +1,5 @@
 import HttpRequest from './http_request'
+const tokenAdmin = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicGhvbmUiOiI5OTk5OTk5OSIsImlhdCI6MTY0MDUzNDc4NSwiZXhwIjoxNjcyMDkyMzg1fQ.HMKkGNsNXF90BUHLbXf-NbE6tN4Mr4R9C8QOAX86VjAWBIThIzqfx11Q9_JgLKcSQxkN5-VRgoixRSJB88TCjtajuSGfl0WKkPJqbI6K4dpy5Hn70ELYDgsusgb3BwdUcNaTEehUC8bGULLJPJvywpFWsMu0hVChlpmjn9AKaxLOnpj5dl_Gr64Cvb2GkwUfG6s7mZF2rdtDVto-jj53GckFqo-NKFgdfiMFSUnwLj_F0h2EstyQgHPMyH-biCL11WbKjJKHBG_-pUpn03FgDYnLpafAhamFeYd-c3YbLBzdSdst_UOf8yHRAnkgVNt7FyVkMB3rr1UKiJwyw2dJCw'
 
 class ChatProvider extends HttpRequest {
     constructor() {
@@ -6,30 +7,37 @@ class ChatProvider extends HttpRequest {
         super('http://128.199.104.34:7000')
     }
 
+
     async getChatRoomUnRead() {
 
+        this.setHeader({
 
-        this.setHeader({})
-        // example path http://128.199.104.34:7000/this.get()
+        })
+
         const {data} = await this.get('/api/v1/admin/chat?filter=unread')
 
         return data
     }
 
-    async getChatRoom() {
+    async getChatRoom({page}) {
 
-        this.setHeader({})
+        this.setHeader({
 
-        const {data} = await this.get('/api/v1/admin/chat')
+        })
+
+        const {data} = await this.get('/api/v1/admin/chat?limit=10&page='+page)
 
         return data
     }
 
     async getChatRoomOne({chat_room_id}) {
 
-        this.setHeader({})
+        this.setHeader({
 
-        const {data} = await this.get('/api/v1/admin/chat/'+chat_room_id)
+
+        })
+
+        const {data} = await this.get('/api/v1/admin/chat/'+chat_room_id+'?limit=100000')
 
         return data
     }
@@ -41,6 +49,7 @@ class ChatProvider extends HttpRequest {
 
         this.setHeader({
             'Content-Type': 'application/x-www-form-urlencoded',
+
         })
 
         let args={

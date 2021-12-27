@@ -57,11 +57,13 @@
               <td>{{ items.startDate }}</td>
               <td>{{ items.endDate }}</td>
 
-              <td> <v-chip
-                  :color="getColor( item.Posts[index].status)"
+              <td>
+
+                <v-chip
+                  :color="getColor( items.status)"
                   dark
               >
-                {{  item.Posts[index].status }}
+                {{  items.status }}
               </v-chip></td>
               <td><v-btn icon @click="onShow(items.id)"> <v-icon large>
                 mdi-eye
@@ -111,10 +113,10 @@
               <td>{{ items.endDate }}</td>
 
               <td> <v-chip
-                  :color="getColor( item.Posts[index].status)"
+                  :color="getColor( items.status)"
                   dark
               >
-                {{  item.Posts[index].status }}
+                {{  items.status }}
               </v-chip></td>
               <td><v-btn icon @click="onShow(items.id)"> <v-icon large>
                 mdi-eye
@@ -127,8 +129,8 @@
                 </v-btn>
                  </template>
                  <v-list>
-                   <v-list-item link @click="$router.push({name:'promotionEvent.edit',params:{
-                     'promotion_event_id':items.id,
+                   <v-list-item link @click="$router.push({name:'promotion.edit',params:{
+                   'promotion_event_id':items.id,
       }}).catch(()=>{})">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('PromotionEvent.table.options.iconEdit')}}</v-icon>

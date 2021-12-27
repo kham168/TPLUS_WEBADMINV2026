@@ -725,6 +725,23 @@ const routes = [
 
         },
 
+        // beforeRouteEnter (to, from, next) {
+        //     next(vm => {
+        //         console.log('chat_list')
+        //     })
+        // },
+        //
+        // beforeRouteLeave (to, from, next) {
+        //     const answer = window.confirm('Do you really want to leave? you have unsaved changes!')
+        //     if (answer) {
+        //         next()
+        //     } else {
+        //         next(false)
+        //     }
+        // }
+
+
+
     },
 
     //Chat Question
@@ -915,6 +932,10 @@ const router = new VueRouter({
 // })
 
 router.beforeEach((to, from, next) => {
+    // if(to.path === '/chat_list'){
+    //     console.log('GGEZ')
+    // }
+
     if (to.meta.requiredAuth) {
         const authUser = localStorage.getItem('access_token');
         if (!authUser) {

@@ -48,7 +48,7 @@
                       ></v-text-field>
 
            <v-select
-                        v-if="false"
+                        v-if="tab===0"
                        :items="cate_post['data']"
                        item-text="name"
                       item-value="id"
@@ -58,7 +58,7 @@
                         :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
                         outlined
                         required
-                      
+                      multiple
                       ></v-select>
   
                         <v-select
@@ -275,7 +275,7 @@ export default {
       this.postName=data.title,
       this.postNameEng=data.PostTrans[0].title,
       this.statusValue=data.status,
-      this.catePostValue=data.postTypeId,
+
       this.dateStart = new Date(data.startDate).toISOString().substr(0, 10),
       this.dateEnd = new Date(data.endDate).toISOString().substr(0, 10)
 
@@ -291,16 +291,21 @@ export default {
       }
 
        for(let i=0;i<data.PostImageTrans.length;i++){
-     
+
       let url = data.PostImageTrans[i].image;
      this.convertUrlToFileImageEng(url)
-      
+
            this.previewImageEng.push(url);
-    
-        
+
+
       }
 
-      
+      for(let i=0;i<data.newsCategories.length;i++){
+
+        this.catePostValue.push(data.newsCategories[i].id)
+      }
+
+      console.log(this.catePostValue)
     },
    
   checkTabLang(lang){

@@ -258,8 +258,9 @@ components: {
 
         this.previewImage.push(data.ProductImages[i].image)
 
-
       }
+
+
 
 
 

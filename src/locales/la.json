@@ -146,7 +146,7 @@
         {
           "text": "ລຳດັບ",
           "value": "No",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ຊື່",
@@ -156,22 +156,22 @@
         {
           "text": "ອີເມລ",
           "value": "email",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ຫົວຂໍ້",
           "value": "title",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ລາຍລະອຽດ",
           "value": "description",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ຈັດການ",
           "value": "Actions",
-          "sortable": false
+          "sortable": true
         }
       ],
       "dontdata": "ບໍ່ມີຂໍ້ມູນ",
@@ -213,7 +213,7 @@
         {
           "text": "ລຳດັບ",
           "value": "No",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ໂລໂກ້ເວັບໄຊລ໌",
@@ -228,32 +228,32 @@
         {
           "text": "ທີ່ຢູ່",
           "value": "Address",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ອີເມລ",
           "value": "Email",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ເຟສບຸກ",
           "value": "Facebook",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ເບີໂທ",
           "value": "Phone",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ລາຍລະອຽດ",
           "value": "description",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ຈັດການ",
           "value": "Actions",
-          "sortable": false
+          "sortable": true
         }
       ],
       "dontdata": "ບໍ່ມີຂໍ້ມູນ",
@@ -296,7 +296,7 @@
         {
           "text": "ລຳດັບ",
           "value": "No",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ຊື່ຕຳແໜ່ງ",
@@ -306,22 +306,22 @@
         {
           "text": "ລາຍລະອຽດ",
           "value": "description",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ວັນທີສ້າງ",
           "value": "createdAt",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ວັນທີອັບເດດ",
           "value": "updatedAt",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ຈັດການ",
           "value": "Actions",
-          "sortable": false
+          "sortable": true
         }
       ],
       "dontdata": "ບໍ່ມີຂໍ້ມູນ",
@@ -360,7 +360,7 @@
         {
           "text": "ລຳດັບ",
           "value": "No",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ຊື່ສິດ",
@@ -370,22 +370,22 @@
         {
           "text": "ລາຍລະອຽດ",
           "value": "description",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ວັນທີສ້າງ",
           "value": "createdAt",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ວັນທີອັບເດດ",
           "value": "updatedAt",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ຈັດການ",
           "value": "Actions",
-          "sortable": false
+          "sortable": true
         }
       ],
       "dontdata": "ບໍ່ມີຂໍ້ມູນ",
@@ -424,34 +424,34 @@
         {
           "text": "ລຳດັບ",
           "value": "No",
-          "sortable": false
+          "sortable": true
 
         },
         {
           "text": "ຮູບພາບ",
           "value": "image[0]",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ຊື່ປ້າຍໂຄສະນາ",
           "value": "banName",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ລິ້ງ",
           "value": "link",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ລາຍລະອຽດ",
           "value": "description",
-          "sortable": false
+          "sortable": true
         },
-        { "text": "ວິວ", "value": "view", "sortable": false },
+        { "text": "ວິວ", "value": "view", "sortable": true },
         {
           "text": "ຈັດການ",
           "value": "Actions",
-          "sortable": false
+          "sortable": true
         }
       ],
       "dontdata": "ບໍ່ມີຂໍ້ມູນ",
@@ -493,17 +493,17 @@
         {
           "text": "ລຳດັບ",
           "value": "No",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ຊື່ປະເພດຂອງໂພສ",
-          "value": "CatePostName",
+          "value": "name",
           "sortable": true
         },
         {
           "text": "ຈັດການ",
           "value": "Actions",
-          "sortable": false
+          "sortable": true
         }
       ],
       "dontdata": "ບໍ່ມີຂໍ້ມູນ",
@@ -553,14 +553,14 @@
     "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
-        { "text": "ລຳດັບ", "value": "No", "sortable": false },
-        { "text": "ຮູບ", "value": "image", "sortable": false },
+        { "text": "ລຳດັບ", "value": "No", "sortable": true },
+        { "text": "ຮູບ", "value": "image", "sortable": true },
         { "text": "ຫົວຂໍ້", "value": "title", "sortable": true },
         { "text": "ປະເພດຂອງໂພສ", "value": "postTypeId", "sortable": true },
-        { "text": "ລາຍລະອຽດ", "value": "description", "sortable": false },
-        { "text": "ສະຖານະ", "value": "status", "sortable": false },
-        { "text": "ວິວ", "value": "view", "sortable": false },
-        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
+        { "text": "ລາຍລະອຽດ", "value": "description", "sortable": true },
+        { "text": "ສະຖານະ", "value": "status", "sortable": true },
+        { "text": "ວິວ", "value": "view", "sortable": true },
+        { "text": "ຈັດການ", "value": "Actions", "sortable": true }
       ],
       "dontdata": "ບໍ່ມີຂໍ້ມູນ",
       "options": {
@@ -616,16 +616,16 @@
     "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
-        { "text": "ລຳດັບ", "value": "No", "sortable": false },
-        { "text": "ຮູບ", "value": "image", "sortable": false },
+        { "text": "ລຳດັບ", "value": "No", "sortable": true },
+        { "text": "ຮູບ", "value": "image", "sortable": true },
         { "text": "ຫົວຂໍ້", "value": "title", "sortable": true },
         { "text": "ປະເພດຂອງໂພສ", "value": "postTypeId", "sortable": true },
-        { "text": "ລາຍລະອຽດ", "value": "description", "sortable": false },
-        { "text": "ເວລາເປີດ", "value": "startDate", "sortable": false },
-        { "text": "ເວລາປິດ", "value": "endDate", "sortable": false },
-        { "text": "ສະຖານະ", "value": "status", "sortable": false },
-        { "text": "ວິວ", "value": "view", "sortable": false },
-        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
+        { "text": "ລາຍລະອຽດ", "value": "description", "sortable": true },
+        { "text": "ເວລາເປີດ", "value": "startDate", "sortable": true },
+        { "text": "ເວລາປິດ", "value": "endDate", "sortable": true },
+        { "text": "ສະຖານະ", "value": "status", "sortable": true },
+        { "text": "ວິວ", "value": "view", "sortable": true },
+        { "text": "ຈັດການ", "value": "Actions", "sortable": true }
       ],
       "dontdata":"ບໍ່ມີຂໍ້ມູນ",
       "options":{
@@ -674,10 +674,10 @@
     "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
-        { "text": "ລຳດັບ", "value": "No", "sortable": false },
+        { "text": "ລຳດັບ", "value": "No", "sortable": true },
         { "text": "ຊື່ປະເພດຂອງຜະລິດຕະພັນ", "value": "CateProductName", "sortable": true },
-        { "text": "ລາຍລະອຽດ", "value": "description", "sortable": false },
-        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
+        { "text": "ລາຍລະອຽດ", "value": "description", "sortable": true },
+        { "text": "ຈັດການ", "value": "Actions", "sortable": true }
       ],
       "dontdata":"ບໍ່ມີຂໍ້ມູນ",
       "options":{
@@ -715,13 +715,13 @@
     "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
-        { "text": "ລຳດັບ", "value": "No", "sortable": false },
-        { "text": "ຮູບພາບ", "value": "Picture", "sortable": false },
+        { "text": "ລຳດັບ", "value": "No", "sortable": true },
+        { "text": "ຮູບພາບ", "value": "Picture", "sortable": true },
         { "text": "ຊື່ຜະລິດຕະພັນ", "value": "ProductName", "sortable": true },
         { "text": "ປະເພດຜະລິດຕະພັນ", "value": "CateProduct", "sortable": true },
-        { "text": "ລາຍລະອຽດ", "value": "description", "sortable": false },
-        { "text": "ວິວ", "value": "view", "sortable": false },
-        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
+        { "text": "ລາຍລະອຽດ", "value": "description", "sortable": true },
+        { "text": "ວິວ", "value": "view", "sortable": true },
+        { "text": "ຈັດການ", "value": "Actions", "sortable": true }
       ],
       "dontdata":"ບໍ່ມີຂໍ້ມູນ",
       "options":{
@@ -761,7 +761,7 @@
         {
           "text": "ລຳດັບ",
           "value": "No",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ຊື່ປະເພດຂອງແພັກເກັດ",
@@ -771,12 +771,12 @@
         {
           "text": "ລາຍລະອຽດ",
           "value": "description",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ຈັດການ",
           "value": "Actions",
-          "sortable": false
+          "sortable": true
         }
       ],
       "dontdata": "ບໍ່ມີຂໍ້ມູນ",
@@ -814,21 +814,21 @@
     "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
-        { "text": "ລຳດັບ", "value": "No", "sortable": false },
-        { "text": "ຮູບພາບ", "value": "Picture", "sortable": true },
-        { "text": "Code", "value": "code", "sortable": true },
-        { "text": "ຊື່ແພັກເກັດ", "value": "DataPackageName", "sortable": false },
+        { "text": "ລຳດັບ", "value": "No", "sortable": true },
+        { "text": "ຮູບພາບ", "value": "image", "sortable": true },
+        { "text": "Code", "value": "code", "sortable": false },
+        { "text": "ຊື່ແພັກເກັດ", "value": "la_name", "sortable": true },
 
 
-        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
+        { "text": "ຈັດການ", "value": "Actions", "sortable": true }
       ],
       "headers_simtype": [
-        { "text": "ລຳດັບ", "value": "No", "sortable": false },
-        { "text": "ຮູບພາບ", "value": "Picture", "sortable": true },
+        { "text": "ລຳດັບ", "value": "No", "sortable": true },
+        { "text": "ຮູບພາບ", "value": "image", "sortable": true },
         { "text": "Code", "value": "code", "sortable": true },
-        { "text": "ຊື່ແພັກເກັດ", "value": "DataPackageName", "sortable": false },
-        { "text": "ປະເພດຊິມ", "value": "simtypes", "sortable": false },
-        { "text": "ຈັດການ", "value": "Actions", "sortable": false }
+        { "text": "ຊື່ແພັກເກັດ", "value": "la_name", "sortable": true },
+        { "text": "ປະເພດຊິມ", "value": "simtypes", "sortable": true },
+        { "text": "ຈັດການ", "value": "Actions", "sortable": true }
       ],
       "dontdata": "ບໍ່ມີຂໍ້ມູນ",
       "options": {
@@ -872,7 +872,7 @@
         {
           "text": "ລຳດັບ",
           "value": "No",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ຊື່ຜູ້ໃຊ້",
@@ -887,17 +887,17 @@
         {
           "text": "ເບີໂທ",
           "value": "phone",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ສະຖານະ",
           "value": "status",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ຈັດການ",
           "value": "Actions",
-          "sortable": false
+          "sortable": true
         }
       ],
       "dontdata": "ບໍ່ມີຂໍ້ມູນ",
@@ -945,37 +945,37 @@
         {
           "text": "No",
           "value": "No",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ຊື່ ສິດ",
           "value": "RoleName",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ຄຳອະທິບາຍ",
           "value": "description",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ວັນທີສ້າງ",
           "value": "createdAt",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ວັນທິແກ້ໄຂ",
           "value": "updatedAt",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ເພີ່ມສິດການໃຊ້ງານ",
           "value": "addPermission",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "Actions",
           "value": "Actions",
-          "sortable": false
+          "sortable": true
         }
       ],
       "dontdata": "ບໍ່ມີຂໍ້ມູນ",
@@ -1014,27 +1014,27 @@
         {
           "text": "ລຳດັບ",
           "value": "No",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ຊື່ບົດບາດ",
           "value": "RoleName",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ວັນທີສ້າງ",
           "value": "createdAt",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ວັນທິອັບເດດ",
           "value": "updatedAt",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "Actions",
           "value": "Actions",
-          "sortable": false
+          "sortable": true
         }
       ],
       "dontdata": "ບໍ່ມິຂໍ້ມູນ",
@@ -1072,32 +1072,32 @@
         {
           "text": "ລຳດັບ",
           "value": "No",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ຊື່ບົດບາດ",
           "value": "RoleName",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ວັນທີສ້າງ",
           "value": "createdAt",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ວັນທິອັບເດດ",
           "value": "updatedAt",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ລາຍການສິດ",
           "value": "permission",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "Actions",
           "value": "Actions",
-          "sortable": false
+          "sortable": true
         }
       ],
       "dontdata": "ບໍ່ມິຂໍ້ມູນ",
@@ -1135,7 +1135,7 @@
         {
           "text": "ລຳດັບ",
           "value": "No",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ຊື່ຜູ້ໃຊ້",
@@ -1150,17 +1150,17 @@
         {
           "text": "ບົດບາດ",
           "value": "Rule",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ສະຖານະ",
           "value": "Starus",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ຈັດການ",
           "value": "Actions",
-          "sortable": false
+          "sortable": true
         }
       ],
       "dontdata": "ບໍ່ມີຂໍ້ມູນ",
@@ -1208,47 +1208,47 @@
         {
           "text": "No",
           "value": "No",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "Name",
           "value": "name",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "SurName",
           "value": "surname",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "Phone",
           "value": "phone",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "Email",
           "value": "email",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "ອື່ນໆ",
           "value": "description",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "Created",
           "value": "createdAt",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "Updated",
           "value": "updatedAt",
-          "sortable": false
+          "sortable": true
         },
         {
           "text": "Actions",
           "value": "Actions",
-          "sortable": false
+          "sortable": true
         }
       ],
       "dontdata": "Dont have data",
@@ -1287,11 +1287,11 @@
     "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ...",
     "table": {
       "headers": [
-        { "text": "ລຳດັບ", "value": "No", "sortable": false },
+        { "text": "ລຳດັບ", "value": "No", "sortable": true },
         { "text": "ຄຳຖາາມ", "value": "question", "sortable": true },
 
-        { "text": "ຄຳຕອບ", "value": "Answer", "sortable": false },
-        { "text": "Actions", "value": "Actions", "sortable": false }
+        { "text": "ຄຳຕອບ", "value": "Answer", "sortable": true },
+        { "text": "Actions", "value": "Actions", "sortable": true }
       ],
 
       "dontdata": "ບໍ່ມີຂໍ່ມູນ",

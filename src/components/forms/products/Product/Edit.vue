@@ -12,6 +12,7 @@
               :href="lang.key"
               v-for="lang in $t('Product.Create.lang')"
               :key="lang.key"
+              @change="checkTabLang(lang)"
             >
               {{ lang }}
             </v-tab>
@@ -142,79 +143,7 @@
                           
                         </div>
                       </div>
-                      <div v-show="isEngTab">
 
-                        <div class="upload-image" v-if="previewImageEng[0] == null">
-
-                          <div class="content" >
-                            <i class="fas fa-plus-circle"></i>
-                            <h3>{{ $t("Post.Create.form.picture") }}</h3>
-                          </div>
-                          <input
-                              multiple
-
-                              type="file"
-                              class="choose-file"
-                              name="upload-image"
-                              accept="image/*"
-                              @change="UploadImageEng"
-                          />
-                        </div>
-
-
-                        <div class="image" v-else>
-                          <v-carousel height="100%">
-                            <v-carousel-item :key="index" v-for="(imageFiles,index) in previewImageEng">
-                              <div class="increase-decrease-image">
-                                <v-btn
-                                    class="mx-2"
-                                    fab
-                                    dark
-                                    small
-                                    color="primary"
-                                    @click="removeImageEng(index)"
-                                >
-                                  <v-icon dark>
-                                    mdi-minus
-                                  </v-icon>
-                                </v-btn>
-
-
-                                <v-btn
-                                    class="mx-2"
-                                    fab
-                                    dark
-                                    small
-                                    color="success"
-                                    @click="onIncreaseImageEng"
-                                >
-                                  <v-icon dark>
-                                    mdi-plus
-                                  </v-icon>
-                                </v-btn>
-                                <input
-                                    multiple
-
-                                    type="file"
-                                    class="d-none"
-                                    ref="uploader"
-                                    accept="image/*"
-                                    @change="UploadImageEng"
-                                />
-                              </div>
-                              <v-layout row >
-                                <v-flex  :key="j" v-for="j in 1" align-self-center >
-
-                                  <img class="image-files" :src="imageFiles"  >
-
-                                </v-flex>
-
-                              </v-layout>
-                            </v-carousel-item>
-                          </v-carousel>
-
-                        </div>
-                      </div>
 
                     </v-form>
                     <div class="form-actions">

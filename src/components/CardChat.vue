@@ -4,6 +4,7 @@
       <h3>Client Message <span><i class="far fa-comment-alt-lines"></i></span></h3>
     </div>
 
+
     <div class="message-content">
       <v-row>
         <v-col cols="12" md="12" lg="12" v-for="i in 4" :key="i" v-if="firstLoad">
@@ -15,6 +16,8 @@
           </v-card>
         </v-col>
         <v-col cols="12" md="12" lg="12" v-for="(data,index) in list_chat_room" v-if="list_chat_room!=''" v-show="!firstLoad">
+
+
           <div class="card-message">
             <div class="message-image">
               <div class="images">
@@ -24,9 +27,9 @@
               </div>
             </div>
             <div class="message-detail">
-              <h4>020{{ data.User.phone }}</h4>
+              <h4>{{ data.User.phone }}</h4>
               <p>{{ data.lasted_message }}</p>
-              <div class="message-icon" @click="toChatroom({'chat_room_id':data.id,'user_id':data.User.id})">
+              <div class="message-icon" @click="toChatroom({'chat_room_id':data.id,'user_id':data.created_by,'index':index})">
                 <i class="fas fa-paper-plane"></i>
               </div>
             </div>
@@ -62,25 +65,12 @@ export default {
   },
   mounted() {
     this.socket.emit("connection");
+
     console.log(this.socket);
-
-    this.socket.on("new_message_by_snipermonkey_2077",(message)=>{
-      console.log(message)
-      for(let i=0;i<this.list_chat_room.length;i++){
-        if(message.id == this.list_chat_room[i].id){
-          this.list_chat_room.slice(i,1);
-          this.list_chat_room.unshift(message);
-          break;
-        }else if(message.id != this.list_chat_room[i].id && i == this.list_chat_room.length-1){
-          this.list_chat_room.unshift(message);
-        }
-      }
-
-    });
-
     this.getChatRoomUnRead().then((res)=>{
       if(res.success){
-        this.socket.emit("new_message_room_by_snipermonkey_2077")
+        console.log("join")
+        this.socket.emit("join_channel","new_message_room_by_snipermonkey_2077")
 
         for(let i=0;i<res.allChatRoom.length;i++){
           this.list_chat_room.push(res.allChatRoom[i])
@@ -89,15 +79,36 @@ export default {
 
       }
     });
+
+    this.socket.on("new_message_by_snipermonkey_2077",(message)=>{
+      console.log(message)
+      console.log(message.id)
+      for(let i=0;i<this.list_chat_room.length;i++){
+        console.log(this.list_chat_room[i].id)
+        if(message.id == this.list_chat_room[i].id){
+          console.log("if")
+          this.list_chat_room.splice(0,1)
+          this.list_chat_room.unshift(message);
+          break;
+        }else if(message.id != this.list_chat_room[i].id && i == this.list_chat_room.length-1){
+          this.list_chat_room.unshift(message);
+          console.log("else if")
+        }
+      }
+
+    });
+
   },
   methods: {
 
 
-    toChatroom({chat_room_id,user_id}) {
+    toChatroom({chat_room_id,user_id,index}) {
       this.$router.push({
         name: "chatroom",
         params:{'chat_room_id':chat_room_id,'user_id':user_id}
-      })
+      });
+      console.log(index)
+      this.list_chat_room.splice(0,1)
     },
 
     ...mapActions({

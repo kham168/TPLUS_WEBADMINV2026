@@ -1,16 +1,20 @@
 <template>
   <v-container>
+
     <div class="chat-room">
       <div class="chat-room-header">
+        <h1><span @click="onBack" style="margin-right: 10px;color: #4b96da;cursor: pointer">
+          <i class="fas fa-arrow-circle-left"></i></span></h1>
         <div class="chat-room-profile">
+
           <img
               src="https://media.istockphoto.com/photos/millennial-male-team-leader-organize-virtual-workshop-with-employees-picture-id1300972574?b=1&k=20&m=1300972574&s=170667a&w=0&h=2nBGC7tr0kWIU8zRQ3dMg-C5JLo9H2sNUuDjQ5mlYfo="
               alt="">
         </div>
 
         <div class="chat-room-name">
-          <h3>0209988558</h3>
-          <p class="chat-room-status">online</p>
+          <h3>{{ phone }}</h3>
+
         </div>
       </div>
       <div class="chat-room-content" ref="scrollPosition"  >
@@ -60,17 +64,28 @@ export default {
       adminMessageBox: [],
       user_id:0,
       chat_room_id:0,
+
+      phone:'',
+      channel:'',
+
     }
   },
   created() {
+
     this.socket = io("http://128.199.104.34:7000");
 
     this.user_id=this.$route.params.user_id;
     this.chat_room_id=this.$route.params.chat_room_id;
+
+    window.addEventListener('beforeunload', (e) => {
+      this.socket.on('leave_channel',this.channel);
+    })
   },
   mounted() {
     this.socket.emit("connection");
+
     console.log(this.socket);
+
 
     this.socket.on("receive_message",(message)=>{
       console.log(message)
@@ -86,11 +101,13 @@ export default {
     });
 
     this.getChatRoomOne({'chat_room_id':this.$route.params.chat_room_id}).then(res=>{
-
+      console.log(res)
+      this.channel = res.channel;
+      this.phone = res.chat_room_data.User.phone;
       this.socket.emit("join_channel",res.channel)
-      for(let i=0;i<res['messages'].length;i++){
+      for(let i=0;i<res['messages'].data.length;i++){
         try{
-          this.adminMessageBox.push(res['messages'][i])
+          this.adminMessageBox.push(res['messages'].data[i])
         }catch (e){
           console.log(e)
         }
@@ -99,7 +116,12 @@ export default {
     });
   },
   methods: {
+    onBack(){
+      this.$router.push({
+        name: "chat_list.index"
+      })
 
+    },
     functionSendMessage(){
       this.sendMessage({'message':this.textMessage,'chat_room_id':this.chat_room_id}).then((res)=>{
         console.log(res)
@@ -147,6 +169,17 @@ export default {
 
     })
   },
+
+
+  beforeRouteLeave (to, from, next) {
+
+      console.log(this.channel);
+      this.socket.on('leave_channel',this.channel);
+      next()
+
+  }
+
+
 }
 </script>
 
