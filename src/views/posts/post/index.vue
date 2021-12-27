@@ -44,10 +44,12 @@
           <!-- table content -->
 
           <template v-slot:item="{item , index}">
+
             <tr v-if="isLaoLanguage" class="table-content">
               <td>{{ index + 1 }}</td>
-              <td>
-                <v-img :src="item.PostImages[0].image" alt="preview" max-height="50" max-width="50"></v-img>
+              <td v-for="element in item.PostImages">
+
+                <v-img :src="element.image" alt="preview" max-height="50" max-width="50"></v-img>
               </td>
               <td>{{ item.title }}</td>
               <td><p v-for="data in item.newsCategories">{{ data.name }}</p></td>
@@ -102,8 +104,8 @@
             </tr>
             <tr v-else class="table-content">
               <td>{{ index + 1 }}</td>
-              <td>
-                <v-img :src="item.PostImageTrans[0].image" alt="preview" max-height="50" max-width="50"></v-img>
+              <td v-for="element in item.PostImageTrans">
+                <v-img :src="element.image" alt="preview" max-height="50" max-width="50"></v-img>
               </td>
               <td>{{ item.PostTrans[0].title }}</td>
               <td><p v-for="element in item.newsCategories">{{ element.NewsCategoryTrans[0].name }}</p></td>

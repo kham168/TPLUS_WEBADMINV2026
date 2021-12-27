@@ -100,7 +100,7 @@ const actions={
         }
 
         await chatQuestionProvider.createChatSubQuestion(arg)
-        dispatch('getChatSubQuestion',{ root: true });
+        dispatch('getChatSubQuestion',{ root: true ,chat_question_id:chat_question_id});
     },
 
 
@@ -121,7 +121,7 @@ const actions={
 
         await chatQuestionProvider.updateChatQuestion(arg)
         dispatch('getChatBaseQuestion',{ root: true });
-        dispatch('getChatSubQuestion',{ root: true });
+        dispatch('getChatSubQuestion',{ root: true ,chat_question_id:chat_question_id});
         //commit('SET_POST',data)
     },
 

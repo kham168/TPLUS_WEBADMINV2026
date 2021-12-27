@@ -34,9 +34,9 @@ class HttpRequest {
     // Add a response interceptor
     this.axiosInstance.interceptors.response.use(function (response) {
       // Do something with response data
-      //  console.log("response status:"+response.status)
-      // console.log("response body:")
-      // console.log(response)
+       console.log("response status:"+response.status)
+      console.log("response body:")
+      console.log(response)
 
        if(response.config.method=="post" && response.status == 200 || response.status == 201){
         setTimeout(() => {

@@ -179,6 +179,7 @@ components: {
 
     mounted() {
         this.getDataPackage().then((res)=>{
+          console.log(res)
           this.firstLoad = false;
         });
     },

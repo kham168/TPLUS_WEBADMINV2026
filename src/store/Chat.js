@@ -55,8 +55,8 @@ const actions={
         return data
     },
 
-    async getChatRoom ({commit}) {
-        const data = await chatProvider.getChatRoom()
+    async getChatRoom ({commit},{page}) {
+        const data = await chatProvider.getChatRoom({'page':page})
 
         commit('SET_CHAT_ROOM', data)
 

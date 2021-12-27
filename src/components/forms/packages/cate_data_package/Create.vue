@@ -8,48 +8,43 @@
         <div class="lang-select-input">
 
           <div class="tab-content">
-            <v-tabs-items v-model="tab">
-              <v-tab-item
-                v-for="i in $t('CateDataPackage.Create.lang')"
-                :key="i"
-                :value="i.key"
-              >
+
+
                 <div class="card-form">
                   <div class="form-content">
                     <v-form  v-model="valid" ref="form" lazy-validation>
-                  
+
                       <v-text-field
 
-                      v-model="cateName"
-                        :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
-                        :label="$t('CateDataPackage.Create.form.cate_data_package_name')"
-                        outlined
-                        required
+                          v-model="cateName"
+                          :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
+                          :label="$t('CateDataPackage.Create.form.cate_data_package_name')"
+                          outlined
+                          required
                       ></v-text-field>
 
                       <v-textarea
 
-                      v-model="description"
-                        outlined
-                        :label="$t('CateDataPackage.Create.form.description')"
-                        
+                          v-model="description"
+                          outlined
+                          :label="$t('CateDataPackage.Create.form.description')"
+
                       ></v-textarea>
 
 
-                    
+
                     </v-form>
                     <div class="form-actions">
                       <v-btn plain @click="reset" class="mx-5">{{
-                        $t("CateDataPackage.Create.form.button.cancel")
-                      }}</v-btn>
+                          $t("CateDataPackage.Create.form.button.cancel")
+                        }}</v-btn>
                       <v-btn :disabled="!valid" @click="submitForm" class="btn btn-create">
                         {{ $t("CateDataPackage.Create.form.button.save") }}</v-btn
                       >
                     </div>
                   </div>
                 </div>
-              </v-tab-item>
-            </v-tabs-items>
+
           </div>
         </div>
       </div>
@@ -76,24 +71,24 @@ export default {
   },
 
   mounted() {
-    this.checkTabLang('ລາວ');
+    // this.checkTabLang('ລາວ');
   },
 
   methods: {
- checkTabLang(lang){
-      console.log(lang)
-      if(lang == 'ລາວ' ||lang== 'Lao'){
-        this.isLaoTab = true
-        this.isEngTab = false
-        console.log("lao"+this.isLaoTab)
-         console.log(this.isEngTab)
-      }else{
-         this.isLaoTab = false
-         this.isEngTab = true
-            console.log("lao"+this.isLaoTab)
-            console.log(this.isEngTab)
-      }
-    },
+ // checkTabLang(lang){
+ //      console.log(lang)
+ //      if(lang == 'ລາວ' ||lang== 'Lao'){
+ //        this.isLaoTab = true
+ //        this.isEngTab = false
+ //        console.log("lao"+this.isLaoTab)
+ //         console.log(this.isEngTab)
+ //      }else{
+ //         this.isLaoTab = false
+ //         this.isEngTab = true
+ //            console.log("lao"+this.isLaoTab)
+ //            console.log(this.isEngTab)
+ //      }
+ //    },
 
     submitForm () {
     this.$refs.form[0].validate();
@@ -108,7 +103,7 @@ export default {
   },
    reset(){
     this.$router.back();
-    this.$refs.form[0].reset();
+    this.$refs.form.reset();
   },
 
   ...mapActions({
@@ -150,49 +145,7 @@ export default {
           .form-content {
             width: 70%;
 
-            .upload-image {
-              width: 100%;
-              height: 300px;
-              border-radius: 0.3rem;
-              position: relative;
-              overflow: hidden;
-              object-fit: cover;
-              transition: all ease 0.5s;
-              border: 1px solid $gray-color;
 
-              .image {
-                width: 100%;
-                overflow: hidden;
-                object-fit: cover;
-              }
-              .content {
-                position: absolute;
-                left: 0;
-                right: 0;
-                top: 45%;
-                margin: auto;
-                text-align: center;
-
-                i.fa-plus-circle {
-                  font-size: 2rem;
-                  color: $black-color;
-                }
-              }
-              .choose-file {
-                position: absolute;
-                left: 0;
-                right: 0;
-                top: 0;
-                margin: auto;
-                text-align: center;
-                z-index: 1;
-                width: 100%;
-                height: 100%;
-                cursor: pointer;
-                outline: none;
-                opacity: 0;
-              }
-            }
 
             .form-actions {
               width: 100%;

@@ -86,6 +86,8 @@ const actions={
                 'avatar_EN':avatar_EN,
                 'newsCategoryId':newsCategoryId,
             }
+
+            console.log(arg)
          await postService.updatePost(arg)
         dispatch('getPost',{ root: true });
         

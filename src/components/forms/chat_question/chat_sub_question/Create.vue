@@ -48,7 +48,7 @@
                       ></v-text-field>
 
                       <v-select
-                          v-show="tab == 0"
+
                           :items="$t('ChatQuestion.itemOption')"
                           item-text="name"
                           item-value="id"
