@@ -8,7 +8,7 @@
         <div class="chat-room-profile">
 
           <img
-              src="https://media.istockphoto.com/photos/millennial-male-team-leader-organize-virtual-workshop-with-employees-picture-id1300972574?b=1&k=20&m=1300972574&s=170667a&w=0&h=2nBGC7tr0kWIU8zRQ3dMg-C5JLo9H2sNUuDjQ5mlYfo="
+              :src="require('@/assets/Images/logo.png')"
               alt="">
         </div>
 
@@ -17,20 +17,16 @@
 
         </div>
       </div>
-      <div class="chat-room-content" ref="scrollPosition"  >
-        <v-row >
+      <div class="chat-room-content" ref="scrollPosition">
+        <v-row>
           <v-col cols="12" class="pa-2" v-for="(element,index) in adminMessageBox" :key="index">
-            <div class="chat-room-left" v-if="element.send_by === user_id">
-
+            <div class="chat-room-left" v-if="element.send_by == user_id">
               <div class="show-text-message">
-
                 {{ element.message }}
               </div>
             </div>
             <div class="chat-room-right" v-else>
-
               <div class="show-text-message">
-
                 {{ element.message }}
               </div>
             </div>
@@ -59,14 +55,14 @@ export default {
   data() {
     return {
       textMessage: "",
-      textAdmin:'',
-      socket:null,
+      textAdmin: '',
+      socket: null,
       adminMessageBox: [],
-      user_id:0,
-      chat_room_id:0,
+      user_id: 0,
+      chat_room_id: 0,
 
-      phone:'',
-      channel:'',
+      phone: '',
+      channel: '',
 
     }
   },
@@ -74,11 +70,12 @@ export default {
 
     this.socket = io("http://128.199.104.34:7000");
 
-    this.user_id=this.$route.params.user_id;
-    this.chat_room_id=this.$route.params.chat_room_id;
+    this.user_id = this.$route.params.user_id;
+    console.log(this.user_id,55555555555)
+    this.chat_room_id = this.$route.params.chat_room_id;
 
     window.addEventListener('beforeunload', (e) => {
-      this.socket.on('leave_channel',this.channel);
+      this.socket.on('leave_channel', this.channel);
     })
   },
   mounted() {
@@ -87,52 +84,49 @@ export default {
     console.log(this.socket);
 
 
-    this.socket.on("receive_message",(message)=>{
+    this.socket.on("receive_message", (message) => {
       console.log(message)
 
       //check bot chat
-      if(message.bot){
+      if (message.bot) {
         console.log("bot chat")
-      }else{
+      } else {
         this.adminMessageBox.push(message)
-
       }
-
     });
 
-    this.getChatRoomOne({'chat_room_id':this.$route.params.chat_room_id}).then(res=>{
+    this.getChatRoomOne({'chat_room_id': this.$route.params.chat_room_id}).then(res => {
       console.log(res)
       this.channel = res.channel;
       this.phone = res.chat_room_data.User.phone;
-      this.socket.emit("join_channel",res.channel)
-      for(let i=0;i<res['messages'].data.length;i++){
-        try{
+      this.socket.emit("join_channel", res.channel)
+      for (let i = 0; i < res['messages'].data.length; i++) {
+        try {
           this.adminMessageBox.push(res['messages'].data[i])
-        }catch (e){
+
+        } catch (e) {
           console.log(e)
         }
       }
-
     });
   },
   methods: {
-    onBack(){
+    onBack() {
       this.$router.push({
         name: "chat_list.index"
       })
 
     },
-    functionSendMessage(){
-      this.sendMessage({'message':this.textMessage,'chat_room_id':this.chat_room_id}).then((res)=>{
+    functionSendMessage() {
+      this.sendMessage({'message': this.textMessage, 'chat_room_id': this.chat_room_id}).then((res) => {
         console.log(res)
         this.resetTextMessage()
         this.scrollToBottom()
       });
-
     },
 
     resetTextMessage() {
-      this.$refs.resetTextInput.innerHTML = ''
+      this.$refs.resetTextInput.innerHTML = "";
     },
     messageInput(e) {
       this.textMessage = e.target.innerHTML;
@@ -154,28 +148,24 @@ export default {
     //   this.resetTextMessage();
     //   this.scrollToBottom();
     // },
-
-
     ...mapActions({
-      getChatRoomOne:'Chat/getChatRoomOne',
-      sendMessage:'Chat/sendMessage',
+      getChatRoomOne: 'Chat/getChatRoomOne',
+      sendMessage: 'Chat/sendMessage',
 
     })
   },
-  computed:{
+  computed: {
     ...mapGetters({
-
-      chat_room_one:'Chat/chat_room_one',
+      chat_room_one: 'Chat/chat_room_one',
 
     })
   },
 
 
-  beforeRouteLeave (to, from, next) {
-
-      console.log(this.channel);
-      this.socket.on('leave_channel',this.channel);
-      next()
+  beforeRouteLeave(to, from, next) {
+    console.log(this.channel);
+    this.socket.on('leave_channel', this.channel);
+    next()
 
   }
 
@@ -229,7 +219,8 @@ export default {
   .chat-room-content {
     width: 100%;
     height: 400px;
-    display: flex;
+   // display: flex;
+    display: block;
     overflow-y: auto;
     overflow-x: hidden;
 
@@ -243,12 +234,13 @@ export default {
       .show-text-message {
         display: flex;
         width: min-content;
-        white-space: nowrap;
         min-height: 40px;
         background: #FFFFFF;
         margin: 10px 20px;
         padding: 8px 30px;
         border-radius: 0 20px 20px 20px;
+        min-width: 400px;
+        word-break: break-word;
       }
     }
 
@@ -260,17 +252,17 @@ export default {
       justify-content: flex-start;
       align-items: flex-end;
 
-
       .show-text-message {
         display: flex;
         width: min-content;
-        white-space: nowrap;
         flex-direction: column;
         min-height: 40px;
         background: #FFFFFF;
         margin: 10px 20px 0px 0px;
         padding: 8px 30px;
         border-radius: 20px 0 20px 20px;
+        min-width: 400px;
+        word-break: break-word;
       }
     }
 

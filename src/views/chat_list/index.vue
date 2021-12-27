@@ -22,7 +22,7 @@
                   <div class="message-image">
                     <div class="images">
                       <img
-                          src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                          :src="require('@/assets/Images/logo.png')"
                           alt="">
                     </div>
                   </div>
