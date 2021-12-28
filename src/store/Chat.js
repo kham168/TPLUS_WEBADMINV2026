@@ -42,6 +42,11 @@ const mutations={
 
 const actions={
 
+    async searchChatRoom ({commit},{searchText}) {
+        const data = await chatProvider.searchChatRoom({'searchText':searchText})
+        return data
+    },
+
     async getChatRoomOne ({commit},{chat_room_id,page}) {
         const data = await chatProvider.getChatRoomOne({'chat_room_id':chat_room_id,'page':page})
 

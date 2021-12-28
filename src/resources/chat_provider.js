@@ -6,6 +6,16 @@ class ChatProvider extends HttpRequest {
         super('http://128.199.104.34:7000')
     }
 
+    async searchChatRoom({searchText}) {
+
+        this.setHeader({
+
+        })
+
+        const {data} = await this.get('/api/v1/admin/chat?q='+searchText)
+
+        return data
+    }
 
     async getChatRoomUnRead({page}) {
 

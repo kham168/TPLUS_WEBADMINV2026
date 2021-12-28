@@ -51,11 +51,15 @@
           </v-row>
 
           <v-row class="body-3">
-            <v-col align="left" cols="12">
+            <v-col align="left" cols="12" >
 
               <h2>{{ $t('Post.Create.form.description') }}</h2>
-              <p v-if="tab===0" v-html="descriptionText"> </p>
-              <p v-else v-html="descriptionTextEng"></p>
+
+               <p v-if="tab==0" v-html="descriptionText"></p>
+               <p v-else v-html="descriptionTextEng"></p>
+
+
+
             </v-col>
 
           </v-row>

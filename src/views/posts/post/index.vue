@@ -86,7 +86,7 @@
                       <v-list-item-icon>
                         <v-icon class="mr-3" small>{{ $t('Post.table.options.iconEdit') }}</v-icon>
                         <v-list-item-title>
-                          {{ $t('Post.title') }}
+                          {{ $t('Post.table.options.edit') }}
                         </v-list-item-title>
                       </v-list-item-icon>
                     </v-list-item>

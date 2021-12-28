@@ -675,7 +675,7 @@
     "table": {
       "headers": [
         { "text": "ລຳດັບ", "value": "No", "sortable": true },
-        { "text": "ຊື່ປະເພດຂອງຜະລິດຕະພັນ", "value": "CateProductName", "sortable": true },
+        { "text": "ຊື່ປະເພດຂອງຜະລິດຕະພັນ", "value": "cateName", "sortable": true },
         { "text": "ລາຍລະອຽດ", "value": "description", "sortable": true },
         { "text": "ຈັດການ", "value": "Actions", "sortable": true }
       ],
@@ -717,8 +717,8 @@
       "headers": [
         { "text": "ລຳດັບ", "value": "No", "sortable": true },
         { "text": "ຮູບພາບ", "value": "Picture", "sortable": true },
-        { "text": "ຊື່ຜະລິດຕະພັນ", "value": "ProductName", "sortable": true },
-        { "text": "ປະເພດຜະລິດຕະພັນ", "value": "CateProduct", "sortable": true },
+        { "text": "ຊື່ຜະລິດຕະພັນ", "value": "productName", "sortable": true },
+        { "text": "ປະເພດຜະລິດຕະພັນ", "value": "cateProducts.cateName", "sortable": true },
         { "text": "ລາຍລະອຽດ", "value": "description", "sortable": true },
         { "text": "ວິວ", "value": "view", "sortable": true },
         { "text": "ຈັດການ", "value": "Actions", "sortable": true }
@@ -764,13 +764,13 @@
           "sortable": true
         },
         {
-          "text": "ຊື່ປະເພດຂອງແພັກເກັດ",
-          "value": "CateDataPackageName",
+          "text": "Code",
+          "value": "mainProduct",
           "sortable": true
         },
         {
           "text": "ລາຍລະອຽດ",
-          "value": "description",
+          "value": "detail",
           "sortable": true
         },
         {
@@ -794,7 +794,7 @@
         "Eng": "ອັງກິດ"
       },
       "form": {
-        "cate_data_package_name": "ຊື່ປະເພດຂອງແພັກເກັດ",
+        "cate_data_package_name": "Code",
         "description": "ລາຍລະອຽດ",
         "button": {
           "save": "ບັນທຶກ",
@@ -827,7 +827,7 @@
         { "text": "ຮູບພາບ", "value": "image", "sortable": true },
         { "text": "Code", "value": "code", "sortable": true },
         { "text": "ຊື່ແພັກເກັດ", "value": "la_name", "sortable": true },
-        { "text": "ປະເພດຊິມ", "value": "simtypes", "sortable": true },
+        { "text": "ປະເພດຊິມ", "value": "simTypes.detail", "sortable": true },
         { "text": "ຈັດການ", "value": "Actions", "sortable": true }
       ],
       "dontdata": "ບໍ່ມີຂໍ້ມູນ",
@@ -1290,7 +1290,7 @@
         { "text": "ລຳດັບ", "value": "No", "sortable": true },
         { "text": "ຄຳຖາາມ", "value": "question", "sortable": true },
 
-        { "text": "ຄຳຕອບ", "value": "Answer", "sortable": true },
+        { "text": "ຄຳຕອບ", "value": "answer", "sortable": true },
         { "text": "Actions", "value": "Actions", "sortable": true }
       ],
 

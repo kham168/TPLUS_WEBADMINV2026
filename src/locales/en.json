@@ -152,17 +152,17 @@
         },
         {
           "text": "Name",
-          "value": "ContactName",
+          "value": "name",
           "sortable": true
         },
         {
           "text": "Email",
-          "value": "Email",
+          "value": "email",
           "sortable": true
         },
         {
           "text": "Title",
-          "value": "Title",
+          "value": "title",
           "sortable": true
         },
         {
@@ -471,7 +471,7 @@
     "table": {
       "headers": [
         { "text": "No", "value": "No", "sortable": true },
-        { "text": "Category Post Name", "value": "CatePostName", "sortable": true },
+        { "text": "Category Post Name", "value": "NewsCategoryTrans[0].name", "sortable": true },
         { "text": "Actions", "value": "Actions", "sortable": true }
       ],
       "dontdata": "Don't have data",
@@ -520,7 +520,7 @@
         { "text": "No", "value": "No", "sortable": true },
         { "text": "Pictures", "value": "PostImageTrans[0].image", "sortable": true },
         { "text": "Post Name", "value": "PostTrans[0].title", "sortable": true },
-        { "text": "Category", "value": "postTypeId", "sortable": true },
+        { "text": "Category", "value": "PostTypesTrans[0].name", "sortable": true },
         { "text": "Description", "value": "PostTrans[0].description", "sortable": true },
         { "text": "Status", "value": "status", "sortable": true },
         { "text": "View", "value": "view", "sortable": true },
@@ -575,7 +575,7 @@
         { "text": "No", "value": "No", "sortable": true },
         { "text": "Pictures", "value": "PostImageTrans[0].image", "sortable": true },
         { "text": "title", "value": "PostTrans[0].title", "sortable": true },
-        { "text": "Category", "value": "postTypeId", "sortable": true },
+        { "text": "Category", "value": "PostTypesTrans[0].name", "sortable": true },
         { "text": "Description", "value": "PostTrans[0].description", "sortable": true },
         { "text": "Start Date", "value": "startDate", "sortable": true },
         { "text": "End Date", "value": "endDate", "sortable": true },
@@ -631,7 +631,7 @@
     "table": {
       "headers": [
         { "text": "No", "value": "No", "sortable": true },
-        { "text": "Category Product Name", "value": "CateProductName", "sortable": true },
+        { "text": "Category Product Name", "value": "CateProductTrans[0].cateName", "sortable": true },
 
         { "text": "Description", "value": "description", "sortable": true },
         { "text": "Actions", "value": "Actions", "sortable": true }
@@ -673,9 +673,9 @@
       "headers": [
         { "text": "No", "value": "No", "sortable": true },
         { "text": "Pictures", "value": "Picture", "sortable": true },
-        { "text": "Product Name", "value": "ProductName", "sortable": true },
-        { "text": "Category", "value": "CateProduct", "sortable": true },
-        { "text": "Description", "value": "description", "sortable": true },
+        { "text": "Product Name", "value": "ProductTrans[0].productName", "sortable": true },
+        { "text": "Category", "value": "cateProducts[0].CateProductTrans[0].cateName", "sortable": true },
+        { "text": "Description", "value": "ProductTrans[0].description", "sortable": true },
         { "text": "View", "value": "view", "sortable": true },
         { "text": "Actions", "value": "Actions", "sortable": true }
       ],
@@ -714,9 +714,9 @@
     "table": {
       "headers": [
         { "text": "No", "value": "No", "sortable": true },
-        { "text": "Category Package Name", "value": "CateDataPackageName", "sortable": true },
+        { "text": "Code", "value": "mainProduct", "sortable": true },
 
-        { "text": "Description", "value": "description", "sortable": true },
+        { "text": "Description", "value": "detail", "sortable": true },
         { "text": "Actions", "value": "Actions", "sortable": true }
       ],
       "dontdata":"Don't have data",
@@ -757,17 +757,17 @@
       "headers": [
         { "text": "No", "value": "No", "sortable": true },
         { "text": "Pictures", "value": "Picture", "sortable": true },
-        { "text": "Code", "value": "CateDataPackage", "sortable": true },
-        { "text": "Package Name", "value": "DataPackageName", "sortable": true },
+        { "text": "Code", "value": "code", "sortable": true },
+        { "text": "Package Name", "value": "en_name", "sortable": true },
 
         { "text": "Actions", "value": "Actions", "sortable": true }
       ],
       "headers_simtype": [
         { "text": "No", "value": "No", "sortable": true },
         { "text": "Pictures", "value": "Picture", "sortable": true },
-        { "text": "Code", "value": "CateDataPackage", "sortable": true },
-        { "text": "Package Name", "value": "DataPackageName", "sortable": true },
-        { "text": "Sim Type", "value": "simtype", "sortable": true },
+        { "text": "Code", "value": "code", "sortable": true },
+        { "text": "Package Name", "value": "en_name", "sortable": true },
+        { "text": "Sim Type", "value": "simTypes.detail", "sortable": true },
         { "text": "Actions", "value": "Actions", "sortable": true }
       ],
       "dontdata": "Don't have data",
@@ -1083,7 +1083,7 @@
       "headers": [
         { "text": "No", "value": "No", "sortable": true },
         { "text": "Question", "value": "question", "sortable": true },
-        { "text": "Answer", "value": "Answer", "sortable": true },
+        { "text": "Answer", "value": "answer", "sortable": true },
         { "text": "Actions", "value": "Actions", "sortable": true }
       ],
       "dontdata": "Don't have data",
