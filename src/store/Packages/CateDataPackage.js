@@ -4,30 +4,35 @@ const cateDataPackageProvider = new CateDataPackageProvider()
 
 const state={
     cate_data_package:{},
-
+    cate_data_package_one:{}
   
 }
 
 const getters={
   cate_data_package:state=>state.cate_data_package,
-
+    cate_data_package_one:state=>state.cate_data_package_one,
 }
 
 const mutations={
   SET_CATE_DATA_PACKAGE(state,data){
       state.cate_data_package = data;
     },
-
+    SET_CATE_DATA_PACKAGE_ONE(state,data){
+        state.cate_data_package_one = data;
+    },
   
 }
 
 const actions={
- 
 
+    async getCateDataPackageOne ({commit}) {
+        const data = await cateDataPackageProvider.getCateDataPackageAll()
+        commit('SET_CATE_DATA_PACKAGE_ONE', data)
+        return data
+    },
 
     async getCateDataPackage ({commit}) {
         const data = await cateDataPackageProvider.getCateDataPackageAll()
-     
         commit('SET_CATE_DATA_PACKAGE', data)
         return data
       },
@@ -64,6 +69,8 @@ const actions={
 
               
             }
+            console.log(cate_package_id)
+          console.log(mainProduct)
          await cateDataPackageProvider.updateCateDataPackage(arg)
         dispatch('getCateDataPackage',{ root: true });
         
