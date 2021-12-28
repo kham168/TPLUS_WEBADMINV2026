@@ -45,11 +45,6 @@
         :search="search"
         class="elevation-0"
       >
-        <template v-slot:item.status="{ item }">
-          <v-chip :color="getColor(item.status)" dark>
-            {{ item.status }}
-          </v-chip>
-        </template>
       </v-data-table>
     </section>
   </div>
@@ -76,12 +71,7 @@ export default {
   methods: {
     ...mapActions({
       getCustomer: "report/getCustomer",
-    }),
-    getColor(status) {
-      if (status=='inactive') return "red";
-      else if (status == 'pendding') return "orange";
-      else return "green";
-    },
+    })
   },
 };
 </script>
