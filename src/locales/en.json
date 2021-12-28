@@ -579,9 +579,9 @@
         { "text": "Description", "value": "PostTrans[0].description", "sortable": true },
         { "text": "Start Date", "value": "startDate", "sortable": true },
         { "text": "End Date", "value": "endDate", "sortable": true },
-        { "text": "View", "value": "view", "sortable": true },
-        { "text": "Status", "value": "status", "sortable": true },
 
+        { "text": "Status", "value": "status", "sortable": true },
+        { "text": "View", "value": "view", "sortable": true },
         { "text": "Actions", "value": "Actions", "sortable": true }
       ],
       "dontdata": "Dont have data",
