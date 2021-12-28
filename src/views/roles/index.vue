@@ -1,7 +1,14 @@
 <template>
   <div id="Index">
     <section class="role-container">
-      <div class="header role-header">
+      <v-skeleton-loader
+          class="mx-auto"
+
+          type="table"
+          :loading="loading"
+          v-if="firstLoad"
+      ></v-skeleton-loader>
+      <div class="header role-header" v-show="!firstLoad">
         <h1>{{ $t("Role.title") }}</h1>
         <v-btn
             @click="onCreate"
@@ -13,7 +20,7 @@
       </div>
       <!-- end -->
       <!-- content -->
-      <div class="role-content">
+      <div class="role-content" v-show="!firstLoad">
         <v-data-table
             :headers="$t('Role.table.headers')"
             :items="listRole"
@@ -131,7 +138,8 @@ export default {
       listRole: [],
       searchItem: "",
       loading: false,
-      role_id: ""
+      role_id: "",
+      firstLoad:true
     };
   },
   methods: {
@@ -140,6 +148,7 @@ export default {
       this.$axios.get(`roles`).then((res) => {
         if (res.status === 200) {
           this.listRole = res.data.data;
+          this.firstLoad=false
         }
       }).catch((error) => {
         if (error.response.status === 403) {

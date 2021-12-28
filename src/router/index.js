@@ -16,7 +16,7 @@ Vue.use(VueRouter)
 
 const routes = [
     {
-        path: "/chat-room",
+        path: "/chat-room/:chat_room_id/user/:user_id",
         name: "chatroom",
         component: Chatroom,
         meta: {
@@ -622,6 +622,16 @@ const routes = [
                 }
 
             },
+            {
+                path: "simtype/:data_package_id",
+                name: "data_package.simtype",
+                component: () => import(/* webpackChunkName:"Data_package Create" */ '../views/packages/data_package/fill_simtype.vue'),
+                meta: {
+                    middleware: [Middleware.auth],
+                    layout: 'admin',
+                }
+
+            },
         ]
     },
 
@@ -704,6 +714,37 @@ const routes = [
 
             },
         ]
+    },
+
+    //Chat List
+    {
+        path: "/chat_list",
+        name: "chat_list.index",
+        component: () => import(/* webpackChunkName:"chat_question" */'../views/chat_list/index.vue'),
+        meta: {
+            middleware: [Middleware.auth],
+            layout: 'admin',
+
+
+        },
+
+        // beforeRouteEnter (to, from, next) {
+        //     next(vm => {
+        //         console.log('chat_list')
+        //     })
+        // },
+        //
+        // beforeRouteLeave (to, from, next) {
+        //     const answer = window.confirm('Do you really want to leave? you have unsaved changes!')
+        //     if (answer) {
+        //         next()
+        //     } else {
+        //         next(false)
+        //     }
+        // }
+
+
+
     },
 
     //Chat Question
@@ -790,26 +831,12 @@ const routes = [
 
     {
         path: "/chat_test",
-        component: () => import(/* webpackChunkName:"chat_sub_question" */'../views/chat_question/chat_test/chat_test.vue'),
+        name: "chat_test.index",
+        component: () => import(/* webpackChunkName:"chat_sub_question index" */'../views/chat_question/chat_test/index.vue'),
         meta: {
             middleware: [Middleware.auth],
-            layout: 'admin',
-
-
-        },
-        children: [
-            {
-                path: "",
-                name: "chat_test.index",
-                component: () => import(/* webpackChunkName:"chat_sub_question index" */'../views/chat_question/chat_test/index.vue'),
-                meta: {
-                    middleware: [Middleware.auth],
-                    layout: "admin",
-                }
-            },
-
-
-        ]
+            layout: "admin",
+        }
     },
 
     {
@@ -940,6 +967,10 @@ const router = new VueRouter({
 // })
 
 router.beforeEach((to, from, next) => {
+    // if(to.path === '/chat_list'){
+    //     console.log('GGEZ')
+    // }
+
     if (to.meta.requiredAuth) {
         const authUser = localStorage.getItem('access_token');
         if (!authUser) {

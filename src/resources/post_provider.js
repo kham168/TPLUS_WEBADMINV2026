@@ -45,7 +45,8 @@ class PostProvider extends HttpRequest {
     other_lang_id,
     avatar,
     avatar_EN,
-                     newsCategoryId
+    newsCategoryId
+
   })
   {
     try{
@@ -103,6 +104,8 @@ class PostProvider extends HttpRequest {
       bodyFormData.append('title',title);
       bodyFormData.append('description',description);
       bodyFormData.append('status',status);
+    bodyFormData.append('startDate','');
+    bodyFormData.append('endDate','');
       bodyFormData.append('other_lang[0][title]',other_lang_title);
       bodyFormData.append('other_lang[0][description]',other_lang_description);
       bodyFormData.append('other_lang[0][language_id]',other_lang_id);

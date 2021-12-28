@@ -1,26 +1,33 @@
 <template>
   <div id="ChatQuestion">
     <section class="chat_question-section">
-      <div class="header chat_question-header">
-        {{"sub"}}
-        <h1>{{ $t("ChatQuestion.title") }}</h1>
+      <v-skeleton-loader
+          class="mx-auto"
+          type="table"
+          v-if="firstLoad"
+      ></v-skeleton-loader>
+      <div class="header chat_question-header" v-show="!firstLoad">
+
+        <h1><span @click="onBack" style="margin-right: 10px;color: #4b96da;cursor: pointer">
+          <i class="fas fa-arrow-circle-left"></i></span>{{ $t("ChatQuestion.subtitle") }}</h1>
         <v-btn @click="CreateChatQuestion" class="btn btn-create">
           <v-icon>fal fa-plus-circle</v-icon>{{ $t("ChatQuestion.button") }}</v-btn
         >
       </div>
-      <div class="cate_post-content">
+
+      <div class="cate_post-content" v-show="!firstLoad">
         <v-data-table
             :headers="$t('ChatQuestion.table.headers')"
             :items="chat_sub_question['subQuestionData']"
             :search="searchItem"
             :loading="loading"
             :loading-text="$t('ChatQuestion.loadingtext')"
-            v-if="chat_sub_question['subQuestionData'] != []"
+            v-if="chat_sub_question['subQuestionData'] != ''"
         >
           <template v-slot:top>
             <v-toolbar flat>
               <v-text-field
-                  :label="$t('ChatQuestion.txtsearch')"
+                  :label="$t('ChatQuestion.txtsearch_subquestion')"
                   filled
                   rounded
                   dense
@@ -34,7 +41,7 @@
           </template>
           <!-- table content -->
           <template v-slot:item="{ item, index }">
-            <tr class="table-content" v-if="isLaoLanguage" @click="onClickRow(item.id)">
+            <tr class="table-content" v-if="isLaoLanguage">
               <td>{{ index + 1 }}</td>
               <td>{{ item.ChatQuestionTrans[0].question }}</td>
               <td v-if="item.ChatQuestionTrans[0].answer != ''">{{ item.ChatQuestionTrans[0].answer }}</td>
@@ -53,6 +60,14 @@
                     </v-btn>
                   </template>
                   <v-list>
+                    <v-list-item link @click="onClickRow(item.id)">
+                      <v-list-item-icon>
+                        <v-icon class="mr-3" small>{{$t('ChatQuestion.table.options.subQuestionIcon')}}</v-icon>
+                        <v-list-item-title>
+                          {{$t('ChatQuestion.table.options.subQuestion')}}
+                        </v-list-item-title>
+                      </v-list-item-icon>
+                    </v-list-item>
                     <v-list-item link @click="$router.push({name:'chat_question.edit',params:{
                          'chat_question_id':item.id,
      }}).catch(()=>{})">
@@ -76,7 +91,7 @@
               </td>
             </tr>
 
-            <tr class="table-content" v-else @click="onClickRow(item.id)">
+            <tr class="table-content" v-else>
               <td>{{ index + 1 }}</td>
               <td>{{ item.ChatQuestionTrans[1].question }}</td>
               <td v-if="item.ChatQuestionTrans[1].answer != ''">{{ item.ChatQuestionTrans[1].answer }}</td>
@@ -94,6 +109,14 @@
                     </v-btn>
                   </template>
                   <v-list>
+                    <v-list-item link @click="onClickRow(item.id)">
+                      <v-list-item-icon>
+                        <v-icon class="mr-3" small>{{$t('ChatQuestion.table.options.subQuestionIcon')}}</v-icon>
+                        <v-list-item-title>
+                          {{$t('ChatQuestion.table.options.subQuestion')}}
+                        </v-list-item-title>
+                      </v-list-item-icon>
+                    </v-list-item>
                     <v-list-item link @click="$router.push({name:'chat_question.edit',params:{
                          'chat_question_id':item.id
      }}).catch(()=>{})">
@@ -150,6 +173,7 @@ export default {
       loading: false,
 
       searchItem: "",
+      firstLoad:true,
     };
   },
 
@@ -157,7 +181,7 @@ export default {
     this.getChatSubQuestion({'chat_question_id':this.$route.params.chat_question_id}).then(
         res=>{
           if(res.success){
-            console.log("success")
+           this.firstLoad=false
           }
         }
     );
@@ -165,6 +189,11 @@ export default {
   },
 
   methods: {
+    onBack(){
+      this.$router.push({
+        name: "chat_question.index"
+      })
+    },
     onClickRow(chat_question_id){
       console.log("click");
       this.$router

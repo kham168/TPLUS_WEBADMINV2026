@@ -1,7 +1,5 @@
 import HttpRequest from './http_request'
-
-
-//const token = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjM3NDc0NTE3LCJleHAiOjE2Mzc0NzgxMTd9.s6MGXug5OwyEDvW6J3xmbCZxGKrAIFllEWk2y0KuIyDHCW8UFL66HZxSBmZASsFuLi_jbrsVofqTeyVv01y7-Gacoq1bFlQnwiGGGVPksyc9_n6Y5VfkK3SgHnve6VyrMLdFA6-e2U24-9W9rzal0nTsQTN0ggt_zuSmVBLjW_kW0aXUfeero0krD08EQexPi9CwZlcJdswhYq1VmkHPExobl2gdLbF8AijfXd09V_jw_RvIZX-_RasAtVn6OY76pLAbOAL2QJwfzoTjhGNfMgvZiSbdEh8X3Ksde8DA7AIv180Gq9BiAY5GbHRv46NcnQvY7CGlZoeodY5Eku0M1g'
+const tokenAdmin = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicGhvbmUiOiI5OTk5OTk5OSIsImlhdCI6MTY0MDUzNDc4NSwiZXhwIjoxNjcyMDkyMzg1fQ.HMKkGNsNXF90BUHLbXf-NbE6tN4Mr4R9C8QOAX86VjAWBIThIzqfx11Q9_JgLKcSQxkN5-VRgoixRSJB88TCjtajuSGfl0WKkPJqbI6K4dpy5Hn70ELYDgsusgb3BwdUcNaTEehUC8bGULLJPJvywpFWsMu0hVChlpmjn9AKaxLOnpj5dl_Gr64Cvb2GkwUfG6s7mZF2rdtDVto-jj53GckFqo-NKFgdfiMFSUnwLj_F0h2EstyQgHPMyH-biCL11WbKjJKHBG_-pUpn03FgDYnLpafAhamFeYd-c3YbLBzdSdst_UOf8yHRAnkgVNt7FyVkMB3rr1UKiJwyw2dJCw'
 
 class ChatProvider extends HttpRequest {
     constructor() {
@@ -10,87 +8,60 @@ class ChatProvider extends HttpRequest {
     }
 
 
-    async getChatRoom({token}) {
+    async getChatRoomUnRead() {
 
-        //Call setHeader on class HttpRequest and write common header
-        //If write Header on class HttpRequest Should call like under method
         this.setHeader({
-          //  'Authorization':token
+
         })
-        // example path http://128.199.104.34:7000/this.get()
-        const {data} = await this.get('/api/v1/admin/chat?filter=read')
+
+        const {data} = await this.get('/api/v1/admin/chat?filter=unread')
 
         return data
     }
 
-    async getChatRoomOne({chat_room_id,token}) {
+    async getChatRoom({page}) {
 
-        //Call setHeader on class HttpRequest and write common header
-        //If write Header on class HttpRequest Should call like under method
         this.setHeader({
-          //  'Authorization':token
+
         })
-        // example path http://128.199.104.34:7000/this.get()
-        const {data} = await this.get('/api/v1/admin/chat/'+chat_room_id)
+
+        const {data} = await this.get('/api/v1/admin/chat?limit=10&page='+page)
 
         return data
     }
 
-    async getChatRoomClient({token}) {
+    async getChatRoomOne({chat_room_id}) {
 
-        //Call setHeader on class HttpRequest and write common header
-        //If write Header on class HttpRequest Should call like under method
         this.setHeader({
-          //  'Authorization':token
+
+
         })
-        // example path http://128.199.104.34:7000/this.get()
-        const {data} = await this.get('/api/v1/chat')
+
+        const {data} = await this.get('/api/v1/admin/chat/'+chat_room_id+'?limit=100000')
 
         return data
     }
 
 
-    async sendMessage({chat_room_id,message,token}) {
+
+    async sendMessage({chat_room_id,message}) {
 
 
         this.setHeader({
             'Content-Type': 'application/x-www-form-urlencoded',
-           // 'Authorization':token
+
         })
 
         let args={
-            'message':message
+            'message':message,
+            'room_id':chat_room_id
         }
 
         const {data} = await this.create('/api/v1/admin/chat/'+chat_room_id,args)
-
         return data
     }
 
-    async sendMessageClient({message,question_id,token}) {
 
-        this.setHeader({
-            'Content-Type': 'application/x-www-form-urlencoded',
-          //  'Authorization':token
-        })
-
-        var args={}
-
-        if(message != ""){
-            args={
-                'message':message
-            }
-        }else{
-            args={
-                'question_id':question_id
-            }
-        }
-
-
-        const {data} = await this.create('/api/v1/chat',args)
-
-        return data
-    }
 
     async leaveChatRoom({chat_room_id,roomChannel}) {
 

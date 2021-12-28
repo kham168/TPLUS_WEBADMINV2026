@@ -1,13 +1,13 @@
 import HttpRequest from './http_request'
 
 
-const tokenAdmin = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicGhvbmUiOiI1MjQxNjM2MiIsImlhdCI6MTYzOTY2NzUwNiwiZXhwIjoxNjcxMjI1MTA2fQ.jOegLlq-FdgkxBYwXF0Kuq5BeSdq_zaxGbiEFFgcFK-avI2MiyY8A7jFXmG3WEYLhJu4jg8X447Wm1k47_23ooEGlBJ-CznndAjqzlOwRjnmA-To7rbGhaN-2K7oqelobE7LkD7AbMEUn_Bt4OmME7KYtghvCrdsZ_eeylzDhvXUFY1oOLyj7FkMFTYjBxL4_lhUy7NBaB7jlRGJDDtcGZ7oK10D1u8On95U5vkgN64pFzPRx7SuFcp6Bz3cs-04A2PZ6CO2bikPCLHSGtmrjqSOKLClJyEP5lVixAXqKcjbQfVOSgnBF8jPk_PfFiSPeC6p1o8Sjm9mKbb-7ylNlg'
-const tokenClient1 = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywicGhvbmUiOiI1NTU1NTU1NSIsImlhdCI6MTYzOTY2NzM0NywiZXhwIjoxNjcxMjI0OTQ3fQ.i_Gp7kgvYoQPx9yi-r1bQOBQSbjqCdgRmjKo7-2l5Are_mcL0yKxYy6bNsnT040w0UaS6uEBbM8iHQxRoEC5v-11E2H074ghtR3rj12AfsR73y4NtfHHUBMOh-8IE3WA1y80p02DeugAZlh-ffGfgXJ-ZUrW0msArKpYPuXbXFovh6WnZe3mrePMGsKpzvJuFrX8dxfE1I_04RMFQiHSJnHD6SRlt_NUx8DD_fTBV92UcqT419YWPkL5s9ez7draz2d_YA03oKICIvn6at3M_fxbphCjCY0k2909WneiHmneZYK9Q3sdhtX-9xz2zE87KQcbLUa5poFbLxKMv18R8w";
+const tokenAdmin = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicGhvbmUiOiI5OTk5OTk5OSIsImlhdCI6MTY0MDUzNDc4NSwiZXhwIjoxNjcyMDkyMzg1fQ.HMKkGNsNXF90BUHLbXf-NbE6tN4Mr4R9C8QOAX86VjAWBIThIzqfx11Q9_JgLKcSQxkN5-VRgoixRSJB88TCjtajuSGfl0WKkPJqbI6K4dpy5Hn70ELYDgsusgb3BwdUcNaTEehUC8bGULLJPJvywpFWsMu0hVChlpmjn9AKaxLOnpj5dl_Gr64Cvb2GkwUfG6s7mZF2rdtDVto-jj53GckFqo-NKFgdfiMFSUnwLj_F0h2EstyQgHPMyH-biCL11WbKjJKHBG_-pUpn03FgDYnLpafAhamFeYd-c3YbLBzdSdst_UOf8yHRAnkgVNt7FyVkMB3rr1UKiJwyw2dJCw'
 
 class ChatQuestionProvider extends HttpRequest {
     constructor() {
         // api api
-        super('http://128.199.104.34:7000')
+        //25.10.235.85
+        super('http://25.10.235.85:7000')
     }
 
 
@@ -41,8 +41,9 @@ class ChatQuestionProvider extends HttpRequest {
 
         //Call setHeader on class HttpRequest and write common header
         //If write Header on class HttpRequest Should call like under method
-        this.setHeader({
-         //   'Authorization':tokenClient1
+        this.setHeaderBaseQuestion({
+           // 'Authorization':tokenClient1
+            'Authorization':tokenAdmin
         })
         // example path http://128.199.104.34:7000/this.get()
         const {data} = await this.get('/api/v1/baseQuestion')
@@ -54,7 +55,9 @@ class ChatQuestionProvider extends HttpRequest {
 
         //Call setHeader on class HttpRequest and write common header
         //If write Header on class HttpRequest Should call like under method
-        this.setHeader({})
+        this.setHeader({
+            'Authorization':tokenAdmin
+        })
         // example path http://128.199.104.34:7000/this.get()
         const {data} = await this.get('/api/v1/baseQuestion/'+chat_question_id+'/sub')
 
@@ -67,17 +70,21 @@ class ChatQuestionProvider extends HttpRequest {
 
 
                              }) {
-        let arg = [{
-            "question": question,
-             "answer": answer,
-            "languageId": "1",
-            "image":image
-        }, {
-            "question": questionEng,
-             "answer": answerEng,
-            "languageId": "2",
-            "image":imageEng
-        }]
+        let arg = [];
+
+        if(answer == null || answer == ''){
+            arg = [{
+                "question": question,  "languageId": "1","image":image
+            }, {
+                "question": questionEng, "languageId": "2","image":imageEng
+            }]
+        }else{
+            arg = [{
+                "question": question,"answer":answer,  "languageId": "1"
+            }, {
+                "question": questionEng,"answer":answerEng,"languageId": "2"
+            }]
+        }
 
 
         this.setHeader({
@@ -117,6 +124,7 @@ class ChatQuestionProvider extends HttpRequest {
 
         this.setHeader({
             'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization':tokenAdmin
         })
         const {data} = await this.create('/api/v1/question/'+chat_question_id+'/newSub', arg)
 

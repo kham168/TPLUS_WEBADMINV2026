@@ -44,8 +44,8 @@
                         outlined
                         required
                       ></v-text-field>
+
                        <v-select
-                   
                       multiple
                       item-text="cateName"
                       item-value="id"
@@ -57,20 +57,21 @@
                         outlined
                         required
                       ></v-select>
+
                       <v-textarea
                       v-show="isLaoTab"
                        v-model="description"
                         outlined
                         :label="$t('Product.Create.form.description')"
-                        
                       ></v-textarea>
+
                        <v-textarea
                         v-show="isEngTab"
                        v-model="descriptionEng"
                         outlined
                         :label="$t('Product.Create.form.description')"
-                        
                       ></v-textarea>
+
                       <div v-show="isLaoTab">
                       
                         <div class="upload-image" v-if="previewImage[0] == null">
@@ -143,8 +144,8 @@
                           </v-carousel>
                           
                         </div>
-                      </div>    
-                  
+                      </div>
+
 
                     </v-form>
                     <div class="form-actions">

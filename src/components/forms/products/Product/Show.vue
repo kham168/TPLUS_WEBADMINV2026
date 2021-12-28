@@ -32,11 +32,20 @@
 
           </v-row>
 
-          <v-row class="body-2">
+          <v-row v-if="tab===0" class="body-2">
             <v-col align="left" cols="12">
 
               <h2> {{ $t('Product.Create.form.category') }}</h2>
-              <p> {{ productTypeValue }}</p>
+              <p  v-for="element in productTypeValue"> {{ element }}</p>
+
+            </v-col>
+          </v-row>
+
+          <v-row v-else class="body-2">
+            <v-col align="left" cols="12">
+
+              <h2> {{ $t('Product.Create.form.category') }}</h2>
+              <p v-for="element in productTypeValueEng"> {{ element }}</p>
 
             </v-col>
           </v-row>
@@ -52,7 +61,7 @@
           </v-row>
 
 
-          <v-row class="body-4">
+          <v-row  v-if="tab===0" class="body-4">
             <v-col align="left" cols="12">
 
               <h2> {{ $t("Product.Create.form.picture") }}</h2>
@@ -113,60 +122,25 @@ export default {
     return {
       btnLoading: false,
       productId:0,
-      productTypeValue:[],
-      productName:'',
-      productNameEng:'',
-      description:'',
-      descriptionEng:'',
-      previewImage: [],
-      previewImageEng: [],
+
       tab: null,
     }
   },
   created() {
-    this.getProductOne({'product_id': this.product_id}).then(res => {
-      if (res.success) {
-        this.loadDataToComponent(res)
 
-      }
-    });
   },
   props: {
-    product_id: {}
+    productTypeValue:[],
+    productTypeValueEng:[],
+    productName:'',
+    productNameEng:'',
+    description:'',
+    descriptionEng:'',
+    previewImage: [],
+    previewImageEng: [],
   },
   methods: {
-    loadDataToComponent(res){
-      let data = res.data;
-      this.productId=data.id
 
-      this.productName=data.productName
-      this.productNameEng=data.ProductTrans[0].productName
-      this.description=data.description
-      this.descriptionEng=data.ProductTrans[0].description
-
-      for(let i=0;i<data.ProductCategories.length;i++){
-
-        this.productTypeValue.push(data.ProductCategories[i].cateProductId)
-
-      }
-
-      for(let i=0;i<data.ProductImages.length;i++){
-
-        this.previewImage.push(data.ProductImages[i].image)
-
-
-      }
-
-      for(let i=0;i<data.ProductImages.length;i++){
-
-
-        this.previewImageEng.push(data.ProductImages[i].image)
-
-
-      }
-
-
-    },
     ...mapActions({
       getProductOne: 'Product/getProductOne'
     })

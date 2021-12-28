@@ -1,13 +1,20 @@
 <template>
    <div id="Contact">
     <section class="contact-section">
-      <div class="header contact-header">
+      <v-skeleton-loader
+          class="mx-auto"
+
+          type="table"
+          :loading="loading"
+          v-if="firstLoad"
+      ></v-skeleton-loader>
+      <div class="header contact-header" v-show="!firstLoad">
         <h1>{{ $t("Contact.title") }}</h1>
         <v-btn @click="CreateContact" class="btn btn-create" v-if="false">
           <v-icon>fal fa-plus-circle</v-icon>{{ $t("Contact.button") }}</v-btn
         >
       </div>
-      <div class="contact-content">
+      <div class="contact-content" v-show="!firstLoad">
         <v-data-table
           :headers="$t('Contact.table.headers')"
           :items="contact['data']"
@@ -117,11 +124,16 @@ export default {
              loading: false,
     
       searchItem: "",
+          firstLoad:true,
         };
     },
 
     mounted() {
-        this.getContact()
+        this.getContact().then((res)=>{
+          if(res.success){
+            this.firstLoad=false;
+          }
+        })
     },
 
     methods: {

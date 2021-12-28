@@ -3,7 +3,7 @@
     <section class="chat_question-create">
       <div class="chat_question-form">
         <div class="form-title">
-          <h1>{{ $t("ChatQuestion.Create.header") }}</h1>
+          <h1>{{ $t("ChatQuestion.Create.header_subquestion") }}</h1>
         </div>
         <div class="lang-select-input">
           <v-tabs v-model="tab" color="primary" slider-color="primary">
@@ -48,7 +48,7 @@
                       ></v-text-field>
 
                       <v-select
-                          v-show="tab == 0"
+
                           :items="$t('ChatQuestion.itemOption')"
                           item-text="name"
                           item-value="id"
@@ -241,7 +241,6 @@ export default {
 
       const img = e.target.files[0];
 
-
       this.uploadImage=img
       const reader = new FileReader();
       reader.readAsDataURL(img);
@@ -258,13 +257,12 @@ export default {
 
       const img = e.target.files[0];
 
-
       this.uploadImageEng=img
       const reader = new FileReader();
       reader.readAsDataURL(img);
       reader.onload = (e) => {
 
-        this.previewImageEng=e.target.result;
+      this.previewImageEng=e.target.result;
 
       }
 

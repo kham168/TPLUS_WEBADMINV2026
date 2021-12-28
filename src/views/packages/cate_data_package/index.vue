@@ -1,13 +1,18 @@
 <template>
    <div id="CateDataPackage">
     <section class="cate_data_package-section">
-      <div class="header cate_data_package-header">
+      <v-skeleton-loader
+          class="mx-auto"
+          type="table"
+          v-if="firstLoad"
+      ></v-skeleton-loader>
+      <div class="header cate_data_package-header" v-show="!firstLoad">
         <h1>{{ $t("CateDataPackage.title") }}</h1>
-        <v-btn @click="CreateCateDataPackage" class="btn btn-create">
+        <v-btn @click="CreateCateDataPackage" class="btn btn-create" >
           <v-icon>fal fa-plus-circle</v-icon>{{ $t("CateDataPackage.button") }}</v-btn
         >
       </div>
-      <div class="cate_data_package-content">
+      <div class="cate_data_package-content" v-show="!firstLoad">
         <v-data-table
           :headers="$t('CateDataPackage.table.headers')"
           :items="cate_data_package['data']"
@@ -101,11 +106,16 @@ components: {
           isLaoLanguage:localStorage.getItem('lang') === 'la',
              loading: false,
              searchItem: "",
+          firstLoad:true,
         };
     },
 
     mounted() {
-        this.getCateDataPackage();
+        this.getCateDataPackage().then((res)=>{
+          if(res.success){
+            this.firstLoad=false;
+          }
+        });
     },
 
     methods: {

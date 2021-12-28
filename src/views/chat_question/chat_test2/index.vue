@@ -25,7 +25,7 @@
         </v-card>
 
         <v-text-field v-model="textAdmin"></v-text-field>
-        <v-btn @click="sendMessage({'message':textAdmin,'room_id':2})">Send</v-btn>
+        <v-btn @click="sendMessage({'message':textAdmin,'chat_room_id':2})">Send</v-btn>
       </v-col>
     </v-row>
 
@@ -80,7 +80,7 @@ export default {
 
 
     this.getChatRoomOne({'chat_room_id':2}).then(res=>{
-
+      this.socket.emit("join_channel",res.channel)
       for(let i=0;i<res['messages'].length;i++){
           try{
             this.adminMessageBox.push(res['messages'][i])

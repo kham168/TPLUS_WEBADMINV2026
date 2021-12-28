@@ -53,6 +53,7 @@ const actions={
       const data = await chatQuestionProvider.getChatBaseQuestion()
 
       commit('SET_CHAT_BASE_QUESTION',data)
+        return data
     },
 
     async getChatSubQuestion({commit},{chat_question_id}) {
@@ -80,7 +81,7 @@ const actions={
         }
 
         await chatQuestionProvider.createChatQuestion(arg)
-        dispatch('getChatQuestion',{ root: true });
+        dispatch('getChatBaseQuestion',{ root: true });
     },
 
     async createChatSubQuestion({dispatch},{
@@ -99,7 +100,7 @@ const actions={
         }
 
         await chatQuestionProvider.createChatSubQuestion(arg)
-        dispatch('getChatQuestion',{ root: true });
+        dispatch('getChatSubQuestion',{ root: true ,chat_question_id:chat_question_id});
     },
 
 
@@ -119,14 +120,15 @@ const actions={
         }
 
         await chatQuestionProvider.updateChatQuestion(arg)
-        dispatch('getChatQuestion',{ root: true });
-
+        dispatch('getChatBaseQuestion',{ root: true });
+        dispatch('getChatSubQuestion',{ root: true ,chat_question_id:chat_question_id});
         //commit('SET_POST',data)
     },
 
     async deleteChatQuestion ({dispatch},{chat_question_id}) {
         await chatQuestionProvider.deleteChatQuestion({'chat_question_id':chat_question_id})
-        dispatch('getChatQuestion',{ root: true });
+        dispatch('getChatBaseQuestion',{ root: true });
+
         // commit('SET_POST', data)
     },
 }

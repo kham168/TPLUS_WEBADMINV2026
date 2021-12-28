@@ -1,7 +1,15 @@
 <template>
    <div id="Banner">
+
     <section class="banner-section">
-      <div class="header banner-header">
+      <v-skeleton-loader
+          class="mx-auto"
+
+          type="table"
+          :loading="loading"
+          v-if="firstLoad"
+      ></v-skeleton-loader>
+      <div class="header banner-header"  v-show="!firstLoad">
 
         <v-row>
           <h1>{{ $t("Banner.title") }}</h1>
@@ -19,8 +27,10 @@
 
 
       </div>
-      <div class="banner-content">
+      <div class="banner-content" v-show="!firstLoad">
+
         <v-data-table
+
           :headers="$t('Banner.table.headers')"
           :items="banner['data']"
           :search="searchItem"
@@ -109,7 +119,7 @@
                  <v-list>
                    <v-list-item link @click="$router.push({name:'banner.edit',params:{
                       'banner_id':item.id,
-       
+
                    }}).catch(()=>{})">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('Banner.table.options.iconEdit')}}</v-icon>
@@ -257,6 +267,8 @@ export default {
           descriptionEng:'',
           previewImage: null,
           previewImageEng: null,
+
+          firstLoad:true
         };
     },
 
@@ -266,6 +278,7 @@ export default {
           for(let i=0;i<res['data'].length;i++){
             this.list.push({"id":res['data'][i].id});
           }
+          this.firstLoad=false;
         }
 
       });

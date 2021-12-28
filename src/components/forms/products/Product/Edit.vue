@@ -12,6 +12,7 @@
               :href="lang.key"
               v-for="lang in $t('Product.Create.lang')"
               :key="lang.key"
+              @change="checkTabLang(lang)"
             >
               {{ lang }}
             </v-tab>
@@ -141,8 +142,8 @@
                           </v-carousel>
                           
                         </div>
-                      </div>    
-                  
+                      </div>
+
 
                     </v-form>
                     <div class="form-actions">
@@ -236,9 +237,9 @@ async convertUrlToFileImage(image) {
           this.description=data.description
        this.descriptionEng=data.ProductTrans[0].description
  
-       for(let i=0;i<data.ProductCategories.length;i++){
+       for(let i=0;i<data.cateProducts.length;i++){
        
-         this.productTypeValue.push(data.ProductCategories[i].cateProductId)
+         this.productTypeValue.push(data.cateProducts[i].id)
      
        }
 
