@@ -27,7 +27,7 @@
                 <div class="card-form">
                   <div class="form-content">
                     <v-form v-model="valid" ref="form" lazy-validation>
-                 
+
                       <v-text-field
                       v-show="isLaoTab"
                         :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
@@ -35,7 +35,7 @@
                         outlined
                         required
                         v-model="postName"
-                      
+
                       ></v-text-field>
                         <v-text-field
                         v-show="isEngTab"
@@ -44,7 +44,7 @@
                         outlined
                         required
                         v-model="postNameEng"
-                      
+
                       ></v-text-field>
 
            <v-select
@@ -52,7 +52,7 @@
                        :items="cate_post['data']"
                        item-text="name"
                       item-value="id"
-                        
+
                         v-model="catePostValue"
                         :label="$t('Post.Create.form.category')"
                         :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
@@ -60,19 +60,19 @@
                         required
                       multiple
                       ></v-select>
-  
+
                         <v-select
                           v-show="tab == 0"
                       item-text="text"
                       item-value="value"
                         :items="$t('Post.status.item')"
-                      
+
                         :label="$t('Post.Create.form.status')"
 
                         outlined
                         required
                         v-model="statusValue"
-                        
+
                       ></v-select>
 
                       <vue-editor  v-show="isLaoTab" v-model="descriptionText" id="editor1" :editor-toolbar="customToolbar"  class="mb-10" ref="editor1" />
@@ -81,16 +81,16 @@
 
 
                       <div v-show="isLaoTab">
-                      
+
                         <div class="upload-image" v-if="previewImage[0] == null">
-                       
+
                         <div class="content" >
                           <i class="fas fa-plus-circle"></i>
                           <h3>{{ $t("Post.Create.form.picture") }}</h3>
                         </div>
                         <input
 
-                        
+
                           type="file"
                           class="choose-file"
                           name="upload-image"
@@ -103,32 +103,69 @@
                       <div class="image" v-else>
                           <v-carousel height="100%">
                             <v-carousel-item :key="index" v-for="(imageFiles,index) in previewImage">
-                           
+                              <div class="increase-decrease-image">
+                                <v-btn
+                                    class="mx-2"
+                                    color="primary"
+                                    dark
+                                    fab
+                                    small
+                                    @click="removeImage(index)"
+                                >
+                                  <v-icon dark>
+                                    mdi-minus
+                                  </v-icon>
+                                </v-btn>
+
+
+                                <v-btn
+                                    class="mx-2"
+                                    color="success"
+                                    dark
+                                    fab
+                                    small
+                                    @click="onIncreaseImage"
+                                >
+                                  <v-icon dark>
+                                    mdi-plus
+                                  </v-icon>
+                                </v-btn>
+                                <input
+                                    ref="uploader"
+
+                                    accept="image/*"
+                                    class="d-none"
+                                    multiple
+                                    type="file"
+                                    @change="UploadImage"
+                                />
+                              </div>
                               <v-layout row >
                                 <v-flex  :key="j" v-for="j in 1" align-self-center >
 
                                      <img class="image-files" :src="imageFiles"  >
 
                                 </v-flex>
-                               
+
                               </v-layout>
                             </v-carousel-item>
                           </v-carousel>
-                          
+
                         </div>
-                      </div>    
-                  
+                      </div>
+
                    <div v-show="isEngTab">
-                      
+
                         <div class="upload-image" v-if="previewImageEng[0] == null">
-                       
+
                         <div class="content" >
                           <i class="fas fa-plus-circle"></i>
                           <h3>{{ $t("Post.Create.form.picture") }}</h3>
                         </div>
+
                         <input
 
-                        
+
                           type="file"
                           class="choose-file"
                           name="upload-image"
@@ -141,20 +178,56 @@
                       <div class="image" v-else>
                           <v-carousel height="100%">
                             <v-carousel-item :key="index" v-for="(imageFilesEng,index) in previewImageEng">
+                              <div class="increase-decrease-image">
+                                <v-btn
+                                    class="mx-2"
+                                    color="primary"
+                                    dark
+                                    fab
+                                    small
+                                    @click="removeImageEng(index)"
+                                >
+                                  <v-icon dark>
+                                    mdi-minus
+                                  </v-icon>
+                                </v-btn>
 
+
+                                <v-btn
+                                    class="mx-2"
+                                    color="success"
+                                    dark
+                                    fab
+                                    small
+                                    @click="onIncreaseImageEng"
+                                >
+                                  <v-icon dark>
+                                    mdi-plus
+                                  </v-icon>
+                                </v-btn>
+                                <input
+                                    ref="uploaderEng"
+
+                                    accept="image/*"
+                                    class="d-none"
+                                    multiple
+                                    type="file"
+                                    @change="UploadImageEng"
+                                />
+                              </div>
                               <v-layout row >
                                 <v-flex  :key="j" v-for="j in 1" align-self-center >
 
                                      <img class="image-files" :src="imageFilesEng"  >
 
                                 </v-flex>
-                               
+
                               </v-layout>
                             </v-carousel-item>
                           </v-carousel>
-                          
+
                         </div>
-                      </div>  
+                      </div>
                     </v-form>
                     <div class="form-actions">
                       <v-btn plain @click="reset" class="mx-5">{{
@@ -207,7 +280,7 @@ export default {
     modalEnd: false,
 
       tab: null,
-  
+
       valid: true,
       customToolbar : [
         [{ 'font': [] }],
@@ -229,7 +302,7 @@ export default {
   },
 
   created(){
-  
+
     this.getPostOne({'post_id':this.$route.params.post_id}).then(res=>{
       if(res.success){
     this.loadDataToComponent(res);
@@ -251,7 +324,7 @@ export default {
   // here image is url/location of image
   const blob = await response.blob();
   const file = new File([blob], image.split('/').pop(), {type: blob.type});
- 
+
   this.uploadImage.push(file)
 },
 
@@ -260,14 +333,14 @@ export default {
   // here image is url/location of image
   const blob = await response.blob();
   const file = new File([blob], image.split('/').pop(), {type: blob.type});
- 
+
   this.uploadImageEng.push(file)
 },
 
     loadDataToComponent(res){
 
     let data = res.data;
-       
+
 
             this.postId=data.id,
       this.descriptionText=data.description,
@@ -279,15 +352,15 @@ export default {
       this.dateStart = new Date(data.startDate).toISOString().substr(0, 10),
       this.dateEnd = new Date(data.endDate).toISOString().substr(0, 10)
 
-      
+
       for(let i=0;i<data.PostImages.length;i++){
-      
+
          let url = data.PostImages[i].image;
-           this.previewImage.push(url);  
-      
+           this.previewImage.push(url);
+
            this.convertUrlToFileImage(url)
 
-   
+
       }
 
        for(let i=0;i<data.PostImageTrans.length;i++){
@@ -307,7 +380,7 @@ export default {
 
       console.log(this.catePostValue)
     },
-   
+
   checkTabLang(lang){
       console.log(lang)
       if(lang == 'ລາວ' ||lang== 'Lao'){
@@ -322,20 +395,20 @@ export default {
             console.log(this.isEngTab)
       }
     },
-  
+
 
     onIncreaseImage(){
-      
+
      this.$refs.uploader[0].click()
     },
     onIncreaseImageEng(){
-      
+
      this.$refs.uploaderEng[0].click()
     },
-   
+
 
     UploadImage(e) {
-  
+
       const img = e.target.files;
 
       for(let i = 0;i<img.length;i++){
@@ -344,7 +417,7 @@ export default {
         const reader = new FileReader();
         reader.readAsDataURL(img[i]);
        reader.onload = (e) => {
-         
+
         this.previewImage.push(e.target.result);
         console.log(this.previewImage[i]);
         }
@@ -353,7 +426,7 @@ export default {
     },
 
      UploadImageEng(e) {
-  
+
       const img = e.target.files;
 
       for(let i = 0;i<img.length;i++){
@@ -361,7 +434,7 @@ export default {
         const reader = new FileReader();
         reader.readAsDataURL(img[i]);
        reader.onload = (e) => {
-         
+
         this.previewImageEng.push(e.target.result);
         console.log(this.previewImageEng[i]);
         }
@@ -405,7 +478,7 @@ export default {
   },
 
    ...mapActions({
-    getPostOne:'Post/getPostOne', 
+    getPostOne:'Post/getPostOne',
 getCatePostAll:'CatePost/getCatePostAll',
 updatePost:'Post/updatePost'
 
@@ -414,7 +487,7 @@ updatePost:'Post/updatePost'
     computed:{
     ...mapGetters({
         cate_post:'CatePost/cate_post',
-    
+
         })
   }
 };
@@ -494,12 +567,12 @@ updatePost:'Post/updatePost'
               }
             }
             .image {
-              
+
                 max-width: 100%;
                 overflow: hidden;
                 object-fit: cover;
 
-               
+
 
                     .image-files{
                     max-width: 100%;
@@ -508,8 +581,8 @@ updatePost:'Post/updatePost'
                     margin-right: auto;
                   }
 
-                
-                  
+
+
               }
 
             .form-actions {
