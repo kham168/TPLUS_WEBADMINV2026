@@ -10,13 +10,19 @@
   "dependencies": {
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
+    "numeral": "^2.0.6",
     "socket.io": "^4.4.0",
     "socket.io-client": "^4.4.0",
     "vue": "^2.6.11",
     "vue-axios": "^3.4.0",
+    "vue-filter-number-format": "^3.0.1",
     "vue-i18n": "^8.26.3",
     "vue-i18n-bridge": "^9.2.0-beta.10",
+<<<<<<< HEAD
+    "vue-moment": "^4.1.0",
+=======
     "vue-infinite-loading": "^2.4.5",
+>>>>>>> 87ed63aac7257d33ce97e2d7d83b52cbed225d4d
     "vue-router": "^3.2.0",
     "vue2-editor": "^2.10.3",
     "vuedraggable": "^2.24.3",

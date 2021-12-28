@@ -1148,5 +1148,42 @@
     "confirmDelete":"Are you sure?",
     "btnCancel":"Cancel",
     "btnConfirm":"Delete"
+  },
+  "Dashboard":{
+    "users":{
+      "title":"All Customers",
+      "view":"view",
+      "header":"Report data customer",
+      "search":"Search..customer",
+      "headers":[
+        {"text":"Name","value":"Customer.firstName"},
+        {"text":"Lastname","value":"Customer.surName"},
+        {"text":"Phone","value":"phone"},
+        {"text":"Status","value":"status"}
+      ]
+    },
+    "event":{
+      "title":"Activities Data Report",
+      "subtitle":"View detail",
+      "view":"View",
+      "header":"Event data report",
+      "search":"Search..data Event",
+      "submit":"Submit",
+      "reset":"Reset",
+      "headers":[
+        {"text":"No", "value":"No"},
+        {"text":"Title", "value":"title"},
+        {"text":"Description", "value":"desription"},
+        {"text":"Image", "value":"image"},
+        {"text":"From Date", "value":"startDate"},
+        {"text":"To Date", "value":"endDate"},
+        {"text":"Status", "value":"status"}
+      ]
+    },
+    "promotion":{
+      "title":"Promotions data report",
+      "subtitle":"View detail",
+      "view":"View"
+    }
   }
 }

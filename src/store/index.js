@@ -19,6 +19,7 @@ import logo from "@/store/logo"
 import position from "@/store/position"
 import permission from "@/store/permission";
 import role from "@/store/role"
+import report from '../store/report'
 
 
 Vue.use(Vuex)
@@ -113,7 +114,8 @@ export default new Vuex.Store({
         PromotionEvent,
         ChatQuestion,
         Chat,
-        Topping
+        Topping,
+        report
     },
 
 })
