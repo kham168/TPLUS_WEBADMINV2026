@@ -8,13 +8,7 @@
         <div class="lang-select-input">
 
           <div class="tab-content">
-            <v-tabs-items v-model="tab">
-              <v-tab-item
-                v-for="i in $t('CateDataPackage.Create.lang')"
-                :key="i"
-                :value="i.key"
-                
-              >
+
                 <div class="card-form">
                   <div class="form-content">
                     <v-form v-model="valid" ref="form" lazy-validation>
@@ -22,9 +16,7 @@
                       <v-text-field
 
                       v-model="cate_package_name"
-                        :rules="[
-                          $myValidator.SimpleValidate($t('Validate.required')),
-                        ]"
+
                         :label="$t('CateDataPackage.Create.form.cate_data_package_name')"
                         outlined
                         required
@@ -57,8 +49,7 @@
                     </div>
                   </div>
                 </div>
-              </v-tab-item>
-            </v-tabs-items>
+
           </div>
         </div>
       </div>
@@ -98,15 +89,15 @@ export default {
 
     loadDataToComponent(res){
       let data = res.params
- this.cate_package_id = data.id;
+ this.cate_package_id = data.cate_data_package_id;
    this.cate_package_name= data.name;
    this.description = data.description;
     },
 
 
     submitForm () {
-    this.$refs.form[0].validate();
-    if(this.$refs.form[0].validate()){
+    this.$refs.form.validate();
+    if(this.$refs.form.validate()){
     this.updateCateDataPackage({'cate_package_id':this.cate_package_id,'mainProduct':this.cate_package_name,'description':this.description})
     console.log('update successful')
     }else{
@@ -115,7 +106,7 @@ export default {
   },
    reset(){
     this.$router.back();
-    this.$refs.form[0].reset();
+    this.$refs.form.reset();
   },
 
   ...mapActions({
