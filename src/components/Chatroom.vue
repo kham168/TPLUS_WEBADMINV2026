@@ -88,10 +88,7 @@ export default {
   },
   mounted() {
     this.socket.emit("connection");
-
     console.log(this.socket);
-
-
     this.socket.on("receive_message", (message) => {
       console.log(message)
 

@@ -3,7 +3,6 @@
     <section class="role-container">
       <v-skeleton-loader
           class="mx-auto"
-
           type="table"
           :loading="loading"
           v-if="firstLoad"
