@@ -143,7 +143,7 @@ export default {
       const el = this.$refs.scrollPosition;
       if (el) {
         this.$nextTick(() => {
-          el.scrollTo(0, el.scrollHeight + 400);
+          el.scrollTo(0, el.scrollHeight + 900);
         })
 
       }
@@ -264,8 +264,6 @@ export default {
     overflow-y: auto;
     overflow-x: hidden;
     padding-bottom: 60px;
-
-
     .chat-room-left {
       flex: 1;
       height: auto;
