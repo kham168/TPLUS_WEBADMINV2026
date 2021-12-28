@@ -7,6 +7,9 @@ import Topping from "../views/Topping/topping.vue"
 import ErrorRole from "../views/layout/errorRole"
 import store from "@/store/index.js"
 import Chatroom from "../components/Chatroom";
+import ReportCustomer from "../views/report/customer.vue"
+import ReportEvent from "../views/report/event-report.vue"
+import ReportPromotion from "../views/report/promotion.vue"
 
 
 Vue.use(VueRouter)
@@ -832,6 +835,38 @@ const routes = [
 
         ]
     },
+    //  report customer
+    {
+      path:'/report-customer',
+      name:'Customer',
+      component:ReportCustomer,
+      meta:{
+        middleware: [Middleware.auth],
+        layout: "admin",  
+      }
+    },
+
+    // report event
+
+    {
+        path:'/report-event',
+        name:'Event',
+        component:ReportEvent,
+        meta:{
+          middleware: [Middleware.auth],
+          layout: "admin",  
+        }
+      },
+    //     report promotion
+      {
+        path:'/report-promotion',
+        name:'Promotion',
+        component:ReportPromotion,
+        meta:{
+          middleware: [Middleware.auth],
+          layout: "admin",  
+        }
+      },
     //jobRecruit
     // {
     //     path: "/jobRecruit",

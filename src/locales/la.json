@@ -1309,5 +1309,42 @@
     "confirmDelete":"ເຈົ້າຕ້ອງການລົບລາຍການນີ້ບໍ?",
       "btnCancel":"ຍົກເລີກ",
     "btnConfirm":"ລົບ"
+  },
+  "Dashboard":{
+    "users":{
+      "title":"ຈຳນວນລູກຄ້າທັງໝົດ",
+      "view":"ທັງໝົດ",
+      "header":"ລາຍງານຂໍ້ມູນລູກຄ້າ",
+      "search":"ຄົ້ນຫາ..ຂໍ້ມູນລູກຄ້າ",
+      "headers":[
+        {"text":"ຊື່","value":"Customer.firstName"},
+        {"text":"ນາມສະກຸນ","value":"Customer.surName"},
+        {"text":"ເບີໂທ","value":"phone"},
+        {"text":"ສະຖານະ","value":"status"}
+      ]
+    },
+    "event":{
+      "title":"ລາຍງານຂໍ້ມູນກິດຈະກຳ",
+      "subtitle":"ລາຍລະອຽດ",
+      "view":"ທັງໝົດ",
+      "header":"ລາຍງານຂໍ້ມູນ Event",
+      "search":"ຄົ້ນຫາ..ຂໍ້ມູນ Event",
+      "submit":"ສະແດງຜົນ",
+      "reset":"ຄ່າເລີ່ມຕົ້ນ",
+      "headers":[
+        {"text":"ລຳດັບ", "value":"No"},
+        {"text":"ຫົວຂໍ້", "value":"title"},
+        {"text":"ລາຍລະອຽດ", "value":"desription"},
+        {"text":"ຮູບພາບ", "value":"image"},
+        {"text":"ວັນທີໂພສດ", "value":"startDate"},
+        {"text":"ວັນທີສິ້ນສຸດ", "value":"endDate"},
+        {"text":"ສະຖານະ","value":"status"}
+      ]
+    },
+    "promotion":{
+      "title":"ລາຍງານຂໍ້ມູນໂປຣໂມຊັນ",
+      "subtitle":"ລາຍລະອຽດ",
+      "view":"ທັງໝົດ"
+    }
   }
 }
