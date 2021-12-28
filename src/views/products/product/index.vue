@@ -40,8 +40,14 @@
           <!-- table content -->
           <template v-slot:item="{ item, index }">
             <tr class="table-content" v-if="isLaoLanguage">
+
               <td>{{ index + 1 }}</td>
-                <td><v-img :src="item.ProductImages[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
+
+                <td>
+                  <div v-for="element in item.ProductImages">
+                    <v-img :src="element.image" alt="preview" max-height="50" max-width="50"></v-img>
+                  </div>
+         </td>
                  <td>{{ item.productName }}</td>
               <td ><p v-for="data in item.cateProducts" :key="data.id" >{{data.cateName}}</p></td>
           
@@ -84,16 +90,20 @@
               </td>
             </tr>
              <tr class="table-content" v-else>
+
               <td>{{ index + 1 }}</td>
-                <td><v-img :src="item.ProductImages[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
-                <td>{{ item.ProductTrans[0].productName }}</td>
+               <div v-for="element in item.ProductImages">
+                 <v-img :src="element.image" alt="preview" max-height="50" max-width="50"></v-img>
+               </div>
+
+                <td v-for="element in item.ProductTrans">{{ element.productName }}</td>
               <td ><p v-for="data in item.cateProducts" :key="data.id" >{{data.CateProductTrans[0].cateName}}</p></td>
           
            
               <td style="   max-width: 200px;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;">{{ item.description }}</td>
+        white-space: nowrap;" v-for="element in item.ProductTrans">{{ element.description }}</td>
                <td><v-btn icon @click="onShow(item.id)"> <v-icon large>
                  mdi-eye
                </v-icon></v-btn></td>

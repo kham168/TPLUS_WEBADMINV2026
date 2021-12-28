@@ -88,9 +88,10 @@
                           <i class="fas fa-plus-circle"></i>
                           <h3>{{ $t("Post.Create.form.picture") }}</h3>
                         </div>
+
                         <input
 
-                        
+
                           type="file"
                           class="choose-file"
                           name="upload-image"
@@ -103,7 +104,43 @@
                       <div class="image" v-else>
                           <v-carousel height="100%">
                             <v-carousel-item :key="index" v-for="(imageFiles,index) in previewImage">
-                           
+                              <div class="increase-decrease-image">
+                                <v-btn
+                                    class="mx-2"
+                                    color="primary"
+                                    dark
+                                    fab
+                                    small
+                                    @click="removeImage(index)"
+                                >
+                                  <v-icon dark>
+                                    mdi-minus
+                                  </v-icon>
+                                </v-btn>
+
+
+                                <v-btn
+                                    class="mx-2"
+                                    color="success"
+                                    dark
+                                    fab
+                                    small
+                                    @click="onIncreaseImage"
+                                >
+                                  <v-icon dark>
+                                    mdi-plus
+                                  </v-icon>
+                                </v-btn>
+                                <input
+                                    ref="uploader"
+
+                                    accept="image/*"
+                                    class="d-none"
+                                    multiple
+                                    type="file"
+                                    @change="UploadImage"
+                                />
+                              </div>
                               <v-layout row >
                                 <v-flex  :key="j" v-for="j in 1" align-self-center >
 
@@ -126,6 +163,7 @@
                           <i class="fas fa-plus-circle"></i>
                           <h3>{{ $t("Post.Create.form.picture") }}</h3>
                         </div>
+
                         <input
 
                         
@@ -141,7 +179,43 @@
                       <div class="image" v-else>
                           <v-carousel height="100%">
                             <v-carousel-item :key="index" v-for="(imageFilesEng,index) in previewImageEng">
+                              <div class="increase-decrease-image">
+                                <v-btn
+                                    class="mx-2"
+                                    color="primary"
+                                    dark
+                                    fab
+                                    small
+                                    @click="removeImageEng(index)"
+                                >
+                                  <v-icon dark>
+                                    mdi-minus
+                                  </v-icon>
+                                </v-btn>
 
+
+                                <v-btn
+                                    class="mx-2"
+                                    color="success"
+                                    dark
+                                    fab
+                                    small
+                                    @click="onIncreaseImageEng"
+                                >
+                                  <v-icon dark>
+                                    mdi-plus
+                                  </v-icon>
+                                </v-btn>
+                                <input
+                                    ref="uploaderEng"
+
+                                    accept="image/*"
+                                    class="d-none"
+                                    multiple
+                                    type="file"
+                                    @change="UploadImageEng"
+                                />
+                              </div>
                               <v-layout row >
                                 <v-flex  :key="j" v-for="j in 1" align-self-center >
 
