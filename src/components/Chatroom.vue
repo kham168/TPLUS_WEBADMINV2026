@@ -256,7 +256,7 @@ export default {
 
   .chat-room-content {
     width: 100%;
-    height: 420px;
+    height: 360px;
     // display: flex;
     display: block;
     overflow-y: auto;
