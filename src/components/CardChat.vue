@@ -6,7 +6,7 @@
 
 
     <div class="message-content">
-      <v-row>
+      <v-row justify="center">
         <v-col cols="12" md="12" lg="12" v-for="i in 4" :key="i" v-if="firstLoad">
           <v-card >
             <v-skeleton-loader
@@ -41,7 +41,10 @@
           </div>
           <h3 class="text-center">No Data</h3>
         </v-col>
-
+        <infinite-loading @infinite="infiniteHandler">
+          <div slot="no-more"></div>
+          <div slot="no-results"></div>
+        </infinite-loading>
       </v-row>
     </div>
   </div>
@@ -50,14 +53,19 @@
 <script>
 import {mapActions,mapGetters} from 'vuex';
 import {io} from "socket.io-client";
+import InfiniteLoading from 'vue-infinite-loading';
 export default {
   name: "CardChat",
 
+  components: {
+    InfiniteLoading,
+  },
   data(){
     return{
       firstLoad:true,
       socket:null,
       list_chat_room:[],
+      page:1,
     }
   },
   created() {
@@ -67,18 +75,20 @@ export default {
     this.socket.emit("connection");
 
     console.log(this.socket);
-    this.getChatRoomUnRead().then((res)=>{
+    this.getChatRoomUnRead({'page':this.page}).then((res)=>{
       if(res.success){
-        console.log("join")
+        this.page+=1
         this.socket.emit("join_channel","new_message_room_by_snipermonkey_2077")
 
-        for(let i=0;i<res.allChatRoom.length;i++){
-          this.list_chat_room.push(res.allChatRoom[i])
+        for(let i=0;i<res.allChatRoom.data.length;i++){
+          this.list_chat_room.push(res.allChatRoom.data[i])
         }
         this.firstLoad=false
 
       }
     });
+
+
 
     this.socket.on("new_message_by_snipermonkey_2077",(message)=>{
       console.log(message)
@@ -101,7 +111,45 @@ export default {
   },
   methods: {
 
+    infiniteHandler($state) {
 
+      this.getChatRoomUnRead({'page':this.page}).then(res=>{
+        console.log(res)
+        if (res.success) {
+
+          if(res.allChatRoom.data.length == res.allChatRoom.limit){
+
+            this.page += 1;
+
+            for(let i=0;i<res.allChatRoom.data.length;i++){
+              this.list_chat_room.push(res.allChatRoom.data[i])
+            }
+            this.firstLoad=false;
+            $state.loaded();
+          }
+          else {
+            $state.complete();
+
+          }
+
+          // if(res.allChatRoom.data.length == res.allChatRoom.limit){
+          //   this.page += 1;
+          //
+          //   for(let i=0;i<res.allChatRoom.data.length;i++){
+          //     this.list_chat_room.push(res.allChatRoom[i])
+          //   }
+          //   this.firstLoad=false;
+          //   $state.loaded();
+          // }
+          // else {
+          //   $state.complete();
+          // }
+        }
+
+
+      });
+
+    },
     toChatroom({chat_room_id,user_id,index}) {
       this.$router.push({
         name: "chatroom",

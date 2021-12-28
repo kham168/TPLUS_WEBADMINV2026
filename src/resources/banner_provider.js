@@ -41,7 +41,7 @@ class BannerProvider extends HttpRequest {
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
    // example path http://128.199.104.34:7000/this.get()
-     const {data} = await this.get('/api/v1/banner')
+     const {data} = await this.get('/api/v1/banner-order')
  
      return data
   }

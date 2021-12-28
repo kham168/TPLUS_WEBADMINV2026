@@ -18,7 +18,11 @@
         </div>
       </div>
       <div class="chat-room-content" ref="scrollPosition">
-        <v-row>
+        <v-row justify="center">
+          <infinite-loading direction="top" @infinite="infiniteHandler" >
+            <div slot="no-more"></div>
+            <div slot="no-results"></div>
+          </infinite-loading>
           <v-col cols="12" class="pa-2" v-for="(element,index) in adminMessageBox" :key="index">
             <div class="chat-room-left" v-if="element.send_by == user_id">
               <div class="show-text-message">
@@ -49,9 +53,12 @@
 <script>
 import {mapActions, mapGetters} from "vuex";
 import {io} from "socket.io-client";
-
+import InfiniteLoading from 'vue-infinite-loading';
 export default {
   name: "Chatroom",
+  components: {
+    InfiniteLoading,
+  },
   data() {
     return {
       textMessage: "",
@@ -63,6 +70,7 @@ export default {
 
       phone: '',
       channel: '',
+      page:1,
 
     }
   },
@@ -97,17 +105,19 @@ export default {
 
     this.getChatRoomOne({'chat_room_id': this.$route.params.chat_room_id}).then(res => {
       console.log(res)
+      this.page += 1;
       this.channel = res.channel;
       this.phone = res.chat_room_data.User.phone;
       this.socket.emit("join_channel", res.channel)
       for (let i = 0; i < res['messages'].data.length; i++) {
         try {
-          this.adminMessageBox.push(res['messages'].data[i])
+          this.adminMessageBox.unshift(res['messages'].data[i])
 
         } catch (e) {
           console.log(e)
         }
       }
+      this.scrollToBottom()
     });
   },
   methods: {
@@ -148,6 +158,39 @@ export default {
     //   this.resetTextMessage();
     //   this.scrollToBottom();
     // },
+
+    infiniteHandler($state) {
+      this.getChatRoomOne({'chat_room_id': this.$route.params.chat_room_id,'page':this.page}).then(res=>{
+        console.log(res)
+        if (res.success) {
+
+          if(res.messages.data.length == res.messages.limit){
+
+            this.page += 1;
+
+
+            for (let i = 0; i < res['messages'].data.length; i++) {
+              try {
+                this.adminMessageBox.unshift(res['messages'].data[i])
+
+              } catch (e) {
+                console.log(e)
+              }
+            }
+            this.firstLoad=false;
+            $state.loaded();
+          }
+          else {
+            $state.complete();
+
+          }
+
+        }
+
+
+      });
+
+    },
     ...mapActions({
       getChatRoomOne: 'Chat/getChatRoomOne',
       sendMessage: 'Chat/sendMessage',

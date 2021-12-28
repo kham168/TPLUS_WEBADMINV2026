@@ -16,7 +16,7 @@
           </div>
 
           <div class="message-content">
-            <v-row>
+            <v-row justify="center">
               <v-col cols="12" md="12" lg="12" v-for="(data,index) in list_chat_room" :key="index">
                 <div class="card-message">
                   <div class="message-image">
@@ -130,14 +130,7 @@ export default {
         console.log(res)
         if (res.success) {
 
-
             if(res.allChatRoom.data.length == res.allChatRoom.limit){
-
-              // if(res.allChatRoom.currentPage==1){
-              //
-              //   this.socket.emit("join_channel","new_message_room_by_snipermonkey_2077")
-              //
-              // }
 
               this.page += 1;
 

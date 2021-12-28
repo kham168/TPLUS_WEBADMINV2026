@@ -46,11 +46,11 @@ class HttpRequest {
         })
        }, 300);
 
-        if(response.message=="Updated order banner successfully"){
+        if(response.data.message=="Updated order banner successfully"){
 
         }else if(response.config.url == `/api/v1/admin/chat/${response.data.message.chat_room_id}`) {
 
-        }else if(response.message=="Updated new position topping successfully."){
+        }else if(response.data.message=="Updated new position topping successfully."){
 
         }
         else {

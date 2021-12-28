@@ -290,8 +290,8 @@ export default {
           'questionEng':this.questionEng,
           'answer':this.answer,
           'answerEng':this.answerEng,
-          'image':this.uploadImage,
-          'imageEng':this.uploadImageEng
+          'image':this.previewImage,
+          'imageEng':this.previewImageEng
 
         })
 
