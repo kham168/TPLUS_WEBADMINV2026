@@ -261,11 +261,12 @@ export default {
 
   .chat-room-content {
     width: 100%;
-    height: 400px;
+    height: 420px;
    // display: flex;
     display: block;
     overflow-y: auto;
     overflow-x: hidden;
+    padding-bottom: 60px;
 
 
     .chat-room-left {
