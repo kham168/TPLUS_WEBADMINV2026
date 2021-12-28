@@ -68,7 +68,7 @@
                         :items="$t('Post.status.item')"
                       
                         :label="$t('Post.Create.form.status')"
-                          multiple
+
                         outlined
                         required
                         v-model="statusValue"

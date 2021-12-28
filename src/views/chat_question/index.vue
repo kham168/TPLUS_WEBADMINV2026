@@ -178,6 +178,7 @@ export default {
 
   mounted() {
     this.getChatBaseQuestion().then((res)=>{
+      console.log(res)
       if(res.success){
         this.firstLoad=false;
       }

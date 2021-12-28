@@ -24,7 +24,7 @@
                       ></v-text-field>
 
                       <v-textarea
-
+                          :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
                           v-model="description"
                           outlined
                           :label="$t('CateDataPackage.Create.form.description')"
@@ -91,8 +91,8 @@ export default {
  //    },
 
     submitForm () {
-    this.$refs.form[0].validate();
-   if(  this.$refs.form[0].validate()){
+    this.$refs.form.validate();
+   if(  this.$refs.form.validate()){
  
       this.createCateDataPackage({'mainProduct':this.cateName,'description':this.description});
     

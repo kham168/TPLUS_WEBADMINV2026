@@ -15,9 +15,28 @@
             <h3>Client Message <span><i class="far fa-comment-alt-lines"></i></span></h3>
           </div>
 
+
+            <div class="search ml-5 mt-5">
+              <v-row>
+                <v-col cols="6">
+                  <v-text-field
+                      placeholder="Search"
+                      filled
+                      rounded
+                      dense
+                      append-icon="fas fa-search"
+                      v-model="searchText"
+                      @input="Search"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+
+            </div>
+
+
           <div class="message-content">
-            <v-row>
-              <v-col cols="12" md="12" lg="12" v-for="(data,index) in list_chat_room" :key="index">
+            <v-row justify="center">
+              <v-col cols="12" md="12" lg="12" v-for="(data,index) in searchText==''? list_chat_room : searchItem" :key="index">
                 <div class="card-message">
                   <div class="message-image">
                     <div class="images">
@@ -76,7 +95,8 @@ export default {
       firstLoad:true,
       socket:null,
       list_chat_room:[],
-      searchItem:'',
+      searchText:'',
+      searchItem:[],
       page: 1,
 
     }
@@ -125,19 +145,34 @@ export default {
 
   },
   methods: {
+
+    Search(e){
+      this.searchItem=[]
+
+      this.searchChatRoom({'searchText':e}).then(res=>{
+        console.log(res)
+        if (res.success) {
+
+            for(let i=0;i<res.allChatRoom.data.length;i++){
+              this.searchItem.push(res.allChatRoom.data[i])
+            }
+
+
+
+          console.log(this.searchItem)
+
+        }
+
+
+      });
+
+    },
     infiniteHandler($state) {
       this.getChatRoom({'page':this.page}).then(res=>{
         console.log(res)
         if (res.success) {
 
-
             if(res.allChatRoom.data.length == res.allChatRoom.limit){
-
-              // if(res.allChatRoom.currentPage==1){
-              //
-              //   this.socket.emit("join_channel","new_message_room_by_snipermonkey_2077")
-              //
-              // }
 
               this.page += 1;
 
@@ -152,18 +187,7 @@ export default {
 
           }
 
-          // if(res.allChatRoom.data.length == res.allChatRoom.limit){
-          //   this.page += 1;
-          //
-          //   for(let i=0;i<res.allChatRoom.data.length;i++){
-          //     this.list_chat_room.push(res.allChatRoom[i])
-          //   }
-          //   this.firstLoad=false;
-          //   $state.loaded();
-          // }
-          // else {
-          //   $state.complete();
-          // }
+
         }
 
 
@@ -179,7 +203,8 @@ export default {
     },
 
     ...mapActions({
-      getChatRoom:'Chat/getChatRoom'
+      getChatRoom:'Chat/getChatRoom',
+      searchChatRoom:'Chat/searchChatRoom'
     }),
 
 

@@ -106,6 +106,7 @@
               <td>{{ item.banName }}</td>
               <td>{{ item.link }}</td>
               <td class="text-limit">{{ item.description }}</td>
+
               <td><v-btn icon @click="onShow(item.id)"> <v-icon large>
                 mdi-eye
               </v-icon></v-btn></td>
@@ -162,6 +163,7 @@
               <td>{{ item.BannerTrans[0].banName }}</td>
               <td>{{ item.BannerTrans[0].link }}</td>
               <td class="text-limit">{{ item.BannerTrans[0].description }}</td>
+
                 <td><v-btn icon @click="onShow(item.id)"> <v-icon large>
                   mdi-eye
                 </v-icon></v-btn></td>

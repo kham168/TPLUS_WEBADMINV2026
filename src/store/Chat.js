@@ -42,14 +42,19 @@ const mutations={
 
 const actions={
 
-    async getChatRoomOne ({commit},{chat_room_id}) {
-        const data = await chatProvider.getChatRoomOne({'chat_room_id':chat_room_id})
+    async searchChatRoom ({commit},{searchText}) {
+        const data = await chatProvider.searchChatRoom({'searchText':searchText})
+        return data
+    },
+
+    async getChatRoomOne ({commit},{chat_room_id,page}) {
+        const data = await chatProvider.getChatRoomOne({'chat_room_id':chat_room_id,'page':page})
 
         commit('SET_CHAT_ROOM_ONE', data)
         return data
     },
-    async getChatRoomUnRead ({commit}) {
-        const data = await chatProvider.getChatRoomUnRead()
+    async getChatRoomUnRead ({commit},{page}) {
+        const data = await chatProvider.getChatRoomUnRead({'page':page})
 
         commit('SET_CHAT_ROOM_UNREAD', data)
         return data

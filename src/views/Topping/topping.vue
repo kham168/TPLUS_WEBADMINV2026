@@ -118,9 +118,15 @@ export default {
     },
 
     ResetForm() {
-      this.selectItem1 = 1;
-      this.selectItem2 = 2;
-      this.selectItem3 = 3;
+
+      this.getTopping().then(res=>{
+        this.list = []
+        if(res.success){
+          for(let i=0;i<res['data'].length;i++){
+            this.list.push({"type":res['data'][i].type});
+          }
+        }
+      });
       // this.selectItem4 = 4;
       // this.selectItem5 = 5;
       // this.selectItem6 = 6;

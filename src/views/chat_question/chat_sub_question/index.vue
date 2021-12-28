@@ -44,7 +44,10 @@
             <tr class="table-content" v-if="isLaoLanguage">
               <td>{{ index + 1 }}</td>
               <td>{{ item.ChatQuestionTrans[0].question }}</td>
-              <td v-if="item.ChatQuestionTrans[0].answer != ''">{{ item.ChatQuestionTrans[0].answer }}</td>
+              <td v-if="item.ChatQuestionTrans[0].answer != ''">
+                <v-img max-height="60" max-width="60" :src="`${imageUrl}${item.ChatQuestionTrans[0].answer}`" v-if="item.ChatQuestionTrans[0].image_option"/>
+                <span v-else>{{item.ChatQuestionTrans[0].answer}}</span>
+              </td>
               <td v-else> <v-chip
 
                   dark
@@ -94,7 +97,11 @@
             <tr class="table-content" v-else>
               <td>{{ index + 1 }}</td>
               <td>{{ item.ChatQuestionTrans[1].question }}</td>
-              <td v-if="item.ChatQuestionTrans[1].answer != ''">{{ item.ChatQuestionTrans[1].answer }}</td>
+              <td v-if="item.ChatQuestionTrans[1].answer != ''">
+                <v-img :src="`${imageUrl}${item.ChatQuestionTrans[1].answer}`" v-if="item.ChatQuestionTrans[1].image_option"/>
+                <span v-else>{{item.ChatQuestionTrans[1].answer}}</span>
+
+              </td>
               <td v-else> <v-chip
 
                   dark
@@ -174,6 +181,7 @@ export default {
 
       searchItem: "",
       firstLoad:true,
+      imageUrl:'http://128.199.104.34:7000/images/chat-questions/',
     };
   },
 

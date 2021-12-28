@@ -1,5 +1,4 @@
 import HttpRequest from './http_request'
-const tokenAdmin = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicGhvbmUiOiI5OTk5OTk5OSIsImlhdCI6MTY0MDUzNDc4NSwiZXhwIjoxNjcyMDkyMzg1fQ.HMKkGNsNXF90BUHLbXf-NbE6tN4Mr4R9C8QOAX86VjAWBIThIzqfx11Q9_JgLKcSQxkN5-VRgoixRSJB88TCjtajuSGfl0WKkPJqbI6K4dpy5Hn70ELYDgsusgb3BwdUcNaTEehUC8bGULLJPJvywpFWsMu0hVChlpmjn9AKaxLOnpj5dl_Gr64Cvb2GkwUfG6s7mZF2rdtDVto-jj53GckFqo-NKFgdfiMFSUnwLj_F0h2EstyQgHPMyH-biCL11WbKjJKHBG_-pUpn03FgDYnLpafAhamFeYd-c3YbLBzdSdst_UOf8yHRAnkgVNt7FyVkMB3rr1UKiJwyw2dJCw'
 
 class ChatProvider extends HttpRequest {
     constructor() {
@@ -7,14 +6,24 @@ class ChatProvider extends HttpRequest {
         super('http://128.199.104.34:7000')
     }
 
-
-    async getChatRoomUnRead() {
+    async searchChatRoom({searchText}) {
 
         this.setHeader({
 
         })
 
-        const {data} = await this.get('/api/v1/admin/chat?filter=unread')
+        const {data} = await this.get('/api/v1/admin/chat?q='+searchText)
+
+        return data
+    }
+
+    async getChatRoomUnRead({page}) {
+
+        this.setHeader({
+
+        })
+
+        const {data} = await this.get('/api/v1/admin/chat?filter=unread&limit=20&page='+page)
 
         return data
     }
@@ -25,19 +34,19 @@ class ChatProvider extends HttpRequest {
 
         })
 
-        const {data} = await this.get('/api/v1/admin/chat?limit=10&page='+page)
+        const {data} = await this.get('/api/v1/admin/chat?limit=20&page='+page)
 
         return data
     }
 
-    async getChatRoomOne({chat_room_id}) {
+    async getChatRoomOne({chat_room_id,page}) {
 
         this.setHeader({
 
 
         })
 
-        const {data} = await this.get('/api/v1/admin/chat/'+chat_room_id+'?limit=100000')
+        const {data} = await this.get('/api/v1/admin/chat/'+chat_room_id+'?limit=20&page='+page)
 
         return data
     }

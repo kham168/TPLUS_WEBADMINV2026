@@ -1,13 +1,12 @@
 import HttpRequest from './http_request'
 
 
-const tokenAdmin = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicGhvbmUiOiI5OTk5OTk5OSIsImlhdCI6MTY0MDUzNDc4NSwiZXhwIjoxNjcyMDkyMzg1fQ.HMKkGNsNXF90BUHLbXf-NbE6tN4Mr4R9C8QOAX86VjAWBIThIzqfx11Q9_JgLKcSQxkN5-VRgoixRSJB88TCjtajuSGfl0WKkPJqbI6K4dpy5Hn70ELYDgsusgb3BwdUcNaTEehUC8bGULLJPJvywpFWsMu0hVChlpmjn9AKaxLOnpj5dl_Gr64Cvb2GkwUfG6s7mZF2rdtDVto-jj53GckFqo-NKFgdfiMFSUnwLj_F0h2EstyQgHPMyH-biCL11WbKjJKHBG_-pUpn03FgDYnLpafAhamFeYd-c3YbLBzdSdst_UOf8yHRAnkgVNt7FyVkMB3rr1UKiJwyw2dJCw'
 
 class ChatQuestionProvider extends HttpRequest {
     constructor() {
         // api api
         //25.10.235.85
-        super('http://25.10.235.85:7000')
+        super('http://128.199.104.34:7000')
     }
 
 
@@ -16,7 +15,7 @@ class ChatQuestionProvider extends HttpRequest {
         //Call setHeader on class HttpRequest and write common header
         //If write Header on class HttpRequest Should call like under method
         this.setHeader({
-          //  'Authorization':tokenAdmin
+
         })
         // example path http://128.199.104.34:7000/this.get()
         const {data} = await this.get('/api/v1/question/' + chat_question_id)
@@ -29,7 +28,7 @@ class ChatQuestionProvider extends HttpRequest {
         //Call setHeader on class HttpRequest and write common header
         //If write Header on class HttpRequest Should call like under method
         this.setHeader({
-          //  'Authorization':tokenClient1
+
         })
         // example path http://128.199.104.34:7000/this.get()
         const {data} = await this.get('/api/v1/question')
@@ -42,8 +41,7 @@ class ChatQuestionProvider extends HttpRequest {
         //Call setHeader on class HttpRequest and write common header
         //If write Header on class HttpRequest Should call like under method
         this.setHeaderBaseQuestion({
-           // 'Authorization':tokenClient1
-            'Authorization':tokenAdmin
+
         })
         // example path http://128.199.104.34:7000/this.get()
         const {data} = await this.get('/api/v1/baseQuestion')
@@ -56,7 +54,7 @@ class ChatQuestionProvider extends HttpRequest {
         //Call setHeader on class HttpRequest and write common header
         //If write Header on class HttpRequest Should call like under method
         this.setHeader({
-            'Authorization':tokenAdmin
+
         })
         // example path http://128.199.104.34:7000/this.get()
         const {data} = await this.get('/api/v1/baseQuestion/'+chat_question_id+'/sub')
@@ -89,7 +87,6 @@ class ChatQuestionProvider extends HttpRequest {
 
         this.setHeader({
 
-           // 'Authorization':tokenAdmin
         })
 
         console.log(image)
@@ -124,7 +121,7 @@ class ChatQuestionProvider extends HttpRequest {
 
         this.setHeader({
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization':tokenAdmin
+
         })
         const {data} = await this.create('/api/v1/question/'+chat_question_id+'/newSub', arg)
 
@@ -152,15 +149,11 @@ class ChatQuestionProvider extends HttpRequest {
                 "question": questionEng,"answer":answerEng,"languageId": "2"
             }]
         }
-        // let arg = [{
-        //     "question": question, "answer": answer, "languageId": "1","image":image
-        // }, {
-        //     "question": questionEng, "answer": answerEng, "languageId": "2","image":imageEng
-        // }]
+
 
         this.setHeader({
             'Content-Type': 'application/x-www-form-urlencoded',
-           // 'Authorization':tokenAdmin
+
         })
 
         const {data} = await this.update('/api/v1/question/' + chat_question_id, arg)
