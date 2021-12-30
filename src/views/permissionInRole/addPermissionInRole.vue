@@ -69,7 +69,6 @@ export default {
   },
 
   methods: {
-
     toggle() {
       this.$nextTick(() => {
         if (this.selectAllPermissions) {

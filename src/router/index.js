@@ -20,8 +20,9 @@ const routes = [
         name: "chatroom",
         component: Chatroom,
         meta: {
-            middleware: [Middleware.auth],
             layout: 'admin',
+            requiredAuth: true,
+            menu: "users"
         }
     },
     {
@@ -46,8 +47,9 @@ const routes = [
         name: "Dashboard",
         component: Dashboard,
         meta: {
-            middleware: [Middleware.auth],
-            layout: "admin",
+            layout: 'admin',
+            requiredAuth: true,
+            menu: "users"
         }
     },
     {
@@ -110,8 +112,9 @@ const routes = [
         path: "/post",
         component: () => import(/* webpackChunkName: "post" */ '../views/posts/post/post.vue'),
         meta: {
-            middleware: [Middleware.auth],
-            layout: 'admin'
+            layout: 'admin',
+            requiredAuth: true,
+            menu: "users"
         },
 
         children: [
@@ -150,8 +153,9 @@ const routes = [
         path: "/promotion",
         component: () => import(/* webpackChunkName: "post" */ '../views/posts/promotion/promotion.vue'),
         meta: {
-            middleware: [Middleware.auth],
-            layout: 'admin'
+            layout: 'admin',
+            requiredAuth: true,
+            menu: "users"
         },
 
         children: [
@@ -190,8 +194,9 @@ const routes = [
         path: "/event",
         component: () => import(/* webpackChunkName: "post" */ '../views/posts/event/event.vue'),
         meta: {
-            middleware: [Middleware.auth],
-            layout: 'admin'
+            layout: 'admin',
+            requiredAuth: true,
+            menu: "users"
         },
 
         children: [
@@ -230,8 +235,9 @@ const routes = [
         path: "/cate_product",
         component: () => import(/* webpackChunkName:"Cate_product" */'../views/products/cate_product/cate_product.vue'),
         meta: {
-            middleware: [Middleware.auth],
-            layout: 'admin'
+            layout: 'admin',
+            requiredAuth: true,
+            menu: "users"
         },
         children: [
             {
@@ -270,8 +276,9 @@ const routes = [
         path: "/product",
         component: () => import(/* webpackChunkName: "Product" */ '../views/products/product/Product.vue'),
         meta: {
-            middleware: [Middleware.auth],
-            layout: 'admin'
+            layout: 'admin',
+            requiredAuth: true,
+            menu: "users"
         },
 
         children: [
@@ -311,6 +318,8 @@ const routes = [
         component: () => import(/* webpackChunkName:"Logo" */'../views/logo/logo.vue'),
         meta: {
             layout: 'admin',
+            requiredAuth: true,
+            menu: "users"
         },
         children: [
             {
@@ -370,7 +379,6 @@ const routes = [
     //         },
     //     ]
     // },
-
     //User
     {
         path: "/users",
@@ -395,8 +403,9 @@ const routes = [
                 component: () => import(/* webpackChunkName:"UserCreate" */ '../components/forms/users/Create.vue'),
                 meta: {
                     layout: 'admin',
-
-                }
+                    requiredAuth: true,
+                    menu: "users"
+                },
 
             },
             {
@@ -405,6 +414,8 @@ const routes = [
                 component: () => import(/* webpackChunkName:"UserEdit" */ '../components/forms/users/Edit.vue'),
                 meta: {
                     layout: 'admin',
+                    requiredAuth: true,
+                    menu: "users"
                 }
 
             },
@@ -415,7 +426,9 @@ const routes = [
         path: "/users-role/:user_id",
         component: () => import(/* webpackChunkName: "UserRole" */ '../views/users/RoleUser/index'),
         meta: {
-            layout: 'admin'
+            layout: 'admin',
+            requiredAuth: true,
+            menu: "users"
         },
         children: [
 
@@ -435,7 +448,9 @@ const routes = [
         path: "/permission-role/:user_id",
         component: () => import(/* webpackChunkName: "UserPermission" */ '../views/users/PermissionUser/index'),
         meta: {
-            layout: 'admin'
+            layout: 'admin',
+            requiredAuth: true,
+            menu: "users"
         },
         children: [
 
@@ -455,7 +470,9 @@ const routes = [
         path: "/roles",
         component: () => import(/* webpackChunkName:"role" */ '../views/roles/role.vue'),
         meta: {
-            layout: 'admin'
+            layout: 'admin',
+            requiredAuth: true,
+            menu: "users"
         },
         children: [
             {
@@ -489,7 +506,9 @@ const routes = [
         path: "/permission",
         component: () => import(/* webpackChunkName:"permission" */ '../views/permission/permission.vue'),
         meta: {
-            layout: 'admin'
+            layout: 'admin',
+            requiredAuth: true,
+            menu: "users"
         },
 
         children: [
@@ -524,7 +543,9 @@ const routes = [
         path: "/permission-in-role/:role_id",
         component: () => import(/* webpackChunkName:"permissionInRole" */ '../views/permissionInRole/index'),
         meta: {
-            layout: 'admin'
+            layout: 'admin',
+            requiredAuth: true,
+            menu: "users"
         },
 
         children: [
@@ -533,8 +554,10 @@ const routes = [
                 name: "permissionRole.index",
                 component: () => import(/* webpackChunkName:"IndexPermissionInRole" */ '../views/permissionInRole/index.vue'),
                 meta: {
-                    layout: 'admin'
-                }
+                    layout: 'admin',
+                    requiredAuth: true,
+                    menu: "users"
+                },
             },
             // {
             //     path: "/create-permission",
@@ -551,7 +574,9 @@ const routes = [
         path: "/cate_data_package",
         component: () => import(/* webpackChunkName:"Data_package" */'../views/packages/cate_data_package/cate_data_package.vue'),
         meta: {
-            layout: 'admin'
+            layout: 'admin',
+            requiredAuth: true,
+            menu: "users"
         },
         children: [
             {
@@ -589,8 +614,9 @@ const routes = [
         path: "/data_package",
         component: () => import(/* webpackChunkName:"Data_package" */'../views/packages/data_package/data_package.vue'),
         meta: {
-            middleware: [Middleware.auth],
-            layout: 'admin'
+            layout: 'admin',
+            requiredAuth: true,
+            menu: "users"
         },
         children: [
             {
@@ -640,8 +666,9 @@ const routes = [
         path: "/banner",
         component: () => import(/* webpackChunkName:"Banner" */'../views/banner/banner.vue'),
         meta: {
-            middleware: [Middleware.auth],
-            layout: 'admin'
+            layout: 'admin',
+            requiredAuth: true,
+            menu: "users"
         },
         children: [
             {
@@ -681,8 +708,9 @@ const routes = [
         path: "/contact",
         component: () => import(/* webpackChunkName:"Contact" */'../views/contact/contact.vue'),
         meta: {
-            middleware: [Middleware.auth],
-            layout: 'admin'
+            layout: 'admin',
+            requiredAuth: true,
+            menu: "users"
         },
         children: [
             {
@@ -722,10 +750,9 @@ const routes = [
         name: "chat_list.index",
         component: () => import(/* webpackChunkName:"chat_question" */'../views/chat_list/index.vue'),
         meta: {
-            middleware: [Middleware.auth],
             layout: 'admin',
-
-
+            requiredAuth: true,
+            menu: "users"
         },
 
         // beforeRouteEnter (to, from, next) {
@@ -744,7 +771,6 @@ const routes = [
         // }
 
 
-
     },
 
     //Chat Question
@@ -752,10 +778,9 @@ const routes = [
         path: "/chat_question",
         component: () => import(/* webpackChunkName:"chat_question" */'../views/chat_question/chat_question.vue'),
         meta: {
-            middleware: [Middleware.auth],
             layout: 'admin',
-
-
+            requiredAuth: true,
+            menu: "users"
         },
         children: [
             {
@@ -799,10 +824,9 @@ const routes = [
         path: "/chat_sub_question",
         component: () => import(/* webpackChunkName:"chat_sub_question" */'../views/chat_question/chat_sub_question/chat_sub_question.vue'),
         meta: {
-            middleware: [Middleware.auth],
             layout: 'admin',
-
-
+            requiredAuth: true,
+            menu: "users"
         },
         children: [
             {
@@ -834,19 +858,19 @@ const routes = [
         name: "chat_test.index",
         component: () => import(/* webpackChunkName:"chat_sub_question index" */'../views/chat_question/chat_test/index.vue'),
         meta: {
-            middleware: [Middleware.auth],
-            layout: "admin",
-        }
+            layout: 'admin',
+            requiredAuth: true,
+            menu: "users"
+        },
     },
 
     {
         path: "/chat_test2",
         component: () => import(/* webpackChunkName:"chat_sub_question" */'../views/chat_question/chat_test2/chat_test2.vue'),
         meta: {
-            middleware: [Middleware.auth],
             layout: 'admin',
-
-
+            requiredAuth: true,
+            menu: "users"
         },
         children: [
             {
@@ -864,36 +888,39 @@ const routes = [
     },
     //  report customer
     {
-      path:'/report-customer',
-      name:'Customer',
-      component:ReportCustomer,
-      meta:{
-        middleware: [Middleware.auth],
-        layout: "admin",  
-      }
+        path: '/report-customer',
+        name: 'Customer',
+        component: ReportCustomer,
+        meta: {
+            layout: 'admin',
+            requiredAuth: true,
+            menu: "users"
+        },
     },
 
     // report event
 
     {
-        path:'/report-event',
-        name:'Event',
-        component:ReportEvent,
-        meta:{
-          middleware: [Middleware.auth],
-          layout: "admin",  
-        }
-      },
+        path: '/report-event',
+        name: 'Event',
+        component: ReportEvent,
+        meta: {
+            layout: 'admin',
+            requiredAuth: true,
+            menu: "users"
+        },
+    },
     //     report promotion
-      {
-        path:'/report-promotion',
-        name:'Promotion',
-        component:ReportPromotion,
-        meta:{
-          middleware: [Middleware.auth],
-          layout: "admin",  
-        }
-      },
+    {
+        path: '/report-promotion',
+        name: 'Promotion',
+        component: ReportPromotion,
+        meta: {
+            layout: 'admin',
+            requiredAuth: true,
+            menu: "users"
+        },
+    },
     //jobRecruit
     // {
     //     path: "/jobRecruit",
@@ -988,8 +1015,4 @@ router.beforeEach((to, from, next) => {
         next()
     }
 })
-
-
-
-
 export default router

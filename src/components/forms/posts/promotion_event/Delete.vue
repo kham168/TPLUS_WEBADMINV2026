@@ -1,24 +1,22 @@
 <template>
   <div class="modal-delete">
     <div class="delete-title">
-      <span><i class="fas fa-exclamation-circle"></i> {{$t('Modal.confirmDelete')}}</span>
+      <span><i class="fas fa-exclamation-circle"></i> {{ $t('Modal.confirmDelete') }}</span>
     </div>
     <div class="delete-btn">
       <v-btn outlined class="btn-cancel" @click="$emit('close')">
-        {{$t('Modal.btnCancel')}}
+        {{ $t('Modal.btnCancel') }}
       </v-btn>
-{{promotion_event_id}}
- <v-btn class="btn-delete" @click="deletePromotionEvent({'promotion_event_id':promotion_event_id})" >
-          {{$t('Modal.btnConfirm')}}
+      <v-btn class="btn-delete" @click="deletePromotionEvent({'promotion_event_id':promotion_event_id})">
+        {{ $t('Modal.btnConfirm') }}
       </v-btn>
-
-    
     </div>
   </div>
 </template>
 
 <script>
 import {mapActions} from 'vuex'
+
 export default {
   data() {
     return {
@@ -29,20 +27,20 @@ export default {
     promotion_event_id: {}
   },
   methods: {
-    
-      ...mapActions({
-          deletePromotionEvent:'PromotionEvent/deletePromotionEvent'
-      })
-   
+
+    ...mapActions({
+      deletePromotionEvent: 'PromotionEvent/deletePromotionEvent'
+    })
+
   }
 }
 </script>
 
 <style scoped lang="scss">
-.modal-delete{
-   max-width: 100%;
-                    display: block;
-                    margin-left: auto;
-                    margin-right: auto;
+.modal-delete {
+  max-width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>
