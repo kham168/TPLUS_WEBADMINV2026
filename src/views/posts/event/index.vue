@@ -17,7 +17,7 @@
       <div class="promotionEvent-content" v-show="!firstLoad">
         <v-data-table
             :headers="$t('PromotionEvent.table.headers')"
-            :items="event['data']"
+            :items="event['data'][0].Posts"
             :search="searchItem"
             :loading="loading"
             :loading-text="$t('PromotionEvent.loadingtext')"
@@ -41,26 +41,26 @@
           <!-- table content -->
 
           <template v-slot:item="{item , index}">
-            <tr class="table-content" v-if="isLaoLanguage" v-for="(items,indexs) in item.Posts">
-              <td>{{ indexs + 1 }}</td>
-              <td><v-img :src="items.PostImages[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
-              <td>{{ items.title }}</td>
-              <td>{{item.name}}</td>
+            <tr class="table-content" v-if="isLaoLanguage" >
+              <td>{{ index + 1 }}</td>
+              <td><v-img :src="item.PostImages[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
+              <td>{{ item.title }}</td>
+
 
               <td style="   max-width: 200px;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;" v-html="`${ items.description }`"></td>
-              <td>{{ items.startDate }}</td>
-              <td>{{ items.endDate }}</td>
+        white-space: nowrap;" v-html="`${ item.description }`"></td>
+              <td>{{ item.startDate }}</td>
+              <td>{{ item.endDate }}</td>
 
               <td> <v-chip
-                  :color="getColor( items.status)"
+                  :color="getColor( item.status)"
                   dark
               >
-                {{ items.status }}
+                {{ item.status }}
               </v-chip></td>
-              <td><v-btn icon @click="onShow(items.id)"> <v-icon large>
+              <td><v-btn icon @click="onShow(item.id)"> <v-icon large>
                 mdi-eye
               </v-icon></v-btn></td>
               <td>
@@ -72,7 +72,7 @@
                   </template>
                   <v-list>
                     <v-list-item link @click="$router.push({name:'event.edit',params:{
-                   'promotion_event_id':items.id,
+                   'promotion_event_id':item.id,
       }}).catch(()=>{})">
                       <v-list-item-icon>
                         <v-icon class="mr-3" small>{{$t('PromotionEvent.table.options.iconEdit')}}</v-icon>
@@ -81,7 +81,7 @@
                         </v-list-item-title>
                       </v-list-item-icon>
                     </v-list-item>
-                    <v-list-item link @click="onDelete(items.id)">
+                    <v-list-item link @click="onDelete(item.id)">
                       <v-list-item-icon>
                         <v-icon class="mr-3" small>{{$t('Post.table.options.delicon')}}</v-icon>
                         <v-list-item-title>
@@ -93,25 +93,25 @@
                 </v-menu>
               </td>
             </tr>
-            <tr class="table-content" v-else v-for="(items,indexs) in item.Posts">
-              <td>{{ indexs + 1 }}</td>
-              <td><v-img :src="items.PostImageTrans[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
-              <td>{{ items.PostTrans[0].title }}</td>
-              <td>{{ item.PostTypesTrans[0].name }}</td>
+            <tr class="table-content" v-else >
+              <td>{{ index + 1 }}</td>
+              <td><v-img :src="item.PostImageTrans[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
+              <td>{{ item.PostTrans[0].title }}</td>
+
               <td style="   max-width: 200px;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;" v-html="`${ items.PostTrans[0].description }`"></td>
-              <td>{{ items.startDate }}</td>
-              <td>{{ items.endDate }}</td>
+        white-space: nowrap;" v-html="`${ item.PostTrans[0].description }`"></td>
+              <td>{{ item.startDate }}</td>
+              <td>{{ item.endDate }}</td>
               <td> <v-chip
-                  :color="getColor( items.status)"
+                  :color="getColor( item.status)"
                   dark
               >
-                {{ items.status }}
+                {{ item.status }}
               </v-chip></td>
 
-              <td><v-btn icon @click="onShow(items.id)"> <v-icon large>
+              <td><v-btn icon @click="onShow(item.id)"> <v-icon large>
                 mdi-eye
               </v-icon></v-btn></td>
               <td>
@@ -123,7 +123,7 @@
                   </template>
                   <v-list>
                     <v-list-item link @click="$router.push({name:'event.edit',params:{
-                   'promotion_event_id':items.id,
+                   'promotion_event_id':item.id,
       }}).catch(()=>{})">
                       <v-list-item-icon>
                         <v-icon class="mr-3" small>{{$t('PromotionEvent.table.options.iconEdit')}}</v-icon>
@@ -132,7 +132,7 @@
                         </v-list-item-title>
                       </v-list-item-icon>
                     </v-list-item>
-                    <v-list-item link @click="onDelete(items.id)">
+                    <v-list-item link @click="onDelete(item.id)">
                       <v-list-item-icon>
                         <v-icon class="mr-3" small>{{$t('PromotionEvent.table.options.delicon')}}</v-icon>
                         <v-list-item-title>
