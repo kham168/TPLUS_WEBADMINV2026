@@ -6,7 +6,7 @@ import HttpRequest from './http_request'
 class PostProvider extends HttpRequest {
   constructor () {
     // api api
-    super('http://128.199.104.34:7000')
+    super('http://172.28.26.82:7001')
   }
 
 
@@ -16,7 +16,7 @@ class PostProvider extends HttpRequest {
     //Call setHeader on class HttpRequest and write common header
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
-   // example path http://128.199.104.34:7000/this.get()
+   // example path http://172.28.26.82:7001/this.get()
 
 
      const {data} = await this.get('/api/v1/posts/'+post_id)
@@ -29,7 +29,7 @@ class PostProvider extends HttpRequest {
     //Call setHeader on class HttpRequest and write common header
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
-   // example path http://128.199.104.34:7000/this.get()
+   // example path http://172.28.26.82:7001/this.get()
      const {data} = await this.get('/api/v1/posts-news')
 
      return data
@@ -141,7 +141,7 @@ class PostProvider extends HttpRequest {
  
     this.setHeader({})
 
-   // example path http://128.199.104.34:7000/this.get()
+   // example path http://172.28.26.82:7001/this.get()
     const {data} = await this.delete('/api/v1/posts/'+post_id)
   
     return data
