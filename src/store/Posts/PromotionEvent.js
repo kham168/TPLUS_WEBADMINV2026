@@ -36,15 +36,15 @@ const actions={
     async getEvent ({commit}) {
         const data = await promotionEventService.getEvent()
 
-        commit('SET_EVENT', data)
+        commit('SET_EVENT', data.data[0])
 
         return data
     },
 
     async getPromotion ({commit}) {
         const data = await promotionEventService.getPromotion()
-  
-        commit('SET_PROMOTION_EVENT', data)
+  console.log(data.data[0])
+        commit('SET_PROMOTION_EVENT', data.data[0])
 
         return data
       },
