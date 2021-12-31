@@ -88,7 +88,7 @@
     "subtitle": [
       {
         "icon": "fas fa-gifts",
-        "text": "ປະເພດແພັດເກັດ",
+        "text": "ປະເພດຊິມ",
         "router": "/cate_data_package"
       },
       {
@@ -619,7 +619,6 @@
         { "text": "ລຳດັບ", "value": "No", "sortable": true },
         { "text": "ຮູບ", "value": "image", "sortable": true },
         { "text": "ຫົວຂໍ້", "value": "title", "sortable": true },
-        { "text": "ປະເພດຂອງໂພສ", "value": "postTypeId", "sortable": true },
         { "text": "ລາຍລະອຽດ", "value": "description", "sortable": true },
         { "text": "ເວລາເປີດ", "value": "startDate", "sortable": true },
         { "text": "ເວລາປິດ", "value": "endDate", "sortable": true },
@@ -752,9 +751,9 @@
 
   },
   "CateDataPackage": {
-    "title": "ຂໍ້ມູນປະເພດຂອງແພັກເກັດ",
+    "title": "ຂໍ້ມູນປະເພດຊິມ",
     "button": "ເພີ່ມ",
-    "txtsearch": "ຄົ້ນຫາປະເພດຂອງແພັກເກັດ",
+    "txtsearch": "ຄົ້ນຫາປະເພດຊິມ",
     "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
@@ -788,7 +787,7 @@
       }
     },
     "Create": {
-      "header": "ເພີ່ມຂໍ້ມູນປະເພດຂອງແພັກເກັດ",
+      "header": "ເພີ່ມຂໍ້ມູນປະເພດຊິມ",
       "lang": {
         "lao": "ລາວ",
         "Eng": "ອັງກິດ"
@@ -803,7 +802,7 @@
       }
     },
     "Edit": {
-      "header": "ແກ້ໄຂຂໍ້ມູນປະເພດຂອງແພັກເກັດ"
+      "header": "ແກ້ໄຂຂໍ້ມູນປະເພດຊິມ"
     }
   },
   "DataPackage": {

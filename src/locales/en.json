@@ -90,7 +90,7 @@
     "subtitle": [
       {
         "icon": "fas fa-gifts",
-        "text": "Category Data Package",
+        "text": "Sim Type",
         "router": "/cate_data_package"
       },
       {
@@ -575,7 +575,7 @@
         { "text": "No", "value": "No", "sortable": true },
         { "text": "Pictures", "value": "PostImageTrans[0].image", "sortable": true },
         { "text": "title", "value": "PostTrans[0].title", "sortable": true },
-        { "text": "Category", "value": "PostTypesTrans[0].name", "sortable": true },
+
         { "text": "Description", "value": "PostTrans[0].description", "sortable": true },
         { "text": "Start Date", "value": "startDate", "sortable": true },
         { "text": "End Date", "value": "endDate", "sortable": true },
@@ -707,9 +707,9 @@
     }
   },
   "CateDataPackage": {
-    "title": "Category Data Package",
+    "title": "Sim Type",
     "button": "Create",
-    "txtsearch": "Search Category Data Package",
+    "txtsearch": "Search Sim Type",
     "loadingtext":"Loading...",
     "table": {
       "headers": [
@@ -726,14 +726,14 @@
       }
     },
     "Create":{
-      "header":"Add Category Data Package",
+      "header":"Add Sim Type",
       "lang":{
         "lao":"Lao",
         "Eng":"English"
       },
       "form":{
 
-        "cate_data_package_name":"Category Data Package Name",
+        "cate_data_package_name":"Sim Type",
         "description":"Description",
 
         "button":{
@@ -743,7 +743,7 @@
       }
     },
     "Edit":{
-      "header":"Edit Category Data Package"
+      "header":"Edit Sim Type"
     }
 
   },
