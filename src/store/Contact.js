@@ -5,6 +5,11 @@ const contactProvider = new ContactProvider()
 const state={
     contact:{},
     contact_one:{},
+    CreateModal:false,
+    EditModal:false,
+    DeleteModal:false,
+    dataEdit:{},
+    title_id:null,
 
 
 }
@@ -12,6 +17,12 @@ const state={
 const getters={
     contact:state=>state.contact,
     contact_one:state=>state.contact_one,
+    getCreateModal: state => state.CreateModal,
+    getEditModal: state => state.EditModal,
+    getDeleteModal: state => state.DeleteModal,
+    Edits: state => state.dataEdit,
+    getTitle_id : state => state.title_id
+
 
 
 }
@@ -29,6 +40,18 @@ const mutations={
     SET_IS_LOADING(state,data){
       state.isLoading = data;
     },
+
+    isCreateModal(state){
+      state.CreateModal = !state.CreateModal
+    },
+    isEditModal(state,data){
+      state.EditModal = !state.EditModal
+      state.dataEdit = data
+    },
+    isDeleteModal(state,id){
+      state.DeleteModal = !state.DeleteModal
+      state.title_id = id
+    }
 
 
 }

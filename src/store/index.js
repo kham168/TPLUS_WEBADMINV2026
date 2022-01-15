@@ -51,7 +51,10 @@ export default new Vuex.Store({
             users: {
                 roles: ["super-admin", "admin","Employee"]
             }
-        }
+        },
+
+        // Modal Call  abroad
+        DeleteCallAbroadModal:false
     },
     mutations: {
         IncrementRole(state) {
@@ -84,6 +87,9 @@ export default new Vuex.Store({
         },
         modalShow_State(state, value) {
             state.modalShowState = value;
+        },
+        isDeleteCallAbroadModal(state){
+         state.DeleteCallAbroadModal = !state.DeleteCallAbroadModal
         }
 
     },
