@@ -16,17 +16,33 @@
       "router": "/banner"
     },
     {
-      "icon": "fas fa-id-card",
-      "text": "ຂໍ້ມູນຕິດຕໍ່",
-      "router": "/contact"
-    },
-    {
       "icon": "fas fa-border-top",
       "text": "Topping",
       "router": "/topping"
+    },
+    {
+      "icon": "fas fa-phone-office",
+      "text": "ໂທອອກຕ່າງປະເທດ",
+      "router": "/call-abroad"
     }
 
   ],
+  "Contactmenus": {
+    "title": "ຂໍ້ມູນຕິດຕໍ່",
+    "subtitle": [
+      {
+        "icon": "fas fa-id-card",
+        "text": "ຂໍ້ມູນຕິດຕໍ່",
+        "router": "/contact"
+      },
+      {
+        "icon": "fas fa-plus-circle",
+        "text": "ເພີ່ມຫົວຂໍ້ຕິດຕໍ່",
+        "router": "/add-title"
+      }
+
+    ]
+  },
   "Chatmenu": {
     "title": "ແຊັດ",
     "subtitle": [
@@ -141,6 +157,36 @@
     "button": "ເພີ່ມ",
     "txtsearch": "ຄົ້ນຫາຂໍ້ມູນຕິດຕໍ່",
     "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
+    "Add-title-contact":{
+     "title":"ຂໍ້ມູນຫົວຂໍ້ຕິດຕໍ່",
+     "lao":"ລາວ",
+      "english":"ອັງກິດ",
+     "form":{
+       "title":"ເພີ່ມຫົວຂໍ້ຕິດຕໍ່",
+       "editTitle":"ແກ້ໄຂຫົວຂໍ້ຕິດຕໍ່",
+       "deleteTitle":"ລົບຫົວຂໍ້ຕິດຕໍ່",
+       "label":"ເພີ່ມຫົວຂໍ້"
+     },
+     "table":{
+       "headers":[
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": true
+        },
+        {
+          "text": "ຫົວຂໍ້ຕິດຕໍ່",
+          "value": "title",
+          "sortable": true
+        },
+        {
+          "text": "ຈັດການ",
+          "value": "actions",
+          "sortable": false
+        }
+       ]
+     }
+    },
     "table": {
       "headers": [
         {
@@ -1383,6 +1429,66 @@
       "title":"ລາຍງານຂໍ້ມູນໂປຣໂມຊັນ",
       "subtitle":"ລາຍລະອຽດ",
       "view":"ທັງໝົດ"
+    }
+  },
+  "Call-Abroad":{
+    "title":"ຂໍ້ມູນໂທອອກຕ່າງປະເທດ",
+    "table":{
+      "headers":[
+        {
+          "text":"ລຳດັບ",
+          "value":"No",
+          "sortable":true
+        },
+        {
+          "text":"ປະເທດ",
+          "value":"Country",
+          "sortable":false
+        },
+        {
+          "text":"ລະຫັດປະເທດ",
+          "value":"CountryCode",
+          "sortable":false
+        },
+        {
+          "text":"ເຂດ",
+          "value":"Zone",
+          "sortable":true
+        },
+        {
+          "text":"ມູນຄ່າໂທ/ນາທີ",
+          "value":"Price",
+          "sortable":true
+        },
+        {
+          "text":"ຈັດການ",
+          "value":"Actions",
+          "sortable":false
+        }
+      ]
+    },
+    "Create":{
+      "title":"ເພີ່ມຂໍ້ມູນ"
+    },
+    "Edit":{
+      "title":"ແກ້ໄຂຂໍ້ມູນ"
+    },
+    "Delete":{
+      "title":"ລົບຂໍ້ມູນປະເທດ"
+    },
+    "form":{
+      "countrylao":"ຊື່ປະເທດ (ພາສາລາວ)",
+      "countryeng":"ຊື່ປະເທດ (ພາສາອັງກິດ)",
+      "countryCode":"ລະຫັດປະເທດ",
+      "zone":"ເຂດ",
+      "price":"ມູນຄ່າໂທ",
+      "lao":"ລາວ",
+      "english":"ອັງກິດ"
+    },
+    "options":{
+      "save":"ບັນທຶກ",
+      "cancel":"ຍົກເລີກ",
+      "delete":"ລົບຂໍ້ມູນ"
     }
   }
 }
