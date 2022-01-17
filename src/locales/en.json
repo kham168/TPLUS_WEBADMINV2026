@@ -69,7 +69,7 @@
       },
       {
         "icon": "far fa-newspaper",
-        "text": "Post",
+        "text": "News",
         "router": "/post"
       },
       {
@@ -556,9 +556,9 @@
 
   },
   "Post": {
-    "title": "Post Data",
+    "title": "News Data",
     "button": "Create",
-    "txtsearch": "Search Post",
+    "txtsearch": "Search newa",
     "loadingtext": "Loading...",
     "table": {
       "headers": [
@@ -579,14 +579,14 @@
     },
 
     "Create": {
-      "header": "Add Post",
+      "header": "Add News",
       "lang": {
         "lao": "Lao",
         "Eng": "English"
       },
       "form": {
         "category": "Categories",
-        "post_name": "Post Name",
+        "post_name": "News Name",
         "description": "Description",
         "picture": "Upload Image",
         "start_date":"Start Date",
@@ -1233,6 +1233,7 @@
   },
   "Call-Abroad":{
     "title":"Call Abroad Data",
+    "search":"Search...",
     "table":{
       "headers":[
         {
@@ -1241,23 +1242,23 @@
           "sortable":true
         },
         {
-          "text":"Country",
-          "value":"Country",
+          "text":"Country Name",
+          "value":"countryName_en",
           "sortable":false
         },
         {
           "text":"Country Code",
-          "value":"CountryCode",
+          "value":"code",
           "sortable":false
         },
         {
           "text":"Zone",
-          "value":"Zone",
+          "value":"zoneName_la",
           "sortable":true
         },
         {
-          "text":"Price /minus",
-          "value":"Price",
+          "text":"Price /minus (LAK)",
+          "value":"price_minute",
           "sortable":true
         },
         {

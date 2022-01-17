@@ -18,11 +18,11 @@
         <v-divider></v-divider>
 
         <v-card-actions>
-          <v-btn text @click="$store.commit('isDeleteCallAbroadModal')">
+          <v-btn text @click="$store.commit('isDeleteCallAbroadModal','')">
             {{ $t("Call-Abroad.options.cancel") }}
           </v-btn>
           <v-spacer></v-spacer>
-          <v-btn color="yellow" >
+          <v-btn @click.prevent="onDeleteDataCall" :loading="isLoading" color="yellow" >
             {{ $t("Call-Abroad.options.delete") }}
           </v-btn>
         </v-card-actions>
@@ -35,7 +35,7 @@
 export default {
   data() {
     return {
-     
+      isLoading:false,
     };
   },
   computed: {
@@ -43,6 +43,32 @@ export default {
          return this.$store.state.DeleteCallAbroadModal
      }
   
+  },
+  methods: {
+   async onDeleteDataCall(){
+     this.isLoading = true;
+     await this.$axios.delete(`internationCalls/${this.$store.getters.getCallAbroadId}`).then((res)=>{
+       if(res.status == 200){
+        this.$store.dispatch({
+              type: "action_Notifi_Success",
+              message: this.$t("Notification.delDataSuccess"),
+            });
+            setTimeout(() => {
+              window.location.reload();
+            }, 300);
+       }
+       this.isLoading = false;
+       this.$store.commit('isDeleteCallAbroadModal','')
+     }).catch((error)=>{
+       this.isLoading = false;
+        setTimeout(() => {
+            this.$store.dispatch({
+              type: "action_Notifi_Error",
+              message: `${error.response.data.error.message}`
+            })
+          }, 300);
+     })
+   }
   },
 };
 </script>

@@ -1433,6 +1433,7 @@
   },
   "Call-Abroad":{
     "title":"ຂໍ້ມູນໂທອອກຕ່າງປະເທດ",
+    "search":"ຄົ້ນຫາ...",
     "table":{
       "headers":[
         {
@@ -1441,23 +1442,23 @@
           "sortable":true
         },
         {
-          "text":"ປະເທດ",
-          "value":"Country",
+          "text":"ຊື່ປະເທດ",
+          "value":"countryName_la",
           "sortable":false
         },
         {
           "text":"ລະຫັດປະເທດ",
-          "value":"CountryCode",
+          "value":"code",
           "sortable":false
         },
         {
           "text":"ເຂດ",
-          "value":"Zone",
+          "value":"zoneName_la",
           "sortable":true
         },
         {
-          "text":"ມູນຄ່າໂທ/ນາທີ",
-          "value":"Price",
+          "text":"ມູນຄ່າໂທ/ນາທີ (LAK)",
+          "value":"price_minute",
           "sortable":true
         },
         {

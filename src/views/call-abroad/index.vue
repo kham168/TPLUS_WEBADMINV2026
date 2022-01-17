@@ -15,15 +15,15 @@
       <div class="contact-content">
         <v-data-table
           :headers="$t('Call-Abroad.table.headers')"
-          :items="data"
+          :items="dataCall"
           :search="searchItem"
           :loading-text="$t('Contact.loadingtext')"
-          v-if="data"
+          v-if="dataCall.length > 0"
         >
           <template v-slot:top>
             <v-toolbar flat>
               <v-text-field
-                :label="$t('Contact.txtsearch')"
+                :label="$t('Call-Abroad.search')"
                 filled
                 rounded
                 dense
@@ -39,10 +39,14 @@
           <template v-slot:item="{ item, index }">
             <tr class="table-content">
               <td>{{ index + 1 }}</td>
-              <td>{{ item.Country }}</td>
-              <td>{{ item.CountryCode }}</td>
-              <td>{{ item.Zone }}</td>
-              <td>{{ item.Price }}</td>
+              <td v-if="!item.countryName_en">{{ item.countryName_la }}</td>
+              <td v-if="item.countryName_en">{{ item.countryName_en }}</td>
+              <td>{{ item.code }}</td>
+              <td v-if=" !item.Zones.zoneName_en">{{ item.Zones.zoneName_la }}</td>
+              <td v-if="item.Zones.zoneName_en">
+                {{ item.Zones.zoneName_en }}
+              </td>
+              <td>{{ item.price_minute }}</td>
               <td>
                 <v-menu offset-y>
                   <template v-slot:activator="{ on, attrs }">
@@ -51,7 +55,7 @@
                     </v-btn>
                   </template>
                   <v-list>
-                    <v-list-item link @click="onEdit">
+                    <v-list-item link @click="onEdit(item.id)">
                       <v-list-item-icon>
                         <v-icon class="mr-3" small>{{
                           $t("Contact.table.options.iconEdit")
@@ -61,7 +65,7 @@
                         </v-list-item-title>
                       </v-list-item-icon>
                     </v-list-item>
-                    <v-list-item link @click="onDelete">
+                    <v-list-item link @click="onDelete(item.id)">
                       <v-list-item-icon>
                         <v-icon class="mr-3" small>{{
                           $t("Contact.table.options.delicon")
@@ -85,36 +89,57 @@
         </div>
       </div>
     </section>
-    <DeleteModal/>
+    <DeleteModal />
   </div>
 </template>
 <script>
-import DeleteModal from "../../components/forms/call-abroad/Delete.vue"
+import DeleteModal from "../../components/forms/call-abroad/Delete.vue";
 export default {
   components: { DeleteModal },
   data() {
     return {
-        Loader:false,
-        data:[
-            {No:1,Country:'ThaiLand',CountryCode:'22',Zone:'I',Price:"2000"},
-            {No:2,Country:'ThaiLand',CountryCode:'22',Zone:'I',Price:"2000"},
-            {No:3,Country:'ThaiLand',CountryCode:'22',Zone:'I',Price:"2000"},
-            {No:4,Country:'ThaiLand',CountryCode:'22',Zone:'I',Price:"2000"},
-            {No:5,Country:'ThaiLand',CountryCode:'22',Zone:'I',Price:"2000"},
-
-        ]
+      Loader: false,
+      dataCall: [],
+      searchItem: null,
     };
   },
   methods: {
-     onCreate(){
-         this.$router.push({name:'call-abroad.create'}).catch({})
-     },
-     onEdit(){
-        this.$router.push({name:'call-abroad.edit',params:{id:1}}).catch({}) 
-     },
-     onDelete(){
-         this.$store.commit('isDeleteCallAbroadModal')
-     } 
+    onCreate() {
+      this.$router.push({ name: "call-abroad.create" }).catch({});
+    },
+    onEdit(id) {
+      console.log(id);
+      this.$router
+        .push({ name: "call-abroad.edit", params: { id: id } })
+        .catch({});
+    },
+    onDelete(id) {
+      this.$store.commit("isDeleteCallAbroadModal",id);
+    },
+    async fetchDataCall() {
+      this.Loader = true;
+      await this.$axios
+        .get("internationCalls")
+        .then((res) => {
+          if (res.status == 200) {
+            this.dataCall = res.data.data;
+          }
+          this.Loader = false;
+        })
+        .catch((error) => {
+          this.Loader = false;
+          setTimeout(() => {
+            this.$store.dispatch({
+              type: "action_Notifi_Error",
+              message: `${error.response.data.error.message}`,
+            });
+          }, 300);
+        });
+    },
+  },
+
+  created() {
+    this.fetchDataCall();
   },
 };
 </script>
