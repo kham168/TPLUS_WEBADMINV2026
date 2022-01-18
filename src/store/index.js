@@ -54,7 +54,11 @@ export default new Vuex.Store({
         },
 
         // Modal Call  abroad
-        DeleteCallAbroadModal:false
+        DeleteCallAbroadModal:false,
+        CallAbroadId:null,
+    },
+    getters:{
+     getCallAbroadId: state => state.CallAbroadId
     },
     mutations: {
         IncrementRole(state) {
@@ -88,8 +92,9 @@ export default new Vuex.Store({
         modalShow_State(state, value) {
             state.modalShowState = value;
         },
-        isDeleteCallAbroadModal(state){
+        isDeleteCallAbroadModal(state,id){
          state.DeleteCallAbroadModal = !state.DeleteCallAbroadModal
+         state.CallAbroadId = id
         }
 
     },
