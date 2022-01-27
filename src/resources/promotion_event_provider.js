@@ -6,7 +6,7 @@ import HttpRequest from './http_request'
 class PromotionEventProvider extends HttpRequest {
   constructor () {
     // api api
-    super('http://128.199.104.34:7000')
+    super('http://172.28.26.82:7001')
   }
 
   async getEvent () {
@@ -14,7 +14,7 @@ class PromotionEventProvider extends HttpRequest {
     //Call setHeader on class HttpRequest and write common header
     //If write Header on class HttpRequest Should call like under method
     this.setHeader({})
-    // example path http://128.199.104.34:7000/this.get()
+    // example path http://172.28.26.82:7001/this.get()
     const {data} = await this.get('/api/v1/posts-event')
 
     return data
@@ -25,7 +25,7 @@ class PromotionEventProvider extends HttpRequest {
     //Call setHeader on class HttpRequest and write common header
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
-   // example path http://128.199.104.34:7000/this.get()
+   // example path http://172.28.26.82:7001/this.get()
      const {data} = await this.get('/api/v1/posts/'+promotion_event_id)
 
      return data
@@ -36,7 +36,7 @@ class PromotionEventProvider extends HttpRequest {
     //Call setHeader on class HttpRequest and write common header
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
-   // example path http://128.199.104.34:7000/this.get()
+   // example path http://172.28.26.82:7001/this.get()
      const {data} = await this.get('/api/v1/posts-promotion')
 
      return data
@@ -148,7 +148,7 @@ class PromotionEventProvider extends HttpRequest {
  
     this.setHeader({})
 
-   // example path http://128.199.104.34:7000/this.get()
+   // example path http://172.28.26.82:7001/this.get()
     const {data} = await this.delete('/api/v1/posts/'+promotion_event_id)
   
     return data

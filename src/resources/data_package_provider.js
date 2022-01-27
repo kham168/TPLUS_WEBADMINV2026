@@ -6,7 +6,7 @@ import HttpRequest from './http_request'
 class DataPackageProvider extends HttpRequest {
     constructor() {
         // api api
-        super('http://128.199.104.34:7000')
+        super('http://172.28.26.82:7001')
     }
     async removeSimTypeOne({package_id,simTypeId}) {
 
@@ -15,7 +15,7 @@ class DataPackageProvider extends HttpRequest {
         this.setHeader({})
         console.log(package_id)
         console.log(simTypeId)
-        // example path http://128.199.104.34:7000/this.get()
+        // example path http://172.28.26.82:7001/this.get()
         const {data} = await this.delete("/api/v1/packages/"+package_id+"/simTypes/"+simTypeId)
 
         return data
@@ -27,7 +27,7 @@ class DataPackageProvider extends HttpRequest {
         //If write Header on class HttpRequest Should call like under method
         this.setHeader({})
 
-        // example path http://128.199.104.34:7000/this.get()
+        // example path http://172.28.26.82:7001/this.get()
         const {data} = await this.get("/api/v1/packages-simTypes/"+package_id)
 
         return data
@@ -46,7 +46,7 @@ class DataPackageProvider extends HttpRequest {
                 'simTypeId':simTypeId[i]
             })
         }
-        // example path http://128.199.104.34:7000/this.get()
+        // example path http://172.28.26.82:7001/this.get()
         const {data} = await this.create("/api/v1/packages/"+package_id+"/simTypes",args)
 
         return data
@@ -57,7 +57,7 @@ class DataPackageProvider extends HttpRequest {
         //Call setHeader on class HttpRequest and write common header
         //If write Header on class HttpRequest Should call like under method
         this.setHeader({})
-        // example path http://128.199.104.34:7000/this.get()
+        // example path http://172.28.26.82:7001/this.get()
         const {data} = await this.get('/api/v1/packages/' + package_id)
 
         return data
@@ -68,7 +68,7 @@ class DataPackageProvider extends HttpRequest {
         //Call setHeader on class HttpRequest and write common header
         //If write Header on class HttpRequest Should call like under method
         this.setHeader({})
-        // example path http://128.199.104.34:7000/this.get()
+        // example path http://172.28.26.82:7001/this.get()
         const {data} = await this.get('/api/v1/packages')
 
         return data
@@ -119,7 +119,7 @@ class DataPackageProvider extends HttpRequest {
 
         this.setHeader({})
 
-        // example path http://128.199.104.34:7000/this.get()
+        // example path http://172.28.26.82:7001/this.get()
         const {data} = await this.delete('/api/v1/packages/' + package_id)
 
         return data
