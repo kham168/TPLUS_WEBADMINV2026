@@ -6,7 +6,7 @@ class ChatQuestionProvider extends HttpRequest {
     constructor() {
         // api api
         //25.10.235.85
-        super('http://172.28.26.82:7001')
+        super(process.env.VUE_APP_BASE_SOCKET)
     }
 
 

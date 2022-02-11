@@ -5,7 +5,7 @@ import HttpRequest from './http_request'
 class CatePostProvider extends HttpRequest {
   constructor () {
     // api api
-    super('http://172.28.26.82:7001')
+    super(process.env.VUE_APP_BASE_SOCKET)
   }
 
 
