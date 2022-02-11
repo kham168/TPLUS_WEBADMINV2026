@@ -1,6 +1,2 @@
 (window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["Banner"],{"414f":function(n,t,e){"use strict";e.r(t);var r=e("ce67"),u=e.n(r);for(var f in r)["default"].indexOf(f)<0&&function(n){e.d(t,n,(function(){return r[n]}))}(f);t["default"]=u.a},"50b9":function(n,t,e){"use strict";e.d(t,"a",(function(){return r})),e.d(t,"b",(function(){return u}));var r=function(){var n=this,t=n.$createElement,e=n._self._c||t;return e("div",[e("router-view")],1)},u=[]},8587:function(n,t,e){"use strict";e.r(t);var r=e("50b9"),u=e("414f");for(var f in u)["default"].indexOf(f)<0&&function(n){e.d(t,n,(function(){return u[n]}))}(f);var i=e("2877"),c=Object(i["a"])(u["default"],r["a"],r["b"],!1,null,null,null);t["default"]=c.exports},ce67:function(n,t){}}]);
-<<<<<<< HEAD:dist/js/Banner.c90bb084.js
 //# sourceMappingURL=Banner.c90bb084.js.map
-=======
-//# sourceMappingURL=Banner.897b11ca.js.map
->>>>>>> c970f826be7d4c5d4342c71494a47316c7931486:dist/js/Banner.897b11ca.js
