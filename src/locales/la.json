@@ -95,6 +95,11 @@
         "icon": "fas fa-gift",
         "text": "ຂໍ້ມູນແພັດເກັດ",
         "router": "/data_package"
+      },
+      {
+        "icon": "fas fa-gift",
+        "text": "ປະເພດແພັດເກັດ",
+        "router": "/package_type"
       }
     ]
   },
@@ -749,6 +754,61 @@
       "header":"ແກ້ໄຂຂໍ້ມູນຜະລິດຕະພັນ"
     }
 
+  },
+  "PackageType": {
+    "title": "ຂໍ້ມູນປະເພດແພັກເກັດ",
+    "button": "ເພີ່ມ",
+    "txtsearch": "ຄົ້ນຫາປະເພດແພັກເກັດ",
+    "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ",
+    "table": {
+      "headers": [
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": true
+        },
+        {
+          "text": "ຊື່",
+          "value": "type_name",
+          "sortable": true
+        },
+        {
+          "text": "ຮູຍ",
+          "value": "image",
+          "sortable": true
+        },
+        {
+          "text": "ຈັດການ",
+          "value": "Actions",
+          "sortable": true
+        }
+      ],
+      "dontdata": "ບໍ່ມີຂໍ້ມູນ",
+      "options": {
+        "edit": "ແກ້ໄຂ",
+        "iconEdit": "fas fa-edit",
+        "delete": "ລົບຂໍ້ມູນ",
+        "delicon": "fas fa-trash-alt"
+      }
+    },
+    "Create": {
+      "header": "ເພີ່ມຂໍ້ມູນປະເພດແພັກເກັດ",
+      "lang": {
+        "lao": "ລາວ",
+        "Eng": "ອັງກິດ"
+      },
+      "form": {
+        "type_name": "ຊື່",
+        "image": "ຮູບ",
+        "button": {
+          "save": "ບັນທຶກ",
+          "cancel": "ຍົກເລີກ"
+        }
+      }
+    },
+    "Edit": {
+      "header": "ແກ້ໄຂຂໍ້ມູນປະເພດແພັກເກັດ"
+    }
   },
   "CateDataPackage": {
     "title": "ຂໍ້ມູນປະເພດຊິມ",

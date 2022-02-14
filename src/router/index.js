@@ -11,7 +11,9 @@ import Chatroom from "../components/Chatroom";
 
 Vue.use(VueRouter)
 
+
 const routes = [
+
     {
         path: "/chat-room/:chat_room_id/user/:user_id",
         name: "chatroom",
@@ -359,7 +361,7 @@ const routes = [
     //         {
     //             path: "edit",
     //             name: "position.edit",
-    //             component: () => import(/* webpackChunkName:"Position Edit" */ '../components/forms/position/Edit.vue'),
+    //             component: () => import(/* webpackChunkName:"Position Edit" */ '../components/forms/position/Editss.vue'),
     //             meta: {
     //                 layout: 'admin',
     //             }
@@ -541,6 +543,35 @@ const routes = [
             //         layout: 'admin'
             //     }
             // },
+        ]
+    },
+    // Package Type
+    {
+        path: "/package_type",
+        component: () => import(/* webpackChunkName:"Package Type" */'../views/packages/package_type/package_type.vue'),
+        meta: {
+            layout: 'admin'
+        },
+        children: [
+            {
+                path: "",
+                name: "package_type.index",
+                component: () => import(/* webpackChunkName:"Data_package index" */'../views/packages/package_type/index.vue'),
+                meta: {
+                    layout: "admin"
+                }
+            },
+
+            {
+                path: "edit/:package_type_id",
+                name: "package_type.edit",
+                component: () => import(/* webpackChunkName:"package_Type Edit" */ '../components/forms/packages/package_type/Edit.vue'),
+                meta: {
+                    //middleware: [Middleware.auth],
+                    layout: 'admin',
+                }
+
+            },
         ]
     },
     //Category Package
@@ -855,10 +886,9 @@ const routes = [
                     layout: "admin",
                 }
             },
-
-
         ]
     },
+
     //jobRecruit
     // {
     //     path: "/jobRecruit",
@@ -887,7 +917,7 @@ const routes = [
     //         // {
     //         //     path: "edit",
     //         //     name: "contact.edit",
-    //         //     component: () => import(/* webpackChunkName:"Contact Edit" */ '../components/forms/contact/Edit.vue'),
+    //         //     component: () => import(/* webpackChunkName:"Contact Edit" */ '../components/forms/contact/Editss.vue'),
     //         //     meta: {
     //         //         layout: 'admin',
     //         //     }

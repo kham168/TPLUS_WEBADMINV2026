@@ -13,6 +13,8 @@ import PromotionEvent from "@/store/Posts/PromotionEvent.js"
 import ChatQuestion from "@/store/ChatQuestion.js"
 import Chat from "@/store/Chat.js"
 import Topping from "@/store/Topping.js"
+import PackageType from "@/store/Packages/PackageType.js"
+
 //get all users
 import users from "./Users"
 import logo from "@/store/logo"
@@ -25,6 +27,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
+
         roleDialog: false,
         addUserRoles: false,
         editUserRoles: false,
@@ -51,6 +54,9 @@ export default new Vuex.Store({
                 roles: ["super-admin", "admin","Employee"]
             }
         }
+    },
+    getters:{
+
     },
     mutations: {
         IncrementRole(state) {
@@ -113,7 +119,11 @@ export default new Vuex.Store({
         PromotionEvent,
         ChatQuestion,
         Chat,
-        Topping
+        Topping,
+        PackageType
     },
+
+
+
 
 })

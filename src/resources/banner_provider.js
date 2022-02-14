@@ -6,7 +6,7 @@ import HttpRequest from './http_request'
 class BannerProvider extends HttpRequest {
   constructor () {
     // api api
-    super('http://128.199.104.34:7000')
+    super()
   }
 
     async orderBanner({ res})

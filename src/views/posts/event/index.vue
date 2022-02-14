@@ -154,7 +154,6 @@
           <h3>{{ $t("PromotionEvent.table.dontdata") }}</h3>
         </div>
       </div>
-
       <ModalDelete>
         <template v-slot="{close}">
           <Delete :promotion_event_id="promotion_event_id" @close="close" />

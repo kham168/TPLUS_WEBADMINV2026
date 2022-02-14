@@ -3,22 +3,27 @@ import ContactProvider from '@/resources/contact_provider'
 const contactProvider = new ContactProvider()
 
 const state={
+
+
     contact:{},
     contact_one:{},
-
 
 }
 
 const getters={
+
     contact:state=>state.contact,
     contact_one:state=>state.contact_one,
-
 
 }
 
 const mutations={
-  SET_CONTACT(state,data){
+
+
+
+    SET_CONTACT(state,data){
       state.contact = data;
+
     },
 
     SET_CONTACT_ONE(state,data){
@@ -38,20 +43,15 @@ const actions={
 
 
   async getContactOne ({commit },{contact_id}) {
-
-
    const data = await contactProvider.getContactOne({'contact_id':contact_id})
-
-
     commit('SET_CONTACT_ONE', data)
-
-
     return data
 
   },
 
 
     async getContact ({commit}) {
+
         const data = await contactProvider.getContact()
 
 
@@ -106,6 +106,7 @@ const actions={
         await contactProvider.deleteContact({'contact_id':contact_id})
         dispatch('getContact',{ root: true });
        // commit('SET_POST', data)
+
       },
 }
 

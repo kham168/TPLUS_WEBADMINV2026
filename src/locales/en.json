@@ -97,6 +97,11 @@
         "icon": "fas fa-gift",
         "text": "Data Package",
         "router": "/data_package"
+      },
+      {
+        "icon": "fas fa-gift",
+        "text": "Package Type",
+        "router": "/package_type"
       }
     ]
   },
@@ -704,6 +709,61 @@
     },
     "Edit": {
       "header": "Edit Products"
+    }
+  },
+  "PackageType": {
+    "title": "Package Type",
+    "button": "Create",
+    "txtsearch": "Search Package Type",
+    "loadingtext":"Loading...",
+    "table": {
+      "headers": [
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": true
+        },
+        {
+          "text": "Type Name",
+          "value": "type_name",
+          "sortable": true
+        },
+        {
+          "text": "Image",
+          "value": "image",
+          "sortable": true
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": true
+        }
+      ],
+      "dontdata": "Don't have data",
+      "options": {
+        "edit": "Edit",
+        "iconEdit": "fas fa-edit",
+        "delete": "Delete",
+        "delicon": "fas fa-trash-alt"
+      }
+    },
+    "Create": {
+      "header": "Add Package Type",
+      "lang": {
+        "lao": "Lao",
+        "Eng": "English"
+      },
+      "form": {
+        "type_name": "Type Name",
+        "image": "Image",
+        "button": {
+          "save": "Save",
+          "cancel": "Cancel"
+        }
+      }
+    },
+    "Edit": {
+      "header": "Edit Package Type"
     }
   },
   "CateDataPackage": {

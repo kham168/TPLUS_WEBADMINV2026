@@ -1,7 +1,7 @@
 <template>
   <div id="#Navbar">
-    <v-app-bar app flat>
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+    <v-app-bar app flat >
+      <v-app-bar-nav-icon @click="drawer = !drawer" ></v-app-bar-nav-icon>
       <v-spacer></v-spacer>
       <v-avatar size="30" color="red">
         <img src="../assets/Images/logo.png" alt="K"/>
@@ -73,7 +73,7 @@
           <v-list-item-group active-class="deep-black--text text--accent-4">
             <v-list-item
                 link
-                v-for="(item, index) in $t('MyMenuDashboard')"
+                v-for="(item, index) in dashboardItem"
                 :key="index"
                 @click="ClickTo(item.router)"
             >
@@ -208,6 +208,37 @@ export default {
       locales: process.env.VUE_APP_I18N_SUPPORTED_LOCALE.split(","),
       localeNames: {en: "English", la: "Lao"},
       drawer: true,
+
+      dashboardItem:[
+
+          {
+            "icon": "fas fa-home-lg-alt",
+            "text": "Dashboard",
+            "router": "/dashboard"
+          },
+          {
+            "icon": "fas fa-star-of-life",
+            "text": "ໂລໂກ້ເວັບໄຊລ໌",
+            "router": "/logo"
+          },
+          {
+            "icon": "fab fa-usps",
+            "text": "ປ້າຍໂຄສະນາ",
+            "router": "/banner"
+          },
+          {
+            "icon": "fas fa-id-card",
+            "text": "ຂໍ້ມູນຕິດຕໍ່",
+            "router": "/contact"
+          },
+          {
+            "icon": "fas fa-border-top",
+            "text": "Topping",
+            "router": "/topping"
+          }
+
+
+      ]
     };
   },
   mounted() {

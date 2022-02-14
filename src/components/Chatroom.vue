@@ -83,7 +83,7 @@ export default {
     this.chat_room_id = this.$route.params.chat_room_id;
 
     window.addEventListener('beforeunload', (e) => {
-      this.socket.on('leave_channel', this.channel);
+      this.socket.emit('leave_channel', this.channel);
     })
   },
   mounted() {
