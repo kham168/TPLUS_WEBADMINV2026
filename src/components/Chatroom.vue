@@ -39,7 +39,7 @@
         <!--        <div class="input-chat" ref="resetTextInput" contenteditable="true" @input="messageInput($event)"-->
         <!--             @keyup.enter="functionSendMessage">-->
         <!--        </div>-->
-        <v-textarea  outlined v-model="textMessage" @keyup.enter.prevent="functionSendMessage">
+        <v-textarea outlined v-model="textMessage" @keyup.enter.prevent="functionSendMessage">
 
         </v-textarea>
         <div class="btn-send-message" @click="functionSendMessage">
@@ -126,11 +126,14 @@ export default {
 
     },
     functionSendMessage() {
-      this.sendMessage({'message': this.textMessage, 'chat_room_id': this.chat_room_id}).then((res) => {
-        console.log(res)
-        this.resetTextMessage()
-        this.scrollToBottom()
-      });
+      if (this.textMessage !== "") {
+        this.sendMessage({'message': this.textMessage, 'chat_room_id': this.chat_room_id}).then((res) => {
+          console.log(res)
+          this.resetTextMessage()
+          this.scrollToBottom()
+        });
+      }
+
     },
 
     resetTextMessage() {
