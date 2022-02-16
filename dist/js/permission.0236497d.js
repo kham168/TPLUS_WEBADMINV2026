@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["permission"],{b9e5:function(e,n,t){"use strict";t.r(n);var i=function(){var e=this,n=e.$createElement,t=e._self._c||n;return t("div",[t("router-view")],1)},o=[],r={name:"Permission",data:function(){return{}},mounted:function(){},methods:{}},s=r,u=t("2877"),a=Object(u["a"])(s,i,o,!1,null,"7f081f84",null);n["default"]=a.exports}}]);
-//# sourceMappingURL=permission.0236497d.js.map

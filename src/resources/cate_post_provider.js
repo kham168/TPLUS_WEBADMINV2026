@@ -5,7 +5,7 @@ import HttpRequest from './http_request'
 class CatePostProvider extends HttpRequest {
   constructor () {
     // api api
-    super('http://128.199.104.34:7000')
+    super(process.env.VUE_APP_BASE_SOCKET)
   }
 
 
@@ -14,7 +14,7 @@ class CatePostProvider extends HttpRequest {
     //Call setHeader on class HttpRequest and write common header
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
-   // example path http://128.199.104.34:7000/this.get()
+   // example path http://172.28.26.82:7001/this.get()
      const {data} = await this.get('/api/v1/news-Category/'+cate_post_id)
 
      return data
@@ -25,7 +25,7 @@ class CatePostProvider extends HttpRequest {
     //Call setHeader on class HttpRequest and write common header
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
-   // example path http://128.199.104.34:7000/this.get()
+   // example path http://172.28.26.82:7001/this.get()
      const {data} = await this.get('/api/v1/news-Category')
 
      return data
@@ -97,7 +97,7 @@ class CatePostProvider extends HttpRequest {
  
     this.setHeader({})
 
-   // example path http://128.199.104.34:7000/this.get()
+   // example path http://172.28.26.82:7001/this.get()
     const {data} = await this.delete('/api/v1/news-Category/'+cate_post_id)
   
     return data

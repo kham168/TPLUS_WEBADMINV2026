@@ -3,7 +3,7 @@ import HttpRequest from './http_request'
 class ChatProvider extends HttpRequest {
     constructor() {
         // api api
-        super('http://128.199.104.34:7000')
+        super(process.env.VUE_APP_BASE_SOCKET)
     }
 
     async searchChatRoom({searchText}) {

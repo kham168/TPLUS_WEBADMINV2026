@@ -10,10 +10,10 @@ import Router from '@/router';
 
 
 class HttpRequest {
-//http://128.199.104.34:7000
+//http://172.28.26.82:7001
   //http://25.10.235.85:7000
   //api 
-  constructor (url = 'http://128.199.104.34:7000') {
+  constructor (url = process.env.VUE_APP_BASE_SOCKET) {
     // this.axios = axios
     this.axiosInstance = axios.create({
       baseURL: url,

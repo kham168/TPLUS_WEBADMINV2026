@@ -6,7 +6,7 @@ class ChatQuestionProvider extends HttpRequest {
     constructor() {
         // api api
         //25.10.235.85
-        super('http://128.199.104.34:7000')
+        super(process.env.VUE_APP_BASE_SOCKET)
     }
 
 
@@ -17,7 +17,7 @@ class ChatQuestionProvider extends HttpRequest {
         this.setHeader({
 
         })
-        // example path http://128.199.104.34:7000/this.get()
+        // example path http://172.28.26.82:7001/this.get()
         const {data} = await this.get('/api/v1/question/' + chat_question_id)
 
         return data
@@ -30,7 +30,7 @@ class ChatQuestionProvider extends HttpRequest {
         this.setHeader({
 
         })
-        // example path http://128.199.104.34:7000/this.get()
+        // example path http://172.28.26.82:7001/this.get()
         const {data} = await this.get('/api/v1/question')
 
         return data
@@ -43,7 +43,7 @@ class ChatQuestionProvider extends HttpRequest {
         this.setHeaderBaseQuestion({
 
         })
-        // example path http://128.199.104.34:7000/this.get()
+        // example path http://172.28.26.82:7001/this.get()
         const {data} = await this.get('/api/v1/baseQuestion')
 
         return data
@@ -56,7 +56,7 @@ class ChatQuestionProvider extends HttpRequest {
         this.setHeader({
 
         })
-        // example path http://128.199.104.34:7000/this.get()
+        // example path http://172.28.26.82:7001/this.get()
         const {data} = await this.get('/api/v1/baseQuestion/'+chat_question_id+'/sub')
 
         return data
@@ -169,7 +169,7 @@ class ChatQuestionProvider extends HttpRequest {
            // 'Authorization':tokenAdmin
         })
 
-        // example path http://128.199.104.34:7000/this.get()
+        // example path http://172.28.26.82:7001/this.get()
         const {data} = await this.delete('/api/v1/question/' + chat_question_id)
 
         return data
