@@ -67,13 +67,17 @@ const actions={
           code,
           la_name,
           en_name,
-          avatar,}){
+          avatar,
+          avatarEN,
+          typePackage_Id}){
 
           let arg={
               'code':code,
               'la_name': la_name,
               'en_name':en_name,
-              'avatar':avatar
+              'avatar':avatar,
+              'avatarEN':avatarEN,
+              'typePackage_Id':typePackage_Id,
           }
          await dataPackageService.createDataPackage(arg)
         dispatch('getDataPackage',{ root: true });
@@ -84,14 +88,18 @@ const actions={
           code,
           la_name,
           en_name,
-          avatar,}){
+          avatar,
+          avatarEN,
+          typePackage_Id}){
             
             let arg={
                 'package_id':package_id,
                 'code':code,
                 'la_name': la_name,
                 'en_name':en_name,
-                'avatar':avatar
+                'avatar':avatar,
+                'avatarEN':avatarEN,
+                'typePackage_Id':typePackage_Id,
             }
          await dataPackageService.updateDataPackage(arg)
         dispatch('getDataPackage',{ root: true });

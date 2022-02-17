@@ -10,6 +10,8 @@ import "../src/plugins/Axios"
 import ModalDelete from "@/components/Modals/modalDelete"
 import ModalAdd from "@/components/Modals/modalAdd"
 import ModalShow from "@/components/Modals/modalShow"
+import numeral from 'numeral';
+import numFormat from 'vue-filter-number-format';
 // import VueSocketIO from 'vue-socket.io'
 //
 // Vue.use(new VueSocketIO({
@@ -29,6 +31,8 @@ Vue.prototype.$myValidator = validate;
 Vue.component('ModalDelete', ModalDelete)
 Vue.component('ModalAdd', ModalAdd)
 Vue.component('ModalShow', ModalShow)
+Vue.filter('numFormat', numFormat(numeral));
+Vue.use(require('vue-moment'));
 new Vue({
     router,
     store,

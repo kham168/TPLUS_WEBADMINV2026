@@ -208,7 +208,7 @@ section {
 }
 
 //image table
-.image-table{
+.image-table {
   width: 40px;
   height: 40px;
   object-fit: contain;
@@ -233,7 +233,7 @@ section {
       font-weight: 300;
 
       i {
-        color: #F4B42D;
+        color: #f4b42d;
       }
     }
   }
@@ -263,7 +263,6 @@ section {
     }
   }
 }
-
 
 //Dashboard
 
@@ -323,7 +322,6 @@ section {
           font-size: 18px;
         }
       }
-
     }
 
     .banner-items {
@@ -346,17 +344,17 @@ section {
         cursor: pointer;
 
         .banner-icon {
-          width: 20%;
-          height: 75px;
+          width: 80px;
+          height: 80px;
           border-radius: 50%;
-          background: #EEEEEE;
+          background: #eeeeee;
           display: flex;
           justify-content: center;
           align-items: center;
 
           i {
             font-size: 2.5rem;
-            color: #3F3D56;
+            color: #3f3d56;
           }
         }
 
@@ -377,8 +375,8 @@ section {
           .btn-view-more {
             width: 100px;
             height: 30px;
-            background: #3F3D56;
-            border: 1px solid #EEEEEE;
+            background: #3f3d56;
+            border: 1px solid #eeeeee;
             position: absolute;
             right: 20px;
             bottom: 20px;
@@ -398,7 +396,6 @@ section {
             }
           }
         }
-
       }
     }
   }
@@ -416,7 +413,7 @@ section {
       width: 100%;
       height: 60px;
       display: flex;
-      border-bottom: 2px solid #EEEEEE;
+      border-bottom: 2px solid #eeeeee;
       justify-content: flex-start;
       align-items: center;
       padding-left: 20px;
@@ -431,13 +428,12 @@ section {
         width: 100%;
         height: 80px;
         background: rgba(149, 175, 192, 0.2);
-        border: 2px solid #EEEEEE;
+        border: 2px solid #eeeeee;
         border-radius: 4px;
         display: flex;
         justify-content: flex-start;
         align-items: center;
         position: relative;
-
 
         .message-image {
           width: 20%;
@@ -483,7 +479,6 @@ section {
             white-space: normal;
             margin: 0;
             padding: 0;
-
           }
 
           .message-icon {
@@ -491,7 +486,7 @@ section {
             height: 25px;
             padding: 5px;
             border-radius: 18px;
-            background: #3F3D56;
+            background: #3f3d56;
             position: absolute;
             right: 10px;
             bottom: 8px;
@@ -507,7 +502,6 @@ section {
           }
         }
       }
-
     }
   }
 
@@ -526,4 +520,126 @@ section {
     padding: 2px;
     background: #e2e3e3;
   }
+}
+
+// Report customer
+.data-customer-card {
+  width: 100%;
+  padding: 10px 5px;
+  .container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+
+    .customer-icon {
+      width: 70px;
+      height: 70px;
+      background-color: #eeeeee;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .fa-users {
+        font-size: 36px;
+        color: #3f3d56;
+      }
+    }
+    .customer-detail {
+      h3 {
+        font-size: 24px;
+        color: #3f3d56;
+      }
+      p {
+        font-size: 16px;
+        color: #7f8c8d;
+      }
+    }
+  }
+  .search-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    .search {
+      width: 50%;
+      margin-top: 10px;
+    }
+    .v-icon.v-icon {
+      font-size: 18px;
+    }
+  }
+}
+
+.report-with-calendar {
+  width: 100%;
+  padding: 10px 15px;
+  margin-top: 20px;
+}
+
+.search-event {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  .search {
+    width: 40%;
+  }
+
+  .v-icon.v-icon {
+    font-size: 18px;
+  }
+}
+
+.table {
+  .description,
+  .event-title {
+    width: 150px;
+    height: 45px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .image {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    object-fit: cover;
+    margin: 5px;
+  }
+}
+
+.status {
+  width: 80px;
+  height: 30px;
+  background-color: #e74c3c;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+}
+
+.active-status {
+  width: 80px;
+  height: 30px;
+  background-color: #2ecc71;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+}
+
+// icon search
+
+.v-icon.v-icon {
+  font-size: 18px;
 }

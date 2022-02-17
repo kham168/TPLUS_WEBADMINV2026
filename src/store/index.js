@@ -21,13 +21,13 @@ import logo from "@/store/logo"
 import position from "@/store/position"
 import permission from "@/store/permission";
 import role from "@/store/role"
+import report from '../store/report'
 
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-
         roleDialog: false,
         addUserRoles: false,
         editUserRoles: false,
@@ -53,10 +53,14 @@ export default new Vuex.Store({
             users: {
                 roles: ["super-admin", "admin","Employee"]
             }
-        }
+        },
+
+        // Modal Call  abroad
+        DeleteCallAbroadModal:false,
+        CallAbroadId:null,
     },
     getters:{
-
+     getCallAbroadId: state => state.CallAbroadId
     },
     mutations: {
         IncrementRole(state) {
@@ -89,6 +93,10 @@ export default new Vuex.Store({
         },
         modalShow_State(state, value) {
             state.modalShowState = value;
+        },
+        isDeleteCallAbroadModal(state,id){
+         state.DeleteCallAbroadModal = !state.DeleteCallAbroadModal
+         state.CallAbroadId = id
         }
 
     },
@@ -120,6 +128,7 @@ export default new Vuex.Store({
         ChatQuestion,
         Chat,
         Topping,
+        report,
         PackageType
     },
 

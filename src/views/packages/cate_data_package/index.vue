@@ -51,7 +51,7 @@
                 </v-btn>
                  </template>
                  <v-list>
-                   <v-list-item link @click="$router.push({name:'cate_data_package.edit',params:{'cate_data_package_id':item.id,'name':item.mainProduct,'description':item.detail}}).catch(()=>{console.log('failed')})">
+                   <v-list-item link @click="$router.push({name:'cate_data_package.edit',params:{'cate_data_package_id':item.id,'name':item.mainProduct,'description':item.detail}})">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('CateDataPackage.table.options.iconEdit')}}</v-icon>
                        <v-list-item-title>
@@ -59,7 +59,7 @@
                        </v-list-item-title>
                      </v-list-item-icon>
                    </v-list-item>
-                    <v-list-item link @click="onDelete(item.id)" v-if="false">
+                    <v-list-item link @click="onDelete(item.id)" >
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('CateDataPackage.table.options.delicon')}}</v-icon>
                        <v-list-item-title>

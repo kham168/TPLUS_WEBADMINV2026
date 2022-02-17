@@ -45,7 +45,8 @@
               <td>{{ index + 1 }}</td>
               <td><v-img :src="item.image" alt="preview" max-height="50" max-width="50"></v-img></td>
               <td>{{ item.code }}</td>
-              <td>{{ item.la_name }}</td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.typePackage.type_name }}</td>
 
               <td>
                <v-menu offset-y>
@@ -91,8 +92,8 @@
               <td>{{ index + 1 }}</td>
               <td><v-img :src="item.image" alt="preview" max-height="50" max-width="50"></v-img></td>
                  <td>{{ item.code }}</td>
-              <td>{{ item.en_name }}</td>
-           
+              <td>{{ item.NewPackageTrans[0].name }}</td>
+              <td>{{ item.typePackage.TypePackagTrans[0].type_name }}</td>
 
            
              

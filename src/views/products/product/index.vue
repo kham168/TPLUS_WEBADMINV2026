@@ -50,7 +50,7 @@
          </td>
                  <td>{{ item.productName }}</td>
               <td ><p v-for="data in item.cateProducts" :key="data.id" >{{data.cateName}}</p></td>
-          
+
               <td style="   max-width: 200px;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -98,8 +98,8 @@
 
                 <td v-for="element in item.ProductTrans">{{ element.productName }}</td>
               <td ><p v-for="data in item.cateProducts" :key="data.id" >{{data.CateProductTrans[0].cateName}}</p></td>
-          
-           
+
+
               <td style="   max-width: 200px;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -206,7 +206,7 @@ components: {
   },
 
   mounted() {
-   
+
     this.getProduct().then((res)=>{
       if(res.success){
         this.firstLoad=false;
@@ -216,7 +216,7 @@ components: {
 
 
   methods: {
-   
+
 
 
 
@@ -229,7 +229,7 @@ components: {
     },
           onDelete(product_id) {
         this.product_id = product_id
-     
+
       this.$store.commit("modalDelete_State", true);
     },
     onShow(product_id) {

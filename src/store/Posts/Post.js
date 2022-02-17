@@ -58,11 +58,11 @@ const actions={
                 'avatar_EN':avatar_EN,
                 'newsCategoryId':newsCategoryId,
             }
-         await postService.createPost(arg);
+         await postService.createPost(arg)
         dispatch('getPost',{ root: true });
       },
 
-      async updatePost({dispatch},{
+      async updatePost({dispatch },{
           post_id,
         title,
         description,
@@ -87,9 +87,9 @@ const actions={
                 'newsCategoryId':newsCategoryId,
             }
 
-
-         await postService.updatePost(arg);
-          dispatch('getPost',{ root: true });
+            console.log(arg)
+         await postService.updatePost(arg)
+        dispatch('getPost',{ root: true });
         
 
       },

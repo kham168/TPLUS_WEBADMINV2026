@@ -52,6 +52,31 @@
                       ></v-text-field>
 
 
+                      <v-select
+                          v-show="tab===0"
+                          :items="package_type['data']"
+                          item-text="type_name"
+                          item-value="id"
+                          :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
+                          v-model="PackageTypeValue"
+                          :label="$t('DataPackage.Create.form.category')"
+                          outlined
+                          required
+
+                      ></v-select>
+
+                      <v-select
+                          v-show="tab===1"
+                          :items="package_type['data']"
+                          item-text="TypePackagTrans[0].type_name"
+                          item-value="id"
+                          :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
+                          v-model="PackageTypeValue"
+                          :label="$t('DataPackage.Create.form.category')"
+                          outlined
+                          required
+
+                      ></v-select>
 
                       <div v-show="tab===0" >
 
@@ -78,7 +103,7 @@
                             <h3>{{ $t("Post.Create.form.picture") }}</h3>
 
                           </div>
-                          <img class="image-files" :src="previewImage" v-show="previewImage !== null"/>
+                          <v-img class="image-files" :src="previewImage" v-show="previewImage !== null"/>
 
                           <input
 
@@ -87,6 +112,45 @@
                               name="upload-image"
                               accept="image/*"
                               @change="UploadImage"
+                          />
+                        </div>
+
+
+
+                      </div>
+
+                      <div v-show="tab===1" >
+
+                        <v-row justify="end" v-show="previewImageEng !== null ">
+                          <v-btn
+                              class="mx-2"
+                              fab
+                              dark
+                              small
+                              color="error"
+                              @click="removeImageEng"
+                          >
+                            <v-icon dark>
+                              mdi-close
+                            </v-icon>
+                          </v-btn>
+                        </v-row>
+                        <div class="upload-image mt-3">
+
+                          <div class="content" v-show="previewImageEng === null">
+                            <i class="fas fa-plus-circle"></i>
+                            <h3>{{ $t("Post.Create.form.picture") }}</h3>
+
+                          </div>
+                          <v-img class="image-files" :src="previewImageEng" v-show="previewImageEng !== null"/>
+
+                          <input
+
+                              type="file"
+                              class="choose-file"
+                              name="upload-image"
+                              accept="image/*"
+                              @change="UploadImageEng"
                           />
                         </div>
 
@@ -127,7 +191,7 @@ export default {
     return {
       code:0,
       dataPackageId:0,
-      catePackageValue:'',
+      PackageTypeValue:'',
       name:'',
       nameEng:'',
       description:'',
@@ -136,9 +200,9 @@ export default {
       isLaoTab:false,
       isEngTab:false,
       uploadImage:null,
-      uploadImageEng:[],
+      uploadImageEng:null,
       previewImage: null,
-       previewImageEng: [],
+       previewImageEng: null,
       valid:true,
     };
   },
@@ -148,7 +212,9 @@ export default {
       if(res.success){
             this.loadDataToComponent(res);
       }
-    })
+    });
+
+    this.getPackageType();
   },
   mounted() {
 
@@ -163,16 +229,27 @@ export default {
 
       this.uploadImage=file
     },
+    async convertUrlToFileImageEng(image) {
+      const response = await fetch(image);
+      // here image is url/location of image
+      const blob = await response.blob();
+      const file = new File([blob], image.split('/').pop(), {type: blob.type});
+
+      this.uploadImageEng=file
+    },
+
     loadDataToComponent(res){
 
       let data = res.data
 
-      this.name=data.la_name,
-      this.nameEng=data.en_name,
-          this.code=data.code,
-          this.previewImage=data.image,
+      this.name=data.name
+      this.nameEng=data.NewPackageTrans[0].name
+          this.code=data.code
+          this.previewImage=data.image
+      this.previewImageEng=data.NewPackageTrans[0].image
+      this.PackageTypeValue = data.typePackage_Id
       this.convertUrlToFileImage(data.image)
-      
+      this.convertUrlToFileImageEng(data.NewPackageTrans[0].image)
 
     },
    
@@ -188,12 +265,18 @@ export default {
       const reader = new FileReader();
       reader.readAsDataURL(img);
       reader.onload = (e) => {
-
         this.previewImage=e.target.result;
-
       }
+    },
+    UploadImageEng(e) {
 
-
+      const img = e.target.files[0];
+      this.uploadImageEng=img
+      const reader = new FileReader();
+      reader.readAsDataURL(img);
+      reader.onload = (e) => {
+        this.previewImageEng=e.target.result;
+      }
     },
 
     removeImage()
@@ -201,7 +284,11 @@ export default {
       this.uploadImage = null;
       this.previewImage=null;
     },
-
+    removeImageEng()
+    {
+      this.uploadImageEng = null;
+      this.previewImageEng=null;
+    },
 
     submitForm () {
     if(this.$refs.form[0].validate()){
@@ -214,6 +301,8 @@ export default {
     'en_name':this.nameEng,
 
     'avatar':this.uploadImage,
+        'avatarEN':this.uploadImageEng,
+        'typePackage_Id':this.PackageTypeValue,
 
       })
     }else{
@@ -230,14 +319,15 @@ export default {
   ...mapActions({
           getDataPackageOne:'DataPackage/getDataPackageOne',
     updateDataPackage:'DataPackage/updateDataPackage',
-    getCateDataPackage:'CateDataPackage/getCateDataPackage'
-
+    getCateDataPackage:'CateDataPackage/getCateDataPackage',
+    getPackageType:'PackageType/getPackageType',
   })
   },
 
    computed:{
     ...mapGetters({
-      cate_data_package:'CateDataPackage/cate_data_package'
+      cate_data_package:'CateDataPackage/cate_data_package',
+      package_type:'PackageType/package_type',
     })
   }
 };

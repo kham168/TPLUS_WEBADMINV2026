@@ -52,12 +52,34 @@
                           required
                       ></v-text-field>
 
+                      <v-select
+                          v-show="isLaoTab"
+                          :items="package_type['data']"
+                          item-text="type_name"
+                          item-value="id"
+                          :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
+                          v-model="PackageTypeValue"
+                          :label="$t('DataPackage.Create.form.category')"
+                          outlined
+                          required
 
+                      ></v-select>
+
+                      <v-select
+                          v-show="isEngTab"
+                          :items="package_type['data']"
+                          item-text="TypePackagTrans[0].type_name"
+                          item-value="id"
+                          :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
+                          v-model="PackageTypeValue"
+                          :label="$t('DataPackage.Create.form.category')"
+                          outlined
+                          required
+
+                      ></v-select>
 
 
                       <div v-show="isLaoTab" >
-
-
 
                         <v-row justify="end" v-show="previewImage !== null ">
                           <v-btn
@@ -80,7 +102,7 @@
                             <h3>{{ $t("Post.Create.form.picture") }}</h3>
 
                           </div>
-                          <img class="image-files" :src="previewImage" v-show="previewImage !== null"/>
+                          <v-img class="image-files" :src="previewImage" v-show="previewImage !== null"/>
 
                           <input
 
@@ -96,7 +118,44 @@
 
                       </div>
 
+                      <div v-show="isEngTab" >
 
+                        <v-row justify="end" v-show="previewImageEng !== null ">
+                          <v-btn
+                              class="mx-2"
+                              fab
+                              dark
+                              small
+                              color="error"
+                              @click="removeImageEng"
+                          >
+                            <v-icon dark>
+                              mdi-close
+                            </v-icon>
+                          </v-btn>
+                        </v-row>
+                        <div class="upload-image mt-3">
+
+                          <div class="content" v-show="previewImageEng === null">
+                            <i class="fas fa-plus-circle"></i>
+                            <h3>{{ $t("Post.Create.form.picture") }}</h3>
+
+                          </div>
+                          <v-img class="image-files" :src="previewImageEng" v-show="previewImageEng !== null"/>
+
+                          <input
+
+                              type="file"
+                              class="choose-file"
+                              name="upload-image"
+                              accept="image/*"
+                              @change="UploadImageEng"
+                          />
+                        </div>
+
+
+
+                      </div>
                     </v-form>
                     <div class="form-actions">
                       <v-btn class="mx-5" plain @click="reset">{{
@@ -128,7 +187,7 @@ export default {
   data() {
     return {
       code:'',
-      catePackageValue: '',
+      PackageTypeValue: '',
       name: '',
       nameEng: '',
       description: '',
@@ -137,9 +196,9 @@ export default {
       isLaoTab: false,
       isEngTab: false,
       uploadImage: null,
-
+      uploadImageEng: null,
       previewImage: null,
-
+      previewImageEng: null,
       valid: true,
     };
   },
@@ -147,6 +206,7 @@ export default {
   mounted() {
 
     this.checkTabLang('ລາວ');
+    this.getPackageType();
   },
 
   methods: {
@@ -169,24 +229,34 @@ export default {
     UploadImage(e) {
 
       const img = e.target.files[0];
-
-
       this.uploadImage=img
       const reader = new FileReader();
       reader.readAsDataURL(img);
       reader.onload = (e) => {
-
         this.previewImage=e.target.result;
-
       }
-
-
     },
 
+    UploadImageEng(e) {
+
+      const img = e.target.files[0];
+      this.uploadImageEng=img
+      const reader = new FileReader();
+      reader.readAsDataURL(img);
+      reader.onload = (e) => {
+        this.previewImageEng=e.target.result;
+      }
+    },
     removeImage()
     {
       this.uploadImage = null;
       this.previewImage=null;
+    },
+
+    removeImageEng()
+    {
+      this.uploadImageEng = null;
+      this.previewImageEng=null;
     },
 
 
@@ -197,6 +267,8 @@ export default {
           'la_name': this.name,
           'en_name': this.nameEng,
           'avatar': this.uploadImage,
+          'avatarEN':this.uploadImageEng,
+          'typePackage_Id':this.PackageTypeValue,
         })
       } else {
         console.log('can not create')
@@ -211,13 +283,13 @@ export default {
 
     ...mapActions({
       createDataPackage: 'DataPackage/createDataPackage',
-
+      getPackageType:'PackageType/getPackageType',
     })
   },
 
   computed: {
     ...mapGetters({
-
+      package_type:'PackageType/package_type',
     })
   }
 };

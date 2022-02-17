@@ -6,7 +6,7 @@ import HttpRequest from './http_request'
 class DataPackageProvider extends HttpRequest {
     constructor() {
         // api api
-        super('http://128.199.104.34:7000')
+        super()
     }
     async removeSimTypeOne({package_id,simTypeId}) {
 
@@ -15,7 +15,6 @@ class DataPackageProvider extends HttpRequest {
         this.setHeader({})
         console.log(package_id)
         console.log(simTypeId)
-        // example path http://128.199.104.34:7000/this.get()
         const {data} = await this.delete("/api/v1/packages/"+package_id+"/simTypes/"+simTypeId)
 
         return data
@@ -27,7 +26,7 @@ class DataPackageProvider extends HttpRequest {
         //If write Header on class HttpRequest Should call like under method
         this.setHeader({})
 
-        // example path http://128.199.104.34:7000/this.get()
+        // example path http://172.28.26.82:7001/this.get()
         const {data} = await this.get("/api/v1/packages-simTypes/"+package_id)
 
         return data
@@ -46,7 +45,7 @@ class DataPackageProvider extends HttpRequest {
                 'simTypeId':simTypeId[i]
             })
         }
-        // example path http://128.199.104.34:7000/this.get()
+        // example path http://172.28.26.82:7001/this.get()
         const {data} = await this.create("/api/v1/packages/"+package_id+"/simTypes",args)
 
         return data
@@ -57,7 +56,7 @@ class DataPackageProvider extends HttpRequest {
         //Call setHeader on class HttpRequest and write common header
         //If write Header on class HttpRequest Should call like under method
         this.setHeader({})
-        // example path http://128.199.104.34:7000/this.get()
+        // example path http://172.28.26.82:7001/this.get()
         const {data} = await this.get('/api/v1/packages/' + package_id)
 
         return data
@@ -68,22 +67,26 @@ class DataPackageProvider extends HttpRequest {
         //Call setHeader on class HttpRequest and write common header
         //If write Header on class HttpRequest Should call like under method
         this.setHeader({})
-        // example path http://128.199.104.34:7000/this.get()
+        // example path http://172.28.26.82:7001/this.get()
         const {data} = await this.get('/api/v1/packages')
 
         return data
     }
 
     async createDataPackage({
-                                code, la_name, en_name, avatar,
+                                 code, la_name, en_name, avatar,avatarEN,typePackage_Id
 
                             }) {
-        var bodyFormData = new FormData();
-        bodyFormData.append('code', code);
-        bodyFormData.append('la_name', la_name);
-        bodyFormData.append('en_name', en_name);
-        bodyFormData.append('avatar[]', avatar);
 
+        console.log(avatar);
+        const bodyFormData = new FormData();
+        bodyFormData.append('code', code);
+        bodyFormData.append('name', la_name);
+        bodyFormData.append('typePackage_Id', typePackage_Id);
+        bodyFormData.append('other_lang[0][name]', en_name);
+        bodyFormData.append('other_lang[0][language_id]',2);
+        bodyFormData.append('avatar', avatar);
+        bodyFormData.append('avatar_EN', avatarEN);
 
         this.setHeader({
             'Content-Type': 'multipart/form-data',
@@ -95,15 +98,17 @@ class DataPackageProvider extends HttpRequest {
     }
 
     async updateDataPackage({
-                                package_id, code, la_name, en_name, avatar,
+                                package_id, code, la_name, en_name, avatar,avatarEN,typePackage_Id
                             }) {
-        console.log(code)
-        var bodyFormData = new FormData();
+        console.log(avatar);
+        const bodyFormData = new FormData();
         bodyFormData.append('code', code);
-        bodyFormData.append('la_name', la_name);
-        bodyFormData.append('en_name', en_name);
-        bodyFormData.append('avatar[]', avatar);
-
+        bodyFormData.append('name', la_name);
+        bodyFormData.append('typePackage_Id', typePackage_Id);
+        bodyFormData.append('other_lang[0][name]', en_name);
+        bodyFormData.append('other_lang[0][language_id]',2);
+        bodyFormData.append('avatar', avatar);
+        bodyFormData.append('avatar_EN', avatarEN);
         this.setHeader({
             'Content-Type': 'multipart/form-data',
         })
@@ -119,7 +124,7 @@ class DataPackageProvider extends HttpRequest {
 
         this.setHeader({})
 
-        // example path http://128.199.104.34:7000/this.get()
+        // example path http://172.28.26.82:7001/this.get()
         const {data} = await this.delete('/api/v1/packages/' + package_id)
 
         return data

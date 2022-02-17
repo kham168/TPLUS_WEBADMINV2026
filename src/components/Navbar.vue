@@ -3,12 +3,12 @@
     <v-app-bar app flat >
       <v-app-bar-nav-icon @click="drawer = !drawer" ></v-app-bar-nav-icon>
       <v-spacer></v-spacer>
-      <v-avatar size="30" color="red">
+      <!-- <v-avatar size="30" color="red">
         <img src="../assets/Images/logo.png" alt="K"/>
       </v-avatar>
       <v-btn icon class="mx-3">
         <v-icon>fas fa-bell</v-icon>
-      </v-btn>
+      </v-btn> -->
       <v-menu offset-y rounded="round">
         <template v-slot:activator="{ attrs, on }">
           <v-btn icon v-on="on" v-bind="attrs">
@@ -49,7 +49,8 @@
         </div>
       </v-menu>
     </v-app-bar>
-
+  
+  <!-- Drawer -->
     <div class="drawer">
       <v-navigation-drawer app v-model="drawer">
         <template v-slot:prepend>
@@ -82,6 +83,31 @@
               </v-list-item-icon>
               <v-list-item-title v-text="item.text"></v-list-item-title>
             </v-list-item>
+
+            <!-- Contact -->
+             <v-list-group color="black">
+              <template v-slot:activator>
+                <v-list-item-icon>
+                  <v-icon>fas fa-id-card</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>{{ $t('Contactmenus.title') }}</v-list-item-title>
+              </template>
+              <v-list-item
+                  link
+                  v-for="subtitle in $t('Contactmenus.subtitle')"
+                  :key="subtitle.key"
+                  @click="$router.push(subtitle.router)"
+              >
+                <v-list-item-icon>
+                  <v-icon small>{{ subtitle.icon }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>
+                  {{ subtitle.text }}
+                </v-list-item-title>
+              </v-list-item>
+            </v-list-group>
+
+            <!-- Chats -->
             <v-list-group color="black">
               <template v-slot:activator>
                 <v-list-item-icon>
@@ -103,6 +129,8 @@
                 </v-list-item-title>
               </v-list-item>
             </v-list-group>
+            
+            <!-- Postmenu -->
             <v-list-group color="black">
               <template v-slot:activator>
                 <v-list-item-icon>
@@ -125,6 +153,7 @@
               </v-list-item>
             </v-list-group>
 
+             <!-- Users -->
             <v-list-group color="black" v-if="$store.state.menus.users.roles.includes(authRole)">
               <template v-slot:activator>
                 <v-list-item-icon>
@@ -146,6 +175,8 @@
                 </v-list-item-title>
               </v-list-item>
             </v-list-group>
+
+            <!-- Products -->
             <v-list-group color="black">
               <template v-slot:activator>
                 <v-list-item-icon>
@@ -167,6 +198,8 @@
                 </v-list-item-title>
               </v-list-item>
             </v-list-group>
+
+            <!-- Packages -->
             <v-list-group color="black">
               <template v-slot:activator>
                 <v-list-item-icon>

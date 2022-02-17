@@ -33,6 +33,8 @@
 
 
 
+
+
                     </v-form>
                     <div class="form-actions">
                       <v-btn plain @click="reset" class="mx-5">{{
@@ -61,38 +63,21 @@ export default {
     return {
       cateName:'',
       description:'',
-
       isLaoTab:false,
       isEngTab:false,
       tab: null,
-    
       valid:true,
     };
   },
 
   mounted() {
-    // this.checkTabLang('ລາວ');
+
   },
 
   methods: {
- // checkTabLang(lang){
- //      console.log(lang)
- //      if(lang == 'ລາວ' ||lang== 'Lao'){
- //        this.isLaoTab = true
- //        this.isEngTab = false
- //        console.log("lao"+this.isLaoTab)
- //         console.log(this.isEngTab)
- //      }else{
- //         this.isLaoTab = false
- //         this.isEngTab = true
- //            console.log("lao"+this.isLaoTab)
- //            console.log(this.isEngTab)
- //      }
- //    },
-
     submitForm () {
     this.$refs.form.validate();
-   if(  this.$refs.form.validate()){
+   if(this.$refs.form.validate()){
  
       this.createCateDataPackage({'mainProduct':this.cateName,'description':this.description});
     
@@ -107,7 +92,8 @@ export default {
   },
 
   ...mapActions({
-    createCateDataPackage:'CateDataPackage/createCateDataPackage'
+    createCateDataPackage:'CateDataPackage/createCateDataPackage',
+
   })
   },
 };

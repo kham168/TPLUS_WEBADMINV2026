@@ -6,20 +6,17 @@
         <h1><span @click="onBack" style="margin-right: 10px;color: #4b96da;cursor: pointer">
           <i class="fas fa-arrow-circle-left"></i></span></h1>
         <div class="chat-room-profile">
-
           <img
               :src="require('@/assets/Images/logo.png')"
               alt="">
         </div>
-
         <div class="chat-room-name">
           <h3>{{ phone }}</h3>
-
         </div>
       </div>
       <div class="chat-room-content" ref="scrollPosition">
         <v-row justify="center">
-          <infinite-loading direction="top" @infinite="infiniteHandler" >
+          <infinite-loading direction="top" @infinite="infiniteHandler">
             <div slot="no-more"></div>
             <div slot="no-results"></div>
           </infinite-loading>
@@ -54,6 +51,7 @@
 import {mapActions, mapGetters} from "vuex";
 import {io} from "socket.io-client";
 import InfiniteLoading from 'vue-infinite-loading';
+
 export default {
   name: "Chatroom",
   components: {
@@ -70,16 +68,16 @@ export default {
 
       phone: '',
       channel: '',
-      page:1,
+      page: 1,
 
     }
   },
   created() {
 
-    this.socket = io("http://128.199.104.34:7000");
+    this.socket = io(process.env.VUE_APP_BASE_SOCKET);
 
     this.user_id = this.$route.params.user_id;
-    console.log(this.user_id,55555555555)
+    console.log(this.user_id, 55555555555)
     this.chat_room_id = this.$route.params.chat_room_id;
 
     window.addEventListener('beforeunload', (e) => {
@@ -88,10 +86,7 @@ export default {
   },
   mounted() {
     this.socket.emit("connection");
-
     console.log(this.socket);
-
-
     this.socket.on("receive_message", (message) => {
       console.log(message)
 
@@ -160,11 +155,11 @@ export default {
     // },
 
     infiniteHandler($state) {
-      this.getChatRoomOne({'chat_room_id': this.$route.params.chat_room_id,'page':this.page}).then(res=>{
+      this.getChatRoomOne({'chat_room_id': this.$route.params.chat_room_id, 'page': this.page}).then(res => {
         console.log(res)
         if (res.success) {
 
-          if(res.messages.data.length == res.messages.limit){
+          if (res.messages.data.length == res.messages.limit) {
 
             this.page += 1;
 
@@ -177,10 +172,9 @@ export default {
                 console.log(e)
               }
             }
-            this.firstLoad=false;
+            this.firstLoad = false;
             $state.loaded();
-          }
-          else {
+          } else {
             $state.complete();
 
           }
@@ -219,13 +213,14 @@ export default {
 <style scoped lang="scss">
 .chat-room {
   width: 100%;
-  min-height: 80vh;
+  height: 600px;
   display: flex;
   flex-direction: column;
   position: relative;
   border-radius: 8px;
   overflow: hidden;
   background: #e2e3e3;
+
 
   .chat-room-header {
     width: 100%;
@@ -261,12 +256,12 @@ export default {
 
   .chat-room-content {
     width: 100%;
-    height: 400px;
-   // display: flex;
+    height: 360px;
+    // display: flex;
     display: block;
     overflow-y: auto;
     overflow-x: hidden;
-
+    padding-bottom: 60px;
 
     .chat-room-left {
       flex: 1;

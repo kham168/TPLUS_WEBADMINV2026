@@ -46,7 +46,7 @@
               <td>{{ index + 1 }}</td>
               <td><v-img :src="item.image" alt="preview" max-height="50" max-width="50"></v-img></td>
               <td>{{ item.code }}</td>
-              <td>{{ item.la_name }}</td>
+              <td>{{ item.name }}</td>
 
               <td><p v-for="element in item.simTypes">{{element.detail}}</p>
                 <v-icon color="red" v-if="item.simTypes.length===0">mdi-minus</v-icon>
@@ -78,7 +78,7 @@
               <td>{{ index + 1 }}</td>
               <td><v-img :src="item.image" alt="preview" max-height="50" max-width="50"></v-img></td>
               <td>{{ item.code }}</td>
-              <td>{{ item.en_name }}</td>
+              <td>{{ item.NewPackageTrans[0].name }}</td>
 
               <td >
                 <p v-for="element in item.simTypes" >{{element.detail}}</p>

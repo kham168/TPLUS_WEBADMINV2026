@@ -32,7 +32,7 @@
                       <div v-show="tab===0" >
                         <v-row justify="end" v-show="previewImage !== null ">
                           <v-btn
-                              class="mx-2"
+                              class="mx-2 mt-3"
                               fab
                               dark
                               small
@@ -51,7 +51,7 @@
                             <h3>{{ $t("Post.Create.form.picture") }}</h3>
 
                           </div>
-                          <img class="image-files" :src="previewImage" v-show="previewImage !== null"/>
+                          <v-img class="image-files" :src="previewImage" v-show="previewImage !== null"/>
 
                           <input
 
@@ -69,7 +69,7 @@
                       <div v-show="tab===1" >
                         <v-row justify="end" v-show="previewImageEng !== null ">
                           <v-btn
-                              class="mx-2"
+                              class="mx-2 mt-3"
                               fab
                               dark
                               small
@@ -88,7 +88,7 @@
                             <h3>{{ $t("Post.Create.form.picture") }}</h3>
 
                           </div>
-                          <img class="image-files" :src="previewImageEng" v-show="previewImageEng !== null"/>
+                          <v-img class="image-files" :src="previewImageEng" v-show="previewImageEng !== null"/>
 
                           <input
 
@@ -235,6 +235,7 @@ export default {
     },
 
     submitForm () {
+      console.log(this.$route.params.package_type_id);
       if(this.$refs.form[0].validate()){
         this.updatePackageType({
           'package_type_id':this.$route.params.package_type_id,
@@ -311,6 +312,7 @@ export default {
             border: 1px solid $gray-color;
 
             .image {
+              height: 100%;
               width: 100%;
               overflow: hidden;
               object-fit: cover;
@@ -348,7 +350,6 @@ export default {
             max-width: 100%;
             overflow: hidden;
             object-fit: cover;
-
 
 
             .image-files{

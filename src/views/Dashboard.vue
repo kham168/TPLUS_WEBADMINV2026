@@ -77,45 +77,45 @@
           </div>
           <div class="banner-items">
             <v-row>
-              <v-col cols="6" md="6" lg="6">
+              <v-col cols="12" md="12" lg="12">
                 <div class="banner-item-card">
                   <div class="banner-icon">
-                    <i class="fas fa-folder-open"></i>
+                    <i class="fas fa-users"></i>
                   </div>
                   <div class="banner-item-title">
-                    <h3>banner</h3>
-                    <p>view detail</p>
-                    <div class="btn-view-more">
-                      view <span><i class="fas fa-long-arrow-right"></i></span>
-                    </div>
+                    <h3>{{Customers.count | numFormat }}</h3>
+                    <p>{{$t('Dashboard.users.title')}}</p>
+                    <v-btn @click="$router.push({name:'Customer'})" class="btn-view-more">
+                      {{$t('Dashboard.users.view')}} <span><i class="fas fa-long-arrow-right"></i></span>
+                    </v-btn>
                   </div>
                 </div>
               </v-col>
-              <v-col cols="6" md="6" lg="6">
+              <v-col cols="12" md="12" lg="12">
                 <div class="banner-item-card">
                   <div class="banner-icon">
-                    <i class="fas fa-folder-open"></i>
+                    <i class="far fa-calendar-star"></i>
                   </div>
                   <div class="banner-item-title">
-                    <h3>users</h3>
-                    <p>view detail</p>
-                    <div class="btn-view-more">
-                      view <span><i class="fas fa-long-arrow-right"></i></span>
-                    </div>
+                    <h3>{{$t('Dashboard.event.title')}}</h3>
+                    <p>{{$t('Dashboard.event.subtitle')}}</p>
+                    <v-btn @click="$router.push({name:'Event'})" class="btn-view-more">
+                      {{$t('Dashboard.event.view')}} <span><i class="fas fa-long-arrow-right"></i></span>
+                    </v-btn>
                   </div>
                 </div>
               </v-col>
-              <v-col cols="6" md="6" lg="6">
+              <v-col cols="12" md="12" lg="12">
                 <div class="banner-item-card">
                   <div class="banner-icon">
-                    <i class="fas fa-folder-open"></i>
+                    <i class="fas fa-gift"></i>
                   </div>
                   <div class="banner-item-title">
-                    <h3>product</h3>
-                    <p>view detail</p>
-                    <div class="btn-view-more">
-                      view <span><i class="fas fa-long-arrow-right"></i></span>
-                    </div>
+                    <h3>{{$t('Dashboard.promotion.title')}}</h3>
+                    <p>{{$t('Dashboard.promotion.subtitle')}}</p>
+                    <v-btn @click="$router.push({name:'Promotion'})" class="btn-view-more">
+                      {{$t('Dashboard.promotion.view')}} <span><i class="fas fa-long-arrow-right"></i></span>
+                    </v-btn>
                   </div>
                 </div>
               </v-col>
@@ -177,11 +177,26 @@
 
 <script>
 import CardChat from "../components/CardChat";
-
+import {mapGetters, mapActions} from 'vuex'
 export default {
   components: {
     CardChat
-  }
+  },
+  mounted() {
+    this.getCustomer();
+  },
+  
+  computed: {
+    ...mapGetters({
+        Customers: "report/Customers",
+    })
+  
+  },
+  methods: {
+   ...mapActions({
+      getCustomer: "report/getCustomer",
+    }),
+  },
 };
 </script>
 
