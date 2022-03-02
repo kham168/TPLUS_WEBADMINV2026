@@ -16,7 +16,7 @@ class CateProductProvider extends HttpRequest {
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
    // example path http://172.28.26.82:7001/this.get()
-     const {data} = await this.get('/api/v1/categoryProducts/'+cate_product_id)
+     const {data} = await this.get('categoryProducts/'+cate_product_id)
 
      return data
   }
@@ -27,7 +27,7 @@ class CateProductProvider extends HttpRequest {
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
    // example path http://172.28.26.82:7001/this.get()
-     const {data} = await this.get('/api/v1/categoryProducts')
+     const {data} = await this.get('categoryProducts')
 
      return data
   }
@@ -55,7 +55,7 @@ class CateProductProvider extends HttpRequest {
     this.setHeader({
       'Content-Type': 'application/x-www-form-urlencoded',
     })
-    const {data} = await this.create('/api/v1/categoryProducts',arg)
+    const {data} = await this.create('categoryProducts',arg)
     
 
     return data
@@ -86,7 +86,7 @@ class CateProductProvider extends HttpRequest {
       'Content-Type': 'application/x-www-form-urlencoded',
     })
 
-    const {data} = await this.update('/api/v1/categoryProducts/'+cate_product_id,arg)
+    const {data} = await this.update('categoryProducts/'+cate_product_id,arg)
   
   
     return data
@@ -98,7 +98,7 @@ class CateProductProvider extends HttpRequest {
     this.setHeader({})
 
    // example path http://172.28.26.82:7001/this.get()
-    const {data} = await this.delete('/api/v1/categoryProducts/'+cate_product_id)
+    const {data} = await this.delete('categoryProducts/'+cate_product_id)
   
     return data
   }

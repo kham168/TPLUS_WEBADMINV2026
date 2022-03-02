@@ -105,7 +105,7 @@
       {
         "icon": "fas fa-gifts",
         "text": "ປະເພດຊິມ",
-        "router": "/cate_data_package"
+        "router": "/sim_type_package"
       },
       {
         "icon": "fas fa-gift",
@@ -819,15 +819,16 @@
           "sortable": true
         },
         {
-          "text": "ຊື່",
-          "value": "type_name",
-          "sortable": true
-        },
-        {
-          "text": "ຮູຍ",
+          "text": "ຮູບ",
           "value": "image",
           "sortable": true
         },
+        {
+          "text": "ຊື່ປະເພດ",
+          "value": "type_name",
+          "sortable": true
+        },
+
         {
           "text": "ຈັດການ",
           "value": "Actions",
@@ -933,6 +934,8 @@
         { "text": "Code", "value": "code", "sortable": false },
         { "text": "ຊື່ແພັກເກັດ", "value": "name", "sortable": true },
         { "text": "ປະເພດແພັກເກັດ", "value": "typePackage.type_name", "sortable": true },
+        { "text": "ໝວດໝູ່ແພັກເກັດ", "value": "categoryPackage.cateName", "sortable": true },
+        { "text": "ລາຍລະອຽດ", "value": "detail", "sortable": true },
 
         { "text": "ຈັດການ", "value": "Actions", "sortable": true }
       ],
@@ -941,6 +944,8 @@
         { "text": "ຮູບພາບ", "value": "image", "sortable": true },
         { "text": "Code", "value": "code", "sortable": true },
         { "text": "ຊື່ແພັກເກັດ", "value": "la_name", "sortable": true },
+        { "text": "ປະເພດແພັກເກັດ", "value": "typePackage.type_name", "sortable": true },
+        { "text": "ໝວດໝູ່ແພັກເກັດ", "value": "categoryPackage.cateName", "sortable": true },
         { "text": "ປະເພດຊິມ", "value": "simTypes.detail", "sortable": true },
         { "text": "ຈັດການ", "value": "Actions", "sortable": true }
       ],
@@ -961,7 +966,8 @@
         "Eng": "ອັງກິດ"
       },
       "form": {
-        "category": "ປະເພດແພັກເກັດ",
+        "category": "ໝວດໝູ່",
+        "type": "ປະເພດແພັກເກັດ",
         "data_package_name": "ຊື່ແພັກເກັດ",
         "description": "ລາຍລະອຽດ",
         "picture": "ອັບໂຫຼດຮູບພາບ",

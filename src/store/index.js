@@ -14,6 +14,7 @@ import ChatQuestion from "@/store/ChatQuestion.js"
 import Chat from "@/store/Chat.js"
 import Topping from "@/store/Topping.js"
 import PackageType from "@/store/Packages/PackageType.js"
+import SimTypePackage from "@/store/Packages/SimTypePackage.js"
 
 //get all users
 import users from "./Users"
@@ -129,7 +130,8 @@ export default new Vuex.Store({
         Chat,
         Topping,
         report,
-        PackageType
+        PackageType,
+        SimTypePackage
     },
 
 

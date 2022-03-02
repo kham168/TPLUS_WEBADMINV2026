@@ -18,7 +18,7 @@ class ChatQuestionProvider extends HttpRequest {
 
         })
         // example path http://172.28.26.82:7001/this.get()
-        const {data} = await this.get('/api/v1/question/' + chat_question_id)
+        const {data} = await this.get('question/' + chat_question_id)
 
         return data
     }
@@ -31,7 +31,7 @@ class ChatQuestionProvider extends HttpRequest {
 
         })
         // example path http://172.28.26.82:7001/this.get()
-        const {data} = await this.get('/api/v1/question')
+        const {data} = await this.get('question')
 
         return data
     }
@@ -44,7 +44,7 @@ class ChatQuestionProvider extends HttpRequest {
 
         })
         // example path http://172.28.26.82:7001/this.get()
-        const {data} = await this.get('/api/v1/baseQuestion')
+        const {data} = await this.get('baseQuestion')
 
         return data
     }
@@ -57,7 +57,7 @@ class ChatQuestionProvider extends HttpRequest {
 
         })
         // example path http://172.28.26.82:7001/this.get()
-        const {data} = await this.get('/api/v1/baseQuestion/'+chat_question_id+'/sub')
+        const {data} = await this.get('baseQuestion/'+chat_question_id+'/sub')
 
         return data
     }
@@ -91,7 +91,7 @@ class ChatQuestionProvider extends HttpRequest {
 
         console.log(image)
 
-        const {data} = await this.create('/api/v1/question', arg)
+        const {data} = await this.create('question', arg)
 
 
         return data
@@ -123,7 +123,7 @@ class ChatQuestionProvider extends HttpRequest {
             'Content-Type': 'application/x-www-form-urlencoded',
 
         })
-        const {data} = await this.create('/api/v1/question/'+chat_question_id+'/newSub', arg)
+        const {data} = await this.create('question/'+chat_question_id+'/newSub', arg)
 
 
         return data
@@ -156,7 +156,7 @@ class ChatQuestionProvider extends HttpRequest {
 
         })
 
-        const {data} = await this.update('/api/v1/question/' + chat_question_id, arg)
+        const {data} = await this.update('question/' + chat_question_id, arg)
 
 
         return data
@@ -170,7 +170,7 @@ class ChatQuestionProvider extends HttpRequest {
         })
 
         // example path http://172.28.26.82:7001/this.get()
-        const {data} = await this.delete('/api/v1/question/' + chat_question_id)
+        const {data} = await this.delete('question/' + chat_question_id)
 
         return data
     }

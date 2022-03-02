@@ -544,7 +544,7 @@ export default {
 
           .upload-image {
             width: 100%;
-            height: 300px;
+            height: 100%;
             border-radius: 0.3rem;
             position: relative;
             overflow: hidden;

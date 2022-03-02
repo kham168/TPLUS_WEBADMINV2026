@@ -106,7 +106,7 @@
       {
         "icon": "fas fa-gifts",
         "text": "Sim Type",
-        "router": "/cate_data_package"
+        "router": "/sim_type_package"
       },
       {
         "icon": "fas fa-gift",
@@ -775,15 +775,16 @@
           "sortable": true
         },
         {
-          "text": "Type Name",
-          "value": "type_name",
-          "sortable": true
-        },
-        {
           "text": "Image",
           "value": "image",
           "sortable": true
         },
+        {
+          "text": "Type Name",
+          "value": "type_name",
+          "sortable": true
+        },
+
         {
           "text": "Actions",
           "value": "Actions",
@@ -874,7 +875,9 @@
         { "text": "Pictures", "value": "Picture", "sortable": true },
         { "text": "Code", "value": "code", "sortable": true },
         { "text": "Package Name", "value": "name", "sortable": true },
-        { "text": "Package Type", "value": "NewPackageTrans[0].image", "sortable": true },
+        { "text": "Package Type", "value": "typePackage.type_name", "sortable": true },
+        { "text": "Package Cate", "value": "categoryPackage.cateName", "sortable": true },
+        { "text": "Detail", "value": "detail", "sortable": true },
         { "text": "Actions", "value": "Actions", "sortable": true }
       ],
       "headers_simtype": [
@@ -882,6 +885,8 @@
         { "text": "Pictures", "value": "Picture", "sortable": true },
         { "text": "Code", "value": "code", "sortable": true },
         { "text": "Package Name", "value": "en_name", "sortable": true },
+        { "text": "Package Type", "value": "typePackage.type_name", "sortable": true },
+        { "text": "Package Cate", "value": "categoryPackage.cateName", "sortable": true },
         { "text": "Sim Type", "value": "simTypes.detail", "sortable": true },
         { "text": "Actions", "value": "Actions", "sortable": true }
       ],
@@ -902,9 +907,11 @@
         "Eng": "English"
       },
       "form": {
+
         "category": "Categories",
+        "type": "Type",
         "data_package_name": "Data Package Name",
-        "description": "Description",
+        "description": "Detail",
         "picture": "Upload Image",
         "code": "Code",
         "button": {

@@ -18,7 +18,7 @@ class BannerProvider extends HttpRequest {
 
         this.setHeader({})
 
-        const {data} = await this.create('/api/v1/banner-order',banner_list)
+        const {data} = await this.create('/banner-order',banner_list)
 
         return data
     }
@@ -30,7 +30,7 @@ class BannerProvider extends HttpRequest {
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
    // example path http://172.28.26.82:7001/this.get()
-     const {data} = await this.get('/api/v1/banner/'+banner_id)
+     const {data} = await this.get('banner/'+banner_id)
  
      return data
   }
@@ -41,7 +41,7 @@ class BannerProvider extends HttpRequest {
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
    // example path http://172.28.26.82:7001/this.get()
-     const {data} = await this.get('/api/v1/banner-order')
+     const {data} = await this.get('banner-order')
  
      return data
   }
@@ -82,7 +82,7 @@ class BannerProvider extends HttpRequest {
     this.setHeader({
       'Content-Type': 'multipart/form-data',
     })
-    const {data} = await this.create('/api/v1/banner',bodyFormData)
+    const {data} = await this.create('banner',bodyFormData)
     
 
     return data
@@ -123,7 +123,7 @@ class BannerProvider extends HttpRequest {
       'Content-Type': 'multipart/form-data',
     })
 
-    const {data} = await this.update('/api/v1/banner/'+ban_id,bodyFormData)
+    const {data} = await this.update('banner/'+ban_id,bodyFormData)
   
   
     return data
@@ -136,7 +136,7 @@ class BannerProvider extends HttpRequest {
     this.setHeader({})
 
    // example path http://172.28.26.82:7001/this.get()
-    const {data} = await this.delete('/api/v1/banner/'+ban_id)
+    const {data} = await this.delete('banner/'+ban_id)
   
     return data
   }

@@ -47,7 +47,8 @@
               <td>{{ item.code }}</td>
               <td>{{ item.name }}</td>
               <td>{{ item.typePackage.type_name }}</td>
-
+              <td>{{ item.categoryPackage.cateName }}</td>
+              <td>{{ item.detail }}</td>
               <td>
                <v-menu offset-y>
                  <template v-slot:activator="{on,attrs}">
@@ -94,7 +95,8 @@
                  <td>{{ item.code }}</td>
               <td>{{ item.NewPackageTrans[0].name }}</td>
               <td>{{ item.typePackage.TypePackagTrans[0].type_name }}</td>
-
+              <td>{{ item.categoryPackage.CatePackageTrans[0].cateName }}</td>
+              <td>{{ item.NewPackageTrans[0].detail }}</td>
            
              
               <td>

@@ -10,10 +10,9 @@ import Router from '@/router';
 
 
 class HttpRequest {
-//http://172.28.26.82:7001
-  //http://25.10.235.85:7000
+
   //api 
-  constructor (url = process.env.VUE_APP_BASE_SOCKET) {
+  constructor (url = process.env.VUE_APP_BASE_API_URL_TEST) {
     // this.axios = axios
     this.axiosInstance = axios.create({
       baseURL: url,
@@ -51,6 +50,8 @@ class HttpRequest {
         }else if(response.config.url == `/api/v1/admin/chat/${response.data.message.chat_room_id}`) {
 
         }else if(response.data.message=="Updated new position topping successfully."){
+
+        }else if(response.data.message=="Package add sim types successfully"){
 
         }
         else {

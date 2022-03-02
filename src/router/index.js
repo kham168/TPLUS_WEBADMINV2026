@@ -730,12 +730,12 @@ const routes = [
   },
 
 
-  //Category Package
+  //SimType Package
   {
-    path: "/cate_data_package",
+    path: "/sim_type_package",
     component: () =>
       import(
-        /* webpackChunkName:"Data_package" */ "../views/packages/cate_data_package/cate_data_package.vue"
+        /* webpackChunkName:"Data_package" */ "../views/packages/sim_type_package/sim_type_package.vue"
       ),
     meta: {
       layout: "admin",
@@ -745,10 +745,10 @@ const routes = [
     children: [
       {
         path: "",
-        name: "cate_data_package.index",
+        name: "sim_type_package.index",
         component: () =>
           import(
-            /* webpackChunkName:"Data_package index" */ "../views/packages/cate_data_package/index.vue"
+            /* webpackChunkName:"Data_package index" */ "../views/packages/sim_type_package/index.vue"
           ),
         meta: {
           layout: "admin",
@@ -756,10 +756,10 @@ const routes = [
       },
       {
         path: "create",
-        name: "cate_data_package.create",
+        name: "sim_type_package.create",
         component: () =>
           import(
-            /* webpackChunkName:"Data_package Create" */ "../components/forms/packages/cate_data_package/Create.vue"
+            /* webpackChunkName:"Data_package Create" */ "../components/forms/packages/sim_type_package/Create.vue"
           ),
         meta: {
           layout: "admin",
@@ -767,10 +767,10 @@ const routes = [
       },
       {
         path: "edit/:cate_data_package_id:name:description",
-        name: "cate_data_package.edit",
+        name: "sim_type_package.edit",
         component: () =>
           import(
-            /* webpackChunkName:"Data_package Edit" */ "../components/forms/packages/cate_data_package/Edit.vue"
+            /* webpackChunkName:"Data_package Edit" */ "../components/forms/packages/sim_type_package/Edit.vue"
           ),
         meta: {
           middleware: [Middleware.auth],

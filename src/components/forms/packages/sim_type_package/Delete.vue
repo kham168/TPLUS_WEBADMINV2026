@@ -8,7 +8,7 @@
         {{$t('Modal.btnCancel')}}
       </v-btn>
 
- <v-btn class="btn-delete" @click="deleteCateDataPackage({'cate_package_id':cate_data_package_id})" >
+ <v-btn class="btn-delete" @click="deleteSimTypePackage({'cate_package_id':cate_data_package_id})" >
           {{$t('Modal.btnConfirm')}}
       </v-btn>
 
@@ -31,7 +31,7 @@ export default {
   methods: {
     
       ...mapActions({
-          deleteCateDataPackage:'CateDataPackage/deleteCateDataPackage'
+        deleteSimTypePackage:'SimTypePackage/deleteSimTypePackage'
       })
    
   }

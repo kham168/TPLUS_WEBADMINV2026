@@ -79,7 +79,7 @@ export default {
     this.$refs.form.validate();
    if(this.$refs.form.validate()){
  
-      this.createCateDataPackage({'mainProduct':this.cateName,'description':this.description});
+      this.createSimTypePackage({'mainProduct':this.cateName,'description':this.description});
     
       console.log('create successful')
     }else{
@@ -92,7 +92,7 @@ export default {
   },
 
   ...mapActions({
-    createCateDataPackage:'CateDataPackage/createCateDataPackage',
+    createSimTypePackage:'SimTypePackage/createSimTypePackage',
 
   })
   },

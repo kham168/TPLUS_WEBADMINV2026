@@ -8,18 +8,18 @@
       ></v-skeleton-loader>
       <div class="header cate_data_package-header" v-show="!firstLoad">
         <h1>{{ $t("CateDataPackage.title") }}</h1>
-        <v-btn @click="CreateCateDataPackage" class="btn btn-create" >
+        <v-btn @click="CreateSimTypePackage" class="btn btn-create" >
           <v-icon>fal fa-plus-circle</v-icon>{{ $t("CateDataPackage.button") }}</v-btn
         >
       </div>
       <div class="cate_data_package-content" v-show="!firstLoad">
         <v-data-table
           :headers="$t('CateDataPackage.table.headers')"
-          :items="cate_data_package['data']"
+          :items="sim_type_package['data']"
           :search="searchItem"
           :loading="loading"
           :loading-text="$t('CateDataPackage.loadingtext')"
-          v-if="cate_data_package['data'] != ''"
+          v-if="sim_type_package['data'] != ''"
         >
           <template v-slot:top>
             <v-toolbar flat>
@@ -42,7 +42,7 @@
               <td>{{ index + 1 }}</td>
               <td>{{ item.mainProduct }}</td>
               <td class="text-limit">{{ item.detail }}</td>
-             
+
               <td>
                <v-menu offset-y>
                  <template v-slot:activator="{on,attrs}">
@@ -51,7 +51,7 @@
                 </v-btn>
                  </template>
                  <v-list>
-                   <v-list-item link @click="$router.push({name:'cate_data_package.edit',params:{'cate_data_package_id':item.id,'name':item.mainProduct,'description':item.detail}})">
+                   <v-list-item link @click="$router.push({name:'sim_type_package.edit',params:{'cate_data_package_id':item.id,'name':item.mainProduct,'description':item.detail}})">
                      <v-list-item-icon>
                        <v-icon class="mr-3" small>{{$t('CateDataPackage.table.options.iconEdit')}}</v-icon>
                        <v-list-item-title>
@@ -71,7 +71,6 @@
                </v-menu>
               </td>
             </tr>
-
           </template>
         </v-data-table>
         <div class="Table-empty" v-else>
@@ -93,7 +92,7 @@
 
 <script>
 import {mapActions,mapGetters} from 'vuex'
-import Delete from "@/components/forms/packages/cate_data_package/Delete";
+import Delete from "@/components/forms/packages/sim_type_package/Delete";
 export default {
     name: 'CateDataPackage',
 
@@ -111,7 +110,7 @@ components: {
     },
 
     mounted() {
-        this.getCateDataPackage().then((res)=>{
+        this.getSimTypePackage().then((res)=>{
           if(res.success){
             this.firstLoad=false;
           }
@@ -119,10 +118,10 @@ components: {
     },
 
     methods: {
-        CreateCateDataPackage() {
+        CreateSimTypePackage() {
       this.$router
         .push({
-          name: "cate_data_package.create",
+          name: "sim_type_package.create",
         })
         .catch(() => {});
     },
@@ -133,13 +132,13 @@ components: {
     },
 
     ...mapActions({
-      getCateDataPackage:'CateDataPackage/getCateDataPackage'
+      getSimTypePackage:'SimTypePackage/getSimTypePackage'
     })
     },
 
     computed:{
       ...mapGetters({
-        cate_data_package:'CateDataPackage/cate_data_package'
+        sim_type_package:'SimTypePackage/sim_type_package'
       })
     }
 };

@@ -29,7 +29,7 @@ class PackageTypeProvider extends HttpRequest {
         this.setHeader({
             'Content-Type': 'application/json'
         })
-        const {data} = await this.update('/api/v1/packages-priority/'+package_type_id,object)
+        const {data} = await this.update('packages-priority/'+package_type_id,object)
 
         return data
     }
@@ -40,7 +40,7 @@ class PackageTypeProvider extends HttpRequest {
         //If write Header on class HttpRequest Should call like under method
         this.setHeader({})
 
-        const {data} = await this.get('/api/v1/packages-priority/'+packageTypeId)
+        const {data} = await this.get('packages-priority/'+packageTypeId)
 
         return data
     }
@@ -51,7 +51,7 @@ class PackageTypeProvider extends HttpRequest {
         //If write Header on class HttpRequest Should call like under method
         this.setHeader({})
 
-        const {data} = await this.get('/api/v1/typePackages')
+        const {data} = await this.get('typePackages')
 
         return data
     }
@@ -62,7 +62,7 @@ class PackageTypeProvider extends HttpRequest {
         //If write Header on class HttpRequest Should call like under method
         this.setHeader({})
         // example path http://128.199.104.34:7000/this.get()
-        const {data} = await this.get('/api/v1/typePackages/'+packageTypeId)
+        const {data} = await this.get('typePackages/'+packageTypeId)
 
         return data
     }
@@ -83,7 +83,7 @@ class PackageTypeProvider extends HttpRequest {
         this.setHeader({
             'Content-Type': 'multipart/form-data',
         })
-        const {data} = await this.update('/api/v1/typePackages/'+package_type_id,bodyFormData)
+        const {data} = await this.update('typePackages/'+package_type_id,bodyFormData)
 
         return data
     }

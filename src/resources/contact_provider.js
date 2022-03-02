@@ -15,7 +15,7 @@ class ContactProvider extends HttpRequest {
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
    // example path http://172.28.26.82:7001/this.get()
-     const {data} = await this.get('/api/v1/contact/'+contact_id)
+     const {data} = await this.get('contact/'+contact_id)
 
      return data
   }
@@ -26,7 +26,7 @@ class ContactProvider extends HttpRequest {
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
    // example path http://172.28.26.82:7001/this.get()
-     const {data} = await this.get('/api/v1/contact')
+     const {data} = await this.get('contact')
 
      return data
   }
@@ -53,7 +53,7 @@ class ContactProvider extends HttpRequest {
     this.setHeader({
       'Content-Type': 'application/x-www-form-urlencoded',
     })
-    const {data} = await this.create('/api/v1/contact',arg)
+    const {data} = await this.create('contact',arg)
     
 
     return data
@@ -81,7 +81,7 @@ class ContactProvider extends HttpRequest {
       'Content-Type': 'application/x-www-form-urlencoded',
     })
 
-    const {data} = await this.update('/api/v1/contact/'+contact_id,arg)
+    const {data} = await this.update('contact/'+contact_id,arg)
   
   
     return data
@@ -93,7 +93,7 @@ class ContactProvider extends HttpRequest {
     this.setHeader({})
 
    // example path http://172.28.26.82:7001/this.get()
-    const {data} = await this.delete('/api/v1/contact/'+contact_id)
+    const {data} = await this.delete('contact/'+contact_id)
   
     return data
   }

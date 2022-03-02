@@ -8,7 +8,7 @@
               outlined
               dense
               multiple
-              :items="cate_data_package['data']"
+              :items="sim_type_package['data']"
               item-text="detail"
               item-value="id"
               v-model="simTypeId"
@@ -45,17 +45,17 @@ export default {
 
 
     ...mapActions({
-      getCateDataPackage:'CateDataPackage/getCateDataPackage',
+      getSimTypePackage:'SimTypePackage/getSimTypePackage',
       fillSimType:'DataPackage/fillSimType'
     })
   },
   computed:{
     ...mapGetters({
-      cate_data_package:'CateDataPackage/cate_data_package'
+      sim_type_package:'SimTypePackage/sim_type_package'
     })
   },
   created() {
-    this.getCateDataPackage();
+    this.getSimTypePackage();
 
   }
 }

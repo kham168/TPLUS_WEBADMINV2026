@@ -8,7 +8,7 @@
       ></v-skeleton-loader>
       <div class="header data_package-header" v-show="!firstLoad">
         <h1><span @click="onBack" style="margin-right: 10px;color: #4b96da;cursor: pointer">
-          <i class="fas fa-arrow-circle-left"></i></span>{{ $t("DataPackage.title") }}</h1>
+          <i class="fas fa-arrow-circle-left"></i></span>{{ $t("DataPackage.button_fill") }}</h1>
 
         <v-btn @click="onCreate" class="btn btn-create">
           <v-icon>fal fa-plus-circle</v-icon>{{ $t("DataPackage.button_fill") }}</v-btn>
@@ -47,6 +47,8 @@
               <td><v-img :src="item.image" alt="preview" max-height="50" max-width="50"></v-img></td>
               <td>{{ item.code }}</td>
               <td>{{ item.name }}</td>
+              <td>{{ item.typePackage.type_name }}</td>
+              <td>{{ item.categoryPackage.cateName }}</td>
 
               <td><p v-for="element in item.simTypes">{{element.detail}}</p>
                 <v-icon color="red" v-if="item.simTypes.length===0">mdi-minus</v-icon>
@@ -79,6 +81,8 @@
               <td><v-img :src="item.image" alt="preview" max-height="50" max-width="50"></v-img></td>
               <td>{{ item.code }}</td>
               <td>{{ item.NewPackageTrans[0].name }}</td>
+              <td>{{ item.typePackage.TypePackagTrans[0].type_name }}</td>
+              <td>{{ item.categoryPackage.CatePackageTrans[0].cateName }}</td>
 
               <td >
                 <p v-for="element in item.simTypes" >{{element.detail}}</p>
@@ -124,13 +128,13 @@
 
       <ModalAdd>
         <template v-slot="{ close }">
-          <fillSimType @close="close" @success="getCateDataPackage"/>
+          <fillSimType @close="close" @success="getSimTypePackage"/>
         </template>
       </ModalAdd>
 
       <ModalDelete>
         <template v-slot="{ close }">
-          <removeSimType @close="close" @success="getCateDataPackage"/>
+          <removeSimType @close="close" @success="getSimTypePackage"/>
         </template>
       </ModalDelete>
     </section>
@@ -188,9 +192,9 @@ export default {
 
     ...mapActions({
 
-      getCateDataPackageOne:'CateDataPackage/getCateDataPackageOne',
+
       getDataPackageOne:'DataPackage/getDataPackageOne',
-      getCateDataPackage:'CateDataPackage/getCateDataPackage',
+      getSimTypePackage:'SimTypePackage/getSimTypePackage',
       packageSimTypeOne:'DataPackage/packageSimTypeOne'
     })
   },
@@ -198,8 +202,7 @@ export default {
   computed:{
     ...mapGetters({
       package_simtype_one:'DataPackage/package_simtype_one',
-      cate_data_package_one:'CateDataPackage/cate_data_package_one',
-      cate_data_package:'CateDataPackage/cate_data_package',
+      sim_type_package:'SimTypePackage/sim_type_package',
     })
   }
 };

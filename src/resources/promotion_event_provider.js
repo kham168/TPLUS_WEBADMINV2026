@@ -15,7 +15,7 @@ class PromotionEventProvider extends HttpRequest {
     //If write Header on class HttpRequest Should call like under method
     this.setHeader({})
     // example path http://172.28.26.82:7001/this.get()
-    const {data} = await this.get('/api/v1/posts-event')
+    const {data} = await this.get('posts-event')
 
     return data
   }
@@ -26,7 +26,7 @@ class PromotionEventProvider extends HttpRequest {
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
    // example path http://172.28.26.82:7001/this.get()
-     const {data} = await this.get('/api/v1/posts/'+promotion_event_id)
+     const {data} = await this.get('posts/'+promotion_event_id)
 
      return data
   }
@@ -37,7 +37,7 @@ class PromotionEventProvider extends HttpRequest {
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
    // example path http://172.28.26.82:7001/this.get()
-     const {data} = await this.get('/api/v1/posts-promotion')
+     const {data} = await this.get('posts-promotion')
 
      return data
   }
@@ -86,7 +86,7 @@ class PromotionEventProvider extends HttpRequest {
     this.setHeader({
       'Content-Type': 'multipart/form-data',
     })
-    const {data} = await this.create('/api/v1/posts',bodyFormData)
+    const {data} = await this.create('posts',bodyFormData)
     
 
     return data
@@ -137,7 +137,7 @@ class PromotionEventProvider extends HttpRequest {
       'Content-Type': 'multipart/form-data',
     })
 
-    const {data} = await this.update('/api/v1/posts/'+post_id,bodyFormData)
+    const {data} = await this.update('posts/'+post_id,bodyFormData)
   
   
     return data
@@ -149,7 +149,7 @@ class PromotionEventProvider extends HttpRequest {
     this.setHeader({})
 
    // example path http://172.28.26.82:7001/this.get()
-    const {data} = await this.delete('/api/v1/posts/'+promotion_event_id)
+    const {data} = await this.delete('posts/'+promotion_event_id)
   
     return data
   }

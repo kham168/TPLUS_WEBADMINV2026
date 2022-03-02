@@ -59,7 +59,7 @@
                           item-value="id"
                           :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
                           v-model="PackageTypeValue"
-                          :label="$t('DataPackage.Create.form.category')"
+                          :label="$t('DataPackage.Create.form.type')"
                           outlined
                           required
 
@@ -72,12 +72,51 @@
                           item-value="id"
                           :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
                           v-model="PackageTypeValue"
+                          :label="$t('DataPackage.Create.form.type')"
+                          outlined
+                          required
+
+                      ></v-select>
+
+                      <v-select
+                          v-show="isLaoTab"
+                          :items="cate_data_package['data']"
+                          item-text="cateName"
+                          item-value="id"
+                          :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
+                          v-model="CateDataPackageValue"
                           :label="$t('DataPackage.Create.form.category')"
                           outlined
                           required
 
                       ></v-select>
 
+                      <v-select
+                          v-show="isEngTab"
+                          :items="cate_data_package['data']"
+                          item-text="CatePackageTrans[0].cateName"
+                          item-value="id"
+                          :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
+                          v-model="CateDataPackageValue"
+                          :label="$t('DataPackage.Create.form.category')"
+                          outlined
+                          required
+
+                      ></v-select>
+
+                      <v-textarea
+                          v-show="tab===0"
+                          v-model="description"
+                          outlined
+                          :label="$t('DataPackage.Create.form.description')"
+                      ></v-textarea>
+
+                      <v-textarea
+                          v-show="tab===1"
+                          v-model="descriptionEng"
+                          outlined
+                          :label="$t('DataPackage.Create.form.description')"
+                      ></v-textarea>
 
                       <div v-show="isLaoTab" >
 
@@ -95,7 +134,7 @@
                             </v-icon>
                           </v-btn>
                         </v-row>
-                        <div class="upload-image mt-3">
+                        <div class="upload-image mt-3" v-bind:style= "[previewImage === null ? {'height':'300px'} : {'height':'100%'}]">
 
                           <div class="content" v-show="previewImage === null">
                             <i class="fas fa-plus-circle"></i>
@@ -134,7 +173,7 @@
                             </v-icon>
                           </v-btn>
                         </v-row>
-                        <div class="upload-image mt-3">
+                        <div class="upload-image mt-3" v-bind:style= "[previewImageEng === null ? {'height':'300px'} : {'height':'100%'}]">
 
                           <div class="content" v-show="previewImageEng === null">
                             <i class="fas fa-plus-circle"></i>
@@ -200,6 +239,7 @@ export default {
       previewImage: null,
       previewImageEng: null,
       valid: true,
+      CateDataPackageValue:'',
     };
   },
 
@@ -207,6 +247,7 @@ export default {
 
     this.checkTabLang('ລາວ');
     this.getPackageType();
+    this.getCateDataPackage();
   },
 
   methods: {
@@ -269,6 +310,9 @@ export default {
           'avatar': this.uploadImage,
           'avatarEN':this.uploadImageEng,
           'typePackage_Id':this.PackageTypeValue,
+          'catePackage_Id':this.CateDataPackageValue,
+          'detail':this.description,
+          'detailEN':this.descriptionEng
         })
       } else {
         console.log('can not create')
@@ -284,12 +328,14 @@ export default {
     ...mapActions({
       createDataPackage: 'DataPackage/createDataPackage',
       getPackageType:'PackageType/getPackageType',
+      getCateDataPackage:'CateDataPackage/getCateDataPackage'
     })
   },
 
   computed: {
     ...mapGetters({
       package_type:'PackageType/package_type',
+      cate_data_package:'CateDataPackage/cate_data_package'
     })
   }
 };
@@ -330,20 +376,19 @@ export default {
 
           .upload-image {
             width: 100%;
-            height: 300px;
+            height: 100%;
             border-radius: 0.3rem;
             position: relative;
             overflow: hidden;
-            object-fit: cover;
+            object-fit: fill;
             transition: all ease 0.5s;
             border: 1px solid $gray-color;
 
             .image {
-              width: 100%;
+
               overflow: hidden;
               object-fit: cover;
             }
-
             .content {
               position: absolute;
               left: 0;
@@ -357,7 +402,14 @@ export default {
                 color: $black-color;
               }
             }
+            .image-files {
+              max-height: 100%;
+              max-width: 100%;
 
+              display: block;
+              margin-left: auto;
+              margin-right: auto;
+            }
             .choose-file {
               position: absolute;
               left: 0;
@@ -374,22 +426,6 @@ export default {
             }
           }
 
-          .image {
-
-            max-width: 100%;
-            overflow: hidden;
-            object-fit: cover;
-
-
-            .image-files {
-              max-width: 100%;
-              display: block;
-              margin-left: auto;
-              margin-right: auto;
-            }
-
-
-          }
 
 
           .form-actions {

@@ -98,7 +98,7 @@ export default {
     submitForm () {
     this.$refs.form.validate();
     if(this.$refs.form.validate()){
-    this.updateCateDataPackage({'cate_package_id':this.cate_package_id,'mainProduct':this.cate_package_name,'description':this.description})
+    this.updateSimTypePackage({'cate_package_id':this.cate_package_id,'mainProduct':this.cate_package_name,'description':this.description})
     console.log('update successful')
     }else{
      console.log('can not update')
@@ -110,7 +110,7 @@ export default {
   },
 
   ...mapActions({
-    updateCateDataPackage:'CateDataPackage/updateCateDataPackage',
+    updateSimTypePackage:'SimTypePackage/updateSimTypePackage',
 
   })
   },

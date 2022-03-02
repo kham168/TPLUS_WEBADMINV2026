@@ -12,7 +12,7 @@ class ChatProvider extends HttpRequest {
 
         })
 
-        const {data} = await this.get('/api/v1/admin/chat?q='+searchText)
+        const {data} = await this.get('admin/chat?q='+searchText)
 
         return data
     }
@@ -23,7 +23,7 @@ class ChatProvider extends HttpRequest {
 
         })
 
-        const {data} = await this.get('/api/v1/admin/chat?filter=unread&limit=20&page='+page)
+        const {data} = await this.get('admin/chat?filter=unread&limit=20&page='+page)
 
         return data
     }
@@ -34,7 +34,7 @@ class ChatProvider extends HttpRequest {
 
         })
 
-        const {data} = await this.get('/api/v1/admin/chat?limit=20&page='+page)
+        const {data} = await this.get('admin/chat?limit=20&page='+page)
 
         return data
     }
@@ -46,7 +46,7 @@ class ChatProvider extends HttpRequest {
 
         })
 
-        const {data} = await this.get('/api/v1/admin/chat/'+chat_room_id+'?limit=20&page='+page)
+        const {data} = await this.get('admin/chat/'+chat_room_id+'?limit=20&page='+page)
 
         return data
     }
@@ -66,7 +66,7 @@ class ChatProvider extends HttpRequest {
             'room_id':chat_room_id
         }
 
-        const {data} = await this.create('/api/v1/admin/chat/'+chat_room_id,args)
+        const {data} = await this.create('admin/chat/'+chat_room_id,args)
         return data
     }
 
@@ -83,7 +83,7 @@ class ChatProvider extends HttpRequest {
             'roomChannel':roomChannel
         }
 
-        const {data} = await this.create('/api/v1/admin/leave/'+chat_room_id,args)
+        const {data} = await this.create('admin/leave/'+chat_room_id,args)
 
         return data
     }
