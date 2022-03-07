@@ -70,77 +70,68 @@
                         :label="$t('Product.Create.form.description')"
                         
                       ></v-textarea>
-                      <div v-show="isLaoTab">
-                      
-                        <div class="upload-image" v-if="uploadImage == []">
-                       
-                        <div class="content" >
-                          <i class="fas fa-plus-circle"></i>
-                          <h3>{{ $t("Post.Create.form.picture") }}</h3>
+
+
+                      <div v-show="tab===0">
+
+                        <div class="upload-image" v-if="previewImage[0] == null">
+
+                          <div class="content" >
+                            <i class="fas fa-plus-circle"></i>
+                            <h3>{{ $t("Post.Create.form.picture") }}</h3>
+                          </div>
+                          <input
+
+
+                              type="file"
+                              class="choose-file"
+                              name="upload-image"
+                              accept="image/*"
+                              @change="UploadImage"
+                          />
                         </div>
-                        <input
-                         multiple
-                        
-                          type="file"
-                          class="choose-file"
-                          name="upload-image"
-                          accept="image/*"
-                          @change="UploadImage"
-                        />
-                      </div>
 
 
-                      <div class="image" v-else>
-                          <v-carousel height="100%">
-                            <v-carousel-item :key="index" v-for="(imageFiles,index) in previewImage">
-                              <div class="increase-decrease-image">
-                                 <v-btn
-                                  class="mx-2"
-                                  fab
-                                  dark
-                                  small
-                                  color="primary"
-                                  @click="removeImage(index)"
-                                >
-                                  <v-icon dark>
-                                    mdi-minus
-                                  </v-icon>
-                                </v-btn>
+                        <div class="image" v-else>
 
 
-                                 <v-btn
-                                  class="mx-2"
-                                  fab
-                                  dark
-                                  small
-                                  color="success"
-                                  @click="onIncreaseImage"
-                                >
-                                  <v-icon dark>
-                                    mdi-plus
-                                  </v-icon>
-                                </v-btn>
-                                 <input
-                         multiple
-                         
-                          type="file"
-                           class="d-none"
-                           ref="uploader"
-                          accept="image/*"
-                          @change="UploadImage"
-                        />
-                        </div>
-                              <v-layout row >
-                                <v-flex  :key="j" v-for="j in 1" align-self-center >
+                          <div class="increase-decrease-image">
+                            <v-btn
+                                class="mx-2"
+                                color="error"
+                                dark
+                                fab
+                                small
+                                @click="removeImage(0)"
+                            >
+                              <v-icon dark>
+                                mdi-close
+                              </v-icon>
+                            </v-btn>
 
-                                     <img class="image-files" :src="imageFiles"  >
 
-                                </v-flex>
-                               
-                              </v-layout>
-                            </v-carousel-item>
-                          </v-carousel>
-                          
+
+                            <input
+                                ref="uploader"
+
+                                accept="image/*"
+                                class="d-none"
+
+                                type="file"
+                                @change="UploadImage"
+                            />
+                          </div>
+                          <v-layout row >
+                            <v-flex  :key="j" v-for="j in 1" align-self-center >
+
+                              <img class="image-files" :src="previewImage"  >
+
+                            </v-flex>
+
+                          </v-layout>
+
+
+
                         </div>
                       </div>
 
@@ -333,8 +324,8 @@ async convertUrlToFileImage(image) {
                 'other_lang_product_name':this.productNameEng,
                 'other_lang_description':this.descriptionEng,
                
-                'avatar':this.uploadImage,
-                'avatar_EN':this.uploadImageEng
+                'avatar':this.uploadImage[0],
+                'avatar_EN':this.uploadImageEng[0]
       })
       console.log('create successful')
     }else{
@@ -393,6 +384,7 @@ getProductOne:'Product/getProductOne'
           .form-content {
             width: 70%;
 
+
             .upload-image {
               width: 100%;
               height: 300px;
@@ -403,11 +395,7 @@ getProductOne:'Product/getProductOne'
               transition: all ease 0.5s;
               border: 1px solid $gray-color;
 
-              .image {
-                width: 100%;
-                overflow: hidden;
-                object-fit: cover;
-              }
+
               .content {
                 position: absolute;
                 left: 0;
@@ -436,25 +424,26 @@ getProductOne:'Product/getProductOne'
                 opacity: 0;
               }
             }
+            .image {
 
-              .image {
-              
+
+              overflow: hidden;
+              object-fit: cover;
+
+
+
+              .image-files{
                 max-width: 100%;
-                overflow: hidden;
-                object-fit: cover;
-
-               
-
-                    .image-files{
-                    max-width: 100%;
-                    display: block;
-                    margin-left: auto;
-                    margin-right: auto;
-                  }
-
-                
-                  
+                max-height: 100%;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
               }
+
+
+
+            }
+
             .form-actions {
               width: 100%;
               padding: 1rem 0;

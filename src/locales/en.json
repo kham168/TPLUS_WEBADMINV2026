@@ -878,6 +878,7 @@
         { "text": "Package Type", "value": "typePackage.type_name", "sortable": true },
         { "text": "Package Cate", "value": "categoryPackage.cateName", "sortable": true },
         { "text": "Detail", "value": "detail", "sortable": true },
+        { "text": "View", "value": "view", "sortable": true },
         { "text": "Actions", "value": "Actions", "sortable": true }
       ],
       "headers_simtype": [
@@ -897,7 +898,9 @@
         "delete": "Delete",
         "delicon": "fas fa-trash-alt",
         "simtype": "Fill Sim Type",
-        "simtypeIcon": "fas fa-sim-card"
+        "simtypeIcon": "fas fa-sim-card",
+        "delsimtype": "Delete Sim Type",
+        "delsimtypeIcon": "fas fa-trash-alt"
       }
     },
     "Create": {

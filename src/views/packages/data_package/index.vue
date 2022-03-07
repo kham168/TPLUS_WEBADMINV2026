@@ -50,6 +50,13 @@
               <td>{{ item.categoryPackage.cateName }}</td>
               <td>{{ item.detail }}</td>
               <td>
+                <v-btn icon @click="onShow(item.id)">
+                  <v-icon large>
+                    mdi-eye
+                  </v-icon>
+                </v-btn>
+              </td>
+              <td>
                <v-menu offset-y>
                  <template v-slot:activator="{on,attrs}">
                    <v-btn icon v-on="on" v-bind="attrs">
@@ -97,8 +104,14 @@
               <td>{{ item.typePackage.TypePackagTrans[0].type_name }}</td>
               <td>{{ item.categoryPackage.CatePackageTrans[0].cateName }}</td>
               <td>{{ item.NewPackageTrans[0].detail }}</td>
-           
-             
+
+              <td>
+                <v-btn icon @click="onShow(item.id)">
+                  <v-icon large>
+                    mdi-eye
+                  </v-icon>
+                </v-btn>
+              </td>
               <td>
                <v-menu offset-y>
                  <template v-slot:activator="{on,attrs}">
@@ -153,8 +166,15 @@
           <Delete :data_package_id="package_id" @close="close"/>
         </template>
       </ModalDelete>
-    </section>
 
+      <ModalShow>
+        <template v-slot="{close}">
+          <Show
+              :package_id="package_id"
+              @close="close"/>
+        </template>
+      </ModalShow>
+    </section>
   </div>
 </template>
 
@@ -162,12 +182,17 @@
 
 import {mapActions,mapGetters} from 'vuex'
 import Delete from "@/components/forms/packages/data_package/Delete";
+import Show from "@/components/forms/packages/data_package/Show";
+import ModalShow from "@/components/Modals/modalShow";
+
 
 export default {
     name: 'DataPackage',
 
 components: {
-    Delete
+    Delete,
+    Show,
+    ModalShow
   },
     data() {
         return {
@@ -188,6 +213,14 @@ components: {
     },
 
     methods: {
+
+
+
+      onShow(package_id) {
+        this.package_id = package_id;
+            this.$store.commit("modalShow_State", true);
+      },
+
       onSimType(data_package_id) {
         this.$router
             .push({
@@ -210,6 +243,7 @@ components: {
     },
 
     ...mapActions({
+      getDataPackageOne:'DataPackage/getDataPackageOne',
       getDataPackage:'DataPackage/getDataPackage',
       getCateDataPackageOne:'CateDataPackage/getCateDataPackageOne'
     })

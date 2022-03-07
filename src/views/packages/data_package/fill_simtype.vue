@@ -65,9 +65,9 @@
 
                     <v-list-item link @click="onDelete">
                       <v-list-item-icon>
-                        <v-icon class="mr-3" small>{{$t('DataPackage.table.options.delicon')}}</v-icon>
+                        <v-icon class="mr-3" small>{{$t('DataPackage.table.options.delsimtypeIcon')}}</v-icon>
                         <v-list-item-title>
-                          {{$t('DataPackage.table.options.delete')}}
+                          {{$t('DataPackage.table.options.delsimtype')}}
                         </v-list-item-title>
                       </v-list-item-icon>
                     </v-list-item>
@@ -100,9 +100,9 @@
 
                     <v-list-item link @click="onDelete(item.id)">
                       <v-list-item-icon>
-                        <v-icon class="mr-3" small>{{$t('DataPackage.table.options.delicon')}}</v-icon>
+                        <v-icon class="mr-3" small>{{$t('DataPackage.table.options.delsimtypeicon')}}</v-icon>
                         <v-list-item-title>
-                          {{$t('DataPackage.table.options.delete')}}
+                          {{$t('DataPackage.table.options.delsimtype')}}
                         </v-list-item-title>
                       </v-list-item-icon>
                     </v-list-item>

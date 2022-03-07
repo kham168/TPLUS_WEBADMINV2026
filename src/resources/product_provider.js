@@ -43,14 +43,15 @@ class ProductProvider extends HttpRequest {
   })
   {
       var bodyFormData = new FormData();
-  
+
+      console.log(cate_product_id);
       for(let i=0;i<cate_product_id.length;i++){
-        bodyFormData.append('cateProductId[]',cate_product_id[i]);
+          bodyFormData.append('cateProductId[]',cate_product_id[i]);
       }
 
-      for(let i=0;i<avatar.length;i++){
-        bodyFormData.append('avatar[]',avatar[i]);
-      }
+
+        bodyFormData.append('avatar[]',avatar);
+
 
       // for(let i=0;i<avatar_EN.length;i++){
       //   bodyFormData.append('avatar_EN[]',avatar_EN[i]);
@@ -89,9 +90,9 @@ class ProductProvider extends HttpRequest {
           bodyFormData.append('cateProductId[]',cate_product_id[i]);
         }
   
-        for(let i=0;i<cate_product_id.length;i++){
-          bodyFormData.append('avatar[]',avatar[i]);
-        }
+
+          bodyFormData.append('avatar[]',avatar);
+
   
         // for(let i=0;i<avatar_EN.length;i++){
         //   bodyFormData.append('avatar_EN[]',avatar_EN[i]);

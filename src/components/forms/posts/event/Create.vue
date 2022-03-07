@@ -172,7 +172,7 @@
                               accept="image/*"
 
                               class="choose-file"
-                              multiple
+
                               name="upload-image"
                               type="file"
                               @change="UploadImage"
@@ -181,41 +181,29 @@
 
 
                         <div v-else class="image">
-                          <v-carousel height="100%">
-                            <v-carousel-item v-for="(imageFiles,index) in previewImage" :key="index">
+
                               <div class="increase-decrease-image">
                                 <v-btn
                                     class="mx-2"
-                                    color="primary"
+                                    color="error"
                                     dark
                                     fab
                                     small
-                                    @click="removeImage(index)"
+                                    @click="removeImage(0)"
                                 >
                                   <v-icon dark>
-                                    mdi-minus
+                                    mdi-close
                                   </v-icon>
                                 </v-btn>
 
 
-                                <v-btn
-                                    class="mx-2"
-                                    color="success"
-                                    dark
-                                    fab
-                                    small
-                                    @click="onIncreaseImage"
-                                >
-                                  <v-icon dark>
-                                    mdi-plus
-                                  </v-icon>
-                                </v-btn>
+
                                 <input
                                     ref="uploader"
 
                                     accept="image/*"
                                     class="d-none"
-                                    multiple
+
                                     type="file"
                                     @change="UploadImage"
                                 />
@@ -223,13 +211,12 @@
                               <v-layout row>
                                 <v-flex v-for="j in 1" :key="j" align-self-center>
 
-                                  <img :src="imageFiles" class="image-files">
+                                  <img :src="previewImage" class="image-files">
 
                                 </v-flex>
 
                               </v-layout>
-                            </v-carousel-item>
-                          </v-carousel>
+
 
                         </div>
                       </div>
@@ -246,7 +233,7 @@
                               accept="image/*"
 
                               class="choose-file"
-                              multiple
+
                               name="upload-image"
                               type="file"
                               @change="UploadImageEng"
@@ -255,41 +242,28 @@
 
 
                         <div v-else class="image">
-                          <v-carousel height="100%">
-                            <v-carousel-item v-for="(imageFilesEng,index) in previewImageEng" :key="index">
+
                               <div class="increase-decrease-image">
                                 <v-btn
                                     class="mx-2"
-                                    color="primary"
+                                    color="error"
                                     dark
                                     fab
                                     small
-                                    @click="removeImageEng(index)"
+                                    @click="removeImageEng(0)"
                                 >
                                   <v-icon dark>
-                                    mdi-minus
+                                    mdi-close
                                   </v-icon>
                                 </v-btn>
 
 
-                                <v-btn
-                                    class="mx-2"
-                                    color="success"
-                                    dark
-                                    fab
-                                    small
-                                    @click="onIncreaseImageEng"
-                                >
-                                  <v-icon dark>
-                                    mdi-plus
-                                  </v-icon>
-                                </v-btn>
                                 <input
                                     ref="uploaderEng"
 
                                     accept="image/*"
                                     class="d-none"
-                                    multiple
+
                                     type="file"
                                     @change="UploadImageEng"
                                 />
@@ -297,13 +271,12 @@
                               <v-layout row>
                                 <v-flex v-for="j in 1" :key="j" align-self-center>
 
-                                  <img :src="imageFilesEng" class="image-files">
+                                  <img :src="previewImageEng" class="image-files">
 
                                 </v-flex>
 
                               </v-layout>
-                            </v-carousel-item>
-                          </v-carousel>
+
 
                         </div>
                       </div>
@@ -482,8 +455,8 @@ export default {
           'other_lang_title': this.postNameEng,
           'other_lang_description': this.descriptionTextEng,
 
-          'avatar': this.uploadImage,
-          'avatar_EN': this.uploadImageEng
+          'avatar': this.uploadImage[0],
+          'avatar_EN': this.uploadImageEng[0]
         })
         console.log('create successful')
       } else {
@@ -564,7 +537,6 @@ export default {
                 color: $black-color;
               }
             }
-
             .choose-file {
               position: absolute;
               left: 0;
@@ -580,20 +552,22 @@ export default {
               opacity: 0;
             }
           }
-
           .image {
 
-            max-width: 100%;
+
             overflow: hidden;
             object-fit: cover;
 
 
-            .image-files {
+
+            .image-files{
               max-width: 100%;
+              max-height: 100%;
               display: block;
               margin-left: auto;
               margin-right: auto;
             }
+
 
 
           }

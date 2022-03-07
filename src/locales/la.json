@@ -936,7 +936,7 @@
         { "text": "ປະເພດແພັກເກັດ", "value": "typePackage.type_name", "sortable": true },
         { "text": "ໝວດໝູ່ແພັກເກັດ", "value": "categoryPackage.cateName", "sortable": true },
         { "text": "ລາຍລະອຽດ", "value": "detail", "sortable": true },
-
+        { "text": "ວິວ", "value": "view", "sortable": true },
         { "text": "ຈັດການ", "value": "Actions", "sortable": true }
       ],
       "headers_simtype": [
@@ -956,7 +956,9 @@
         "delete": "ລົບຂໍ້ມູນ",
         "delicon": "fas fa-trash-alt",
         "simtype": "ຕື່ມປະເພດຊິມ",
-        "simtypeIcon": "fas fa-sim-card"
+        "simtypeIcon": "fas fa-sim-card",
+        "delsimtype": "ລົບປະເພດຊິມ",
+        "delsimtypeIcon": "fas fa-trash-alt"
       }
     },
     "Create": {
