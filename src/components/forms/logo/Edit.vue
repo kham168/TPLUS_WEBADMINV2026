@@ -34,7 +34,7 @@
                           :label="$t('Logo.Create.form.website_name')"
                           outlined
                           required
-                          v-model="logoItem.siteName"
+                          v-model="siteName"
                       ></v-text-field>
                       <v-text-field
                           :rules="[
@@ -43,16 +43,14 @@
                           :label="$t('Logo.Create.form.email')"
                           outlined
                           required
-                          v-model="logoItem.email"
+                          v-model="email"
                       ></v-text-field>
                       <v-text-field
-                          :rules="[
-                          $myValidator.SimpleValidate($t('Validate.required')),
-                        ]"
+
                           label="phone"
                           outlined
                           required
-                          v-model="logoItem.phone"
+                          v-model="phone"
                       ></v-text-field>
                       <v-text-field
                           :rules="[
@@ -61,33 +59,96 @@
                           label="Facebook"
                           outlined
                           required
-                          v-model="logoItem.facebook"
+                          v-model="facebook"
                       ></v-text-field>
                       <v-textarea
                           outlined
                           :label="$t('Logo.Create.form.address')"
-                          v-model="logoItem.address"
+                          v-model="address"
                       ></v-textarea>
                       <v-textarea
                           outlined
                           :label="$t('Logo.Create.form.description')"
-                          v-model="logoItem.description"
+                          v-model="description"
                       ></v-textarea>
-                      <div class="upload-image">
-                        <div class="image">
-                          <v-img :src="showImage || logoItem.websiteLogo" alt="cover"></v-img>
+<!--                      <div class="upload-image">-->
+<!--                        <div class="image">-->
+<!--                          <v-img :src="showImage" alt="cover"></v-img>-->
+<!--                        </div>-->
+<!--                        <div class="content" v-show="showImage == null">-->
+<!--                          <i class="fas fa-plus-circle"></i>-->
+<!--                          <h3>{{ $t("Logo.Create.form.website_logo") }}</h3>-->
+<!--                        </div>-->
+<!--                        <input-->
+<!--                            type="file"-->
+<!--                            class="choose-file"-->
+<!--                            name="upload-image"-->
+<!--                            accept="image/*"-->
+<!--                            @change="UploadImage"-->
+<!--                        />-->
+<!--                      </div>-->
+
+                      <div >
+
+                        <div class="upload-image" v-if="showImage[0] == null">
+
+                          <div class="content" >
+                            <i class="fas fa-plus-circle"></i>
+                            <h3>{{ $t("Logo.Create.form.website_logo") }}</h3>
+                          </div>
+                          <input
+
+
+                              type="file"
+                              class="choose-file"
+                              name="upload-image"
+                              accept="image/*"
+                              @change="UploadImage"
+                          />
                         </div>
-                        <div class="content" v-show="showImage == null">
-                          <i class="fas fa-plus-circle"></i>
-                          <h3>{{ $t("Logo.Create.form.website_logo") }}</h3>
+
+
+                        <div class="image" v-else>
+                          <div>
+
+                            <div class="increase-decrease-image">
+                              <v-btn
+                                  class="mx-2"
+                                  color="error"
+                                  dark
+                                  fab
+                                  small
+                                  @click="removeImage(0)"
+                              >
+                                <v-icon dark>
+                                  mdi-close
+                                </v-icon>
+                              </v-btn>
+
+
+
+                              <input
+                                  ref="uploader"
+
+                                  accept="image/*"
+                                  class="d-none"
+
+                                  type="file"
+                                  @change="UploadImage"
+                              />
+                            </div>
+                            <v-layout row >
+                              <v-flex  :key="j" v-for="j in 1" align-self-center >
+
+                                <img class="image-files" :src="showImage"   >
+
+                              </v-flex>
+
+                            </v-layout>
+
+                          </div>
+
                         </div>
-                        <input
-                            type="file"
-                            class="choose-file"
-                            name="upload-image"
-                            accept="image/*"
-                            @change="UploadImage"
-                        />
                       </div>
                     </v-form>
                     <div class="form-actions">
@@ -125,34 +186,95 @@
                           :label="$t('Logo.Create.form.website_name')"
                           outlined
                           required
-                          v-model="logoItem.SiteInfoTrans[0].siteName"
+                          v-model="siteNameEn"
 
                       ></v-text-field>
                       <v-textarea
                           outlined
                           :label="$t('Logo.Create.form.address')"
-                          v-model="logoItem.SiteInfoTrans[0].address"
+                          v-model="addressEn"
                       ></v-textarea>
                       <v-textarea
                           outlined
                           :label="$t('Logo.Create.form.description')"
-                          v-model="logoItem.SiteInfoTrans[0].description"
+                          v-model="descriptionEn"
                       ></v-textarea>
-                      <div class="upload-image">
-                        <div class="image">
-                          <v-img :src="showImageEn || logoItem.SiteInfoTrans[0].websiteLogo" alt="cover"></v-img>
+
+
+<!--                      <div class="upload-image">-->
+<!--                        <div class="image">-->
+<!--                          <v-img :src="showImageEn" alt="cover"></v-img>-->
+<!--                        </div>-->
+<!--                        <div class="content" v-show="showImageEn == null">-->
+<!--                          <i class="fas fa-plus-circle"></i>-->
+<!--                          <h3>{{ $t("Logo.Create.form.website_logo") }}</h3>-->
+<!--                        </div>-->
+<!--                        <input-->
+<!--                            type="file"-->
+<!--                            class="choose-file"-->
+<!--                            name="upload-image"-->
+<!--                            accept="image/*"-->
+<!--                            @change="UploadImageEn"-->
+<!--                        />-->
+<!--                      </div>-->
+
+                      <div>
+                        <div class="upload-image" v-if="showImageEn[0] == null">
+                          <div class="content" >
+                            <i class="fas fa-plus-circle"></i>
+                            <h3>{{ $t("Logo.Create.form.website_logo") }}</h3>
+                          </div>
+                          <input
+                              type="file"
+                              class="choose-file"
+                              name="upload-image"
+                              accept="image/*"
+                              @change="UploadImageEn"
+                          />
                         </div>
-                        <div class="content" v-show="showImageEn == null">
-                          <i class="fas fa-plus-circle"></i>
-                          <h3>{{ $t("Logo.Create.form.website_logo") }}</h3>
+
+
+                        <div class="image" v-else>
+                          <div>
+
+                            <div class="increase-decrease-image">
+                              <v-btn
+                                  class="mx-2"
+                                  color="error"
+                                  dark
+                                  fab
+                                  small
+                                  @click="removeImageEn(0)"
+                              >
+                                <v-icon dark>
+                                  mdi-close
+                                </v-icon>
+                              </v-btn>
+
+
+
+                              <input
+                                  ref="uploaderEng"
+
+                                  accept="image/*"
+                                  class="d-none"
+
+                                  type="file"
+                                  @change="UploadImageEn"
+                              />
+                            </div>
+                            <v-layout row >
+                              <v-flex   align-self-center >
+
+                                <img class="image-files" :src="showImageEn"  >
+
+                              </v-flex>
+
+                            </v-layout>
+
+                          </div>
                         </div>
-                        <input
-                            type="file"
-                            class="choose-file"
-                            name="upload-image"
-                            accept="image/*"
-                            @change="UploadImageEn"
-                        />
+
                       </div>
                     </v-form>
                     <div class="form-actions">
@@ -181,46 +303,119 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Edit",
 
   data() {
     return {
       tab: null,
-      imageFile: null,
-      showImage: null,
-      imageFileEn: null,
-      showImageEn: null,
+      showImage: [],
+      showImageEn: [],
       valid: true,
       logoItem: [],
       logoId: this.$route.query.logo_id,
+      siteName:'',
+      siteNameEn:'',
+      address:'',
+      addressEn:'',
+      phone:'',
+      email:'',
+      facebook:'',
+      description:'',
+      descriptionEn:'',
+      imageFile:[],
+      imageFileEn:[]
     };
   },
 
   methods: {
-    UploadImage(e) {
-      const input = e.target;
-      if (input.files && input.files[0]) {
-        this.imageFile = input.files[0];
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          this.showImage = e.target.result;
-        };
-        reader.readAsDataURL(input.files[0]);
-      }
+    // UploadImage(e) {
+    //   const input = e.target;
+    //   if (input.files && input.files[0]) {
+    //     this.imageFile = input.files[0];
+    //     const reader = new FileReader();
+    //     reader.onload = (e) => {
+    //       this.showImage = e.target.result;
+    //     };
+    //     reader.readAsDataURL(input.files[0]);
+    //   }
+    // },
+    //
+    // UploadImageEn(event) {
+    //   const input = event.target;
+    //   if (input.files && input.files[0]) {
+    //     this.imageFileEn = input.files[0];
+    //     const reader = new FileReader();
+    //     reader.onload = (e) => {
+    //       this.showImageEn = e.target.result;
+    //     };
+    //     reader.readAsDataURL(input.files[0]);
+    //   }
+    // },
+
+    async convertUrlToFileImage(image) {
+      const response = await fetch(image);
+      // here image is url/location of image
+      const blob = await response.blob();
+      const file = new File([blob], image.split('/').pop(), {type: blob.type});
+
+      this.imageFile.push(file)
+
     },
 
-    UploadImageEn(event) {
-      const input = event.target;
-      if (input.files && input.files[0]) {
-        this.imageFileEn = input.files[0];
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          this.showImageEn = e.target.result;
-        };
-        reader.readAsDataURL(input.files[0]);
-      }
+    async convertUrlToFileImageEng(image) {
+      const response = await fetch(image);
+      // here image is url/location of image
+      const blob = await response.blob();
+      const file = new File([blob], image.split('/').pop(), {type: blob.type});
+
+      this.imageFileEn.push(file)
     },
+
+    UploadImage(e) {
+
+      const img = e.target.files;
+
+      for(let i = 0;i<img.length;i++){
+        this.imageFile.push(img[i])
+        console.log(this.uploadImage)
+        const reader = new FileReader();
+        reader.readAsDataURL(img[i]);
+        reader.onload = (e) => {
+          this.showImage.push(e.target.result);
+
+        }
+
+      };
+    },
+
+    UploadImageEn(e) {
+
+      const img = e.target.files;
+
+      for(let i = 0;i<img.length;i++){
+        this.imageFileEn.push(img[i])
+        const reader = new FileReader();
+        reader.readAsDataURL(img[i]);
+        reader.onload = (e) => {
+
+          this.showImageEn.push(e.target.result);
+
+        }
+
+      };
+    },
+
+    removeImage(index){
+      this.imageFile.splice(index,1);
+      this.showImage.splice(index, 1);
+    },
+    removeImageEn(index){
+      this.imageFileEn.splice(index,1);
+      this.showImageEn.splice(index, 1);
+    },
+
     submitForm() {
       if (this.$refs.form[0].validate()) {
         this.saveItems();
@@ -228,57 +423,103 @@ export default {
     },
     reset() {
       this.$router.back();
-      this.$refs.form.reset();
+      this.$refs.form[0].reset();
     },
 
     saveItems() {
-      const formData = new FormData();
-      formData.append('siteName', this.logoItem.siteName);
-      formData.append("address", this.logoItem.address);
-      formData.append('phone', this.logoItem.phone);
-      formData.append("email", this.logoItem.email);
-      formData.append("facebook", this.logoItem.facebook);
-      formData.append("description", this.logoItem.description);
-      if (this.imageFile) {
-        formData.append("avatar", this.imageFile);
-      }
-      if (this.imageFileEn) {
-        formData.append("avatar_EN", this.imageFileEn);
-      }
-      this.logoItem.SiteInfoTrans.map((item) => {
-        const logoItemEn = {
-          siteName: item.siteName,
-          description: item.description,
-          address: item.address,
-          language_id: item.languageId,
-        }
-        formData.append("other_lang[0][siteName]", logoItemEn.siteName);
-        formData.append("other_lang[0][description]", logoItemEn.description)
-        formData.append("other_lang[0][address]", logoItemEn.address)
-        formData.append("other_lang[0][language_id]", logoItemEn.language_id)
-      });
+      // const formData = new FormData();
+      // formData.append('siteName', this.logoItem.siteName);
+      // formData.append("address", this.logoItem.address);
+      // formData.append('phone', this.logoItem.phone);
+      // formData.append("email", this.logoItem.email);
+      // formData.append("facebook", this.logoItem.facebook);
+      // formData.append("description", this.logoItem.description);
+      // if (this.imageFile) {
+      //   formData.append("avatar", this.imageFile);
+      // }
+      // if (this.imageFileEn) {
+      //   formData.append("avatar_EN", this.imageFileEn);
+      // }
+      // this.logoItem.SiteInfoTrans.map((item) => {
+      //   const logoItemEn = {
+      //     siteName: item.siteName,
+      //     description: item.description,
+      //     address: item.address,
+      //     language_id: item.languageId,
+      //   }
+      //   formData.append("other_lang[0][siteName]", logoItemEn.siteName);
+      //   formData.append("other_lang[0][description]", logoItemEn.description)
+      //   formData.append("other_lang[0][address]", logoItemEn.address)
+      //   formData.append("other_lang[0][language_id]", logoItemEn.language_id)
+      // });
+      //
+      // this.$axios.put(`siteInfo/${this.logoItem.id}`, formData).then((res) => {
+      //   if (res.status === 200) {
+      //     setTimeout(() => {
+      //       this.$store.dispatch({
+      //         type: "action_Notifi_Success",
+      //         message: this.$t('Notification.saveDataSuccess')
+      //       })
+      //     }, 300);
+      //     this.reset();
+      //   }
+      // }).catch((error) => {
+      //   console.log(error)
+      // })
 
-      this.$axios.put(`siteInfo/${this.logoItem.id}`, formData).then((res) => {
-        if (res.status === 200) {
-          setTimeout(() => {
-            this.$store.dispatch({
-              type: "action_Notifi_Success",
-              message: this.$t('Notification.saveDataSuccess')
-            })
-          }, 300);
-          this.reset();
-        }
-      }).catch((error) => {
-        console.log(error)
+
+      this.updateLogo({
+        'logo_id':this.logo_id,
+        'siteName':this.siteName,
+        'siteNameEn':this.siteNameEn,
+        'address':this.address,
+        'addressEn':this.addressEn,
+        'phone':this.phone,
+        'email':this.email,
+        'facebook':this.facebook,
+        'description':this.description,
+        'descriptionEn':this.descriptionEn,
+        'imageFile':this.imageFile[0],
+        'imageFileEn':this.imageFileEn[0]
       })
-    }
+    },
+
+    ...mapActions({
+      getLogoOne:'Logo/getLogoOne',
+      updateLogo:'Logo/updateLogo',
+    })
+  },
+
+  computed:{
+    ...mapGetters({
+      logo_one:'Logo/logo_one'
+    })
   },
 
   created() {
-    this.$store.dispatch("logo/fetchLogoItem", this.logoId).then((res) => {
-      if (res.status === 200) {
-        this.logoItem = res.data.data;
-      }
+    // this.$store.dispatch("logo/fetchLogoItem", this.logoId).then((res) => {
+    //   if (res.status === 200) {
+    //     this.logoItem = res.data.data;
+    //   }
+    // });
+
+    this.getLogoOne({'logo_id': this.$route.params.logo_id}).then(res=>{
+      this.logoItem = res['data']
+      this.logo_id=this.$route.params.logo_id
+          this.siteName=this.logoItem.siteName
+          this.siteNameEn=this.logoItem.SiteInfoTrans[0].siteName
+          this.address=this.logoItem.address
+          this.addressEn=this.logoItem.SiteInfoTrans[0].address
+          this.phone=this.logoItem.phone
+          this.email=this.logoItem.email
+          this.facebook=this.logoItem.facebook
+          this.description=this.logoItem.description
+          this.descriptionEn=this.logoItem.SiteInfoTrans[0].description
+         this.showImage.push(this.logoItem.websiteLogo)
+      this.showImageEn.push(this.logoItem.SiteInfoTrans[0].websiteLogo)
+
+          this.convertUrlToFileImage(this.logoItem.websiteLogo)
+      this.convertUrlToFileImageEng(this.logoItem.SiteInfoTrans[0].websiteLogo)
     });
 
   }
@@ -317,6 +558,7 @@ export default {
         .form-content {
           width: 70%;
 
+
           .upload-image {
             width: 100%;
             height: 300px;
@@ -327,11 +569,6 @@ export default {
             transition: all ease 0.5s;
             border: 1px solid $gray-color;
 
-            .image {
-              width: 100%;
-              overflow: hidden;
-              object-fit: cover;
-            }
 
             .content {
               position: absolute;
@@ -346,7 +583,6 @@ export default {
                 color: $black-color;
               }
             }
-
             .choose-file {
               position: absolute;
               left: 0;
@@ -361,6 +597,25 @@ export default {
               outline: none;
               opacity: 0;
             }
+          }
+          .image {
+
+
+            overflow: hidden;
+            object-fit: cover;
+
+
+
+            .image-files{
+              max-width: 100%;
+              max-height: 100%;
+              display: block;
+              margin-left: auto;
+              margin-right: auto;
+            }
+
+
+
           }
 
           .form-actions {

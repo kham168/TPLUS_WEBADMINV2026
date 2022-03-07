@@ -398,7 +398,7 @@ const routes = [
         },
       },
       {
-        path: "edit",
+        path: "edit/:logo_id",
         name: "logo.edit",
         component: () =>
           import(

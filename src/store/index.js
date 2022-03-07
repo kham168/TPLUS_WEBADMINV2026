@@ -18,7 +18,7 @@ import SimTypePackage from "@/store/Packages/SimTypePackage.js"
 
 //get all users
 import users from "./Users"
-import logo from "@/store/logo"
+import Logo from "@/store/logo"
 import position from "@/store/position"
 import permission from "@/store/permission";
 import role from "@/store/role"
@@ -113,7 +113,7 @@ export default new Vuex.Store({
     modules: {
         User,
         users,
-        logo,
+        Logo,
         position,
         permission,
         role,

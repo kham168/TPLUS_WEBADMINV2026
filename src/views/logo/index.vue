@@ -18,11 +18,11 @@
       <div class="logo-content" v-show="!firstLoad">
         <v-data-table
             :headers="$t('Logo.table.headers')"
-            :items="logo"
+            :items="logo['data']"
             :search="searchItem"
             :loading="loading"
             :loading-text="$t('Logo.loadingtext')"
-            v-if="logo !==''"
+            v-if="logo['data'] !==''"
         >
           <template v-slot:top>
             <v-toolbar flat>
@@ -100,18 +100,27 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: 'Logo',
+
 
   data() {
     return {
       loading: false,
       searchItem: "",
-      logo: [],
+      // logo: [],
       firstLoad:true
     };
   },
 
+  mounted() {
+    this.getLogo().then(res=>{
+      if(res.success){
+        this.firstLoad=false;
+      }
+    });
+  },
   methods: {
     fetchLogo() {
       this.$axios.get(`siteInfo`).then((res) => {
@@ -122,19 +131,31 @@ export default {
       })
     },
     onEdit(logo_id) {
-      this.$store.commit("logo/SET_LOGO_ITEM", logo_id)
+     // this.$store.commit("logo/SET_LOGO_ITEM", logo_id)
       this.$router.push({
         name: "logo.edit",
-        query: {
+        params: {
           logo_id: logo_id
         }
       }).catch((error) => {
         console.log(error)
       });
-    }
+    },
+
+    ...mapActions({
+      getLogo:'Logo/getLogo',
+    })
   },
   created() {
-    this.fetchLogo();
+    //this.fetchLogo();
+
+
+  },
+
+  computed:{
+    ...mapGetters({
+      logo:'Logo/logo'
+    })
   }
 };
 </script>
