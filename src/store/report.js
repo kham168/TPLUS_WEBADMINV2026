@@ -2,7 +2,7 @@ import axios from "axios";
 import store from "@/store/index";
 
 const $axios = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API_URL,
+  baseURL: process.env.VUE_APP_BASE_API_URL_TEST,
 });
 
 const state = {
