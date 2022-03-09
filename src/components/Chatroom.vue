@@ -36,9 +36,12 @@
 
       </div>
       <div class="chat-room-footer">
-        <div class="input-chat" ref="resetTextInput" contenteditable="true" @input="messageInput($event)"
-             @keyup.enter="functionSendMessage">
-        </div>
+        <!--        <div class="input-chat" ref="resetTextInput" contenteditable="true" @input="messageInput($event)"-->
+        <!--             @keyup.enter="functionSendMessage">-->
+        <!--        </div>-->
+        <v-textarea outlined v-model="textMessage" @keyup.enter.prevent="functionSendMessage">
+
+        </v-textarea>
         <div class="btn-send-message" @click="functionSendMessage">
           <i class="fal fa-paper-plane"></i>
         </div>
@@ -74,14 +77,14 @@ export default {
   },
   created() {
 
-    this.socket = io("http://128.199.104.34:7000");
+    this.socket = io(process.env.VUE_APP_BASE_SOCKET);
 
     this.user_id = this.$route.params.user_id;
     console.log(this.user_id, 55555555555)
     this.chat_room_id = this.$route.params.chat_room_id;
 
     window.addEventListener('beforeunload', (e) => {
-      this.socket.on('leave_channel', this.channel);
+      this.socket.emit('leave_channel', this.channel);
     })
   },
   mounted() {
@@ -123,20 +126,24 @@ export default {
 
     },
     functionSendMessage() {
-      this.sendMessage({'message': this.textMessage, 'chat_room_id': this.chat_room_id}).then((res) => {
-        console.log(res)
-        this.resetTextMessage()
-        this.scrollToBottom()
-      });
+      if (this.textMessage !== "") {
+        this.sendMessage({'message': this.textMessage, 'chat_room_id': this.chat_room_id}).then((res) => {
+          console.log(res)
+          this.resetTextMessage()
+          this.scrollToBottom()
+        });
+      }
+
     },
 
     resetTextMessage() {
-      this.$refs.resetTextInput.innerHTML = "";
+      // this.$refs.resetTextInput.innerHTML = "";
+      this.textMessage = "";
     },
-    messageInput(e) {
-      this.textMessage = e.target.innerHTML;
-      this.textMessage = e.target.innerHTML.replace("<div><br></div>", '');
-    },
+    // messageInput(e) {
+    //   this.textMessage = e.target.innerHTML;
+    //   this.textMessage = e.target.innerHTML.replace("<div><br></div>", '');
+    // },
     scrollToBottom() {
       const el = this.$refs.scrollPosition;
       if (el) {

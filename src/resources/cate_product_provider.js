@@ -6,7 +6,7 @@ import HttpRequest from './http_request'
 class CateProductProvider extends HttpRequest {
   constructor () {
     // api api
-    super('http://128.199.104.34:7000')
+    super()
   }
 
 
@@ -15,8 +15,8 @@ class CateProductProvider extends HttpRequest {
     //Call setHeader on class HttpRequest and write common header
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
-   // example path http://128.199.104.34:7000/this.get()
-     const {data} = await this.get('/api/v1/categoryProducts/'+cate_product_id)
+   // example path http://172.28.26.82:7001/this.get()
+     const {data} = await this.get('categoryProducts/'+cate_product_id)
 
      return data
   }
@@ -26,8 +26,8 @@ class CateProductProvider extends HttpRequest {
     //Call setHeader on class HttpRequest and write common header
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
-   // example path http://128.199.104.34:7000/this.get()
-     const {data} = await this.get('/api/v1/categoryProducts')
+   // example path http://172.28.26.82:7001/this.get()
+     const {data} = await this.get('categoryProducts')
 
      return data
   }
@@ -55,7 +55,7 @@ class CateProductProvider extends HttpRequest {
     this.setHeader({
       'Content-Type': 'application/x-www-form-urlencoded',
     })
-    const {data} = await this.create('/api/v1/categoryProducts',arg)
+    const {data} = await this.create('categoryProducts',arg)
     
 
     return data
@@ -86,7 +86,7 @@ class CateProductProvider extends HttpRequest {
       'Content-Type': 'application/x-www-form-urlencoded',
     })
 
-    const {data} = await this.update('/api/v1/categoryProducts/'+cate_product_id,arg)
+    const {data} = await this.update('categoryProducts/'+cate_product_id,arg)
   
   
     return data
@@ -97,8 +97,8 @@ class CateProductProvider extends HttpRequest {
  
     this.setHeader({})
 
-   // example path http://128.199.104.34:7000/this.get()
-    const {data} = await this.delete('/api/v1/categoryProducts/'+cate_product_id)
+   // example path http://172.28.26.82:7001/this.get()
+    const {data} = await this.delete('categoryProducts/'+cate_product_id)
   
     return data
   }

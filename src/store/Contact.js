@@ -3,22 +3,38 @@ import ContactProvider from '@/resources/contact_provider'
 const contactProvider = new ContactProvider()
 
 const state={
+
+
     contact:{},
     contact_one:{},
-
+    CreateModal:false,
+    EditModal:false,
+    DeleteModal:false,
+    dataEdit:{},
+    title_id:null,
 
 }
 
 const getters={
+
     contact:state=>state.contact,
     contact_one:state=>state.contact_one,
+    getCreateModal: state => state.CreateModal,
+    getEditModal: state => state.EditModal,
+    getDeleteModal: state => state.DeleteModal,
+    Edits: state => state.dataEdit,
+    getTitle_id : state => state.title_id
 
 
 }
 
 const mutations={
-  SET_CONTACT(state,data){
+
+
+
+    SET_CONTACT(state,data){
       state.contact = data;
+
     },
 
     SET_CONTACT_ONE(state,data){
@@ -30,6 +46,18 @@ const mutations={
       state.isLoading = data;
     },
 
+    isCreateModal(state){
+      state.CreateModal = !state.CreateModal
+    },
+    isEditModal(state,data){
+      state.EditModal = !state.EditModal
+      state.dataEdit = data
+    },
+    isDeleteModal(state,id){
+      state.DeleteModal = !state.DeleteModal
+      state.title_id = id
+    }
+
 
 }
 
@@ -38,20 +66,15 @@ const actions={
 
 
   async getContactOne ({commit },{contact_id}) {
-
-
    const data = await contactProvider.getContactOne({'contact_id':contact_id})
-
-
     commit('SET_CONTACT_ONE', data)
-
-
     return data
 
   },
 
 
     async getContact ({commit}) {
+
         const data = await contactProvider.getContact()
 
 
@@ -106,6 +129,7 @@ const actions={
         await contactProvider.deleteContact({'contact_id':contact_id})
         dispatch('getContact',{ root: true });
        // commit('SET_POST', data)
+
       },
 }
 

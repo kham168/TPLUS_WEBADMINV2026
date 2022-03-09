@@ -16,17 +16,33 @@
       "router": "/banner"
     },
     {
-      "icon": "fas fa-id-card",
-      "text": "ຂໍ້ມູນຕິດຕໍ່",
-      "router": "/contact"
-    },
-    {
       "icon": "fas fa-border-top",
       "text": "Topping",
       "router": "/topping"
+    },
+    {
+      "icon": "fas fa-phone-office",
+      "text": "ໂທອອກຕ່າງປະເທດ",
+      "router": "/call-abroad"
     }
 
   ],
+  "Contactmenus": {
+    "title": "ຂໍ້ມູນຕິດຕໍ່",
+    "subtitle": [
+      {
+        "icon": "fas fa-id-card",
+        "text": "ຂໍ້ມູນຕິດຕໍ່",
+        "router": "/contact"
+      },
+      {
+        "icon": "fas fa-plus-circle",
+        "text": "ເພີ່ມຫົວຂໍ້ຕິດຕໍ່",
+        "router": "/add-title"
+      }
+
+    ]
+  },
   "Chatmenu": {
     "title": "ແຊັດ",
     "subtitle": [
@@ -68,33 +84,28 @@
       }
     ]
   },
-  "Productmenu": {
-    "title": "ຂໍ້ມູນຜະລິດຕະພັນ",
-    "subtitle": [
-      {
-        "icon": "fas fa-boxes",
-        "text": "ປະເພດຜະລິດຕະພັນ",
-        "router": "/cate_product"
-      },
-      {
-        "icon": "fab fa-product-hunt",
-        "text": "ຂໍ້ມູນຜະລິດຕະພັນ",
-        "router": "/product"
-      }
-    ]
-  },
   "Packagemenu": {
     "title": "ຂໍ້ມູນແພັດເກັດ",
     "subtitle": [
       {
         "icon": "fas fa-gifts",
         "text": "ປະເພດຊິມ",
-        "router": "/cate_data_package"
+        "router": "/sim_type_package"
       },
       {
         "icon": "fas fa-gift",
         "text": "ຂໍ້ມູນແພັດເກັດ",
         "router": "/data_package"
+      },
+      {
+        "icon": "fas fa-gift-card",
+        "text": "ປະເພດແພັດເກັດ",
+        "router": "/package_type"
+      },
+      {
+        "icon": "fas fa-sort-numeric-down",
+        "text": "ຈັດລຳດັບແພັກເັກດ",
+        "router": "/package_type_priority"
       }
     ]
   },
@@ -141,6 +152,36 @@
     "button": "ເພີ່ມ",
     "txtsearch": "ຄົ້ນຫາຂໍ້ມູນຕິດຕໍ່",
     "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
+    "Add-title-contact":{
+     "title":"ຂໍ້ມູນຫົວຂໍ້ຕິດຕໍ່",
+     "lao":"ລາວ",
+      "english":"ອັງກິດ",
+     "form":{
+       "title":"ເພີ່ມຫົວຂໍ້ຕິດຕໍ່",
+       "editTitle":"ແກ້ໄຂຫົວຂໍ້ຕິດຕໍ່",
+       "deleteTitle":"ລົບຫົວຂໍ້ຕິດຕໍ່",
+       "label":"ເພີ່ມຫົວຂໍ້"
+     },
+     "table":{
+       "headers":[
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": true
+        },
+        {
+          "text": "ຫົວຂໍ້ຕິດຕໍ່",
+          "value": "title",
+          "sortable": true
+        },
+        {
+          "text": "ຈັດການ",
+          "value": "actions",
+          "sortable": false
+        }
+       ]
+     }
+    },
     "table": {
       "headers": [
         {
@@ -619,7 +660,6 @@
         { "text": "ລຳດັບ", "value": "No", "sortable": true },
         { "text": "ຮູບ", "value": "image", "sortable": true },
         { "text": "ຫົວຂໍ້", "value": "title", "sortable": true },
-
         { "text": "ລາຍລະອຽດ", "value": "description", "sortable": true },
         { "text": "ເວລາເປີດ", "value": "startDate", "sortable": true },
         { "text": "ເວລາປິດ", "value": "endDate", "sortable": true },
@@ -751,6 +791,66 @@
     }
 
   },
+  "PackageType": {
+    "title": "ຂໍ້ມູນປະເພດແພັກເກັດ",
+    "button": "ເພີ່ມ",
+    "txtsearch": "ຄົ້ນຫາປະເພດແພັກເກັດ",
+    "loadingtext":"ກຳລັງໂຫຼດຂໍ້ມູນ",
+    "table": {
+      "headers": [
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": true
+        },
+        {
+          "text": "ຮູບ",
+          "value": "image",
+          "sortable": true
+        },
+        {
+          "text": "ຊື່ປະເພດ",
+          "value": "type_name",
+          "sortable": true
+        },
+
+        {
+          "text": "ຈັດການ",
+          "value": "Actions",
+          "sortable": true
+        }
+      ],
+      "dontdata": "ບໍ່ມີຂໍ້ມູນ",
+      "options": {
+        "edit": "ແກ້ໄຂ",
+        "iconEdit": "fas fa-edit",
+        "delete": "ລົບຂໍ້ມູນ",
+        "delicon": "fas fa-trash-alt"
+      }
+    },
+    "Create": {
+      "header": "ເພີ່ມຂໍ້ມູນປະເພດແພັກເກັດ",
+      "lang": {
+        "lao": "ລາວ",
+        "Eng": "ອັງກິດ"
+      },
+      "form": {
+        "type_name": "ຊື່",
+        "image": "ຮູບ",
+        "button": {
+          "save": "ບັນທຶກ",
+          "cancel": "ຍົກເລີກ"
+        }
+      }
+    },
+    "Edit": {
+      "header": "ແກ້ໄຂຂໍ້ມູນປະເພດແພັກເກັດ"
+    },
+    "priority": {
+      "title": "ຈັດການລຳດັບການສະແດງ Package",
+      "lang": "la"
+    }
+  },
   "CateDataPackage": {
     "title": "ຂໍ້ມູນປະເພດຊິມ",
     "button": "ເພີ່ມ",
@@ -788,7 +888,7 @@
       }
     },
     "Create": {
-      "header": "ເພີ່ມຂໍ້ມູນປະເພດຂອງຊິມ",
+      "header": "ເພີ່ມຂໍ້ມູນປະເພດຊິມ",
       "lang": {
         "lao": "ລາວ",
         "Eng": "ອັງກິດ"
@@ -817,9 +917,11 @@
         { "text": "ລຳດັບ", "value": "No", "sortable": true },
         { "text": "ຮູບພາບ", "value": "image", "sortable": true },
         { "text": "Code", "value": "code", "sortable": false },
-        { "text": "ຊື່ແພັກເກັດ", "value": "la_name", "sortable": true },
-
-
+        { "text": "ຊື່ແພັກເກັດ", "value": "name", "sortable": true },
+        { "text": "ປະເພດແພັກເກັດ", "value": "typePackage.type_name", "sortable": true },
+        { "text": "ໝວດໝູ່ແພັກເກັດ", "value": "categoryPackage.cateName", "sortable": true },
+        { "text": "ລາຍລະອຽດ", "value": "detail", "sortable": true },
+        { "text": "ວິວ", "value": "view", "sortable": true },
         { "text": "ຈັດການ", "value": "Actions", "sortable": true }
       ],
       "headers_simtype": [
@@ -827,6 +929,8 @@
         { "text": "ຮູບພາບ", "value": "image", "sortable": true },
         { "text": "Code", "value": "code", "sortable": true },
         { "text": "ຊື່ແພັກເກັດ", "value": "la_name", "sortable": true },
+        { "text": "ປະເພດແພັກເກັດ", "value": "typePackage.type_name", "sortable": true },
+        { "text": "ໝວດໝູ່ແພັກເກັດ", "value": "categoryPackage.cateName", "sortable": true },
         { "text": "ປະເພດຊິມ", "value": "simTypes.detail", "sortable": true },
         { "text": "ຈັດການ", "value": "Actions", "sortable": true }
       ],
@@ -837,7 +941,9 @@
         "delete": "ລົບຂໍ້ມູນ",
         "delicon": "fas fa-trash-alt",
         "simtype": "ຕື່ມປະເພດຊິມ",
-        "simtypeIcon": "fas fa-sim-card"
+        "simtypeIcon": "fas fa-sim-card",
+        "delsimtype": "ລົບປະເພດຊິມ",
+        "delsimtypeIcon": "fas fa-trash-alt"
       }
     },
     "Create": {
@@ -847,7 +953,8 @@
         "Eng": "ອັງກິດ"
       },
       "form": {
-        "category": "ປະເພດແພັກເກັດ",
+        "category": "ໝວດໝູ່",
+        "type": "ປະເພດແພັກເກັດ",
         "data_package_name": "ຊື່ແພັກເກັດ",
         "description": "ລາຍລະອຽດ",
         "picture": "ອັບໂຫຼດຮູບພາບ",
@@ -1384,6 +1491,67 @@
       "title":"ລາຍງານຂໍ້ມູນໂປຣໂມຊັນ",
       "subtitle":"ລາຍລະອຽດ",
       "view":"ທັງໝົດ"
+    }
+  },
+  "Call-Abroad":{
+    "title":"ຂໍ້ມູນໂທອອກຕ່າງປະເທດ",
+    "search":"ຄົ້ນຫາ...",
+    "table":{
+      "headers":[
+        {
+          "text":"ລຳດັບ",
+          "value":"No",
+          "sortable":true
+        },
+        {
+          "text":"ຊື່ປະເທດ",
+          "value":"countryName_la",
+          "sortable":false
+        },
+        {
+          "text":"ລະຫັດປະເທດ",
+          "value":"code",
+          "sortable":false
+        },
+        {
+          "text":"ເຂດ",
+          "value":"zoneName_la",
+          "sortable":true
+        },
+        {
+          "text":"ມູນຄ່າໂທ/ນາທີ (LAK)",
+          "value":"price_minute",
+          "sortable":true
+        },
+        {
+          "text":"ຈັດການ",
+          "value":"Actions",
+          "sortable":false
+        }
+      ]
+    },
+    "Create":{
+      "title":"ເພີ່ມຂໍ້ມູນ"
+    },
+    "Edit":{
+      "title":"ແກ້ໄຂຂໍ້ມູນ"
+    },
+    "Delete":{
+      "title":"ລົບຂໍ້ມູນປະເທດ"
+    },
+    "form":{
+      "countrylao":"ຊື່ປະເທດ (ພາສາລາວ)",
+      "countryeng":"ຊື່ປະເທດ (ພາສາອັງກິດ)",
+      "countryCode":"ລະຫັດປະເທດ",
+      "zone":"ເຂດ",
+      "price":"ມູນຄ່າໂທ",
+      "lao":"ລາວ",
+      "english":"ອັງກິດ"
+    },
+    "options":{
+      "save":"ບັນທຶກ",
+      "cancel":"ຍົກເລີກ",
+      "delete":"ລົບຂໍ້ມູນ"
     }
   }
 }

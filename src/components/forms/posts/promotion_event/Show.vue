@@ -85,38 +85,21 @@
           <v-row class="body-7">
             <v-col align="left" cols="12">
 
-              <h2> {{ $t("Post.Create.form.picture") }}</h2>
+              <h2> {{ $t("Banner.Create.form.picture") }}</h2>
 
-              <div v-if="tab===0" class="image">
-                <v-carousel height="100%">
-                  <v-carousel-item v-for="(imageFiles,index) in previewImage" :key="index">
+              <div v-if="tab===0" class="upload-image">
 
-                    <v-layout row>
-                      <v-flex v-for="j in 1" :key="j" align-self-center>
 
-                        <img :src="imageFiles" class="image-files">
+                <img class="image-files" :src="previewImage" />
 
-                      </v-flex>
-
-                    </v-layout>
-                  </v-carousel-item>
-                </v-carousel>
               </div>
 
-              <div v-else class="image">
-                <v-carousel height="100%">
-                  <v-carousel-item v-for="(imageFiles,index) in previewImageEng" :key="index">
 
-                    <v-layout row>
-                      <v-flex v-for="j in 1" :key="j" align-self-center>
+              <div v-else class="upload-image">
 
-                        <img :src="imageFiles" class="image-files">
 
-                      </v-flex>
+                <img class="image-files" :src="previewImageEng" />
 
-                    </v-layout>
-                  </v-carousel-item>
-                </v-carousel>
               </div>
 
 
@@ -214,21 +197,59 @@ export default {
 
     }
 
-    .image {
-
-      max-width: 100%;
+    .upload-image {
+      width: 100%;
+      height: 100%;
+      border-radius: 0.3rem;
+      position: relative;
       overflow: hidden;
       object-fit: cover;
+      transition: all ease 0.5s;
+      border: 1px solid $gray-color;
 
+      .image {
 
-      .image-files {
+        overflow: hidden;
+        object-fit: cover;
+      }
+      .content {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 45%;
+        margin: auto;
+        text-align: center;
+
+        i.fa-plus-circle {
+          font-size: 2rem;
+          color: $black-color;
+        }
+      }
+      .image-files{
+        max-height: 100%;
         max-width: 100%;
+        height: 100%;
+        width: 100%;
         display: block;
         margin-left: auto;
         margin-right: auto;
+
+
       }
-
-
+      .choose-file {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        margin: auto;
+        text-align: center;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        outline: none;
+        opacity: 0;
+      }
     }
 
 

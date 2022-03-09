@@ -10,10 +10,9 @@ import Router from '@/router';
 
 
 class HttpRequest {
-//http://128.199.104.34:7000
-  //http://25.10.235.85:7000
+
   //api 
-  constructor (url = 'http://128.199.104.34:7000') {
+  constructor (url = process.env.VUE_APP_BASE_API_URL_TEST) {
     // this.axios = axios
     this.axiosInstance = axios.create({
       baseURL: url,
@@ -52,12 +51,16 @@ class HttpRequest {
 
         }else if(response.data.message=="Updated new position topping successfully."){
 
+        }else if(response.data.message=="Package add sim types successfully"){
+
         }
         else {
           Router.back();
+
         }
 
       }else if(response.config.method=="put" && response.status == 200){
+
         setTimeout(() => {
           Store.dispatch({
           type:"action_Notifi_Success",
@@ -65,7 +68,12 @@ class HttpRequest {
         })
        }, 300);
 
-       Router.back();
+        if(response.data.message==`Updated priority package type ID:${response.data.data.id} success`){
+
+         }else{
+          Router.back();
+        }
+
       }else if(response.config.method=="delete" && response.status == 200){
         setTimeout(() => {
           Store.dispatch({

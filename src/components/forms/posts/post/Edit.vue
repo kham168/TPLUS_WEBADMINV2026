@@ -101,41 +101,29 @@
 
 
                       <div class="image" v-else>
-                          <v-carousel height="100%">
-                            <v-carousel-item :key="index" v-for="(imageFiles,index) in previewImage">
+
                               <div class="increase-decrease-image">
                                 <v-btn
                                     class="mx-2"
-                                    color="primary"
+                                    color="error"
                                     dark
                                     fab
                                     small
-                                    @click="removeImage(index)"
+                                    @click="removeImage(0)"
                                 >
                                   <v-icon dark>
-                                    mdi-minus
+                                    mdi-close
                                   </v-icon>
                                 </v-btn>
 
 
-                                <v-btn
-                                    class="mx-2"
-                                    color="success"
-                                    dark
-                                    fab
-                                    small
-                                    @click="onIncreaseImage"
-                                >
-                                  <v-icon dark>
-                                    mdi-plus
-                                  </v-icon>
-                                </v-btn>
+
                                 <input
                                     ref="uploader"
 
                                     accept="image/*"
                                     class="d-none"
-                                    multiple
+
                                     type="file"
                                     @change="UploadImage"
                                 />
@@ -143,13 +131,12 @@
                               <v-layout row >
                                 <v-flex  :key="j" v-for="j in 1" align-self-center >
 
-                                     <img class="image-files" :src="imageFiles"  >
+                                     <img class="image-files" :src="previewImage"  >
 
                                 </v-flex>
 
                               </v-layout>
-                            </v-carousel-item>
-                          </v-carousel>
+
 
                         </div>
                       </div>
@@ -176,41 +163,29 @@
 
 
                       <div class="image" v-else>
-                          <v-carousel height="100%">
-                            <v-carousel-item :key="index" v-for="(imageFilesEng,index) in previewImageEng">
+
                               <div class="increase-decrease-image">
                                 <v-btn
                                     class="mx-2"
-                                    color="primary"
+                                    color="error"
                                     dark
                                     fab
                                     small
-                                    @click="removeImageEng(index)"
+                                    @click="removeImageEng(0)"
                                 >
                                   <v-icon dark>
-                                    mdi-minus
+                                    mdi-close
                                   </v-icon>
                                 </v-btn>
 
 
-                                <v-btn
-                                    class="mx-2"
-                                    color="success"
-                                    dark
-                                    fab
-                                    small
-                                    @click="onIncreaseImageEng"
-                                >
-                                  <v-icon dark>
-                                    mdi-plus
-                                  </v-icon>
-                                </v-btn>
+
                                 <input
                                     ref="uploaderEng"
 
                                     accept="image/*"
                                     class="d-none"
-                                    multiple
+
                                     type="file"
                                     @change="UploadImageEng"
                                 />
@@ -218,13 +193,11 @@
                               <v-layout row >
                                 <v-flex  :key="j" v-for="j in 1" align-self-center >
 
-                                     <img class="image-files" :src="imageFilesEng"  >
+                                     <img class="image-files" :src="previewImageEng"  >
 
                                 </v-flex>
 
                               </v-layout>
-                            </v-carousel-item>
-                          </v-carousel>
 
                         </div>
                       </div>
@@ -463,8 +436,8 @@ export default {
                 'status':this.statusValue,
                 'other_lang_title':this.postNameEng,
                 'other_lang_description':this.descriptionTextEng,
-                'avatar':this.uploadImage,
-                'avatar_EN':this.uploadImageEng
+                'avatar':this.uploadImage[0],
+                'avatar_EN':this.uploadImageEng[0]
       })
       console.log('create successful')
     }else{
@@ -523,6 +496,7 @@ updatePost:'Post/updatePost'
           .form-content {
             width: 70%;
 
+
             .upload-image {
               width: 100%;
               height: 300px;
@@ -533,11 +507,7 @@ updatePost:'Post/updatePost'
               transition: all ease 0.5s;
               border: 1px solid $gray-color;
 
-              .image {
-                width: 100%;
-                overflow: hidden;
-                object-fit: cover;
-              }
+
               .content {
                 position: absolute;
                 left: 0;
@@ -568,22 +538,23 @@ updatePost:'Post/updatePost'
             }
             .image {
 
+
+              overflow: hidden;
+              object-fit: cover;
+
+
+
+              .image-files{
                 max-width: 100%;
-                overflow: hidden;
-                object-fit: cover;
-
-
-
-                    .image-files{
-                    max-width: 100%;
-                    display: block;
-                    margin-left: auto;
-                    margin-right: auto;
-                  }
-
-
-
+                max-height: 100%;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
               }
+
+
+
+            }
 
             .form-actions {
               width: 100%;

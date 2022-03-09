@@ -6,7 +6,7 @@ import HttpRequest from './http_request'
 class ProductProvider extends HttpRequest {
   constructor () {
     // api api
-    super('http://128.199.104.34:7000')
+    super()
   }
 
 
@@ -15,8 +15,8 @@ class ProductProvider extends HttpRequest {
     //Call setHeader on class HttpRequest and write common header
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
-   // example path http://128.199.104.34:7000/this.get()
-     const {data} = await this.get('/api/v1/products/'+product_id)
+   // example path http://172.28.26.82:7001/this.get()
+     const {data} = await this.get('products/'+product_id)
     
      return data
   }
@@ -26,8 +26,8 @@ class ProductProvider extends HttpRequest {
     //Call setHeader on class HttpRequest and write common header
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
-   // example path http://128.199.104.34:7000/this.get()
-     const {data} = await this.get('/api/v1/products')
+   // example path http://172.28.26.82:7001/this.get()
+     const {data} = await this.get('products')
  
      return data
   }
@@ -43,14 +43,15 @@ class ProductProvider extends HttpRequest {
   })
   {
       var bodyFormData = new FormData();
-  
+
+      console.log(cate_product_id);
       for(let i=0;i<cate_product_id.length;i++){
-        bodyFormData.append('cateProductId[]',cate_product_id[i]);
+          bodyFormData.append('cateProductId[]',cate_product_id[i]);
       }
 
-      for(let i=0;i<avatar.length;i++){
-        bodyFormData.append('avatar[]',avatar[i]);
-      }
+
+        bodyFormData.append('avatar[]',avatar);
+
 
       // for(let i=0;i<avatar_EN.length;i++){
       //   bodyFormData.append('avatar_EN[]',avatar_EN[i]);
@@ -67,7 +68,7 @@ class ProductProvider extends HttpRequest {
     this.setHeader({
       'Content-Type': 'multipart/form-data',
     })
-    const {data} = await this.create('/api/v1/products',bodyFormData)
+    const {data} = await this.create('products',bodyFormData)
     
 
     return data
@@ -89,9 +90,9 @@ class ProductProvider extends HttpRequest {
           bodyFormData.append('cateProductId[]',cate_product_id[i]);
         }
   
-        for(let i=0;i<cate_product_id.length;i++){
-          bodyFormData.append('avatar[]',avatar[i]);
-        }
+
+          bodyFormData.append('avatar[]',avatar);
+
   
         // for(let i=0;i<avatar_EN.length;i++){
         //   bodyFormData.append('avatar_EN[]',avatar_EN[i]);
@@ -108,7 +109,7 @@ class ProductProvider extends HttpRequest {
       'Content-Type': 'multipart/form-data',
     })
 
-    const {data} = await this.update('/api/v1/products/'+product_id,bodyFormData)
+    const {data} = await this.update('products/'+product_id,bodyFormData)
   
   
     return data
@@ -119,8 +120,8 @@ class ProductProvider extends HttpRequest {
  
     this.setHeader({})
 
-   // example path http://128.199.104.34:7000/this.get()
-    const {data} = await this.delete('/api/v1/products/'+product_id)
+   // example path http://172.28.26.82:7001/this.get()
+    const {data} = await this.delete('products/'+product_id)
   
     return data
   }

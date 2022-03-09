@@ -16,18 +16,33 @@
       "router": "/banner"
     },
     {
-      "icon": "fas fa-id-card",
-      "text": "Contact",
-      "router": "/contact"
-    },
-    {
       "icon": "fas fa-border-top",
       "text": "Topping",
       "router": "/topping"
+    },
+    {
+      "icon": "fas fa-phone-office",
+      "text": "Call Abroad",
+      "router": "/call-abroad"
     }
 
   ],
+  "Contactmenus": {
+    "title": "Contacts",
+    "subtitle": [
+      {
+        "icon": "fas fa-id-card",
+        "text": "Contacts",
+        "router": "/contact"
+      },
+      {
+        "icon": "fas fa-plus-circle",
+        "text": "Add title",
+        "router": "/add-title"
+      }
 
+    ]
+  },
   "Chatmenu": {
     "title": "Chat",
     "subtitle": [
@@ -54,7 +69,7 @@
       },
       {
         "icon": "far fa-newspaper",
-        "text": "Post",
+        "text": "News",
         "router": "/post"
       },
       {
@@ -70,34 +85,30 @@
       }
     ]
   },
-  "Productmenu": {
-    "title": "Products",
-    "subtitle": [
-      {
-        "icon": "fas fa-boxes",
-        "text": "Category Product",
-        "router": "/cate_product"
-      },
-      {
-        "icon": "fab fa-product-hunt",
-        "text": "Products",
-        "router": "/product"
-      }
-    ]
-  },
   "Packagemenu": {
     "title": "Data Package",
     "subtitle": [
       {
         "icon": "fas fa-gifts",
         "text": "Sim Type",
-        "router": "/cate_data_package"
+        "router": "/sim_type_package"
       },
       {
         "icon": "fas fa-gift",
         "text": "Data Package",
         "router": "/data_package"
+      },
+      {
+        "icon": "fas fa-gift-card",
+        "text": "Package Type",
+        "router": "/package_type"
+      },
+      {
+        "icon": "fas fa-sort-numeric-down",
+        "text": "Package Priority",
+        "router": "/package_type_priority"
       }
+
     ]
   },
   "Usermenu": {
@@ -121,7 +132,7 @@
     ]
   },
   "Topping": {
-    "title": "Management Topping",
+    "title": "Topping Management",
     "manage": "Manage"
   },
   "Navbar": {
@@ -143,6 +154,36 @@
     "button": "Create",
     "txtsearch": "Search Contact",
     "loadingtext": "Loading...",
+    "Add-title-contact":{
+      "title":"Contact title data",
+      "lao":"Lao",
+      "english":"English",
+      "form":{
+        "title":"Add title contact",
+        "editTitle":"Edit title contact",
+        "deleteTitle":"Delete title contact",
+        "label":"Add title"
+      },
+      "table":{
+        "headers":[
+         {
+           "text": "No",
+           "value": "No",
+           "sortable": true
+         },
+         {
+           "text": "Title contacts",
+           "value": "title",
+           "sortable": true
+         },
+         {
+           "text": "Actions",
+           "value": "actions",
+           "sortable": false
+         }
+        ]
+      }
+     },
     "table": {
       "headers": [
         {
@@ -511,9 +552,9 @@
 
   },
   "Post": {
-    "title": "Post Data",
+    "title": "News Data",
     "button": "Create",
-    "txtsearch": "Search Post",
+    "txtsearch": "Search newa",
     "loadingtext": "Loading...",
     "table": {
       "headers": [
@@ -534,14 +575,14 @@
     },
 
     "Create": {
-      "header": "Add Post",
+      "header": "Add News",
       "lang": {
         "lao": "Lao",
         "Eng": "English"
       },
       "form": {
         "category": "Categories",
-        "post_name": "Post Name",
+        "post_name": "News Name",
         "description": "Description",
         "picture": "Upload Image",
         "start_date":"Start Date",
@@ -707,6 +748,66 @@
       "header": "Edit Products"
     }
   },
+  "PackageType": {
+    "title": "Package Type",
+    "button": "Create",
+    "txtsearch": "Search Package Type",
+    "loadingtext":"Loading...",
+    "table": {
+      "headers": [
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": true
+        },
+        {
+          "text": "Image",
+          "value": "image",
+          "sortable": true
+        },
+        {
+          "text": "Type Name",
+          "value": "type_name",
+          "sortable": true
+        },
+
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": true
+        }
+      ],
+      "dontdata": "Don't have data",
+      "options": {
+        "edit": "Edit",
+        "iconEdit": "fas fa-edit",
+        "delete": "Delete",
+        "delicon": "fas fa-trash-alt"
+      }
+    },
+    "Create": {
+      "header": "Add Package Type",
+      "lang": {
+        "lao": "Lao",
+        "Eng": "English"
+      },
+      "form": {
+        "type_name": "Type Name",
+        "image": "Image",
+        "button": {
+          "save": "Save",
+          "cancel": "Cancel"
+        }
+      }
+    },
+    "Edit": {
+      "header": "Edit Package Type"
+    },
+    "priority": {
+      "title": "Package Priority Management",
+      "lang": "en"
+    }
+  },
   "CateDataPackage": {
     "title": "Sim Type",
     "button": "Create",
@@ -759,8 +860,11 @@
         { "text": "No", "value": "No", "sortable": true },
         { "text": "Pictures", "value": "Picture", "sortable": true },
         { "text": "Code", "value": "code", "sortable": true },
-        { "text": "Package Name", "value": "en_name", "sortable": true },
-
+        { "text": "Package Name", "value": "name", "sortable": true },
+        { "text": "Package Type", "value": "typePackage.type_name", "sortable": true },
+        { "text": "Package Cate", "value": "categoryPackage.cateName", "sortable": true },
+        { "text": "Detail", "value": "detail", "sortable": true },
+        { "text": "View", "value": "view", "sortable": true },
         { "text": "Actions", "value": "Actions", "sortable": true }
       ],
       "headers_simtype": [
@@ -768,6 +872,8 @@
         { "text": "Pictures", "value": "Picture", "sortable": true },
         { "text": "Code", "value": "code", "sortable": true },
         { "text": "Package Name", "value": "en_name", "sortable": true },
+        { "text": "Package Type", "value": "typePackage.type_name", "sortable": true },
+        { "text": "Package Cate", "value": "categoryPackage.cateName", "sortable": true },
         { "text": "Sim Type", "value": "simTypes.detail", "sortable": true },
         { "text": "Actions", "value": "Actions", "sortable": true }
       ],
@@ -778,7 +884,9 @@
         "delete": "Delete",
         "delicon": "fas fa-trash-alt",
         "simtype": "Fill Sim Type",
-        "simtypeIcon": "fas fa-sim-card"
+        "simtypeIcon": "fas fa-sim-card",
+        "delsimtype": "Delete Sim Type",
+        "delsimtypeIcon": "fas fa-trash-alt"
       }
     },
     "Create": {
@@ -788,9 +896,11 @@
         "Eng": "English"
       },
       "form": {
+
         "category": "Categories",
+        "type": "Type",
         "data_package_name": "Data Package Name",
-        "description": "Description",
+        "description": "Detail",
         "picture": "Upload Image",
         "code": "Code",
         "button": {
@@ -1185,6 +1295,61 @@
       "title":"Promotions data report",
       "subtitle":"View detail",
       "view":"View"
+    }
+  },
+  "Call-Abroad":{
+    "title":"Call Abroad Data",
+    "search":"Search...",
+    "table":{
+      "headers":[
+        {
+          "text":"No",
+          "value":"No",
+          "sortable":true
+        },
+        {
+          "text":"Country Name",
+          "value":"countryName_en",
+          "sortable":false
+        },
+        {
+          "text":"Country Code",
+          "value":"code",
+          "sortable":false
+        },
+        {
+          "text":"Zone",
+          "value":"zoneName_la",
+          "sortable":true
+        },
+        {
+          "text":"Price /minus (LAK)",
+          "value":"price_minute",
+          "sortable":true
+        },
+        {
+          "text":"Actions",
+          "value":"Actions",
+          "sortable":false
+        }
+      ]
+    },
+    "Create":{
+      "title":"Add Data"
+    },
+    "form":{
+      "countrylao":"Country Name (Lao)",
+      "countryeng":"Country Name (English)",
+      "countryCode":"Country Code",
+      "zone":"Zone",
+      "price":"Call Price",
+      "lao":"Lao",
+      "english":"English"
+    },
+    "options":{
+      "save":"Save",
+      "cancel":"Cancel",
+      "delete":"Delete"
     }
   }
 }

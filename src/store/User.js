@@ -3,7 +3,7 @@ import router from "@/router";
 
 const $axios = axios.create(
     {
-        baseURL: process.env.VUE_APP_BASE_API_URL,
+        baseURL: process.env.VUE_APP_BASE_API_URL_TEST,
     }
 );
 

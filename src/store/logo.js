@@ -1,38 +1,103 @@
-import axios from "axios";
-import store from "@/store/index";
+import LogoProvider from '@/resources/logo_provider'
 
-const $axios = axios.create(
-    {
-        baseURL: process.env.VUE_APP_BASE_API_URL,
+const logoProvider = new LogoProvider()
 
-    }
-);
-$axios.defaults.headers.common['content_language'] = "en";
-const state = {
-    logoId: "",
+const state={
+
+
+    logo:{},
+    logo_one:{}
+
 }
 
-const getters = {}
-const mutations = {
-    SET_LOGO_ITEM(state, payload) {
-        return state.logoId = payload;
+const getters={
+
+    logo:state=>state.logo,
+    logo_one:state=>state.logo_one,
+
+
+}
+
+const mutations={
+
+
+
+    SET_LOGO(state,data){
+        state.logo = data;
+
+    },
+
+    SET_LOGO_ONE(state,data){
+        state.logo_one = data;
+
+    },
+
+
+
+}
+
+const actions={
+
+
+
+    async getLogoOne ({commit },{logo_id}) {
+        const data = await logoProvider.getLogoOne({'logo_id':logo_id})
+        commit('SET_LOGO_ONE', data)
+        return data
+
+    },
+
+
+    async getLogo ({commit}) {
+
+        const data = await logoProvider.getLogo()
+        commit('SET_LOGO', data)
+
+        return data
+    },
+
+    async updateLogo(
+        {dispatch },
+        {
+            logo_id,
+            siteName,
+            siteNameEn,
+            address,
+            addressEn,
+            phone,
+            email,
+            facebook,
+            description,
+            descriptionEn,
+            imageFile,
+            imageFileEn
+        }
+    ){
+
+        console.log(email)
+
+        let arg={
+            'logo_id':logo_id,
+            'siteName':siteName,
+            'siteNameEn':siteNameEn,
+            'address':address,
+            'addressEn':addressEn,
+            'phone':phone,
+            'email':email,
+            'facebook':facebook,
+            'description':description,
+            'descriptionEn':descriptionEn,
+            'imageFile':imageFile,
+            'imageFileEn':imageFileEn
+        }
+
+
+        await logoProvider.updateLogo(arg)
+        dispatch('getLogo',{ root: true });
+
     }
 }
 
-const actions = {
-    fetchLogoItem({state}, logo_id) {
-        return new Promise((resolve, reject) => {
-            $axios.defaults.headers.common['Authorization'] = 'Bearer ' + store.getters['User/getToken'];
-            $axios.get(`siteInfo/${state.logoId || logo_id}`).then((res) => {
-                if (res.status === 200) {
-                    resolve(res)
-                }
-            }).catch((error) => {
-                reject(error)
-            })
-        })
-    }
-}
 export default {
     namespaced: true,
     state,

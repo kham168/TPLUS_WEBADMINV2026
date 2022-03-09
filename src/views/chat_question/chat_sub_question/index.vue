@@ -181,7 +181,7 @@ export default {
 
       searchItem: "",
       firstLoad:true,
-      imageUrl:'http://128.199.104.34:7000/images/chat-questions/',
+      imageUrl:'http://172.28.26.82:7001/images/chat-questions/',
     };
   },
 

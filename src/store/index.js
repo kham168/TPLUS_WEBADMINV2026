@@ -13,9 +13,12 @@ import PromotionEvent from "@/store/Posts/PromotionEvent.js"
 import ChatQuestion from "@/store/ChatQuestion.js"
 import Chat from "@/store/Chat.js"
 import Topping from "@/store/Topping.js"
+import PackageType from "@/store/Packages/PackageType.js"
+import SimTypePackage from "@/store/Packages/SimTypePackage.js"
+
 //get all users
 import users from "./Users"
-import logo from "@/store/logo"
+import Logo from "@/store/logo"
 import position from "@/store/position"
 import permission from "@/store/permission";
 import role from "@/store/role"
@@ -51,7 +54,14 @@ export default new Vuex.Store({
             users: {
                 roles: ["super-admin", "admin","Employee"]
             }
-        }
+        },
+
+        // Modal Call  abroad
+        DeleteCallAbroadModal:false,
+        CallAbroadId:null,
+    },
+    getters:{
+     getCallAbroadId: state => state.CallAbroadId
     },
     mutations: {
         IncrementRole(state) {
@@ -84,6 +94,10 @@ export default new Vuex.Store({
         },
         modalShow_State(state, value) {
             state.modalShowState = value;
+        },
+        isDeleteCallAbroadModal(state,id){
+         state.DeleteCallAbroadModal = !state.DeleteCallAbroadModal
+         state.CallAbroadId = id
         }
 
     },
@@ -99,7 +113,7 @@ export default new Vuex.Store({
     modules: {
         User,
         users,
-        logo,
+        Logo,
         position,
         permission,
         role,
@@ -115,7 +129,12 @@ export default new Vuex.Store({
         ChatQuestion,
         Chat,
         Topping,
-        report
+        report,
+        PackageType,
+        SimTypePackage
     },
+
+
+
 
 })

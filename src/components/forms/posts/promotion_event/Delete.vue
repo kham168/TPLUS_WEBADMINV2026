@@ -7,8 +7,9 @@
       <v-btn outlined class="btn-cancel" @click="$emit('close')">
         {{ $t('Modal.btnCancel') }}
       </v-btn>
-      <v-btn class="btn-delete" @click="deletePromotionEvent({'promotion_event_id':promotion_event_id})">
-        {{ $t('Modal.btnConfirm') }}
+
+ <v-btn class="btn-delete" @click="deletePromotionEvent({'promotion_event_id':promotion_event_id})" >
+          {{$t('Modal.btnConfirm')}}
       </v-btn>
     </div>
   </div>

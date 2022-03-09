@@ -3,9 +3,10 @@ import CateDataPackageProvider from '@/resources/cate_data_package_provider.js'
 const cateDataPackageProvider = new CateDataPackageProvider()
 
 const state={
+
     cate_data_package:{},
     cate_data_package_one:{}
-  
+
 }
 
 const getters={
@@ -14,19 +15,18 @@ const getters={
 }
 
 const mutations={
-  SET_CATE_DATA_PACKAGE(state,data){
+    SET_CATE_DATA_PACKAGE(state,data){
       state.cate_data_package = data;
     },
     SET_CATE_DATA_PACKAGE_ONE(state,data){
         state.cate_data_package_one = data;
     },
-  
 }
 
 const actions={
 
-    async getCateDataPackageOne ({commit}) {
-        const data = await cateDataPackageProvider.getCateDataPackageAll()
+    async getCateDataPackageOne ({commit},{cate_package_id}) {
+        const data = await cateDataPackageProvider.getCateDataPackageOne({'cate_package_id':cate_package_id})
         commit('SET_CATE_DATA_PACKAGE_ONE', data)
         return data
     },
@@ -37,51 +37,7 @@ const actions={
         return data
       },
 
-      async createCateDataPackage({dispatch},{
-          mainProduct,
-    description,
 
-        
-    }){
-
-        let arg={
-            'mainProduct':mainProduct,
-            'description':description,
-
-           
-        }
-
-         await cateDataPackageProvider.createCateDataPackage(arg)
-        dispatch('getCateDataPackage',{ root: true });
-      },
-
-      async updateCateDataPackage({dispatch },{
-          cate_package_id,
-          mainProduct,
-    description,
-  
-          }){
-            
-            let arg={
-                'cate_package_id':cate_package_id,
-                'mainProduct':mainProduct,
-                'description':description,
-
-              
-            }
-            console.log(cate_package_id)
-          console.log(mainProduct)
-         await cateDataPackageProvider.updateCateDataPackage(arg)
-        dispatch('getCateDataPackage',{ root: true });
-        
-        //commit('SET_POST',data)
-      },
-
-      async deleteCateDataPackage ({dispatch},{cate_package_id}) {
-        await cateDataPackageProvider.deleteCateDataPackage({'cate_package_id':cate_package_id})
-        dispatch('getCateDataPackage',{ root: true });
-       // commit('SET_POST', data)
-      },
 }
 
 export default {

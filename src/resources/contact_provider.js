@@ -6,7 +6,7 @@ import HttpRequest from './http_request'
 class ContactProvider extends HttpRequest {
   constructor () {
     // api api
-    super('http://128.199.104.34:7000')
+    super()
   }
 
   async getContactOne ({contact_id}) {
@@ -14,8 +14,8 @@ class ContactProvider extends HttpRequest {
     //Call setHeader on class HttpRequest and write common header
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
-   // example path http://128.199.104.34:7000/this.get()
-     const {data} = await this.get('/api/v1/contact/'+contact_id)
+   // example path http://172.28.26.82:7001/this.get()
+     const {data} = await this.get('contact/'+contact_id)
 
      return data
   }
@@ -25,8 +25,8 @@ class ContactProvider extends HttpRequest {
     //Call setHeader on class HttpRequest and write common header
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
-   // example path http://128.199.104.34:7000/this.get()
-     const {data} = await this.get('/api/v1/contact')
+   // example path http://172.28.26.82:7001/this.get()
+     const {data} = await this.get('contact')
 
      return data
   }
@@ -53,7 +53,7 @@ class ContactProvider extends HttpRequest {
     this.setHeader({
       'Content-Type': 'application/x-www-form-urlencoded',
     })
-    const {data} = await this.create('/api/v1/contact',arg)
+    const {data} = await this.create('contact',arg)
     
 
     return data
@@ -81,7 +81,7 @@ class ContactProvider extends HttpRequest {
       'Content-Type': 'application/x-www-form-urlencoded',
     })
 
-    const {data} = await this.update('/api/v1/contact/'+contact_id,arg)
+    const {data} = await this.update('contact/'+contact_id,arg)
   
   
     return data
@@ -92,8 +92,8 @@ class ContactProvider extends HttpRequest {
  
     this.setHeader({})
 
-   // example path http://128.199.104.34:7000/this.get()
-    const {data} = await this.delete('/api/v1/contact/'+contact_id)
+   // example path http://172.28.26.82:7001/this.get()
+    const {data} = await this.delete('contact/'+contact_id)
   
     return data
   }

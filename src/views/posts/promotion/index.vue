@@ -18,11 +18,11 @@
       <div class="promotionEvent-content" v-show="!firstLoad">
         <v-data-table
           :headers="$t('PromotionEvent.table.headers')"
-          :items="promotion_event['data'][0].Posts"
+          :items="promotion_event['Posts']"
           :search="searchItem"
           :loading="loading"
           :loading-text="$t('PromotionEvent.loadingtext')"
-          v-if="promotion_event.data[0].Posts !== ''"
+          v-if="promotion_event['Posts'] !== ''"
         >
           <template v-slot:top>
             <v-toolbar flat>

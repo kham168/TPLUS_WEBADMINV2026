@@ -69,7 +69,7 @@ export default {
     }
   },
   created() {
-    this.socket = io("http://128.199.104.34:7000");
+    this.socket = io(process.env.VUE_APP_BASE_SOCKET);
   },
   mounted() {
     this.socket.emit("connection");

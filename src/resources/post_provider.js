@@ -6,7 +6,7 @@ import HttpRequest from './http_request'
 class PostProvider extends HttpRequest {
   constructor () {
     // api api
-    super('http://128.199.104.34:7000')
+    super()
   }
 
 
@@ -19,7 +19,7 @@ class PostProvider extends HttpRequest {
    // example path http://128.199.104.34:7000/this.get()
 
 
-     const {data} = await this.get('/api/v1/posts/'+post_id)
+     const {data} = await this.get('posts/'+post_id)
 
      return data
   }
@@ -30,7 +30,7 @@ class PostProvider extends HttpRequest {
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
    // example path http://128.199.104.34:7000/this.get()
-     const {data} = await this.get('/api/v1/posts-news')
+     const {data} = await this.get('posts-news')
 
      return data
   }
@@ -58,16 +58,10 @@ class PostProvider extends HttpRequest {
       bodyFormData.append('other_lang[0][title]',other_lang_title);
       bodyFormData.append('other_lang[0][description]',other_lang_description);
       bodyFormData.append('other_lang[0][language_id]',other_lang_id);
+        bodyFormData.append('avatar[]',avatar);
+        bodyFormData.append('avatar_EN[]',avatar_EN);
 
-      
-      for(let i =0;i<avatar.length;i++){
-        bodyFormData.append('avatar[]',avatar[i]);
 
-      }
-      for(let i =0;i<avatar_EN.length;i++){
-        bodyFormData.append('avatar_EN[]',avatar_EN[i]);
-
-      }
 
       for(let i =0;i<newsCategoryId.length;i++){
         bodyFormData.append('newsCategoryId[]',newsCategoryId[i]);
@@ -77,7 +71,7 @@ class PostProvider extends HttpRequest {
     this.setHeader({
       'Content-Type': 'multipart/form-data',
     })
-    const {data} = await this.create('/api/v1/posts',bodyFormData)
+    const {data} = await this.create('posts',bodyFormData)
     
 
     return data
@@ -109,15 +103,9 @@ class PostProvider extends HttpRequest {
       bodyFormData.append('other_lang[0][title]',other_lang_title);
       bodyFormData.append('other_lang[0][description]',other_lang_description);
       bodyFormData.append('other_lang[0][language_id]',other_lang_id);
+        bodyFormData.append('avatar[]',avatar);
+        bodyFormData.append('avatar_EN[]',avatar_EN);
 
-      for(let i =0;i<avatar.length;i++){
-        bodyFormData.append('avatar[]',avatar[i]);
-
-      }
-      for(let i =0;i<avatar_EN.length;i++){
-        bodyFormData.append('avatar_EN[]',avatar_EN[i]);
-
-      }
 
     for(let i =0;i<newsCategoryId.length;i++){
       bodyFormData.append('newsCategoryId[]',newsCategoryId[i]);
@@ -130,7 +118,7 @@ class PostProvider extends HttpRequest {
       'Content-Type': 'multipart/form-data',
     })
 
-    const {data} = await this.update('/api/v1/posts/'+post_id,bodyFormData)
+    const {data} = await this.update('posts/'+post_id,bodyFormData)
   
   
     return data
@@ -142,7 +130,7 @@ class PostProvider extends HttpRequest {
     this.setHeader({})
 
    // example path http://128.199.104.34:7000/this.get()
-    const {data} = await this.delete('/api/v1/posts/'+post_id)
+    const {data} = await this.delete('posts/'+post_id)
   
     return data
   }

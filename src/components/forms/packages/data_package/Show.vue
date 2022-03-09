@@ -21,26 +21,43 @@
             :key="i"
             :value="i.key"
         >
+          <v-row class="body-0">
+            <v-col align="left" cols="12">
+
+              <h2> {{ $t('DataPackage.Create.form.code') }}</h2>
+              <p> {{ code }}</p>
+
+            </v-col>
+
+          </v-row>
+
           <v-row class="body-1">
             <v-col align="left" cols="12">
 
-              <h2> {{ $t('DataPackage.Create.form.productname') }}</h2>
-              <p v-if="tab===0"> {{ productName }}</p>
-              <p v-else> {{ productNameEng }}</p>
+              <h2> {{ $t('DataPackage.Create.form.data_package_name') }}</h2>
+              <p v-if="tab===0"> {{ name }}</p>
+              <p v-else> {{ nameEng }}</p>
             </v-col>
 
           </v-row>
 
           <v-row class="body-2">
             <v-col align="left" cols="12">
-
-              <h2> {{ $t('DataPackage.Create.form.category') }}</h2>
-              <p> {{ productTypeValue }}</p>
-
+              <h2> {{ $t('DataPackage.Create.form.type') }}</h2>
+              <p v-if="tab===0"> {{ PackageTypeValue }}</p>
+              <p v-else > {{ PackageTypeValueEng }}</p>
             </v-col>
           </v-row>
 
           <v-row class="body-3">
+            <v-col align="left" cols="12">
+              <h2> {{ $t('DataPackage.Create.form.category') }}</h2>
+              <p v-if="tab===0"> {{ CateDataPackageValue }}</p>
+              <p v-else> {{ CateDataPackageValueEng }}</p>
+            </v-col>
+          </v-row>
+
+          <v-row class="body-4">
             <v-col align="left" cols="12">
 
               <h2>{{ $t('DataPackage.Create.form.description') }}</h2>
@@ -51,49 +68,21 @@
           </v-row>
 
 
-          <v-row class="body-4">
+          <v-row class="body-5">
             <v-col align="left" cols="12">
 
-              <h2> {{ $t("DataPackage.Create.form.picture") }}</h2>
+              <h2> {{ $t("Banner.Create.form.picture") }}</h2>
 
-              <div v-if="tab===0" class="image">
-                <v-carousel height="100%">
-                  <v-carousel-item v-for="(imageFiles,index) in previewImage" :key="index">
-
-                    <v-layout row>
-                      <v-flex v-for="j in 1" :key="j" align-self-center>
-
-                        <img :src="imageFiles" class="image-files">
-
-                      </v-flex>
-
-                    </v-layout>
-                  </v-carousel-item>
-                </v-carousel>
+              <div v-if="tab===0" class="upload-image">
+                <img class="image-files" :src="previewImage[0]" />
               </div>
 
-              <div v-else class="image">
-                <v-carousel height="100%">
-                  <v-carousel-item v-for="(imageFiles,index) in previewImageEng" :key="index">
-
-                    <v-layout row>
-                      <v-flex v-for="j in 1" :key="j" align-self-center>
-
-                        <img :src="imageFiles" class="image-files">
-
-                      </v-flex>
-
-                    </v-layout>
-                  </v-carousel-item>
-                </v-carousel>
+              <div v-else class="upload-image">
+                <img class="image-files" :src="previewImageEng[0]" />
               </div>
-
 
             </v-col>
-
           </v-row>
-
-
         </v-tab-item>
       </v-tabs-items>
 
@@ -108,18 +97,28 @@
 import {mapActions} from 'vuex'
 
 export default {
+
+
   data() {
     return {
-      btnLoading: false,
+      code:0,
       dataPackageId:0,
-      catePackageValue:'',
+      PackageTypeValue:'',
+      PackageTypeValueEng:'',
       name:'',
       nameEng:'',
       description:'',
       descriptionEng:'',
+      tab: null,
+      isLaoTab:false,
+      isEngTab:false,
+      uploadImage:[],
+      uploadImageEng:[],
       previewImage: [],
       previewImageEng: [],
-      tab: null,
+      valid:true,
+      CateDataPackageValue:'',
+      CateDataPackageValueEng:'',
     }
   },
   created() {
@@ -137,20 +136,21 @@ export default {
     loadDataToComponent(res){
 
       let data = res.data
-      this.dataPackageId=data.id,
-          this.catePackageValue=data.catePackageId,
-          this.name=data.name,
-          this.nameEng=data.PackagesTrans[0].name,
-          this.description=data.description,
-          this.descriptionEng=data.PackagesTrans[0].description
 
-      // for(let i=0;i<data.argImage.length;i++){
-      //   this.uploadImage.push(data.argImage[i].image)
-      // }
+      this.name=data.name
+      this.nameEng=data.NewPackageTrans[0].name
+      this.code=data.code
+      this.previewImage.push(data.image)
+      this.previewImageEng.push(data.NewPackageTrans[0].image)
 
-      // for(let i=0;i<data.argImageEng.length;i++){
-      //    this.uploadImageEng.push(data.argImageEng[i].image)
-      // }
+
+      this.PackageTypeValue = data.typePackage.type_name;
+      this.PackageTypeValueEng = data.typePackage.TypePackagTrans[0].type_name;
+      this.CateDataPackageValue = data.categoryPackage.cateName;
+      this.CateDataPackageValueEng = data.categoryPackage.CatePackageTrans[0].cateName;
+
+      this.description = data.detail;
+      this.descriptionEng = data.NewPackageTrans[0].detail;
     },
     ...mapActions({
       getDataPackageOne: 'DataPackage/getDataPackageOne'
@@ -187,21 +187,59 @@ export default {
 
     }
 
-    .image {
-
-      max-width: 100%;
+    .upload-image {
+      width: 100%;
+      height: 100%;
+      border-radius: 0.3rem;
+      position: relative;
       overflow: hidden;
       object-fit: cover;
+      transition: all ease 0.5s;
+      border: 1px solid $gray-color;
 
+      .image {
 
-      .image-files {
+        overflow: hidden;
+        object-fit: cover;
+      }
+      .content {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 45%;
+        margin: auto;
+        text-align: center;
+
+        i.fa-plus-circle {
+          font-size: 2rem;
+          color: $black-color;
+        }
+      }
+      .image-files{
+        max-height: 100%;
         max-width: 100%;
+        height: 100%;
+        width: 100%;
         display: block;
         margin-left: auto;
         margin-right: auto;
+
+
       }
-
-
+      .choose-file {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        margin: auto;
+        text-align: center;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        outline: none;
+        opacity: 0;
+      }
     }
 
 

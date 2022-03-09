@@ -6,7 +6,7 @@ import HttpRequest from './http_request'
 class PromotionEventProvider extends HttpRequest {
   constructor () {
     // api api
-    super('http://128.199.104.34:7000')
+    super()
   }
 
   async getEvent () {
@@ -14,8 +14,8 @@ class PromotionEventProvider extends HttpRequest {
     //Call setHeader on class HttpRequest and write common header
     //If write Header on class HttpRequest Should call like under method
     this.setHeader({})
-    // example path http://128.199.104.34:7000/this.get()
-    const {data} = await this.get('/api/v1/posts-event')
+    // example path http://172.28.26.82:7001/this.get()
+    const {data} = await this.get('posts-event')
 
     return data
   }
@@ -25,8 +25,8 @@ class PromotionEventProvider extends HttpRequest {
     //Call setHeader on class HttpRequest and write common header
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
-   // example path http://128.199.104.34:7000/this.get()
-     const {data} = await this.get('/api/v1/posts/'+promotion_event_id)
+   // example path http://172.28.26.82:7001/this.get()
+     const {data} = await this.get('posts/'+promotion_event_id)
 
      return data
   }
@@ -36,8 +36,8 @@ class PromotionEventProvider extends HttpRequest {
     //Call setHeader on class HttpRequest and write common header
     //If write Header on class HttpRequest Should call like under method
      this.setHeader({})
-   // example path http://128.199.104.34:7000/this.get()
-     const {data} = await this.get('/api/v1/posts-promotion')
+   // example path http://172.28.26.82:7001/this.get()
+     const {data} = await this.get('posts-promotion')
 
      return data
   }
@@ -71,22 +71,19 @@ class PromotionEventProvider extends HttpRequest {
       bodyFormData.append('other_lang[0][description]',other_lang_description);
       bodyFormData.append('other_lang[0][language_id]',other_lang_id);
 
-      
-      for(let i =0;i<avatar.length;i++){
-        bodyFormData.append('avatar[]',avatar[i]);
+        bodyFormData.append('avatar[]',avatar);
 
-      }
-      for(let i =0;i<avatar_EN.length;i++){
-        bodyFormData.append('avatar_EN[]',avatar_EN[i]);
 
-      }
+        bodyFormData.append('avatar_EN[]',avatar_EN);
+
+
     
 
  
     this.setHeader({
       'Content-Type': 'multipart/form-data',
     })
-    const {data} = await this.create('/api/v1/posts',bodyFormData)
+    const {data} = await this.create('posts',bodyFormData)
     
 
     return data
@@ -122,14 +119,11 @@ class PromotionEventProvider extends HttpRequest {
       bodyFormData.append('other_lang[0][description]',other_lang_description);
       bodyFormData.append('other_lang[0][language_id]',other_lang_id);
 
-      for(let i =0;i<avatar.length;i++){
-        bodyFormData.append('avatar[]',avatar[i]);
+        bodyFormData.append('avatar[]',avatar);
 
-      }
-      for(let i =0;i<avatar_EN.length;i++){
-        bodyFormData.append('avatar_EN[]',avatar_EN[i]);
+        bodyFormData.append('avatar_EN[]',avatar_EN);
 
-      }
+
     
 
  
@@ -137,7 +131,7 @@ class PromotionEventProvider extends HttpRequest {
       'Content-Type': 'multipart/form-data',
     })
 
-    const {data} = await this.update('/api/v1/posts/'+post_id,bodyFormData)
+    const {data} = await this.update('posts/'+post_id,bodyFormData)
   
   
     return data
@@ -148,8 +142,8 @@ class PromotionEventProvider extends HttpRequest {
  
     this.setHeader({})
 
-   // example path http://128.199.104.34:7000/this.get()
-    const {data} = await this.delete('/api/v1/posts/'+promotion_event_id)
+   // example path http://172.28.26.82:7001/this.get()
+    const {data} = await this.delete('posts/'+promotion_event_id)
   
     return data
   }

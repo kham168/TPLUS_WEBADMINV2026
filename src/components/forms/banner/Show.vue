@@ -149,7 +149,7 @@ export default {
     }
     .upload-image {
       width: 100%;
-      height: 300px;
+      height: 100%;
       border-radius: 0.3rem;
       position: relative;
       overflow: hidden;
@@ -158,7 +158,7 @@ export default {
       border: 1px solid $gray-color;
 
       .image {
-        width: 100%;
+
         overflow: hidden;
         object-fit: cover;
       }
@@ -178,6 +178,8 @@ export default {
       .image-files{
         max-height: 100%;
         max-width: 100%;
+        height: 100%;
+        width: 100%;
         display: block;
         margin-left: auto;
         margin-right: auto;
@@ -198,22 +200,6 @@ export default {
         outline: none;
         opacity: 0;
       }
-    }
-    .image {
-
-      max-width: 100%;
-      overflow: hidden;
-      object-fit: cover;
-
-
-      .image-files {
-        max-width: 100%;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-
     }
 
 

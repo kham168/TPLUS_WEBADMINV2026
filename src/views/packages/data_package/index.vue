@@ -45,8 +45,17 @@
               <td>{{ index + 1 }}</td>
               <td><v-img :src="item.image" alt="preview" max-height="50" max-width="50"></v-img></td>
               <td>{{ item.code }}</td>
-              <td>{{ item.la_name }}</td>
-
+              <td>{{ item.name }}</td>
+              <td>{{ item.typePackage.type_name }}</td>
+              <td>{{ item.categoryPackage.cateName }}</td>
+              <td>{{ item.detail }}</td>
+              <td>
+                <v-btn icon @click="onShow(item.id)">
+                  <v-icon large>
+                    mdi-eye
+                  </v-icon>
+                </v-btn>
+              </td>
               <td>
                <v-menu offset-y>
                  <template v-slot:activator="{on,attrs}">
@@ -91,11 +100,18 @@
               <td>{{ index + 1 }}</td>
               <td><v-img :src="item.image" alt="preview" max-height="50" max-width="50"></v-img></td>
                  <td>{{ item.code }}</td>
-              <td>{{ item.en_name }}</td>
-           
+              <td>{{ item.NewPackageTrans[0].name }}</td>
+              <td>{{ item.typePackage.TypePackagTrans[0].type_name }}</td>
+              <td>{{ item.categoryPackage.CatePackageTrans[0].cateName }}</td>
+              <td>{{ item.NewPackageTrans[0].detail }}</td>
 
-           
-             
+              <td>
+                <v-btn icon @click="onShow(item.id)">
+                  <v-icon large>
+                    mdi-eye
+                  </v-icon>
+                </v-btn>
+              </td>
               <td>
                <v-menu offset-y>
                  <template v-slot:activator="{on,attrs}">
@@ -150,8 +166,15 @@
           <Delete :data_package_id="package_id" @close="close"/>
         </template>
       </ModalDelete>
-    </section>
 
+      <ModalShow>
+        <template v-slot="{close}">
+          <Show
+              :package_id="package_id"
+              @close="close"/>
+        </template>
+      </ModalShow>
+    </section>
   </div>
 </template>
 
@@ -159,12 +182,17 @@
 
 import {mapActions,mapGetters} from 'vuex'
 import Delete from "@/components/forms/packages/data_package/Delete";
+import Show from "@/components/forms/packages/data_package/Show";
+import ModalShow from "@/components/Modals/modalShow";
+
 
 export default {
     name: 'DataPackage',
 
 components: {
-    Delete
+    Delete,
+    Show,
+    ModalShow
   },
     data() {
         return {
@@ -185,6 +213,14 @@ components: {
     },
 
     methods: {
+
+
+
+      onShow(package_id) {
+        this.package_id = package_id;
+            this.$store.commit("modalShow_State", true);
+      },
+
       onSimType(data_package_id) {
         this.$router
             .push({
@@ -207,6 +243,7 @@ components: {
     },
 
     ...mapActions({
+      getDataPackageOne:'DataPackage/getDataPackageOne',
       getDataPackage:'DataPackage/getDataPackage',
       getCateDataPackageOne:'CateDataPackage/getCateDataPackageOne'
     })

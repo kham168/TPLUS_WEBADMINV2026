@@ -6,14 +6,14 @@ import HttpRequest from './http_request'
 class ToppingProvider extends HttpRequest {
     constructor() {
         // api api
-        super('http://128.199.104.34:7000')
+        super()
     }
     async getTopping() {
 
         this.setHeader({
 
         })
-        const {data} = await this.get('/api/v1/topping-show')
+        const {data} = await this.get('topping-show')
 
 
         return data
@@ -24,7 +24,7 @@ class ToppingProvider extends HttpRequest {
         this.setHeader({
 
         })
-        const {data} = await this.create('/api/v1/topping-edit', topping)
+        const {data} = await this.create('topping-edit', topping)
 
 
         return data

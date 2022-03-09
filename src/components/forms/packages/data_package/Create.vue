@@ -52,37 +52,82 @@
                           required
                       ></v-text-field>
 
+                      <v-select
+                          v-show="isLaoTab"
+                          :items="package_type['data']"
+                          item-text="type_name"
+                          item-value="id"
+                          :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
+                          v-model="PackageTypeValue"
+                          :label="$t('DataPackage.Create.form.type')"
+                          outlined
+                          required
 
+                      ></v-select>
 
+                      <v-select
+                          v-show="isEngTab"
+                          :items="package_type['data']"
+                          item-text="TypePackagTrans[0].type_name"
+                          item-value="id"
+                          :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
+                          v-model="PackageTypeValue"
+                          :label="$t('DataPackage.Create.form.type')"
+                          outlined
+                          required
 
-                      <div v-show="isLaoTab" >
+                      ></v-select>
 
+                      <v-select
+                          v-show="isLaoTab"
+                          :items="cate_data_package['data']"
+                          item-text="cateName"
+                          item-value="id"
+                          :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
+                          v-model="CateDataPackageValue"
+                          :label="$t('DataPackage.Create.form.category')"
+                          outlined
+                          required
 
+                      ></v-select>
 
-                        <v-row justify="end" v-show="previewImage !== null ">
-                          <v-btn
-                              class="mx-2"
-                              fab
-                              dark
-                              small
-                              color="error"
-                              @click="removeImage"
-                          >
-                            <v-icon dark>
-                              mdi-close
-                            </v-icon>
-                          </v-btn>
-                        </v-row>
-                        <div class="upload-image mt-3">
+                      <v-select
+                          v-show="isEngTab"
+                          :items="cate_data_package['data']"
+                          item-text="CatePackageTrans[0].cateName"
+                          item-value="id"
+                          :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
+                          v-model="CateDataPackageValue"
+                          :label="$t('DataPackage.Create.form.category')"
+                          outlined
+                          required
 
-                          <div class="content" v-show="previewImage === null">
+                      ></v-select>
+
+                      <v-textarea
+                          v-show="tab===0"
+                          v-model="description"
+                          outlined
+                          :label="$t('DataPackage.Create.form.description')"
+                      ></v-textarea>
+
+                      <v-textarea
+                          v-show="tab===1"
+                          v-model="descriptionEng"
+                          outlined
+                          :label="$t('DataPackage.Create.form.description')"
+                      ></v-textarea>
+
+                      <div v-show="isLaoTab">
+
+                        <div class="upload-image" v-if="previewImage[0] == null">
+
+                          <div class="content" >
                             <i class="fas fa-plus-circle"></i>
                             <h3>{{ $t("Post.Create.form.picture") }}</h3>
-
                           </div>
-                          <img class="image-files" :src="previewImage" v-show="previewImage !== null"/>
-
                           <input
+
 
                               type="file"
                               class="choose-file"
@@ -93,10 +138,111 @@
                         </div>
 
 
+                        <div class="image" v-else>
 
+
+                              <div class="increase-decrease-image">
+                                <v-btn
+                                    class="mx-2"
+                                    color="error"
+                                    dark
+                                    fab
+                                    small
+                                    @click="removeImage(0)"
+                                >
+                                  <v-icon dark>
+                                    mdi-close
+                                  </v-icon>
+                                </v-btn>
+
+
+
+                                <input
+                                    ref="uploader"
+
+                                    accept="image/*"
+                                    class="d-none"
+
+                                    type="file"
+                                    @change="UploadImage"
+                                />
+                              </div>
+                              <v-layout row >
+                                <v-flex  :key="j" v-for="j in 1" align-self-center >
+
+                                  <img class="image-files" :src="previewImage"  >
+
+                                </v-flex>
+
+                              </v-layout>
+
+
+                        </div>
                       </div>
 
+                      <div v-show="isEngTab">
 
+                        <div class="upload-image" v-if="previewImageEng[0] == null">
+
+                          <div class="content" >
+                            <i class="fas fa-plus-circle"></i>
+                            <h3>{{ $t("Post.Create.form.picture") }}</h3>
+                          </div>
+
+                          <input
+
+
+                              type="file"
+                              class="choose-file"
+                              name="upload-image"
+                              accept="image/*"
+                              @change="UploadImageEng"
+                          />
+                        </div>
+
+
+                        <div class="image" v-else>
+
+
+                              <div class="increase-decrease-image">
+                                <v-btn
+                                    class="mx-2"
+                                    color="error"
+                                    dark
+                                    fab
+                                    small
+                                    @click="removeImageEng(0)"
+                                >
+                                  <v-icon dark>
+                                    mdi-close
+                                  </v-icon>
+                                </v-btn>
+
+
+
+                                <input
+                                    ref="uploaderEng"
+
+                                    accept="image/*"
+                                    class="d-none"
+
+                                    type="file"
+                                    @change="UploadImageEng"
+                                />
+                              </div>
+                              <v-layout row >
+                                <v-flex  :key="j" v-for="j in 1" align-self-center >
+
+                                  <img class="image-files" :src="previewImageEng"  >
+
+                                </v-flex>
+
+                              </v-layout>
+
+
+
+                        </div>
+                      </div>
                     </v-form>
                     <div class="form-actions">
                       <v-btn class="mx-5" plain @click="reset">{{
@@ -128,7 +274,7 @@ export default {
   data() {
     return {
       code:'',
-      catePackageValue: '',
+      PackageTypeValue: '',
       name: '',
       nameEng: '',
       description: '',
@@ -136,17 +282,20 @@ export default {
       tab: null,
       isLaoTab: false,
       isEngTab: false,
-      uploadImage: null,
-
-      previewImage: null,
-
+      uploadImage: [],
+      uploadImageEng: [],
+      previewImage: [],
+      previewImageEng: [],
       valid: true,
+      CateDataPackageValue:'',
     };
   },
 
   mounted() {
 
     this.checkTabLang('ລາວ');
+    this.getPackageType();
+    this.getCateDataPackage();
   },
 
   methods: {
@@ -168,25 +317,46 @@ export default {
 
     UploadImage(e) {
 
-      const img = e.target.files[0];
+      const img = e.target.files;
 
+      for(let i = 0;i<img.length;i++){
+        this.uploadImage.push(img[i])
+        console.log(this.uploadImage)
+        const reader = new FileReader();
+        reader.readAsDataURL(img[i]);
+        reader.onload = (e) => {
 
-      this.uploadImage=img
-      const reader = new FileReader();
-      reader.readAsDataURL(img);
-      reader.onload = (e) => {
+          this.previewImage.push(e.target.result);
+          console.log(this.previewImage[i]);
+        }
 
-        this.previewImage=e.target.result;
-
-      }
-
-
+      };
     },
 
-    removeImage()
-    {
-      this.uploadImage = null;
-      this.previewImage=null;
+    UploadImageEng(e) {
+
+      const img = e.target.files;
+
+      for(let i = 0;i<img.length;i++){
+        this.uploadImageEng.push(img[i])
+        const reader = new FileReader();
+        reader.readAsDataURL(img[i]);
+        reader.onload = (e) => {
+
+          this.previewImageEng.push(e.target.result);
+          console.log(this.previewImageEng[i]);
+        }
+
+      };
+    },
+
+    removeImage(index){
+      this.uploadImage.splice(index,1);
+      this.previewImage.splice(index, 1);
+    },
+    removeImageEng(index){
+      this.uploadImageEng.splice(index,1);
+      this.previewImageEng.splice(index, 1);
     },
 
 
@@ -197,6 +367,11 @@ export default {
           'la_name': this.name,
           'en_name': this.nameEng,
           'avatar': this.uploadImage,
+          'avatarEN':this.uploadImageEng,
+          'typePackage_Id':this.PackageTypeValue,
+          'catePackage_Id':this.CateDataPackageValue,
+          'detail':this.description,
+          'detailEN':this.descriptionEng
         })
       } else {
         console.log('can not create')
@@ -211,13 +386,15 @@ export default {
 
     ...mapActions({
       createDataPackage: 'DataPackage/createDataPackage',
-
+      getPackageType:'PackageType/getPackageType',
+      getCateDataPackage:'CateDataPackage/getCateDataPackage'
     })
   },
 
   computed: {
     ...mapGetters({
-
+      package_type:'PackageType/package_type',
+      cate_data_package:'CateDataPackage/cate_data_package'
     })
   }
 };
@@ -256,6 +433,7 @@ export default {
         .form-content {
           width: 70%;
 
+
           .upload-image {
             width: 100%;
             height: 300px;
@@ -266,11 +444,6 @@ export default {
             transition: all ease 0.5s;
             border: 1px solid $gray-color;
 
-            .image {
-              width: 100%;
-              overflow: hidden;
-              object-fit: cover;
-            }
 
             .content {
               position: absolute;
@@ -285,7 +458,6 @@ export default {
                 color: $black-color;
               }
             }
-
             .choose-file {
               position: absolute;
               left: 0;
@@ -301,24 +473,25 @@ export default {
               opacity: 0;
             }
           }
-
           .image {
 
-            max-width: 100%;
+
             overflow: hidden;
             object-fit: cover;
 
 
-            .image-files {
+
+            .image-files{
               max-width: 100%;
+              max-height: 100%;
               display: block;
               margin-left: auto;
               margin-right: auto;
             }
 
 
-          }
 
+          }
 
           .form-actions {
             width: 100%;

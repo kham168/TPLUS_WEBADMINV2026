@@ -45,17 +45,17 @@
                         required
                       ></v-text-field>
 
-                       <v-select
-                      multiple
-                      item-text="cateName"
-                      item-value="id"
-                        v-show="tab == 0"
-                        :items="cate_product['data']"
-                        v-model="productTypeValue"
-                        :label="$t('Product.Create.form.category')"
-                        :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
-                        outlined
-                        required
+                      <v-select
+                          multiple
+                          item-text="cateName"
+                          item-value="id"
+                          v-show="tab == 0"
+                          :items="cate_product['data']"
+                          v-model="productTypeValue"
+                          :label="$t('Product.Create.form.category')"
+                          :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
+                          outlined
+                          required
                       ></v-select>
 
                       <v-textarea
@@ -81,7 +81,6 @@
                           <h3>{{ $t("Post.Create.form.picture") }}</h3>
                         </div>
                         <input
-                         multiple
                         
                           type="file"
                           class="choose-file"
@@ -93,38 +92,23 @@
 
 
                       <div class="image" v-else>
-                          <v-carousel height="100%">
-                            <v-carousel-item :key="index" v-for="(imageFiles,index) in previewImage">
+
+
                               <div class="increase-decrease-image">
                                  <v-btn
                                   class="mx-2"
                                   fab
                                   dark
                                   small
-                                  color="primary"
-                                  @click="removeImage(index)"
+                                  color="error"
+                                  @click="removeImage(0)"
                                 >
                                   <v-icon dark>
-                                    mdi-minus
+                                    mdi-close
                                   </v-icon>
                                 </v-btn>
 
-
-                                 <v-btn
-                                  class="mx-2"
-                                  fab
-                                  dark
-                                  small
-                                  color="success"
-                                  @click="onIncreaseImage"
-                                >
-                                  <v-icon dark>
-                                    mdi-plus
-                                  </v-icon>
-                                </v-btn>
                                  <input
-                         multiple
-                         
                           type="file"
                            class="d-none"
                            ref="uploader"
@@ -133,15 +117,12 @@
                         />
                         </div>
                               <v-layout row >
-                                <v-flex  :key="j" v-for="j in 1" align-self-center >
-
-                                     <img class="image-files" :src="imageFiles"  >
-
+                                <v-flex  align-self-center >
+                                     <img class="image-files" :src="previewImage"  >
                                 </v-flex>
-                               
+
                               </v-layout>
-                            </v-carousel-item>
-                          </v-carousel>
+
                           
                         </div>
                       </div>
@@ -282,8 +263,8 @@ export default {
                 'other_lang_product_name':this.productNameEng,
                 'other_lang_description':this.descriptionEng,
                
-                'avatar':this.uploadImage,
-                'avatar_EN':this.uploadImageEng
+                'avatar':this.uploadImage[0],
+                'avatar_EN':this.uploadImageEng[0]
       })
       console.log('create successful')
     }else{
@@ -343,6 +324,7 @@ createProduct:'Product/createProduct'
           .form-content {
             width: 70%;
 
+
             .upload-image {
               width: 100%;
               height: 300px;
@@ -353,11 +335,7 @@ createProduct:'Product/createProduct'
               transition: all ease 0.5s;
               border: 1px solid $gray-color;
 
-              .image {
-                width: 100%;
-                overflow: hidden;
-                object-fit: cover;
-              }
+
               .content {
                 position: absolute;
                 left: 0;
@@ -387,23 +365,24 @@ createProduct:'Product/createProduct'
               }
             }
             .image {
-              
+
+
+              overflow: hidden;
+              object-fit: cover;
+
+
+
+              .image-files{
                 max-width: 100%;
-                overflow: hidden;
-                object-fit: cover;
-
-               
-
-                    .image-files{
-                    max-width: 100%;
-                    display: block;
-                    margin-left: auto;
-                    margin-right: auto;
-                  }
-
-                
-                  
+                max-height: 100%;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
               }
+
+
+
+            }
 
             .form-actions {
               width: 100%;

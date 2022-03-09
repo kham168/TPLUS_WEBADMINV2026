@@ -17,11 +17,11 @@
       <div class="promotionEvent-content" v-show="!firstLoad">
         <v-data-table
             :headers="$t('PromotionEvent.table.headers')"
-            :items="event['data'][0].Posts"
+            :items="event['Posts']"
             :search="searchItem"
             :loading="loading"
             :loading-text="$t('PromotionEvent.loadingtext')"
-            v-if="event.data[0].Posts !==''"
+            v-if="event['Posts'] !==''"
         >
           <template v-slot:top>
             <v-toolbar flat>
@@ -93,7 +93,7 @@
                 </v-menu>
               </td>
             </tr>
-            <tr class="table-content" v-else >
+            <tr class="table-content" v-else>
               <td>{{ index + 1 }}</td>
               <td><v-img :src="item.PostImageTrans[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
               <td>{{ item.PostTrans[0].title }}</td>
@@ -154,7 +154,6 @@
           <h3>{{ $t("PromotionEvent.table.dontdata") }}</h3>
         </div>
       </div>
-
       <ModalDelete>
         <template v-slot="{close}">
           <Delete :promotion_event_id="promotion_event_id" @close="close" />

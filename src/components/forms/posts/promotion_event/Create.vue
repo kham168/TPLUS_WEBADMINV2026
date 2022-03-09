@@ -161,153 +161,133 @@
 
                       <vue-editor v-show="isEngTab" v-model="descriptionTextEng" id="editor2" :editor-toolbar="customToolbar" class="mb-10" ref="editor2" />
 
-
                       <div v-show="isLaoTab">
 
-                        <div v-if="previewImage[0] == null" class="upload-image">
+                        <div class="upload-image" v-if="previewImage[0] == null">
 
-                          <div class="content">
+                          <div class="content" >
                             <i class="fas fa-plus-circle"></i>
-                            <h3>{{ $t("PromotionEvent.Create.form.picture") }}</h3>
+                            <h3>{{ $t("Post.Create.form.picture") }}</h3>
                           </div>
                           <input
-                              accept="image/*"
 
-                              class="choose-file"
-                              multiple
-                              name="upload-image"
+
                               type="file"
+                              class="choose-file"
+                              name="upload-image"
+                              accept="image/*"
                               @change="UploadImage"
                           />
                         </div>
 
 
-                        <div v-else class="image">
-                          <v-carousel height="100%">
-                            <v-carousel-item v-for="(imageFiles,index) in previewImage" :key="index">
-                              <div class="increase-decrease-image">
-                                <v-btn
-                                    class="mx-2"
-                                    color="primary"
-                                    dark
-                                    fab
-                                    small
-                                    @click="removeImage(index)"
-                                >
-                                  <v-icon dark>
-                                    mdi-minus
-                                  </v-icon>
-                                </v-btn>
+                        <div class="image" v-else>
+                          <div>
+
+                            <div class="increase-decrease-image" >
+
+                              <v-btn
+                                  class="mx-2"
+                                  color="error"
+                                  dark
+                                  fab
+                                  small
+                                  @click="removeImage(0)"
+                              >
+                                <v-icon dark>
+                                  mdi-close
+                                </v-icon>
+                              </v-btn>
 
 
-                                <v-btn
-                                    class="mx-2"
-                                    color="success"
-                                    dark
-                                    fab
-                                    small
-                                    @click="onIncreaseImage"
-                                >
-                                  <v-icon dark>
-                                    mdi-plus
-                                  </v-icon>
-                                </v-btn>
-                                <input
-                                    ref="uploader"
 
-                                    accept="image/*"
-                                    class="d-none"
-                                    multiple
-                                    type="file"
-                                    @change="UploadImage"
-                                />
-                              </div>
-                              <v-layout row>
-                                <v-flex v-for="j in 1" :key="j" align-self-center>
 
-                                  <img :src="imageFiles" class="image-files">
+                              <input
+                                  ref="uploader"
 
-                                </v-flex>
+                                  accept="image/*"
+                                  class="d-none"
 
-                              </v-layout>
-                            </v-carousel-item>
-                          </v-carousel>
+                                  type="file"
+                                  @change="UploadImage"
+                              />
+                            </div>
+                            <v-layout row >
+                              <v-flex  :key="j" v-for="j in 1" align-self-center >
+
+                                <img class="image-files" :src="previewImage"   >
+
+                              </v-flex>
+
+                            </v-layout>
+
+                          </div>
 
                         </div>
                       </div>
 
                       <div v-show="isEngTab">
 
-                        <div v-if="previewImageEng[0] == null" class="upload-image">
+                        <div class="upload-image" v-if="previewImageEng[0] == null">
 
-                          <div class="content">
+                          <div class="content" >
                             <i class="fas fa-plus-circle"></i>
-                            <h3>{{ $t("PromotionEvent.Create.form.picture") }}</h3>
+                            <h3>{{ $t("Post.Create.form.picture") }}</h3>
                           </div>
-                          <input
-                              accept="image/*"
 
-                              class="choose-file"
-                              multiple
-                              name="upload-image"
+                          <input
+
+
                               type="file"
+                              class="choose-file"
+                              name="upload-image"
+                              accept="image/*"
                               @change="UploadImageEng"
                           />
                         </div>
 
 
-                        <div v-else class="image">
-                          <v-carousel height="100%">
-                            <v-carousel-item v-for="(imageFilesEng,index) in previewImageEng" :key="index">
-                              <div class="increase-decrease-image">
-                                <v-btn
-                                    class="mx-2"
-                                    color="primary"
-                                    dark
-                                    fab
-                                    small
-                                    @click="removeImageEng(index)"
-                                >
-                                  <v-icon dark>
-                                    mdi-minus
-                                  </v-icon>
-                                </v-btn>
+                        <div class="image" v-else>
+                          <div>
+
+                            <div class="increase-decrease-image">
+                              <v-btn
+                                  class="mx-2"
+                                  color="error"
+                                  dark
+                                  fab
+                                  small
+                                  @click="removeImageEng(0)"
+                              >
+                                <v-icon dark>
+                                  mdi-close
+                                </v-icon>
+                              </v-btn>
 
 
-                                <v-btn
-                                    class="mx-2"
-                                    color="success"
-                                    dark
-                                    fab
-                                    small
-                                    @click="onIncreaseImageEng"
-                                >
-                                  <v-icon dark>
-                                    mdi-plus
-                                  </v-icon>
-                                </v-btn>
-                                <input
-                                    ref="uploaderEng"
 
-                                    accept="image/*"
-                                    class="d-none"
-                                    multiple
-                                    type="file"
-                                    @change="UploadImageEng"
-                                />
-                              </div>
-                              <v-layout row>
-                                <v-flex v-for="j in 1" :key="j" align-self-center>
+                              <input
+                                  ref="uploaderEng"
 
-                                  <img :src="imageFilesEng" class="image-files">
+                                  accept="image/*"
+                                  class="d-none"
 
-                                </v-flex>
+                                  type="file"
+                                  @change="UploadImageEng"
+                              />
+                            </div>
+                            <v-layout row >
+                              <v-flex   align-self-center >
 
-                              </v-layout>
-                            </v-carousel-item>
-                          </v-carousel>
+                                <img class="image-files" :src="previewImageEng"  >
 
+                              </v-flex>
+
+                            </v-layout>
+
+                          </div>
                         </div>
+
                       </div>
                     </v-form>
                     <div class="form-actions">
@@ -484,8 +464,8 @@ export default {
           'other_lang_title': this.postNameEng,
           'other_lang_description': this.descriptionTextEng,
 
-          'avatar': this.uploadImage,
-          'avatar_EN': this.uploadImageEng
+          'avatar': this.uploadImage[0],
+          'avatar_EN': this.uploadImageEng[0]
         })
         console.log('create successful')
       } else {
@@ -566,7 +546,6 @@ export default {
                 color: $black-color;
               }
             }
-
             .choose-file {
               position: absolute;
               left: 0;
@@ -582,20 +561,22 @@ export default {
               opacity: 0;
             }
           }
-
           .image {
 
-            max-width: 100%;
+
             overflow: hidden;
             object-fit: cover;
 
 
-            .image-files {
+
+            .image-files{
               max-width: 100%;
+              max-height: 100%;
               display: block;
               margin-left: auto;
               margin-right: auto;
             }
+
 
 
           }

@@ -1,0 +1,265 @@
+<template>
+  <div id="Create-Call-Abroad">
+    <section class="Create-call-abroad">
+      <v-skeleton-loader class="mx-auto" type="form"></v-skeleton-loader>
+      <div class="header contact-header">
+        <h1>{{ $t("Call-Abroad.Create.title") }}</h1>
+      </div>
+      <div class="create-contents">
+        <div class="form">
+          <v-form lazy-validation ref="form" v-model="isValid">
+            <v-row>
+              <v-col cols="12">
+                <v-text-field
+                  :label="$t('Call-Abroad.form.countrylao')"
+                  outlined
+                  required
+                  :rules="[
+                    $myValidator.SimpleValidate($t('Validate.required')),
+                  ]"
+                  :placeholder="$t('Call-Abroad.form.lao')"
+                  v-model="DataCall.country_la"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  :label="$t('Call-Abroad.form.countryeng')"
+                  outlined
+                  required
+                  :rules="[
+                    $myValidator.SimpleValidate($t('Validate.required')),
+                  ]"
+                  :placeholder="$t('Call-Abroad.form.english')"
+                  v-model="DataCall.country_eng"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="6">
+                <v-text-field
+                  :label="$t('Call-Abroad.form.countryCode')"
+                  outlined
+                  required
+                  :rules="[
+                    $myValidator.SimpleValidate($t('Validate.required')),
+                  ]"
+                  v-model="DataCall.countryCode"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="6">
+                <v-select
+                  :items="ZoneItems"
+                  item-text="zoneName_la"
+                  item-value="id"
+                  v-model="DataCall.zone_id"
+                  :label="$t('Call-Abroad.form.zone')"
+                  outlined
+                  required
+                  :rules="[
+                    $myValidator.SelectValidate($t('Validate.required')),
+                  ]"
+                ></v-select>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  :label="$t('Call-Abroad.form.price')"
+                  outlined
+                  required
+                  :rules="[
+                    $myValidator.SimpleValidate($t('Validate.required')),
+                  ]"
+                  type="number"
+                  suffix="LAK"
+                  v-model="DataCall.price_minute"
+                ></v-text-field>
+              </v-col>
+            </v-row>
+          </v-form>
+          <div class="text-right">
+            <v-btn @click.prevent="ResetForm" color="success" text>{{
+              $t("Call-Abroad.options.cancel")
+            }}</v-btn>
+            <v-btn
+              @click.prevent="SubmitCallAbroad"
+              :loading="isLoading"
+              :disabled="!isValid"
+              class="btn btn-create ml-3"
+              >{{ $t("Call-Abroad.options.save") }}</v-btn
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "TplusWebAdminCreate",
+
+  data() {
+    return {
+      ZoneItems: [],
+      isValid: false,
+      isLoading: false,
+      DataCall: {
+        country_la: null,
+        country_eng: null,
+        countryCode: null,
+        zone_id: null,
+        price_minute: null,
+      },
+    };
+  },
+
+  mounted() {},
+
+  methods: {
+    SubmitCallAbroad() {
+      if(this.$refs.form.validate()){
+        this.PostDataCallAbroad();
+      }
+    },
+    async PostDataCallAbroad() {
+      this.isLoading = true;
+      await this.$axios
+        .post("internationCalls", {
+          countryName_la: this.DataCall.country_la,
+          countryName_en: this.DataCall.country_eng,
+          code: this.DataCall.countryCode,
+          zoneId: this.DataCall.zone_id,
+          price_minute: this.DataCall.price_minute,
+        })
+        .then((res) => {
+          if (res.status == 200) {
+            this.$store.dispatch({
+              type: "action_Notifi_Success",
+              message: this.$t("Notification.saveDataSuccess"),
+            });
+            setTimeout(() => {
+              window.location.reload();
+            }, 300);
+          }
+          this.isLoading = false;
+        })
+        .catch((error) => {
+          this.isLoading = false;
+          if (error.response.data.error.status === 422) {
+            setTimeout(() => {
+              this.$store.dispatch({
+                type: "action_Notifi_Error",
+                message: `${error.response.data.error.message}`,
+              });
+            }, 300);
+          }
+        });
+    },
+    ResetForm() {
+      this.$refs.form.reset();
+      this.$router.back();
+    },
+    async getZone() {
+      await this.$axios
+        .get("zones")
+        .then((res) => {
+          if (res.status == 200) {
+            this.ZoneItems = res.data.data;
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+
+  created() {
+    this.getZone();
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.create-contents {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .form {
+    width: 80%;
+    padding: 20px 0;
+  }
+}
+
+.col-xl,
+.col-xl-auto,
+.col-xl-12,
+.col-xl-11,
+.col-xl-10,
+.col-xl-9,
+.col-xl-8,
+.col-xl-7,
+.col-xl-6,
+.col-xl-5,
+.col-xl-4,
+.col-xl-3,
+.col-xl-2,
+.col-xl-1,
+.col-lg,
+.col-lg-auto,
+.col-lg-12,
+.col-lg-11,
+.col-lg-10,
+.col-lg-9,
+.col-lg-8,
+.col-lg-7,
+.col-lg-6,
+.col-lg-5,
+.col-lg-4,
+.col-lg-3,
+.col-lg-2,
+.col-lg-1,
+.col-md,
+.col-md-auto,
+.col-md-12,
+.col-md-11,
+.col-md-10,
+.col-md-9,
+.col-md-8,
+.col-md-7,
+.col-md-6,
+.col-md-5,
+.col-md-4,
+.col-md-3,
+.col-md-2,
+.col-md-1,
+.col-sm,
+.col-sm-auto,
+.col-sm-12,
+.col-sm-11,
+.col-sm-10,
+.col-sm-9,
+.col-sm-8,
+.col-sm-7,
+.col-sm-6,
+.col-sm-5,
+.col-sm-4,
+.col-sm-3,
+.col-sm-2,
+.col-sm-1,
+.col,
+.col-auto,
+.col-12,
+.col-11,
+.col-10,
+.col-9,
+.col-8,
+.col-7,
+.col-6,
+.col-5,
+.col-4,
+.col-3,
+.col-2,
+.col-1 {
+  width: 100%;
+  padding: 0 10px !important;
+}
+</style>
