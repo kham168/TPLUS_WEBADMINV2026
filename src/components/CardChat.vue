@@ -69,7 +69,7 @@ export default {
     }
   },
   created() {
-    this.socket = io(process.env.VUE_APP_BASE_SOCKET);
+    this.socket = io(process.env.VUE_APP_BASE_SOCKET_TEST);
   },
   mounted() {
     this.socket.emit("connection");

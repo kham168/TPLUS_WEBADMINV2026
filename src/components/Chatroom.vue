@@ -77,7 +77,7 @@ export default {
   },
   created() {
 
-    this.socket = io(process.env.VUE_APP_BASE_SOCKET);
+    this.socket = io(process.env.VUE_APP_BASE_SOCKET_TEST);
 
     this.user_id = this.$route.params.user_id;
     console.log(this.user_id, 55555555555)

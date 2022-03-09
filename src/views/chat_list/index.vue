@@ -102,8 +102,8 @@ export default {
     }
   },
   created() {
-    this.socket = io("http://172.28.26.82:7001");
-
+    //this.socket = io("http://172.28.26.82:7001");
+    this.socket = io(process.env.VUE_APP_BASE_SOCKET_TEST);
   },
   mounted() {
 
