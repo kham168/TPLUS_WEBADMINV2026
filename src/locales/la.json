@@ -84,21 +84,6 @@
       }
     ]
   },
-  "Productmenu": {
-    "title": "ຂໍ້ມູນຜະລິດຕະພັນ",
-    "subtitle": [
-      {
-        "icon": "fas fa-boxes",
-        "text": "ປະເພດຜະລິດຕະພັນ",
-        "router": "/cate_product"
-      },
-      {
-        "icon": "fab fa-product-hunt",
-        "text": "ຂໍ້ມູນຜະລິດຕະພັນ",
-        "router": "/product"
-      }
-    ]
-  },
   "Packagemenu": {
     "title": "ຂໍ້ມູນແພັດເກັດ",
     "subtitle": [

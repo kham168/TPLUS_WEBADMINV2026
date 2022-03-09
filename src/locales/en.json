@@ -85,21 +85,6 @@
       }
     ]
   },
-  "Productmenu": {
-    "title": "Products",
-    "subtitle": [
-      {
-        "icon": "fas fa-boxes",
-        "text": "Category Product",
-        "router": "/cate_product"
-      },
-      {
-        "icon": "fab fa-product-hunt",
-        "text": "Products",
-        "router": "/product"
-      }
-    ]
-  },
   "Packagemenu": {
     "title": "Data Package",
     "subtitle": [

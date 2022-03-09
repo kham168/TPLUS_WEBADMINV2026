@@ -177,7 +177,7 @@
             </v-list-group>
 
             <!-- Products -->
-            <v-list-group color="black">
+            <!-- <v-list-group color="black">
               <template v-slot:activator>
                 <v-list-item-icon>
                   <v-icon>fab fa-product-hunt</v-icon>
@@ -197,7 +197,7 @@
                   {{ subtitle.text }}
                 </v-list-item-title>
               </v-list-item>
-            </v-list-group>
+            </v-list-group> -->
 
             <!-- Packages -->
             <v-list-group color="black">
