@@ -119,51 +119,20 @@
                   </div>
                 </div>
               </v-col>
-              <v-col cols="6" md="6" lg="6">
+              <v-col cols="12" md="12" lg="12">
                 <div class="banner-item-card">
                   <div class="banner-icon">
-                    <i class="fas fa-folder-open"></i>
+                    <i class="fas fa-analytics"></i>
                   </div>
                   <div class="banner-item-title">
-                    <h3>package</h3>
-                    <p>view detail</p>
-                    <div class="btn-view-more">
-                      view <span><i class="fas fa-long-arrow-right"></i></span>
-                    </div>
+                    <h3>Google Analytics</h3>
+                     <p>{{$t('Dashboard.promotion.subtitle')}}</p>
+                    <v-btn class="btn-view-more" @click="OpenGoogleAnalytics">
+                       {{$t('Dashboard.promotion.view')}} <span><i class="fas fa-long-arrow-right"></i></span>
+                    </v-btn>
                   </div>
                 </div>
               </v-col>
-              <v-col cols="6" md="6" lg="6">
-                <div class="banner-item-card">
-                  <div class="banner-icon">
-                    <i class="fas fa-folder-open"></i>
-                  </div>
-                  <div class="banner-item-title">
-                    <h3>topping</h3>
-                    <p>view detail</p>
-                    <div class="btn-view-more">
-                      view <span><i class="fas fa-long-arrow-right"></i></span>
-                    </div>
-                  </div>
-                </div>
-              </v-col>
-
-              <v-col cols="6" md="6" lg="6">
-                <div class="banner-item-card">
-                  <div class="banner-icon">
-                    <i class="fas fa-folder-open"></i>
-                  </div>
-                  <div class="banner-item-title">
-                    <h3>topping</h3>
-                    <p>view detail</p>
-                    <div class="btn-view-more">
-                      view <span><i class="fas fa-long-arrow-right"></i></span>
-                    </div>
-                  </div>
-                </div>
-              </v-col>
-
-
             </v-row>
           </div>
         </div>
@@ -182,6 +151,11 @@ export default {
   components: {
     CardChat
   },
+  data() {
+    return {
+      googleAnalytics:'https://analytics.google.com/analytics/web/#/p305438864/reports/intelligenthome?params=_u..nav%3Dmaui'
+    };
+  },
   mounted() {
     this.getCustomer();
   },
@@ -196,6 +170,9 @@ export default {
    ...mapActions({
       getCustomer: "report/getCustomer",
     }),
+    OpenGoogleAnalytics(){
+      window.open(this.googleAnalytics,'_blank');
+    }
   },
 };
 </script>
