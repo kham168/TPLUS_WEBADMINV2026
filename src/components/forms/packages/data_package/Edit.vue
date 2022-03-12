@@ -104,6 +104,21 @@
 
                       ></v-select>
 
+
+                      <v-textarea
+                          v-show="tab===0"
+                          v-model="description"
+                          outlined
+                          :label="$t('DataPackage.Create.form.description')"
+                      ></v-textarea>
+
+                      <v-textarea
+                          v-show="tab===1"
+                          v-model="descriptionEng"
+                          outlined
+                          :label="$t('DataPackage.Create.form.description')"
+                      ></v-textarea>
+
                       <div v-show="tab===0">
 
                         <div class="upload-image" v-if="previewImage[0] == null">
@@ -386,8 +401,8 @@ export default {
 
     'en_name':this.nameEng,
 
-    'avatar':this.uploadImage,
-        'avatarEN':this.uploadImageEng,
+    'avatar':this.uploadImage[0],
+        'avatarEN':this.uploadImageEng[0],
         'typePackage_Id':this.PackageTypeValue,
         'catePackage_Id':this.CateDataPackageValue,
         'detail':this.description,
