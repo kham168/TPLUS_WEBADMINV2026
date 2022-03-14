@@ -78,14 +78,13 @@ class DataPackageProvider extends HttpRequest {
 
                             }) {
 
-        console.log(avatar);
+
         const bodyFormData = new FormData();
         bodyFormData.append('code', code);
         bodyFormData.append('name', la_name);
         bodyFormData.append('typePackage_Id', typePackage_Id);
         bodyFormData.append('catePackage_Id', catePackage_Id);
         bodyFormData.append('detail', detail);
-
         bodyFormData.append('other_lang[0][name]', en_name);
         bodyFormData.append('other_lang[0][language_id]',2);
         bodyFormData.append('other_lang[0][detail]', detailEN);
@@ -104,7 +103,7 @@ class DataPackageProvider extends HttpRequest {
     async updateDataPackage({
                                 package_id, code, la_name, en_name, avatar,avatarEN,typePackage_Id,catePackage_Id,detail,detailEN
                             }) {
-        console.log(avatar);
+
         const bodyFormData = new FormData();
         bodyFormData.append('code', code);
         bodyFormData.append('name', la_name);

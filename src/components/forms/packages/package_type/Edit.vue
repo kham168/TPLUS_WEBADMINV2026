@@ -29,31 +29,16 @@
                     <v-form v-model="valid" ref="form" lazy-validation>
 
 
-                      <div v-show="tab===0" >
-                        <v-row justify="end" v-show="previewImage !== null ">
-                          <v-btn
-                              class="mx-2 mt-3"
-                              fab
-                              dark
-                              small
-                              color="error"
-                              @click="removeImage"
-                          >
-                            <v-icon dark>
-                              mdi-close
-                            </v-icon>
-                          </v-btn>
-                        </v-row>
-                        <div class="upload-image mt-3">
+                      <div v-show="tab===0">
 
-                          <div class="content" v-show="previewImage === null">
+                        <div class="upload-image" v-if="previewImage[0] == null">
+
+                          <div class="content" >
                             <i class="fas fa-plus-circle"></i>
                             <h3>{{ $t("Post.Create.form.picture") }}</h3>
-
                           </div>
-                          <v-img class="image-files" :src="previewImage" v-show="previewImage !== null"/>
-
                           <input
+
 
                               type="file"
                               class="choose-file"
@@ -64,33 +49,60 @@
                         </div>
 
 
+                        <div class="image" v-else>
 
+
+                          <div class="increase-decrease-image">
+                            <v-btn
+                                class="mx-2"
+                                color="error"
+                                dark
+                                fab
+                                small
+                                @click="removeImage(0)"
+                            >
+                              <v-icon dark>
+                                mdi-close
+                              </v-icon>
+                            </v-btn>
+
+
+
+                            <input
+                                ref="uploader"
+
+                                accept="image/*"
+                                class="d-none"
+
+                                type="file"
+                                @change="UploadImage"
+                            />
+                          </div>
+                          <v-layout row >
+                            <v-flex  :key="j" v-for="j in 1" align-self-center >
+
+                              <img class="image-files" :src="previewImage"  >
+
+                            </v-flex>
+
+                          </v-layout>
+
+
+
+                        </div>
                       </div>
-                      <div v-show="tab===1" >
-                        <v-row justify="end" v-show="previewImageEng !== null ">
-                          <v-btn
-                              class="mx-2 mt-3"
-                              fab
-                              dark
-                              small
-                              color="error"
-                              @click="removeImageEng"
-                          >
-                            <v-icon dark>
-                              mdi-close
-                            </v-icon>
-                          </v-btn>
-                        </v-row>
-                        <div class="upload-image mt-3">
 
-                          <div class="content" v-show="previewImageEng === null">
+                      <div v-show="tab===1">
+
+                        <div class="upload-image" v-if="previewImageEng[0] == null">
+
+                          <div class="content" >
                             <i class="fas fa-plus-circle"></i>
                             <h3>{{ $t("Post.Create.form.picture") }}</h3>
-
                           </div>
-                          <v-img class="image-files" :src="previewImageEng" v-show="previewImageEng !== null"/>
 
                           <input
+
 
                               type="file"
                               class="choose-file"
@@ -98,6 +110,48 @@
                               accept="image/*"
                               @change="UploadImageEng"
                           />
+                        </div>
+
+
+                        <div class="image" v-else>
+
+
+                          <div class="increase-decrease-image">
+                            <v-btn
+                                class="mx-2"
+                                color="error"
+                                dark
+                                fab
+                                small
+                                @click="removeImageEng(0)"
+                            >
+                              <v-icon dark>
+                                mdi-close
+                              </v-icon>
+                            </v-btn>
+
+
+
+                            <input
+                                ref="uploaderEng"
+
+                                accept="image/*"
+                                class="d-none"
+
+                                type="file"
+                                @change="UploadImageEng"
+                            />
+                          </div>
+                          <v-layout row >
+                            <v-flex  :key="j" v-for="j in 1" align-self-center >
+
+                              <img class="image-files" :src="previewImageEng"  >
+
+                            </v-flex>
+
+                          </v-layout>
+
+
                         </div>
                       </div>
 
@@ -137,10 +191,10 @@ export default {
       tab: null,
       isLaoTab:false,
       isEngTab:false,
-      uploadImage:null,
-      uploadImageEng:null,
-      previewImage: null,
-      previewImageEng: null,
+      uploadImage:[],
+      uploadImageEng:[],
+      previewImage: [],
+      previewImageEng: [],
       valid:true,
     };
   },
@@ -164,28 +218,26 @@ export default {
       const blob = await response.blob();
       const file = new File([blob], image.split('/').pop(), {type: blob.type});
 
-      this.uploadImage=file
+      this.uploadImage.push(file)
     },
-
     async convertUrlToFileImageEng(image) {
       const response = await fetch(image);
       // here image is url/location of image
       const blob = await response.blob();
       const file = new File([blob], image.split('/').pop(), {type: blob.type});
 
-      this.uploadImageEng=file
+      this.uploadImageEng.push(file)
     },
 
     loadDataToComponent(res){
 
       let data = res.data
 
-      this.previewImage=data.image
+      this.previewImage.push(data.image)
           this.convertUrlToFileImage(data.image)
-
-      console.log(data.TypePackagTrans[0].image);
-      this.previewImageEng=data.TypePackagTrans[0].image
+      this.previewImageEng.push(data.TypePackagTrans[0].image)
       this.convertUrlToFileImageEng(data.TypePackagTrans[0].image)
+
 
     },
 
@@ -194,44 +246,46 @@ export default {
 
     UploadImage(e) {
 
-      const img = e.target.files[0];
-      this.uploadImage=img
-      const reader = new FileReader();
-      reader.readAsDataURL(img);
-      reader.onload = (e) => {
+      const img = e.target.files;
 
-        this.previewImage=e.target.result;
+      for(let i = 0;i<img.length;i++){
+        this.uploadImage.push(img[i])
+        console.log(this.uploadImage)
+        const reader = new FileReader();
+        reader.readAsDataURL(img[i]);
+        reader.onload = (e) => {
 
-      }
+          this.previewImage.push(e.target.result);
+          console.log(this.previewImage[i]);
+        }
 
-
+      };
     },
 
     UploadImageEng(e) {
 
-      const img = e.target.files[0];
-      this.uploadImageEng=img
-      const reader = new FileReader();
-      reader.readAsDataURL(img);
-      reader.onload = (e) => {
+      const img = e.target.files;
 
-        this.previewImageEng=e.target.result;
+      for(let i = 0;i<img.length;i++){
+        this.uploadImageEng.push(img[i])
+        const reader = new FileReader();
+        reader.readAsDataURL(img[i]);
+        reader.onload = (e) => {
 
-      }
+          this.previewImageEng.push(e.target.result);
+          console.log(this.previewImageEng[i]);
+        }
 
-
+      };
     },
 
-    removeImage()
-    {
-      this.uploadImage = null;
-      this.previewImage=null;
+    removeImage(index){
+      this.uploadImage.splice(index,1);
+      this.previewImage.splice(index, 1);
     },
-
-    removeImageEng()
-    {
-      this.uploadImageEng = null;
-      this.previewImageEng=null;
+    removeImageEng(index){
+      this.uploadImageEng.splice(index,1);
+      this.previewImageEng.splice(index, 1);
     },
 
     submitForm () {
@@ -239,8 +293,8 @@ export default {
       if(this.$refs.form[0].validate()){
         this.updatePackageType({
           'package_type_id':this.$route.params.package_type_id,
-          'avatar':this.uploadImage,
-          'avatar_EN':this.uploadImageEng,
+          'avatar':this.uploadImage[0],
+          'avatar_EN':this.uploadImageEng[0],
 
         })
       }else{
@@ -301,6 +355,7 @@ export default {
         .form-content {
           width: 70%;
 
+
           .upload-image {
             width: 100%;
             height: 300px;
@@ -311,12 +366,7 @@ export default {
             transition: all ease 0.5s;
             border: 1px solid $gray-color;
 
-            .image {
-              height: 100%;
-              width: 100%;
-              overflow: hidden;
-              object-fit: cover;
-            }
+
             .content {
               position: absolute;
               left: 0;
@@ -347,13 +397,15 @@ export default {
           }
           .image {
 
-            max-width: 100%;
+
             overflow: hidden;
             object-fit: cover;
 
 
+
             .image-files{
               max-width: 100%;
+              max-height: 100%;
               display: block;
               margin-left: auto;
               margin-right: auto;
@@ -362,7 +414,6 @@ export default {
 
 
           }
-
 
           .form-actions {
             width: 100%;

@@ -77,8 +77,8 @@ class PackageTypeProvider extends HttpRequest {
     ){
 
         const bodyFormData = new FormData();
-        bodyFormData.append('avatar[]',avatar);
-        bodyFormData.append('avatar_EN[]',avatar_EN);
+        bodyFormData.append('avatar',avatar);
+        bodyFormData.append('avatar_EN',avatar_EN);
         bodyFormData.append('language_id',2);
         this.setHeader({
             'Content-Type': 'multipart/form-data',
