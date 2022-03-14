@@ -90,7 +90,6 @@ class DataPackageProvider extends HttpRequest {
         bodyFormData.append('other_lang[0][detail]', detailEN);
         bodyFormData.append('avatar', avatar);
         bodyFormData.append('avatar_EN', avatarEN);
-
         this.setHeader({
             'Content-Type': 'multipart/form-data',
         })

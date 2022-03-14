@@ -82,7 +82,7 @@
       </div>
         <ModalDelete>
         <template v-slot="{close}">
-          <Delete :cate_data_package_id="cate_package_id" @close="close"/>
+          <Delete :sim_type_package_id="sim_type_package_id" @close="close"/>
         </template>
       </ModalDelete>
     </section>
@@ -101,7 +101,7 @@ components: {
   },
     data() {
         return {
-          cate_package_id:'',
+          sim_type_package_id:'',
           isLaoLanguage:localStorage.getItem('lang') === 'la',
              loading: false,
              searchItem: "",
@@ -125,8 +125,8 @@ components: {
         })
         .catch(() => {});
     },
-    onDelete(cate_package_id) {
-        this.cate_package_id = cate_package_id
+    onDelete(sim_type_package_id) {
+        this.sim_type_package_id = sim_type_package_id
      
       this.$store.commit("modalDelete_State", true);
     },

@@ -8,7 +8,7 @@
         {{$t('Modal.btnCancel')}}
       </v-btn>
 
- <v-btn class="btn-delete" @click="deleteSimTypePackage({'sim_type_package_id':cate_data_package_id})" >
+ <v-btn class="btn-delete" @click="deleteSimTypePackage({'sim_type_package_id':sim_type_package_id})" >
           {{$t('Modal.btnConfirm')}}
       </v-btn>
 
