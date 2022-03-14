@@ -15,7 +15,7 @@
                     
                       <v-text-field
 
-                      v-model="cate_package_name"
+                      v-model="main_product"
 
                         :label="$t('CateDataPackage.Create.form.cate_data_package_name')"
                         outlined
@@ -64,11 +64,10 @@ export default {
 
   data() {
     return {
-      cate_package_id:0,
-      cate_package_name:'',
+      sim_type_package_id:0,
+      main_product:'',
       description:'',
-      other_lang_cate_package_name:'',
-      other_lang_description:'',
+
       tab: null,
        isLaoTab:true,
       isEngTab:false,
@@ -89,8 +88,8 @@ export default {
 
     loadDataToComponent(res){
       let data = res.params
- this.cate_package_id = data.cate_data_package_id;
-   this.cate_package_name= data.name;
+ this.sim_type_package_id = data.cate_data_package_id;
+   this.main_product= data.name;
    this.description = data.description;
     },
 
@@ -98,7 +97,7 @@ export default {
     submitForm () {
     this.$refs.form.validate();
     if(this.$refs.form.validate()){
-    this.updateSimTypePackage({'cate_package_id':this.cate_package_id,'mainProduct':this.cate_package_name,'description':this.description})
+    this.updateSimTypePackage({'sim_type_package_id':this.sim_type_package_id,'mainProduct':this.main_product,'description':this.description})
     console.log('update successful')
     }else{
      console.log('can not update')

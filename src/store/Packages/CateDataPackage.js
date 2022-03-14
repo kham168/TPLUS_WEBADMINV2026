@@ -26,7 +26,7 @@ const mutations={
 const actions={
 
     async getCateDataPackageOne ({commit},{cate_package_id}) {
-        const data = await cateDataPackageProvider.getCateDataPackageOne({'cate_package_id':cate_package_id})
+        const data = await cateDataPackageProvider.getCateDataPackageOne({'simtype_package_id':cate_package_id})
         commit('SET_CATE_DATA_PACKAGE_ONE', data)
         return data
     },

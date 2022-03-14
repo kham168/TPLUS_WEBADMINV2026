@@ -48,6 +48,7 @@ const actions={
         description,
     }){
 
+        console.log(sim_type_package_id)
         let arg={
             'sim_type_package_id':sim_type_package_id,
             'mainProduct':mainProduct,
