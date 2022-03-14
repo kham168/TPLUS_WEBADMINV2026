@@ -11,7 +11,7 @@
               alt="">
         </div>
         <div class="chat-room-name">
-          <h3>{{ phone }}</h3>
+          <h3>{{ phone || username || email || 'Unknown User' }}</h3>
         </div>
       </div>
       <div class="chat-room-content" ref="scrollPosition">
@@ -33,7 +33,6 @@
             </div>
           </v-col>
         </v-row>
-
       </div>
       <div class="chat-room-footer">
         <!--        <div class="input-chat" ref="resetTextInput" contenteditable="true" @input="messageInput($event)"-->
@@ -70,6 +69,8 @@ export default {
       chat_room_id: 0,
 
       phone: '',
+      username:'',
+      email:'',
       channel: '',
       page: 1,
 
@@ -106,6 +107,8 @@ export default {
       this.page += 1;
       this.channel = res.channel;
       this.phone = res.chat_room_data.User.phone;
+      this.username =  res.chat_room_data.User.username;
+      this.email =  res.chat_room_data.User.email;
       this.socket.emit("join_channel", res.channel)
       for (let i = 0; i < res['messages'].data.length; i++) {
         try {
@@ -253,7 +256,7 @@ export default {
 
     .chat-room-name {
       padding-left: 10px;
-      padding-top: 14px;
+      padding-top: 0px;
 
       .chat-room-status {
         color: rgba(76, 209, 55, 1.0);

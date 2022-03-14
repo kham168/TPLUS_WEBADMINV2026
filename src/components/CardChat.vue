@@ -27,8 +27,8 @@
               </div>
             </div>
             <div class="message-detail">
-              <h4>{{ data.User.phone }}</h4>
-              <p>{{ data.lasted_message }}</p>
+              <h4>{{ data.User.phone || data.User.username || data.User.email || 'Unknown User' }}</h4>
+              <p>{{ data.lasted_message || 'No Message' }}</p>
               <div class="message-icon" @click="toChatroom({'chat_room_id':data.id,'user_id':data.created_by,'index':index})">
                 <i class="fas fa-paper-plane"></i>
               </div>

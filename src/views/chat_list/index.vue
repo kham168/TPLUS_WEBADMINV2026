@@ -46,8 +46,8 @@
                     </div>
                   </div>
                   <div class="message-detail">
-                    <h4>{{ data.User.phone }}</h4>
-                    <p>{{ data.lasted_message }}</p>
+                    <h4>{{ data.User.phone || data.User.username || data.User.email || 'Unknown User' }}</h4>
+                    <p>{{ data.lasted_message}}</p>
                     <div class="message-icon" @click="toChatroom({'chat_room_id':data.id,'user_id':data.created_by})">
                       <i class="fas fa-paper-plane"></i>
                     </div>
@@ -285,7 +285,7 @@ export default {
         height: 100%;
         display: flex;
         flex-direction: column;
-        padding-top: 2px;
+        padding-top: 15px;
 
         h4 {
           font-size: 24px;
