@@ -49,7 +49,10 @@ class HttpRequest {
 
         }else if(response.config.url == `/api/v1/admin/chat/${response.data.message.chat_room_id}`) {
 
-        }else if(response.data.message=="Updated new position topping successfully."){
+        }else if(response.config.url == `admin/chat/${response.data.message.chat_room_id}`){
+
+        }
+        else if(response.data.message=="Updated new position topping successfully."){
 
         }else if(response.data.message=="Package add sim types successfully"){
 
