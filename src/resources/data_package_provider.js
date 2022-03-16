@@ -78,7 +78,7 @@ class DataPackageProvider extends HttpRequest {
 
                             }) {
 
-
+        console.log(detailEN);
         const bodyFormData = new FormData();
         bodyFormData.append('code', code);
         bodyFormData.append('name', la_name);
@@ -103,6 +103,7 @@ class DataPackageProvider extends HttpRequest {
                                 package_id, code, la_name, en_name, avatar,avatarEN,typePackage_Id,catePackage_Id,detail,detailEN
                             }) {
 
+        console.log(detailEN);
         const bodyFormData = new FormData();
         bodyFormData.append('code', code);
         bodyFormData.append('name', la_name);

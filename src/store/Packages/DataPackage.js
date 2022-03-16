@@ -71,7 +71,9 @@ const actions={
           avatarEN,
           typePackage_Id,
           catePackage_Id,
-            detail}){
+            detail,
+          detailEN
+      }){
 
           let arg={
               'code':code,
@@ -81,7 +83,8 @@ const actions={
               'avatarEN':avatarEN,
               'typePackage_Id':typePackage_Id,
               'catePackage_Id':catePackage_Id,
-              'detail':detail
+              'detail':detail,
+              'detailEN':detailEN
           }
          await dataPackageService.createDataPackage(arg)
         dispatch('getDataPackage',{ root: true });
@@ -96,7 +99,8 @@ const actions={
           avatarEN,
           typePackage_Id,
           catePackage_Id,
-          detail}){
+          detail,
+          detailEN}){
             
             let arg={
                 'package_id':package_id,
@@ -107,7 +111,8 @@ const actions={
                 'avatarEN':avatarEN,
                 'typePackage_Id':typePackage_Id,
                 'catePackage_Id':catePackage_Id,
-                'detail':detail
+                'detail':detail,
+                'detailEN':detailEN
             }
          await dataPackageService.updateDataPackage(arg)
         dispatch('getDataPackage',{ root: true });
