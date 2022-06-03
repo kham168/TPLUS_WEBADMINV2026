@@ -87,17 +87,6 @@ export default {
       selectItem2: 2,
       selectItem3: 3,
       list:[],
-      // selectItem4: 4,
-      // selectItem5: 5,
-      // selectItem6: 6,
-      // toppings: [
-      //   { position: 1, topping: "Banner" },
-      //   { position: 2, topping: "Main Menu" },
-      //   { position: 3, topping: "Package" },
-      //   { position: 4, topping: "SIM Card" },
-      //   { position: 5, topping: "Activity" },
-      //   { position: 6, topping: "Promotion" },
-      // ],
     };
   },
 
