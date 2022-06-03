@@ -316,7 +316,7 @@ export default {
       // here image is url/location of image
       const blob = await response.blob();
       const file = new File([blob], image.split('/').pop(), {type: blob.type});
-
+      console.log("=============>File lao:", file);
       this.uploadImage.push(file)
     },
     async convertUrlToFileImageEng(image) {
@@ -324,7 +324,7 @@ export default {
       // here image is url/location of image
       const blob = await response.blob();
       const file = new File([blob], image.split('/').pop(), {type: blob.type});
-
+       console.log("=============>File eng:", file);
       this.uploadImageEng.push(file)
     },
 
@@ -420,7 +420,7 @@ export default {
   },
 
   ...mapActions({
-     getDataPackageOne:'DataPackage/getDataPackageOne',
+    getDataPackageOne:'DataPackage/getDataPackageOne',
     updateDataPackage:'DataPackage/updateDataPackage',
     getCateDataPackage:'CateDataPackage/getCateDataPackage',
     getPackageType:'PackageType/getPackageType',

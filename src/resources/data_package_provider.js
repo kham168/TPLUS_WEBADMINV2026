@@ -119,6 +119,8 @@ class DataPackageProvider extends HttpRequest {
             'Content-Type': 'multipart/form-data',
         })
 
+        console.log(JSON.stringify(bodyFormData)+"BodyDataa fro data packages");
+
         const {data} = await this.update('packages/' + package_id, bodyFormData)
 
 
