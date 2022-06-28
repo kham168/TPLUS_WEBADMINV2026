@@ -27,224 +27,198 @@
                   <div class="form-content">
                     <v-form v-model="valid" ref="form" lazy-validation>
                       <v-text-field
-                          v-model="code"
-                          v-show="tab===0"
-                          :label="$t('DataPackage.Create.form.code')"
-                          outlined
-                          required
+                        v-model="code"
+                        v-show="tab === 0"
+                        :label="$t('DataPackage.Create.form.code')"
+                        outlined
+                        required
                       ></v-text-field>
 
                       <v-text-field
-                      v-model="name"
-                        v-show="tab===0"
-                        :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
+                        v-model="name"
+                        v-show="tab === 0"
+                        :rules="[
+                          $myValidator.SimpleValidate($t('Validate.required')),
+                        ]"
                         :label="$t('DataPackage.Create.form.data_package_name')"
                         outlined
                         required
                       ></v-text-field>
                       <v-text-field
-                      v-model="nameEng"
-                        v-show="tab===1"
-                        :rules="[$myValidator.SimpleValidate($t('Validate.required'))]"
+                        v-model="nameEng"
+                        v-show="tab === 1"
+                        :rules="[
+                          $myValidator.SimpleValidate($t('Validate.required')),
+                        ]"
                         :label="$t('DataPackage.Create.form.data_package_name')"
                         outlined
                         required
                       ></v-text-field>
 
-
                       <v-select
-                          v-show="tab===0"
-                          :items="package_type['data']"
-                          item-text="type_name"
-                          item-value="id"
-                          :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
-                          v-model="PackageTypeValue"
-                          :label="$t('DataPackage.Create.form.type')"
-                          outlined
-                          required
-
+                        v-show="tab === 0"
+                        :items="package_type['data']"
+                        item-text="type_name"
+                        item-value="id"
+                        :rules="[
+                          $myValidator.SelectValidate($t('Validate.required')),
+                        ]"
+                        v-model="PackageTypeValue"
+                        :label="$t('DataPackage.Create.form.type')"
+                        outlined
+                        required
                       ></v-select>
 
                       <v-select
-                          v-show="tab===1"
-                          :items="package_type['data']"
-                          item-text="TypePackagTrans[0].type_name"
-                          item-value="id"
-                          :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
-                          v-model="PackageTypeValue"
-                          :label="$t('DataPackage.Create.form.type')"
-                          outlined
-                          required
-
+                        v-show="tab === 1"
+                        :items="package_type['data']"
+                        item-text="TypePackagTrans[0].type_name"
+                        item-value="id"
+                        :rules="[
+                          $myValidator.SelectValidate($t('Validate.required')),
+                        ]"
+                        v-model="PackageTypeValue"
+                        :label="$t('DataPackage.Create.form.type')"
+                        outlined
+                        required
                       ></v-select>
 
                       <v-select
-                          v-show="tab===0"
-                          :items="cate_data_package['data']"
-                          item-text="cateName"
-                          item-value="id"
-                          :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
-                          v-model="CateDataPackageValue"
-                          :label="$t('DataPackage.Create.form.category')"
-                          outlined
-                          required
-
+                        v-show="tab === 0"
+                        :items="cate_data_package['data']"
+                        item-text="cateName"
+                        item-value="id"
+                        :rules="[
+                          $myValidator.SelectValidate($t('Validate.required')),
+                        ]"
+                        v-model="CateDataPackageValue"
+                        :label="$t('DataPackage.Create.form.category')"
+                        outlined
+                        required
                       ></v-select>
 
                       <v-select
-                          v-show="tab===1"
-                          :items="cate_data_package['data']"
-                          item-text="CatePackageTrans[0].cateName"
-                          item-value="id"
-                          :rules="[$myValidator.SelectValidate($t('Validate.required'))]"
-                          v-model="CateDataPackageValue"
-                          :label="$t('DataPackage.Create.form.category')"
-                          outlined
-                          required
-
+                        v-show="tab === 1"
+                        :items="cate_data_package['data']"
+                        item-text="CatePackageTrans[0].cateName"
+                        item-value="id"
+                        :rules="[
+                          $myValidator.SelectValidate($t('Validate.required')),
+                        ]"
+                        v-model="CateDataPackageValue"
+                        :label="$t('DataPackage.Create.form.category')"
+                        outlined
+                        required
                       ></v-select>
-
 
                       <v-textarea
-                          v-show="tab===0"
-                          v-model="description"
-                          outlined
-                          :label="$t('DataPackage.Create.form.description')"
+                        v-show="tab === 0"
+                        v-model="description"
+                        outlined
+                        :label="$t('DataPackage.Create.form.description')"
                       ></v-textarea>
 
                       <v-textarea
-                          v-show="tab===1"
-                          v-model="descriptionEng"
-                          outlined
-                          :label="$t('DataPackage.Create.form.description')"
+                        v-show="tab === 1"
+                        v-model="descriptionEng"
+                        outlined
+                        :label="$t('DataPackage.Create.form.description')"
                       ></v-textarea>
 
-                      <div v-show="tab===0">
-
-                        <div class="upload-image" v-if="previewImage[0] == null">
-
-                          <div class="content" >
+                      <div v-show="tab === 0">
+                        <div
+                          class="upload-image"
+                          v-if="previewImage[0] == null"
+                        >
+                          <div class="content">
                             <i class="fas fa-plus-circle"></i>
                             <h3>{{ $t("Post.Create.form.picture") }}</h3>
                           </div>
                           <input
+                            type="file"
+                            class="choose-file"
+                            name="upload-image"
+                            accept="image/*"
+                            @change="UploadImage"
+                          />
+                        </div>
 
+                        <div class="image" v-else>
+                          <div class="increase-decrease-image">
+                            <v-btn
+                              class="mx-2"
+                              color="error"
+                              dark
+                              fab
+                              small
+                              @click="removeImage(0)"
+                            >
+                              <v-icon dark> mdi-close </v-icon>
+                            </v-btn>
 
-                              type="file"
-                              class="choose-file"
-                              name="upload-image"
+                            <input
+                              ref="uploader"
                               accept="image/*"
+                              class="d-none"
+                              type="file"
                               @change="UploadImage"
-                          />
-                        </div>
-
-
-                        <div class="image" v-else>
-
-
-                              <div class="increase-decrease-image">
-                                <v-btn
-                                    class="mx-2"
-                                    color="error"
-                                    dark
-                                    fab
-                                    small
-                                    @click="removeImage(0)"
-                                >
-                                  <v-icon dark>
-                                    mdi-close
-                                  </v-icon>
-                                </v-btn>
-
-
-
-                                <input
-                                    ref="uploader"
-
-                                    accept="image/*"
-                                    class="d-none"
-
-                                    type="file"
-                                    @change="UploadImage"
-                                />
-                              </div>
-                              <v-layout row >
-                                <v-flex  :key="j" v-for="j in 1" align-self-center >
-
-                                  <img class="image-files" :src="previewImage"  >
-
-                                </v-flex>
-
-                              </v-layout>
-
-
-
+                            />
+                          </div>
+                          <v-layout row>
+                            <v-flex :key="j" v-for="j in 1" align-self-center>
+                              <img class="image-files" :src="previewImage" />
+                            </v-flex>
+                          </v-layout>
                         </div>
                       </div>
 
-                      <div v-show="tab===1">
-
-                        <div class="upload-image" v-if="previewImageEng[0] == null">
-
-                          <div class="content" >
+                      <div v-show="tab === 1">
+                        <div
+                          class="upload-image"
+                          v-if="previewImageEng[0] == null"
+                        >
+                          <div class="content">
                             <i class="fas fa-plus-circle"></i>
                             <h3>{{ $t("Post.Create.form.picture") }}</h3>
                           </div>
 
                           <input
-
-
-                              type="file"
-                              class="choose-file"
-                              name="upload-image"
-                              accept="image/*"
-                              @change="UploadImageEng"
+                            type="file"
+                            class="choose-file"
+                            name="upload-image"
+                            accept="image/*"
+                            @change="UploadImageEng"
                           />
                         </div>
 
-
                         <div class="image" v-else>
+                          <div class="increase-decrease-image">
+                            <v-btn
+                              class="mx-2"
+                              color="error"
+                              dark
+                              fab
+                              small
+                              @click="removeImageEng(0)"
+                            >
+                              <v-icon dark> mdi-close </v-icon>
+                            </v-btn>
 
-
-                              <div class="increase-decrease-image">
-                                <v-btn
-                                    class="mx-2"
-                                    color="error"
-                                    dark
-                                    fab
-                                    small
-                                    @click="removeImageEng(0)"
-                                >
-                                  <v-icon dark>
-                                    mdi-close
-                                  </v-icon>
-                                </v-btn>
-
-
-
-                                <input
-                                    ref="uploaderEng"
-
-                                    accept="image/*"
-                                    class="d-none"
-
-                                    type="file"
-                                    @change="UploadImageEng"
-                                />
-                              </div>
-                              <v-layout row >
-                                <v-flex  :key="j" v-for="j in 1" align-self-center >
-
-                                  <img class="image-files" :src="previewImageEng"  >
-
-                                </v-flex>
-
-                              </v-layout>
-
-
+                            <input
+                              ref="uploaderEng"
+                              accept="image/*"
+                              class="d-none"
+                              type="file"
+                              @change="UploadImageEng"
+                            />
+                          </div>
+                          <v-layout row>
+                            <v-flex :key="j" v-for="j in 1" align-self-center>
+                              <img class="image-files" :src="previewImageEng" />
+                            </v-flex>
+                          </v-layout>
                         </div>
                       </div>
-
                     </v-form>
                     <div class="form-actions">
                       <v-btn plain @click="reset" class="mx-5">{{
@@ -270,272 +244,253 @@
 </template>
 
 <script>
-import {mapActions,mapGetters} from 'vuex'
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Edit",
 
   data() {
     return {
-      code:0,
-      dataPackageId:0,
-      PackageTypeValue:'',
-      name:'',
-      nameEng:'',
-      description:'',
-      descriptionEng:'',
+      code: 0,
+      dataPackageId: 0,
+      PackageTypeValue: "",
+      name: "",
+      nameEng: "",
+      description: "",
+      descriptionEng: "",
       tab: null,
-      isLaoTab:false,
-      isEngTab:false,
-      uploadImage:[],
-      uploadImageEng:[],
+      isLaoTab: false,
+      isEngTab: false,
+      uploadImage: [],
+      uploadImageEng: [],
       previewImage: [],
-       previewImageEng: [],
-      valid:true,
-      CateDataPackageValue:'',
-
+      previewImageEng: [],
+      valid: true,
+      CateDataPackageValue: "",
     };
   },
 
-  created(){
-    this.getDataPackageOne({'package_id':this.$route.params.data_package_id}).then(res=>{
-      if(res.success){
-            this.loadDataToComponent(res);
+  created() {
+    this.getDataPackageOne({
+      package_id: this.$route.params.data_package_id,
+    }).then((res) => {
+      if (res.success) {
+        this.loadDataToComponent(res);
       }
     });
 
     this.getPackageType();
     this.getCateDataPackage();
   },
-  mounted() {
-
-  },
+  mounted() {},
 
   methods: {
     async convertUrlToFileImage(image) {
       const response = await fetch(image);
       // here image is url/location of image
       const blob = await response.blob();
-      const file = new File([blob], image.split('/').pop(), {type: blob.type});
+      const file = new File([blob], image.split("/").pop(), {
+        type: blob.type,
+      });
       console.log("=============>File lao:", file);
-      this.uploadImage.push(file)
+      this.uploadImage.push(file);
     },
     async convertUrlToFileImageEng(image) {
       const response = await fetch(image);
       // here image is url/location of image
       const blob = await response.blob();
-      const file = new File([blob], image.split('/').pop(), {type: blob.type});
-       console.log("=============>File eng:", file);
-      this.uploadImageEng.push(file)
+      const file = new File([blob], image.split("/").pop(), {
+        type: blob.type,
+      });
+      console.log("=============>File eng:", file);
+      this.uploadImageEng.push(file);
     },
 
-    loadDataToComponent(res){
+    loadDataToComponent(res) {
+      let data = res.data;
 
-      let data = res.data
-
-      this.name=data.name
-      this.nameEng=data.NewPackageTrans[0].name
-          this.code=data.code
-          this.previewImage.push(data.image)
-      this.previewImageEng.push(data.NewPackageTrans[0].image)
-      this.PackageTypeValue = data.typePackage_Id
-      this.convertUrlToFileImage(data.image)
-      this.convertUrlToFileImageEng(data.NewPackageTrans[0].image)
+      this.name = data.name;
+      this.nameEng = data.NewPackageTrans[0].name;
+      this.code = data.code;
+      this.previewImage.push(data.image);
+      this.previewImageEng.push(data.NewPackageTrans[0].image);
+      this.PackageTypeValue = data.typePackage_Id;
+      this.convertUrlToFileImage(data.image);
+      this.convertUrlToFileImageEng(data.NewPackageTrans[0].image);
       this.CateDataPackageValue = data.catePackage_Id;
       this.description = data.detail;
       this.descriptionEng = data.NewPackageTrans[0].detail;
     },
 
-
-
-
     UploadImage(e) {
-
       const img = e.target.files;
 
-      for(let i = 0;i<img.length;i++){
-        this.uploadImage.push(img[i])
-        console.log(this.uploadImage)
+      for (let i = 0; i < img.length; i++) {
+        this.uploadImage.push(img[i]);
+        console.log(this.uploadImage);
         const reader = new FileReader();
         reader.readAsDataURL(img[i]);
         reader.onload = (e) => {
-
           this.previewImage.push(e.target.result);
-          console.log(this.previewImage[i]);
-        }
-
-      };
+          console.log("Image log"+this.previewImage[i]);
+        };
+      }
     },
 
     UploadImageEng(e) {
-
       const img = e.target.files;
 
-      for(let i = 0;i<img.length;i++){
-        this.uploadImageEng.push(img[i])
+      for (let i = 0; i < img.length; i++) {
+        this.uploadImageEng.push(img[i]);
         const reader = new FileReader();
         reader.readAsDataURL(img[i]);
         reader.onload = (e) => {
-
           this.previewImageEng.push(e.target.result);
-          console.log(this.previewImageEng[i]);
-        }
-
-      };
+          console.log("Image eng log"+this.previewImageEng[i]);
+        };
+      }
     },
 
-    removeImage(index){
-      this.uploadImage.splice(index,1);
+    removeImage(index) {
+      this.uploadImage.splice(index, 1);
       this.previewImage.splice(index, 1);
     },
-    removeImageEng(index){
-      this.uploadImageEng.splice(index,1);
+    removeImageEng(index) {
+      this.uploadImageEng.splice(index, 1);
       this.previewImageEng.splice(index, 1);
     },
-    submitForm () {
-    if(this.$refs.form[0].validate()){
-      this.updateDataPackage({
+    submitForm() {
+      if (this.$refs.form[0].validate()) {
+        this.updateDataPackage({
+          package_id: this.$route.params.data_package_id,
+          code: this.code,
+          la_name: this.name,
 
-        'package_id':this.$route.params.data_package_id,
-        'code':this.code,
-    'la_name':this.name,
+          en_name: this.nameEng,
 
-    'en_name':this.nameEng,
+          avatar: this.uploadImage[0],
+          avatarEN: this.uploadImageEng[0],
+          typePackage_Id: this.PackageTypeValue,
+          catePackage_Id: this.CateDataPackageValue,
+          detail: this.description,
+          detailEN: this.descriptionEng,
+        });
+      } else {
+        console.log("can not create");
+      }
+    },
+    reset() {
+      this.$router.back();
+      this.$refs.form[0].reset();
+    },
 
-    'avatar':this.uploadImage[0],
-        'avatarEN':this.uploadImageEng[0],
-        'typePackage_Id':this.PackageTypeValue,
-        'catePackage_Id':this.CateDataPackageValue,
-        'detail':this.description,
-        'detailEN':this.descriptionEng
-      })
-    }else{
-      console.log('can not create')
-    }
-
-
-  },
-   reset(){
-    this.$router.back();
-    this.$refs.form[0].reset();
-  },
-
-  ...mapActions({
-    getDataPackageOne:'DataPackage/getDataPackageOne',
-    updateDataPackage:'DataPackage/updateDataPackage',
-    getCateDataPackage:'CateDataPackage/getCateDataPackage',
-    getPackageType:'PackageType/getPackageType',
-  })
+    ...mapActions({
+      getDataPackageOne: "DataPackage/getDataPackageOne",
+      updateDataPackage: "DataPackage/updateDataPackage",
+      getCateDataPackage: "CateDataPackage/getCateDataPackage",
+      getPackageType: "PackageType/getPackageType",
+    }),
   },
 
-   computed:{
+  computed: {
     ...mapGetters({
-      cate_data_package:'CateDataPackage/cate_data_package',
-      package_type:'PackageType/package_type',
-    })
-  }
+      cate_data_package: "CateDataPackage/cate_data_package",
+      package_type: "PackageType/package_type",
+    }),
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-  .data_package-form {
-    .form-title {
-      width: 100%;
-      padding: 0.5rem 0;
-      h1 {
-        font-size: 1.5rem;
-        font-weight: 400;
-        text-transform: uppercase;
-      }
+.data_package-form {
+  .form-title {
+    width: 100%;
+    padding: 0.5rem 0;
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 400;
+      text-transform: uppercase;
     }
+  }
 
-    .lang-select-input {
+  .lang-select-input {
+    width: 100%;
+    padding: 1rem 0;
+
+    .tab-content {
       width: 100%;
-      padding: 1rem 0;
+      padding: 2rem 0;
 
-      .tab-content {
+      .card-form {
         width: 100%;
-        padding: 2rem 0;
+        padding: 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-        .card-form {
-          width: 100%;
-          padding: 0.5rem;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+        .form-content {
+          width: 70%;
 
-          .form-content {
-            width: 70%;
+          .upload-image {
+            width: 100%;
+            height: 300px;
+            border-radius: 0.3rem;
+            position: relative;
+            overflow: hidden;
+            object-fit: cover;
+            transition: all ease 0.5s;
+            border: 1px solid $gray-color;
 
+            .content {
+              position: absolute;
+              left: 0;
+              right: 0;
+              top: 45%;
+              margin: auto;
+              text-align: center;
 
-            .upload-image {
+              i.fa-plus-circle {
+                font-size: 2rem;
+                color: $black-color;
+              }
+            }
+            .choose-file {
+              position: absolute;
+              left: 0;
+              right: 0;
+              top: 0;
+              margin: auto;
+              text-align: center;
+              z-index: 1;
               width: 100%;
-              height: 300px;
-              border-radius: 0.3rem;
-              position: relative;
-              overflow: hidden;
-              object-fit: cover;
-              transition: all ease 0.5s;
-              border: 1px solid $gray-color;
-
-
-              .content {
-                position: absolute;
-                left: 0;
-                right: 0;
-                top: 45%;
-                margin: auto;
-                text-align: center;
-
-                i.fa-plus-circle {
-                  font-size: 2rem;
-                  color: $black-color;
-                }
-              }
-              .choose-file {
-                position: absolute;
-                left: 0;
-                right: 0;
-                top: 0;
-                margin: auto;
-                text-align: center;
-                z-index: 1;
-                width: 100%;
-                height: 100%;
-                cursor: pointer;
-                outline: none;
-                opacity: 0;
-              }
+              height: 100%;
+              cursor: pointer;
+              outline: none;
+              opacity: 0;
             }
-            .image {
+          }
+          .image {
+            overflow: hidden;
+            object-fit: cover;
 
-
-              overflow: hidden;
-              object-fit: cover;
-
-
-
-              .image-files{
-                max-width: 100%;
-                max-height: 100%;
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-              }
-
-
-
+            .image-files {
+              max-width: 100%;
+              max-height: 100%;
+              display: block;
+              margin-left: auto;
+              margin-right: auto;
             }
+          }
 
-            .form-actions {
-              width: 100%;
-              padding: 1rem 0;
-              display: flex;
-              justify-content: flex-end;
-              align-items: center;
-            }
+          .form-actions {
+            width: 100%;
+            padding: 1rem 0;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
           }
         }
       }
     }
   }
+}
 </style>

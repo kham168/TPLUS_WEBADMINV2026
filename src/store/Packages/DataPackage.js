@@ -114,6 +114,7 @@ const actions={
                 'detail':detail,
                 'detailEN':detailEN
             }
+            console.log("===========> log update data package"+arg);
          await dataPackageService.updateDataPackage(arg)
         dispatch('getDataPackage',{ root: true });
         

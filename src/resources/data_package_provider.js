@@ -102,8 +102,9 @@ class DataPackageProvider extends HttpRequest {
     async updateDataPackage({
                                 package_id, code, la_name, en_name, avatar,avatarEN,typePackage_Id,catePackage_Id,detail,detailEN
                             }) {
-
-        console.log(detailEN);
+        
+        console.log("Avatar 1:"+avatar);
+        console.log("Avatar 2:"+avatarEN);
         const bodyFormData = new FormData();
         bodyFormData.append('code', code);
         bodyFormData.append('name', la_name);
@@ -119,7 +120,6 @@ class DataPackageProvider extends HttpRequest {
             'Content-Type': 'multipart/form-data',
         })
 
-        console.log(JSON.stringify(bodyFormData)+"BodyDataa fro data packages");
 
         const {data} = await this.update('packages/' + package_id, bodyFormData)
 

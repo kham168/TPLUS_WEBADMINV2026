@@ -74,7 +74,7 @@
           <v-list-item-group active-class="deep-black--text text--accent-4">
             <v-list-item
                 link
-                v-for="(item, index) in dashboardItem"
+                v-for="(item, index) in $t('MyMenuDashboard')"
                 :key="index"
                 @click="ClickTo(item.router)"
             >
