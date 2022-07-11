@@ -1295,6 +1295,65 @@
       "title":"Promotions data report",
       "subtitle":"View detail",
       "view":"View"
+    },
+    "News":{
+      "title":"News Data report",
+      "subtitle":"View detail",
+      "view":"View"
+    },
+    "Packages":{
+      "title":"Data packages report",
+      "subtitle":"View detail",
+      "view":"View",
+      "condition":{
+        "package_type":"Select packages type",
+        "package_regular":"Choose a regular package"
+      },
+      "check_list":[
+        {
+          "id":1,
+          "name":"Daily"
+        },
+        {
+          "id":2,
+          "name":"Weekly"
+        },
+        {
+          "id":3,
+          "name":"Monthly"
+        }
+      ],
+      "headers": [
+        { "text": "No", "value": "No", "sortable": true },
+        { "text": "Pictures", "value": "image", "sortable": true },
+        { "text": "Code", "value": "packageCode", "sortable": true },
+        { "text": "Package Name", "value": "packageName", "sortable": true },
+        { "text": "Detail", "value": "detail", "sortable": true },
+        { "text": "Package Type", "value": "packageType", "sortable": true },
+        { "text": "Package Cate", "value": "catId", "sortable": true }
+      ]
+    },
+    "news":{
+      "headers":[
+        {"text":"No", "value":"No"},
+        {"text":"Title", "value":"title"},
+        {"text":"Description", "value":"desription"},
+        {"text":"Image", "value":"image"},
+        {"text":"Status", "value":"status"}
+      ],
+      "status":[
+        {
+          "id":1,
+          "status":"Open",
+          "key":"open"
+        },
+        {
+          "id":2,
+          "status":"Close",
+          "key":"close"
+        }
+      ],
+      "status_title":"Choose status"
     }
   },
   "Call-Abroad":{
@@ -1351,5 +1410,18 @@
       "cancel":"Cancel",
       "delete":"Delete"
     }
-  }
+  },
+
+  "reports":{
+    "customer":{
+     "all_users":"All customers",
+     "active_users":"Number of active customers",
+     "inactive_users":"Number of Inactive customers "
+    }
+   },
+   "row_per_page":"Row per page",
+  "of":"of",
+  "no_data":"don't have data"
+
+
 }

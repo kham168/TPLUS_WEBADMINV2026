@@ -371,7 +371,7 @@ section {
             text-transform: capitalize;
             color: $black-color;
           }
-          p{
+          p {
             color: $black-color;
             text-decoration: none;
           }
@@ -566,21 +566,43 @@ section {
     width: 100%;
     display: flex;
     justify-content: flex-end;
-    align-items: center;
+    align-items: flex-end;
     .search {
-      width: 50%;
+      width: 100%;
       margin-top: 10px;
     }
     .v-icon.v-icon {
       font-size: 18px;
     }
   }
+
+  .export-customers {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    .export-customer-btn {
+      height: 45px;
+      margin: 0 5px;
+    }
+  }
 }
 
 .report-with-calendar {
   width: 100%;
-  padding: 10px 15px;
+  // padding: 10px 15px;
   margin-top: 20px;
+  text-align: center;
+
+  .container-action {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: flex-end;
+  }
 }
 
 .search-event {
@@ -597,6 +619,25 @@ section {
     font-size: 18px;
   }
 }
+
+// package report
+.packages-type-condition{
+  width: 100%;
+  padding: 0 30px;
+
+  .v-input--selection-controls{
+    margin: 5px 10px !important;
+  }
+
+  .check--list{
+    width: 100%;
+    display: flex;
+    flex-direction: row !important;
+  }
+}
+
+
+
 
 .table {
   .description,

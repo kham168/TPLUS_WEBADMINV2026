@@ -10,6 +10,8 @@ import Chatroom from "../components/Chatroom";
 import ReportCustomer from "../views/report/customer.vue";
 import ReportEvent from "../views/report/event-report.vue";
 import ReportPromotion from "../views/report/promotion.vue";
+import ReportNews from "../views/report/news_report.vue";
+import ReportPackage from "../views/report/packages_report.vue";
 
 Vue.use(VueRouter);
 
@@ -1185,6 +1187,30 @@ const routes = [
     path: "/report-promotion",
     name: "Promotion",
     component: ReportPromotion,
+    meta: {
+      layout: "admin",
+      requiredAuth: true,
+      menu: "users",
+    },
+  },
+
+  // report news
+  {
+    path: "/report-news",
+    name: "ReportNews",
+    component: ReportNews,
+    meta: {
+      layout: "admin",
+      requiredAuth: true,
+      menu: "users",
+    },
+  },
+
+   // report packages
+   {
+    path: "/report-packages",
+    name: "ReportPackage",
+    component: ReportPackage,
     meta: {
       layout: "admin",
       requiredAuth: true,

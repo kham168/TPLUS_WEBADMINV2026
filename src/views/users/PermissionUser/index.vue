@@ -23,7 +23,15 @@
             :items="listUserPermission"
             :loading-text="$t('permissionRole.loadingtext')"
             v-if="listUserPermission != ''"
-        >
+             :footer-props="{
+          'items-per-page-text': $t('row_per_page'),
+        }"
+        :no-data-text="$t('no_data')"
+      >
+        <template v-slot:[`footer.page-text`]="items">
+          {{ items.pageStart }} - {{ items.pageStop }} {{ $t("of") }}
+          {{ items.itemsLength }}
+        </template>
           <template v-slot:top>
             <v-toolbar flat>
               <v-text-field

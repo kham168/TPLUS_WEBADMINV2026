@@ -1491,6 +1491,65 @@
       "title":"ລາຍງານຂໍ້ມູນໂປຣໂມຊັນ",
       "subtitle":"ລາຍລະອຽດ",
       "view":"ທັງໝົດ"
+    },
+    "News":{
+      "title":"ລາຍງານຂໍ້ມູນຂ່າວສານ",
+      "subtitle":"ລາຍລະອຽດ",
+      "view":"ທັງໝົດ"
+    },
+    "Packages":{
+      "title":"ລາຍງານຂໍ້ມູນແພັກເກັດ",
+      "subtitle":"ລາຍລະອຽດ",
+      "view":"ທັງໝົດ",
+      "condition":{
+        "package_type":"ເລືອກປະເພດແພັກເກັດ",
+        "package_regular":"ເລືອກແພັກເກັດປະຈຳ"
+      },
+      "check_list":[
+        {
+          "id":1,
+          "name":"ປະຈຳວັນ"
+        },
+        {
+          "id":2,
+          "name":"ປະຈຳອາທິດ"
+        },
+        {
+          "id":3,
+          "name":"ປະຈຳເດືອນ"
+        }
+      ],
+      "headers": [
+        { "text": "ລຳດັບ", "value": "No", "sortable": true },
+        { "text": "ຮູບພາບ", "value": "image", "sortable": true },
+        { "text": "Code", "value": "packageCode", "sortable": false },
+        { "text": "ຊື່ແພັກເກັດ", "value": "packageName", "sortable": true },
+        { "text": "ລາຍລະອຽດ", "value": "detail", "sortable": true },
+        { "text": "ປະເພດແພັກເກັດ", "value": "packageType", "sortable": true },
+        { "text": "ໝວດໝູ່ແພັກເກັດ", "value": "catId", "sortable": true }
+      ]
+    },
+    "news":{
+      "headers":[
+        {"text":"ລຳດັບ", "value":"No"},
+        {"text":"ຫົວຂໍ້", "value":"title"},
+        {"text":"ລາຍລະອຽດ", "value":"desription"},
+        {"text":"ຮູບພາບ", "value":"image"},
+        {"text":"ສະຖານະ","value":"status"}
+      ],
+      "status":[
+        {
+          "id":1,
+          "status":"ເປີດ",
+          "key":"open"
+        },
+        {
+          "id":2,
+          "status":"ປິດ",
+          "key":"close"
+        }
+      ],
+      "status_title":"ເລືອກສະຖານະ"
     }
   },
   "Call-Abroad":{
@@ -1553,5 +1612,16 @@
       "cancel":"ຍົກເລີກ",
       "delete":"ລົບຂໍ້ມູນ"
     }
-  }
+  },
+
+  "reports":{
+   "customer":{
+    "all_users":"ຈຳນວນລູກຄ້າທັງໝົດ",
+    "active_users":"ຈຳນວນລູກຄ້າທີ່ໃຊ້ງານ",
+    "inactive_users":"ຈຳນວນລູກຄ້າທີ່ບໍ່ໄດ້ໃຊ້ງານ"
+   }
+  },
+  "row_per_page":"ແຖວຕໍ່ໜ້າທີ",
+  "of":"ຂອງ",
+  "no_data":"ບໍ່ມີຂໍ້ມູນ"
 }
