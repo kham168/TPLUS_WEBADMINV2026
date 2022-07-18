@@ -11,6 +11,10 @@ const state = {
   Promotions: [],
   Packages: [],
   News: [],
+  refill_total_balance: 0,
+  transfer_total_balance:0,
+  package_register_total_balance:0,
+  data_top_up:[],
 };
 
 const getters = {
@@ -19,10 +23,15 @@ const getters = {
   Promotions: (state) => state.Promotions,
   DataPackages: (state) => state.Packages,
   DataNews: (state) => state.News,
+  Refill_total:(state) => state.refill_total_balance,
+  Transfer_total:(state) => state.transfer_total_balance,
+  Package_total:(state) => state.package_register_total_balance,
+  DataTopUp:(state) => state.data_top_up,
 };
 
 const mutations = {
   Fetch_Data_Customer(state, payload) {
+    console.log(payload.rows);
     var totalActive = payload.rows.filter(
       (item) => item.status == "active"
     ).length;
@@ -49,14 +58,24 @@ const mutations = {
     state.Packages = data;
   },
 
-  Fetch_Data_News(state, data){
+  Fetch_Data_News(state, data) {
     state.News = data;
+  },
+  Fetch_Total_Balance(state, data) {
+   state.refill_total_balance = data[2].total_amount;
+   state.transfer_total_balance = data[1].total_amount;
+   state.package_register_total_balance = data[0].total_amount;
+  },
+  Fetch_Data_TopUp(state,payload) {
+   state.data_top_up = payload;
   }
 };
 
 const actions = {
-  async getCustomer({ commit }) {
-    const data = await $axios.get("report-users-all/customer");
+  async getCustomer({ commit }, status) {
+    const data = await $axios.get("report-users", {
+      params: { filter: status },
+    });
     commit("Fetch_Data_Customer", data.data.data);
   },
 
@@ -264,7 +283,7 @@ const actions = {
               status: data[i].status,
             };
           }
-        }else{
+        } else {
           for (const i in data) {
             arr[i] = {
               title: data[i].title,
@@ -278,6 +297,24 @@ const actions = {
       }
     });
   },
+
+  // get all total balance package register, refill balance and transfer
+  async getTotalBalance({ commit }) {
+    await $axios.get("report-TopUp", { params: { type: "all" } }).then((res)=>{
+      if(res.status == 200){
+        commit("Fetch_Total_Balance", res.data.data)
+      }
+    })
+  },
+
+
+  // get data filter by type package register, refill balance and transfer
+  async getDataTopUp({ commit }, body) {
+    await $axios.get("report-TopUp", { params: body }).then((res)=>{
+      console.log(res.data.data);
+       commit("Fetch_Data_TopUp", res.data.data)
+    })
+  }
 };
 
 export default {

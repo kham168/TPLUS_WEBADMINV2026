@@ -235,7 +235,10 @@
                   <div class="banner-item-title">
                     <h3>{{ $t("Dashboard.News.title") }}</h3>
                     <p>{{ $t("Dashboard.News.subtitle") }}</p>
-                    <v-btn @click="$router.push({name:'ReportNews'})" class="btn-view-more">
+                    <v-btn
+                      @click="$router.push({ name: 'ReportNews' })"
+                      class="btn-view-more"
+                    >
                       {{ $t("Dashboard.News.view") }}
                       <span><i class="fas fa-long-arrow-right"></i></span>
                     </v-btn>
@@ -247,12 +250,15 @@
               <v-col cols="12" md="12" lg="12">
                 <div class="banner-item-card">
                   <div class="banner-icon">
-                    <i class="fas fa-gift"></i>
+                    <i class="fas fa-box"></i>
                   </div>
                   <div class="banner-item-title">
                     <h3>{{ $t("Dashboard.Packages.title") }}</h3>
                     <p>{{ $t("Dashboard.Packages.subtitle") }}</p>
-                    <v-btn @click="$router.push({name:'ReportPackage'})" class="btn-view-more">
+                    <v-btn
+                      @click="$router.push({ name: 'ReportPackage' })"
+                      class="btn-view-more"
+                    >
                       {{ $t("Dashboard.Packages.view") }}
                       <span><i class="fas fa-long-arrow-right"></i></span>
                     </v-btn>
@@ -260,6 +266,65 @@
                 </div>
               </v-col>
 
+              <!-- report card refill -->
+              <v-col cols="12" md="12" lg="12">
+                <div class="banner-item-card">
+                  <div class="banner-icon">
+                    <i class="fas fa-credit-card-front"></i>
+                  </div>
+                  <div class="banner-item-title">
+                    <h3>{{ $t("Dashboard.refill_balance.title") }}</h3>
+                    <p>{{ $t("Dashboard.Packages.subtitle") }}</p>
+                    <v-btn
+                      @click="$router.push({ name: 'ReportRefillBalance' })"
+                      class="btn-view-more"
+                    >
+                      {{ $t("Dashboard.Packages.view") }}
+                      <span><i class="fas fa-long-arrow-right"></i></span>
+                    </v-btn>
+                  </div>
+                </div>
+              </v-col>
+
+              <!-- report balance transfer -->
+              <v-col cols="12" md="12" lg="12">
+                <div class="banner-item-card">
+                  <div class="banner-icon">
+                    <i class="fas fa-exchange"></i>
+                  </div>
+                  <div class="banner-item-title">
+                    <h3>{{ $t("Dashboard.balance_transfer.title") }}</h3>
+                    <p>{{ $t("Dashboard.Packages.subtitle") }}</p>
+                    <v-btn
+                      @click="$router.push({ name: 'ReportBalanceTransfer' })"
+                      class="btn-view-more"
+                    >
+                      {{ $t("Dashboard.Packages.view") }}
+                      <span><i class="fas fa-long-arrow-right"></i></span>
+                    </v-btn>
+                  </div>
+                </div>
+              </v-col>
+
+              <!-- report package register -->
+              <v-col cols="12" md="12" lg="12">
+                <div class="banner-item-card">
+                  <div class="banner-icon">
+                    <i class="fas fa-box-check"></i>
+                  </div>
+                  <div class="banner-item-title">
+                    <h3>{{ $t("Dashboard.package_register.title") }}</h3>
+                    <p>{{ $t("Dashboard.Packages.subtitle") }}</p>
+                    <v-btn
+                      @click="$router.push({ name: 'ReportPackageRegister' })"
+                      class="btn-view-more"
+                    >
+                      {{ $t("Dashboard.Packages.view") }}
+                      <span><i class="fas fa-long-arrow-right"></i></span>
+                    </v-btn>
+                  </div>
+                </div>
+              </v-col>
 
               <v-col cols="12" md="12" lg="12">
                 <div class="banner-item-card">

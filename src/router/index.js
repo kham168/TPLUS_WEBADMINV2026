@@ -12,6 +12,9 @@ import ReportEvent from "../views/report/event-report.vue";
 import ReportPromotion from "../views/report/promotion.vue";
 import ReportNews from "../views/report/news_report.vue";
 import ReportPackage from "../views/report/packages_report.vue";
+import ReportRefillBalance from "../views/report/refill_balance_report.vue";
+import ReportBalanceTransfer from "../views/report/balance_transfer_report.vue";
+import ReportPackageRegister from "../views/report/package_register_report.vue";
 
 Vue.use(VueRouter);
 
@@ -1211,6 +1214,42 @@ const routes = [
     path: "/report-packages",
     name: "ReportPackage",
     component: ReportPackage,
+    meta: {
+      layout: "admin",
+      requiredAuth: true,
+      menu: "users",
+    },
+  },
+
+   // report refill balance
+   {
+    path: "/report-refill-balance",
+    name: "ReportRefillBalance",
+    component: ReportRefillBalance,
+    meta: {
+      layout: "admin",
+      requiredAuth: true,
+      menu: "users",
+    },
+  },
+
+   // report balance transfer
+   {
+    path: "/report-balance-transfer",
+    name: "ReportBalanceTransfer",
+    component: ReportBalanceTransfer,
+    meta: {
+      layout: "admin",
+      requiredAuth: true,
+      menu: "users",
+    },
+  },
+
+   // report packages register
+   {
+    path: "/report-packages-register",
+    name: "ReportPackageRegister",
+    component: ReportPackageRegister,
     meta: {
       layout: "admin",
       requiredAuth: true,

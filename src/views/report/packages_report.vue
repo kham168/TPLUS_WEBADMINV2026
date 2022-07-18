@@ -163,7 +163,6 @@ export default {
       let rows = [];
       for (const i in this.dataPackages) {
         rows[i] = {
-          No: i + 1,
           package_image: this.dataPackages[i].image,
           package_code: this.dataPackages[i].packageCode,
           package_name: this.dataPackages[i].packageName,

@@ -113,7 +113,6 @@
           {{ items.pageStart }} - {{ items.pageStop }} {{ $t("of") }}
           {{ items.itemsLength }}
         </template>
-        >
         <template v-slot:item="{ item, index }">
           <tr>
             <td>{{ index + 1 }}</td>
@@ -219,7 +218,6 @@ export default {
       var rows = [];
       for (const i in data) {
         rows[i] = {
-          index: i + 1,
           customer_name: data[i].Customer.firstName,
           customer_lastname: data[i].Customer.surName,
           customer_phone: data[i].phone,

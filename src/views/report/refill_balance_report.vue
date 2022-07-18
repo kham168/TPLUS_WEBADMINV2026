@@ -1,11 +1,25 @@
 <template>
-  <div id="report-promotion">
-    <section class="promotion-container">
-      <div class="header"> 
+  <div id="RefillBalanceReport">
+    <section class="section--report">
+      <div class="header--report">
         <div class="title">
-          <h3>{{ $t("Dashboard.promotion.title") }}</h3>
+          <h2>{{ $t("Dashboard.refill_balance.title") }}</h2>
         </div>
       </div>
+    </section>
+    <section class="refill--balance--card">
+      <div class="card--container">
+        <div class="card--icon">
+          <i class="fas fa-analytics"></i>
+        </div>
+        <div class="card--price-total">
+          <h3>{{ TotalBalance | numFormat }}</h3>
+          <p>{{ $t("Dashboard.refill_balance.refill_total") }}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section--filter--data">
       <div class="report-with-calendar">
         <v-row>
           <v-col cols="12" sm="6" md="4" lg="4" xl="4">
@@ -64,10 +78,14 @@
           </v-col>
           <v-col cols="12" sm="6" md="4" lg="4" xl="4">
             <div class="container-action">
-              <v-btn @click="HanddleSubmit" class="elevation-0" style="height: 45px;">
+              <v-btn
+                @click="HanddleSubmit"
+                class="elevation-0"
+                style="height: 45px"
+              >
                 {{ $t("Dashboard.event.submit") }}
               </v-btn>
-              <v-btn @click="Reset" text class="mx-2" style="height: 45px;">
+              <v-btn @click="Reset" text class="mx-2" style="height: 45px">
                 {{ $t("Dashboard.event.reset") }}
               </v-btn>
             </div>
@@ -75,10 +93,11 @@
         </v-row>
       </div>
     </section>
+
     <section class="table data-promotion">
       <v-data-table
-        :headers="$t('Dashboard.event.headers')"
-        :items="DataPromotion"
+        :headers="$t('Dashboard.refill_balance.headers')"
+        :items="DataTopUp"
         class="elevation-0"
         :footer-props="{
           'items-per-page-text': $t('row_per_page'),
@@ -89,49 +108,49 @@
           {{ items.pageStart }} - {{ items.pageStop }} {{ $t("of") }}
           {{ items.itemsLength }}
         </template>
-      >
+        >
         <template v-slot:item="{ item, index }">
           <tr>
             <td>{{ index + 1 }}</td>
             <td>
-              <div class="event-title">
-                <p>{{ item.title }}</p>
+              <div v-if="item.type == 'refillCard'">
+                {{ $t("Dashboard.refill_balance.refill") }}
               </div>
             </td>
             <td>
-              <div class="description">
-                <p v-html="item.description"></p>
-              </div>
+              {{ item.code }}
             </td>
             <td>
-              <div class="image">
-                <v-img :src="item.image"></v-img>
-              </div>
+              {{ item.value | numFormat }}
             </td>
-            <td>{{ item.startDate | moment("DD-MM-YYYY") }}</td>
-            <td>{{ item.endDate | moment("DD-MM-YYYY") }}</td>
             <td>
-              <div :class="item.status === 'open' ? 'active-status' : 'status'">
-                {{ item.status }}
-              </div>
+              {{ item.phoneDestination }}
+            </td>
+            <td>
+              {{ item.User.phone }}
+            </td>
+            <td>
+              {{ item.createdAt | moment("DD-MM-YYYY") }}
             </td>
           </tr>
         </template>
       </v-data-table>
     </section>
-     <section class="section--download--excel" v-if="DataPromotion.length > 0">
+    <section class="section--download--excel" v-if="DataTopUp.length > 0">
       <div class="download--excel">
-        <v-btn @click="DownloadExcel" color="success" outlined>Download Excel</v-btn>
+        <v-btn @click="DownloadExcel" color="success" outlined
+          >Download Excel</v-btn
+        >
       </div>
     </section>
   </div>
 </template>
 
 <script>
-import {mapActions , mapGetters} from 'vuex'
+import { mapActions, mapGetters } from "vuex";
 import * as XLSX from "xlsx";
 export default {
-  name: "Promotion",
+  name: "TPlusWebAdminRefillBalanceReport",
 
   data() {
     return {
@@ -146,53 +165,75 @@ export default {
     };
   },
 
-  mounted() {
-      this.getPromotion();
+  created() {
+    this.getTotalBalance();
+    this.getDataTopUp({
+      startDate: this.Fromdate,
+      endDate: this.Todate,
+      type: "refillCard",
+    });
   },
+
   computed: {
     ...mapGetters({
-      DataPromotion : 'report/Promotions'
-    })
+      TotalBalance: "report/Refill_total",
+      DataTopUp: "report/DataTopUp",
+    }),
   },
-  methods: {
-      ...mapActions({
-         getPromotion:'report/getPromotions',
-         getPromotionByDate: 'report/getPromotionByDate'
-      }),
-      HanddleSubmit(){
-        var date ={
-         Fromdate : this.Fromdate,
-         Todate : this.Todate
-        }
-        this.getPromotionByDate(date)
-      },
-      Reset(){
-         this.Fromdate= new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
-        .toISOString()
-        .substr(0, 10);
-      this.Todate = new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
-        .toISOString()
-        .substr(0, 10);
-        this.getPromotion();
-      },
 
-       DownloadExcel() {
+  methods: {
+    ...mapActions({
+      getTotalBalance: "report/getTotalBalance",
+      getDataTopUp: "report/getDataTopUp",
+    }),
+
+    HanddleSubmit() {
+      var body = {
+        startDate: this.Fromdate,
+        endDate: this.Todate,
+        type: "refillCard",
+      };
+      this.getDataTopUp(body);
+    },
+
+    Reset() {
+      this.Fromdate = new Date(
+        Date.now() - new Date().getTimezoneOffset() * 60000
+      )
+        .toISOString()
+        .substr(0, 10);
+      this.Todate = new Date(
+        Date.now() - new Date().getTimezoneOffset() * 60000
+      )
+        .toISOString()
+        .substr(0, 10);
+
+      var body = {
+        startDate: this.Fromdate,
+        endDate: this.Todate,
+        type: "refillCard",
+      };
+      this.getDataTopUp(body);
+    },
+
+    DownloadExcel() {
       let rows = [];
-      for (const i in this.DataPromotion){
-        rows[i] ={
-          title: this.DataPromotion[i].title,
-          description:this.DataPromotion[i].description.replace(/<[^>]+>/g, ''),
-          image: this.DataPromotion[i].image,
-          start_date: this.DataPromotion[i].startDate,
-          end_date: this.DataPromotion[i].endDate,
-          status:this.DataPromotion[i].status,
-        }
+      let data = this.DataTopUp;
+      for (const i in data) {
+        rows[i] = {
+          type: data[i].type,
+          code: data[i].code,
+          value: data[i].value,
+          refill_phone: data[i].phoneDestination,
+          customer_phone: data[i].User.phone,
+          date: data[i].createdAt,
+        };
       }
-       const dataWS = XLSX.utils.json_to_sheet(rows);
-       const Wb = XLSX.utils.book_new();
-       XLSX.utils.book_append_sheet(Wb,dataWS,"Promotion");
-       XLSX.writeFile(Wb,"Promotion.xlsx")
-    }
+      const dataWS = XLSX.utils.json_to_sheet(rows);
+      const Wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(Wb, dataWS, "Refill Balance");
+      XLSX.writeFile(Wb, "Refill_Balance.xlsx");
+    },
   },
 };
 </script>

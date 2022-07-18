@@ -50,11 +50,23 @@
 
         <v-row>
           <v-col cols="12" md="8" lg="8" sm="12" xl="8">
-            <div class="export-customers">
-              <!-- <v-btn @click="EportPDF" class="export-customer-btn">
-                Export PDF
-              </v-btn> -->
-              <!-- <v-btn class="export-customer-btn" outlined> Download Excel </v-btn> -->
+            <div class="status--filter">
+              <h4>{{ $t("Dashboard.users.status_select") }}</h4>
+              <div class="status--lsit">
+                <v-radio-group
+                  v-model="status_selected"
+                  row
+                  @change="onSelectedStatus($event)"
+                >
+                  <v-radio
+                    :label="item.text"
+                    :value="item.text"
+                    v-for="item in $t('Dashboard.users.status_list')"
+                    :key="item.id"
+                  >
+                  </v-radio>
+                </v-radio-group>
+              </div>
             </div>
           </v-col>
           <v-col cols="12" sm="12" md="4" lg="4" xl="4">
@@ -91,6 +103,21 @@
           {{ items.pageStart }} - {{ items.pageStop }} {{ $t("of") }}
           {{ items.itemsLength }}
         </template>
+        <template v-slot:item="{ item }">
+          <tr>
+            <!-- <td>{{ index + 1 }}</td> -->
+            <td>{{ item.Customer.firstName }}</td>
+            <td>{{ item.Customer.firstName }}</td>
+            <td>{{ item.phone }}</td>
+            <td>
+              <div
+                :class="item.status === 'active' ? 'active-status' : 'status'"
+              >
+                {{ item.status }}
+              </div>
+            </td>
+          </tr>
+        </template>
       </v-data-table>
     </section>
     <section class="section--download--excel">
@@ -111,6 +138,7 @@ export default {
   data() {
     return {
       search: null,
+      status_selected: "all",
     };
   },
 
@@ -127,16 +155,23 @@ export default {
       getCustomer: "report/getCustomer",
     }),
 
+    onSelectedStatus(status) {
+      if (status == "all") {
+        this.getCustomer();
+      } else {
+        this.getCustomer(status);
+      }
+    },
+
     DownloadExcel() {
       let rows = [];
       let data = this.Customers.rows;
       for (const i in data) {
         rows[i] = {
-          No:i+1,
           name: data[i].Customer.firstName,
-          lastname:data[i].Customer.surName,
-          phone:data[i].phone,
-          status:data[i].status
+          lastname: data[i].Customer.surName,
+          phone: data[i].phone,
+          status: data[i].status,
         };
       }
       const dataWS = XLSX.utils.json_to_sheet(rows);
@@ -231,4 +266,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.status--filter {
+  width: 100%;
+  padding: 0 20px;
+}
+</style>

@@ -621,23 +621,20 @@ section {
 }
 
 // package report
-.packages-type-condition{
+.packages-type-condition {
   width: 100%;
   padding: 0 30px;
 
-  .v-input--selection-controls{
+  .v-input--selection-controls {
     margin: 5px 10px !important;
   }
 
-  .check--list{
+  .check--list {
     width: 100%;
     display: flex;
     flex-direction: row !important;
   }
 }
-
-
-
 
 .table {
   .description,
@@ -687,4 +684,65 @@ section {
 
 .v-icon.v-icon {
   font-size: 18px;
+}
+
+.section--report {
+  width: 100%;
+  padding: 20px 15px;
+  .header--report{
+    .title{
+      h2{
+        font-size: 24px;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.refill--balance--card {
+  width: 100%;
+  padding: 10px 30px;
+
+  .card--container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    .card--icon {
+      width: 80px;
+      height: 80px;
+      background-color: $primary-color;
+      border-radius: 50%;
+      text-align: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      i {
+        font-size: 36px;
+      }
+    }
+
+    .card--price-total {
+      padding: 0 10px;
+      text-align: left;
+      h3 {
+        font-size: 24px;
+        font-weight: 500;
+      }
+
+      p {
+        font-size: 16px;
+        color: #7f8c8d;
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+.section--filter--data{
+  width: 100%;
+  padding: 15px 20px;
 }
