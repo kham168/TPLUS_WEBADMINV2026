@@ -62,9 +62,9 @@ const mutations = {
     state.News = data;
   },
   Fetch_Total_Balance(state, data) {
-   state.refill_total_balance = data[2].total_amount;
+   state.refill_total_balance = data[0].total_amount;
    state.transfer_total_balance = data[1].total_amount;
-   state.package_register_total_balance = data[0].total_amount;
+  //  state.package_register_total_balance = data[0].total_amount;
   },
   Fetch_Data_TopUp(state,payload) {
    state.data_top_up = payload;
