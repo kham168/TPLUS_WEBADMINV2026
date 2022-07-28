@@ -7,7 +7,7 @@
         </div>
       </div>
     </section>
-    <section class="refill--balance--card">
+    <!-- <section class="refill--balance--card">
       <div class="card--container">
         <div class="card--icon">
           <i class="fas fa-analytics"></i>
@@ -17,7 +17,7 @@
           <p>{{ $t("Dashboard.refill_balance.refill_total") }}</p>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <section class="section--filter--data">
       <div class="report-with-calendar">
@@ -120,9 +120,9 @@
             <td>
               {{ item.code }}
             </td>
-            <td>
+            <!-- <td>
               {{ item.value | numFormat }}
-            </td>
+            </td> -->
             <td>
               {{ item.phoneDestination }}
             </td>
@@ -204,8 +204,8 @@ export default {
       )
         .toISOString()
         .substr(0, 10);
-      this.Todate = new Date(
-        Date.now() - new Date().getTimezoneOffset() * 60000
+      this.Todate= new Date(
+        Date.now() - new Date().getTimezoneOffset() + 24 * 60 * 60 * 1000
       )
         .toISOString()
         .substr(0, 10);

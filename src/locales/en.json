@@ -1444,7 +1444,6 @@
         { "text": "No", "value": "No" },
         { "text": "Type", "value": "type" },
         { "text": "Code", "value": "code" },
-        { "text": "Value", "value": "value" },
         { "text": "Phone refill", "value": "phoneDestination" },
         { "text": "Phone customer", "value": "User.phone" },
         { "text": "Date", "value": "createdAt" }

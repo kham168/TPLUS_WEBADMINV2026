@@ -204,8 +204,8 @@ export default {
       )
         .toISOString()
         .substr(0, 10);
-      this.Todate = new Date(
-        Date.now() - new Date().getTimezoneOffset() * 60000
+      this.Todate= new Date(
+        Date.now() - new Date().getTimezoneOffset() + 24 * 60 * 60 * 1000
       )
         .toISOString()
         .substr(0, 10);
