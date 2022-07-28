@@ -1622,8 +1622,8 @@
         { "text": "ລຳດັບ", "value": "No" },
         { "text": "ປະເພດ", "value": "type" },
         { "text": "ລະຫັດ", "value": "code" },
-        { "text": "ມູນຄ່າ", "value": "value" },
-        { "text": "ເບີໂທໃຊ້ຕື່ມເງິນ", "value": "phoneDestination" },
+        { "text": "ຊື່ແພັກເກັດ", "value": "value" },
+        { "text": "ເບີໂທທີ່ສະໝັກ", "value": "phoneDestination" },
         { "text": "ເບີໂທລູກຄ້າ", "value": "User.phone" },
         { "text": "ວັນທີ", "value": "createdAt" }
       ]

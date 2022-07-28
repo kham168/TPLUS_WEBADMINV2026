@@ -1445,8 +1445,8 @@
         { "text": "Type", "value": "type" },
         { "text": "Code", "value": "code" },
         { "text": "Value", "value": "value" },
-        { "text": "Tel refill", "value": "phoneDestination" },
-        { "text": "Tel customer", "value": "User.phone" },
+        { "text": "Phone refill", "value": "phoneDestination" },
+        { "text": "Phone customer", "value": "User.phone" },
         { "text": "Date", "value": "createdAt" }
       ]
     },
@@ -1471,9 +1471,9 @@
         { "text": "No", "value": "No" },
         { "text": "Type", "value": "type" },
         { "text": "Code", "value": "code" },
-        { "text": "Value", "value": "value" },
-        { "text": "Tel refill", "value": "phoneDestination" },
-        { "text": "Tel customer", "value": "User.phone" },
+        { "text": "Package", "value": "value" },
+        { "text": "Phone register ", "value": "phoneDestination" },
+        { "text": "Phone customer", "value": "User.phone" },
         { "text": "Date", "value": "createdAt" }
       ]
     }
