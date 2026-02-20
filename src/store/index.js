@@ -52,16 +52,21 @@ export default new Vuex.Store({
         },
         menus: {
             users: {
-                roles: ["super-admin", "admin","Employee"]
+                roles: ["super-admin", "admin", "Employee"]
             }
         },
 
         // Modal Call  abroad
-        DeleteCallAbroadModal:false,
-        CallAbroadId:null,
+        DeleteCallAbroadModal: false,
+        CallAbroadId: null,
+
+        // Modal Jobs
+        DeleteJobsModal: false,
+        JobsId: null,
     },
-    getters:{
-     getCallAbroadId: state => state.CallAbroadId
+    getters: {
+        getCallAbroadId: state => state.CallAbroadId,
+        getJobsId: state => state.JobsId
     },
     mutations: {
         IncrementRole(state) {
@@ -95,18 +100,22 @@ export default new Vuex.Store({
         modalShow_State(state, value) {
             state.modalShowState = value;
         },
-        isDeleteCallAbroadModal(state,id){
-         state.DeleteCallAbroadModal = !state.DeleteCallAbroadModal
-         state.CallAbroadId = id
+        isDeleteCallAbroadModal(state, id) {
+            state.DeleteCallAbroadModal = !state.DeleteCallAbroadModal
+            state.CallAbroadId = id
+        },
+        isDeleteJobsModal(state, id) {
+            state.DeleteJobsModal = !state.DeleteJobsModal
+            state.JobsId = id
         }
 
     },
     actions: {
-        action_Notifi_Success({commit}, {message}) {
-            commit('SET_NOTIFICATION_SUCCESS', {message});
+        action_Notifi_Success({ commit }, { message }) {
+            commit('SET_NOTIFICATION_SUCCESS', { message });
         },
-        action_Notifi_Error({commit}, {message}) {
-            commit('SET_NOTIFICATION_ERROR', {message});
+        action_Notifi_Error({ commit }, { message }) {
+            commit('SET_NOTIFICATION_ERROR', { message });
         },
 
     },

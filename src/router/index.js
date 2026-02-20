@@ -28,6 +28,7 @@ const routes = [
       requiredAuth: true,
       menu: "users",
     },
+
   },
   {
     path: "/access-denied",
@@ -685,9 +686,9 @@ const routes = [
   {
     path: "/package_type",
     component: () =>
-        import(
+      import(
             /* webpackChunkName:"Data_package" */ "../views/packages/package_type/package_type.vue"
-            ),
+      ),
     meta: {
       layout: "admin",
       requiredAuth: true,
@@ -698,9 +699,9 @@ const routes = [
         path: "",
         name: "package_type.index",
         component: () =>
-            import(
+          import(
                 /* webpackChunkName:"Data_package index" */ "../views/packages/package_type/index.vue"
-                ),
+          ),
         meta: {
           layout: "admin",
         },
@@ -710,9 +711,9 @@ const routes = [
         path: "edit/:package_type_id",
         name: "package_type.edit",
         component: () =>
-            import(
+          import(
                 /* webpackChunkName:"Data_package Edit" */ "../components/forms/packages/package_type/Edit.vue"
-                ),
+          ),
         meta: {
           middleware: [Middleware.auth],
           layout: "admin",
@@ -723,9 +724,9 @@ const routes = [
         path: "/package_type_priority",
         name: "package_type.priority",
         component: () =>
-            import(
+          import(
                 /* webpackChunkName:"Data_package Edit" */ "../views/packages/package_type/priority.vue"
-                ),
+          ),
         meta: {
           middleware: [Middleware.auth],
           layout: "admin",
@@ -964,39 +965,79 @@ const routes = [
     path: "/call-abroad",
     component: () => import(/* webpackChunkName:"Call Abroad" */ "../views/call-abroad/call-abroad.vue"),
     meta: {
-        middleware: [Middleware.auth],
-        layout: "admin",
-      },
+      middleware: [Middleware.auth],
+      layout: "admin",
+    },
 
-      children:[
-          {
-              path:"",
-              name:"call-abroad.index",
-              component: () => import(/* webpackChunkName:"Call Abroad Index" */ "../views/call-abroad/index.vue"),
-              meta: {
-                  middleware: [Middleware.auth],
-                  layout: "admin",
-                },
-          },
-          {
-            path:"/Create",
-            name:"call-abroad.create",
-            component: () => import(/* webpackChunkName:"Call Abroad Create" */ "../components/forms/call-abroad/Create.vue"),
-            meta: {
-                middleware: [Middleware.auth],
-                layout: "admin",
-              },
+    children: [
+      {
+        path: "",
+        name: "call-abroad.index",
+        component: () => import(/* webpackChunkName:"Call Abroad Index" */ "../views/call-abroad/index.vue"),
+        meta: {
+          middleware: [Middleware.auth],
+          layout: "admin",
         },
-        {
-          path:"/Edit/:id",
-          name:"call-abroad.edit",
-          component: () => import(/* webpackChunkName:"Call Abroad Edit" */ "../components/forms/call-abroad/Edit.vue"),
-          meta: {
-              middleware: [Middleware.auth],
-              layout: "admin",
-            },
+      },
+      {
+        path: "/Create",
+        name: "call-abroad.create",
+        component: () => import(/* webpackChunkName:"Call Abroad Create" */ "../components/forms/call-abroad/Create.vue"),
+        meta: {
+          middleware: [Middleware.auth],
+          layout: "admin",
+        },
+      },
+      {
+        path: "/Edit/:id",
+        name: "call-abroad.edit",
+        component: () => import(/* webpackChunkName:"Call Abroad Edit" */ "../components/forms/call-abroad/Edit.vue"),
+        meta: {
+          middleware: [Middleware.auth],
+          layout: "admin",
+        },
       }
-      ]
+    ]
+  },
+
+  // Jobs
+  {
+    path: "/jobs",
+    component: () => import(/* webpackChunkName:"Jobs" */ "../views/jobs/jobs.vue"),
+    meta: {
+      middleware: [Middleware.auth],
+      layout: "admin",
+    },
+
+    children: [
+      {
+        path: "",
+        name: "jobs.index",
+        component: () => import(/* webpackChunkName:"Jobs Index" */ "../views/jobs/index.vue"),
+        meta: {
+          middleware: [Middleware.auth],
+          layout: "admin",
+        },
+      },
+      {
+        path: "/jobs/create",
+        name: "jobs.create",
+        component: () => import(/* webpackChunkName:"Jobs Create" */ "../components/forms/jobs/Create.vue"),
+        meta: {
+          middleware: [Middleware.auth],
+          layout: "admin",
+        },
+      },
+      {
+        path: "/jobs/edit/:id",
+        name: "jobs.edit",
+        component: () => import(/* webpackChunkName:"Jobs Edit" */ "../components/forms/jobs/Edit.vue"),
+        meta: {
+          middleware: [Middleware.auth],
+          layout: "admin",
+        },
+      }
+    ]
   },
 
   //Chat List
@@ -1209,8 +1250,8 @@ const routes = [
     },
   },
 
-   // report packages
-   {
+  // report packages
+  {
     path: "/report-packages",
     name: "ReportPackage",
     component: ReportPackage,
@@ -1221,8 +1262,8 @@ const routes = [
     },
   },
 
-   // report refill balance
-   {
+  // report refill balance
+  {
     path: "/report-refill-balance",
     name: "ReportRefillBalance",
     component: ReportRefillBalance,
@@ -1233,8 +1274,8 @@ const routes = [
     },
   },
 
-   // report balance transfer
-   {
+  // report balance transfer
+  {
     path: "/report-balance-transfer",
     name: "ReportBalanceTransfer",
     component: ReportBalanceTransfer,
@@ -1245,8 +1286,8 @@ const routes = [
     },
   },
 
-   // report packages register
-   {
+  // report packages register
+  {
     path: "/report-packages-register",
     name: "ReportPackageRegister",
     component: ReportPackageRegister,

@@ -24,6 +24,11 @@
       "icon": "fas fa-phone-office",
       "text": "ໂທອອກຕ່າງປະເທດ",
       "router": "/call-abroad"
+    },
+    {
+      "icon": "fas fa-briefcase",
+      "text": "ວຽກ",
+      "router": "/jobs"
     }
   ],
   "Contactmenus": {
@@ -484,7 +489,11 @@
           "value": "description",
           "sortable": true
         },
-        { "text": "ວິວ", "value": "view", "sortable": true },
+        {
+          "text": "ວິວ",
+          "value": "view",
+          "sortable": true
+        },
         {
           "text": "ຈັດການ",
           "value": "Actions",
@@ -590,14 +599,46 @@
     "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
-        { "text": "ລຳດັບ", "value": "No", "sortable": true },
-        { "text": "ຮູບ", "value": "image", "sortable": true },
-        { "text": "ຫົວຂໍ້", "value": "title", "sortable": true },
-        { "text": "ປະເພດຂອງໂພສ", "value": "postTypeId", "sortable": true },
-        { "text": "ລາຍລະອຽດ", "value": "description", "sortable": true },
-        { "text": "ສະຖານະ", "value": "status", "sortable": true },
-        { "text": "ວິວ", "value": "view", "sortable": true },
-        { "text": "ຈັດການ", "value": "Actions", "sortable": true }
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": true
+        },
+        {
+          "text": "ຮູບ",
+          "value": "image",
+          "sortable": true
+        },
+        {
+          "text": "ຫົວຂໍ້",
+          "value": "title",
+          "sortable": true
+        },
+        {
+          "text": "ປະເພດຂອງໂພສ",
+          "value": "postTypeId",
+          "sortable": true
+        },
+        {
+          "text": "ລາຍລະອຽດ",
+          "value": "description",
+          "sortable": true
+        },
+        {
+          "text": "ສະຖານະ",
+          "value": "status",
+          "sortable": true
+        },
+        {
+          "text": "ວິວ",
+          "value": "view",
+          "sortable": true
+        },
+        {
+          "text": "ຈັດການ",
+          "value": "Actions",
+          "sortable": true
+        }
       ],
       "dontdata": "ບໍ່ມີຂໍ້ມູນ",
       "options": {
@@ -643,7 +684,6 @@
       ]
     }
   },
-
   "PromotionEvent": {
     "title_promotion": "ຂໍ້ມູນໂປຣໂມຊັ່ນ",
     "title_event": "ຂໍ້ມູນອີເວັ້ນ",
@@ -653,15 +693,51 @@
     "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
-        { "text": "ລຳດັບ", "value": "No", "sortable": true },
-        { "text": "ຮູບ", "value": "image", "sortable": true },
-        { "text": "ຫົວຂໍ້", "value": "title", "sortable": true },
-        { "text": "ລາຍລະອຽດ", "value": "description", "sortable": true },
-        { "text": "ເວລາເປີດ", "value": "startDate", "sortable": true },
-        { "text": "ເວລາປິດ", "value": "endDate", "sortable": true },
-        { "text": "ສະຖານະ", "value": "status", "sortable": true },
-        { "text": "ວິວ", "value": "view", "sortable": true },
-        { "text": "ຈັດການ", "value": "Actions", "sortable": true }
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": true
+        },
+        {
+          "text": "ຮູບ",
+          "value": "image",
+          "sortable": true
+        },
+        {
+          "text": "ຫົວຂໍ້",
+          "value": "title",
+          "sortable": true
+        },
+        {
+          "text": "ລາຍລະອຽດ",
+          "value": "description",
+          "sortable": true
+        },
+        {
+          "text": "ເວລາເປີດ",
+          "value": "startDate",
+          "sortable": true
+        },
+        {
+          "text": "ເວລາປິດ",
+          "value": "endDate",
+          "sortable": true
+        },
+        {
+          "text": "ສະຖານະ",
+          "value": "status",
+          "sortable": true
+        },
+        {
+          "text": "ວິວ",
+          "value": "view",
+          "sortable": true
+        },
+        {
+          "text": "ຈັດການ",
+          "value": "Actions",
+          "sortable": true
+        }
       ],
       "dontdata": "ບໍ່ມີຂໍ້ມູນ",
       "options": {
@@ -671,7 +747,6 @@
         "delicon": "fas fa-trash-alt"
       }
     },
-
     "Create": {
       "header_promotion": "ເພີ່ມຂໍ້ມູນໂປຣໂມຊັ້ນ",
       "header_event": "ເພີ່ມຂໍ້ມູນອີເວັ້ນ",
@@ -698,12 +773,17 @@
     },
     "status": {
       "item": [
-        { "text": "ເປີດ", "value": "open" },
-        { "text": "ປິດ", "value": "close" }
+        {
+          "text": "ເປີດ",
+          "value": "open"
+        },
+        {
+          "text": "ປິດ",
+          "value": "close"
+        }
       ]
     }
   },
-
   "CateProduct": {
     "title": "ຂໍ້ມູນປະເພດຂອງຜະລິດຕະພັນ",
     "button": "ເພີ່ມ",
@@ -711,14 +791,26 @@
     "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
-        { "text": "ລຳດັບ", "value": "No", "sortable": true },
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": true
+        },
         {
           "text": "ຊື່ປະເພດຂອງຜະລິດຕະພັນ",
           "value": "cateName",
           "sortable": true
         },
-        { "text": "ລາຍລະອຽດ", "value": "description", "sortable": true },
-        { "text": "ຈັດການ", "value": "Actions", "sortable": true }
+        {
+          "text": "ລາຍລະອຽດ",
+          "value": "description",
+          "sortable": true
+        },
+        {
+          "text": "ຈັດການ",
+          "value": "Actions",
+          "sortable": true
+        }
       ],
       "dontdata": "ບໍ່ມີຂໍ້ມູນ",
       "options": {
@@ -737,7 +829,6 @@
       "form": {
         "cate_product_name": "ຊື່ປະເພດຂອງຜະລິດຕະພັນ",
         "description": "ລາຍລະອຽດ",
-
         "button": {
           "save": "ບັນທຶກ",
           "cancel": "ຍົກເລີກ"
@@ -748,7 +839,6 @@
       "header": "ແກ້ໄຂຂໍ້ມູນປະເພດຂອງຜະລິດຕະພັນ"
     }
   },
-
   "Product": {
     "title": "ຂໍ້ມູນຜະລິດຕະພັນ",
     "button": "ເພີ່ມ",
@@ -756,17 +846,41 @@
     "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
-        { "text": "ລຳດັບ", "value": "No", "sortable": true },
-        { "text": "ຮູບພາບ", "value": "Picture", "sortable": true },
-        { "text": "ຊື່ຜະລິດຕະພັນ", "value": "productName", "sortable": true },
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": true
+        },
+        {
+          "text": "ຮູບພາບ",
+          "value": "Picture",
+          "sortable": true
+        },
+        {
+          "text": "ຊື່ຜະລິດຕະພັນ",
+          "value": "productName",
+          "sortable": true
+        },
         {
           "text": "ປະເພດຜະລິດຕະພັນ",
           "value": "cateProducts.cateName",
           "sortable": true
         },
-        { "text": "ລາຍລະອຽດ", "value": "description", "sortable": true },
-        { "text": "ວິວ", "value": "view", "sortable": true },
-        { "text": "ຈັດການ", "value": "Actions", "sortable": true }
+        {
+          "text": "ລາຍລະອຽດ",
+          "value": "description",
+          "sortable": true
+        },
+        {
+          "text": "ວິວ",
+          "value": "view",
+          "sortable": true
+        },
+        {
+          "text": "ຈັດການ",
+          "value": "Actions",
+          "sortable": true
+        }
       ],
       "dontdata": "ບໍ່ມີຂໍ້ມູນ",
       "options": {
@@ -819,7 +933,6 @@
           "value": "type_name",
           "sortable": true
         },
-
         {
           "text": "ຈັດການ",
           "value": "Actions",
@@ -920,10 +1033,26 @@
     "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
     "table": {
       "headers": [
-        { "text": "ລຳດັບ", "value": "No", "sortable": true },
-        { "text": "ຮູບພາບ", "value": "image", "sortable": true },
-        { "text": "Code", "value": "code", "sortable": false },
-        { "text": "ຊື່ແພັກເກັດ", "value": "name", "sortable": true },
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": true
+        },
+        {
+          "text": "ຮູບພາບ",
+          "value": "image",
+          "sortable": true
+        },
+        {
+          "text": "Code",
+          "value": "code",
+          "sortable": false
+        },
+        {
+          "text": "ຊື່ແພັກເກັດ",
+          "value": "name",
+          "sortable": true
+        },
         {
           "text": "ປະເພດແພັກເກັດ",
           "value": "typePackage.type_name",
@@ -934,15 +1063,43 @@
           "value": "categoryPackage.cateName",
           "sortable": true
         },
-        { "text": "ລາຍລະອຽດ", "value": "detail", "sortable": true },
-        { "text": "ວິວ", "value": "view", "sortable": true },
-        { "text": "ຈັດການ", "value": "Actions", "sortable": true }
+        {
+          "text": "ລາຍລະອຽດ",
+          "value": "detail",
+          "sortable": true
+        },
+        {
+          "text": "ວິວ",
+          "value": "view",
+          "sortable": true
+        },
+        {
+          "text": "ຈັດການ",
+          "value": "Actions",
+          "sortable": true
+        }
       ],
       "headers_simtype": [
-        { "text": "ລຳດັບ", "value": "No", "sortable": true },
-        { "text": "ຮູບພາບ", "value": "image", "sortable": true },
-        { "text": "Code", "value": "code", "sortable": true },
-        { "text": "ຊື່ແພັກເກັດ", "value": "la_name", "sortable": true },
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": true
+        },
+        {
+          "text": "ຮູບພາບ",
+          "value": "image",
+          "sortable": true
+        },
+        {
+          "text": "Code",
+          "value": "code",
+          "sortable": true
+        },
+        {
+          "text": "ຊື່ແພັກເກັດ",
+          "value": "la_name",
+          "sortable": true
+        },
         {
           "text": "ປະເພດແພັກເກັດ",
           "value": "typePackage.type_name",
@@ -953,8 +1110,16 @@
           "value": "categoryPackage.cateName",
           "sortable": true
         },
-        { "text": "ປະເພດຊິມ", "value": "simTypes.detail", "sortable": true },
-        { "text": "ຈັດການ", "value": "Actions", "sortable": true }
+        {
+          "text": "ປະເພດຊິມ",
+          "value": "simTypes.detail",
+          "sortable": true
+        },
+        {
+          "text": "ຈັດການ",
+          "value": "Actions",
+          "sortable": true
+        }
       ],
       "dontdata": "ບໍ່ມີຂໍ້ມູນ",
       "options": {
@@ -1416,13 +1581,27 @@
     "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ...",
     "table": {
       "headers": [
-        { "text": "ລຳດັບ", "value": "No", "sortable": true },
-        { "text": "ຄຳຖາາມ", "value": "question", "sortable": true },
-
-        { "text": "ຄຳຕອບ", "value": "answer", "sortable": true },
-        { "text": "Actions", "value": "Actions", "sortable": true }
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": true
+        },
+        {
+          "text": "ຄຳຖາາມ",
+          "value": "question",
+          "sortable": true
+        },
+        {
+          "text": "ຄຳຕອບ",
+          "value": "answer",
+          "sortable": true
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": true
+        }
       ],
-
       "dontdata": "ບໍ່ມີຂໍ່ມູນ",
       "options": {
         "edit": "ແກ້ໄຂ",
@@ -1454,13 +1633,17 @@
       "header": "ແກ້ໄຂຄຳຖາມ",
       "header_subquestion": "ແກ້ໄຂຄຳຖາມຮອງ"
     },
-
     "itemOption": [
-      { "name": "ແບບຂຽນ", "id": 1 },
-      { "name": "ແບບຮູບ", "id": 2 }
+      {
+        "name": "ແບບຂຽນ",
+        "id": 1
+      },
+      {
+        "name": "ແບບຮູບ",
+        "id": 2
+      }
     ]
   },
-
   "Notification": {
     "saveDataSuccess": "ທ່ານບັນທຶກຂໍ້ມູນສຳເລັດ...ແລ້ວ",
     "editDataSuccess": "ທ່ານແກ້ໄຂຂໍ້ມູນສຳເລັດ...ແລ້ວ",
@@ -1484,10 +1667,22 @@
       "header": "ລາຍງານຂໍ້ມູນລູກຄ້າ",
       "search": "ຄົ້ນຫາ..ຂໍ້ມູນລູກຄ້າ",
       "headers": [
-        { "text": "ຊື່", "value": "Customer.firstName" },
-        { "text": "ນາມສະກຸນ", "value": "Customer.surName" },
-        { "text": "ເບີໂທ", "value": "phone" },
-        { "text": "ສະຖານະ", "value": "status" }
+        {
+          "text": "ຊື່",
+          "value": "Customer.firstName"
+        },
+        {
+          "text": "ນາມສະກຸນ",
+          "value": "Customer.surName"
+        },
+        {
+          "text": "ເບີໂທ",
+          "value": "phone"
+        },
+        {
+          "text": "ສະຖານະ",
+          "value": "status"
+        }
       ],
       "status_select": "ເລືອກສະຖານະ",
       "status_list": [
@@ -1514,13 +1709,34 @@
       "submit": "ສະແດງຜົນ",
       "reset": "ຄ່າເລີ່ມຕົ້ນ",
       "headers": [
-        { "text": "ລຳດັບ", "value": "No" },
-        { "text": "ຫົວຂໍ້", "value": "title" },
-        { "text": "ລາຍລະອຽດ", "value": "desription" },
-        { "text": "ຮູບພາບ", "value": "image" },
-        { "text": "ວັນທີໂພສດ", "value": "startDate" },
-        { "text": "ວັນທີສິ້ນສຸດ", "value": "endDate" },
-        { "text": "ສະຖານະ", "value": "status" }
+        {
+          "text": "ລຳດັບ",
+          "value": "No"
+        },
+        {
+          "text": "ຫົວຂໍ້",
+          "value": "title"
+        },
+        {
+          "text": "ລາຍລະອຽດ",
+          "value": "desription"
+        },
+        {
+          "text": "ຮູບພາບ",
+          "value": "image"
+        },
+        {
+          "text": "ວັນທີໂພສດ",
+          "value": "startDate"
+        },
+        {
+          "text": "ວັນທີສິ້ນສຸດ",
+          "value": "endDate"
+        },
+        {
+          "text": "ສະຖານະ",
+          "value": "status"
+        }
       ]
     },
     "promotion": {
@@ -1556,22 +1772,65 @@
         }
       ],
       "headers": [
-        { "text": "ລຳດັບ", "value": "No", "sortable": true },
-        { "text": "ຮູບພາບ", "value": "image", "sortable": true },
-        { "text": "Code", "value": "packageCode", "sortable": false },
-        { "text": "ຊື່ແພັກເກັດ", "value": "packageName", "sortable": true },
-        { "text": "ລາຍລະອຽດ", "value": "detail", "sortable": true },
-        { "text": "ປະເພດແພັກເກັດ", "value": "packageType", "sortable": true },
-        { "text": "ໝວດໝູ່ແພັກເກັດ", "value": "catId", "sortable": true }
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": true
+        },
+        {
+          "text": "ຮູບພາບ",
+          "value": "image",
+          "sortable": true
+        },
+        {
+          "text": "Code",
+          "value": "packageCode",
+          "sortable": false
+        },
+        {
+          "text": "ຊື່ແພັກເກັດ",
+          "value": "packageName",
+          "sortable": true
+        },
+        {
+          "text": "ລາຍລະອຽດ",
+          "value": "detail",
+          "sortable": true
+        },
+        {
+          "text": "ປະເພດແພັກເກັດ",
+          "value": "packageType",
+          "sortable": true
+        },
+        {
+          "text": "ໝວດໝູ່ແພັກເກັດ",
+          "value": "catId",
+          "sortable": true
+        }
       ]
     },
     "news": {
       "headers": [
-        { "text": "ລຳດັບ", "value": "No" },
-        { "text": "ຫົວຂໍ້", "value": "title" },
-        { "text": "ລາຍລະອຽດ", "value": "desription" },
-        { "text": "ຮູບພາບ", "value": "image" },
-        { "text": "ສະຖານະ", "value": "status" }
+        {
+          "text": "ລຳດັບ",
+          "value": "No"
+        },
+        {
+          "text": "ຫົວຂໍ້",
+          "value": "title"
+        },
+        {
+          "text": "ລາຍລະອຽດ",
+          "value": "desription"
+        },
+        {
+          "text": "ຮູບພາບ",
+          "value": "image"
+        },
+        {
+          "text": "ສະຖານະ",
+          "value": "status"
+        }
       ],
       "status": [
         {
@@ -1592,12 +1851,30 @@
       "refill_total": "ຍອດການຕື່ມມູນຄ່າໂທທັງໝົດ",
       "refill": "ຕື່ມມູນຄ່າໂທ",
       "headers": [
-        { "text": "ລຳດັບ", "value": "No" },
-        { "text": "ປະເພດ", "value": "type" },
-        { "text": "ລະຫັດ", "value": "code" },
-        { "text": "ເບີໂທໃຊ້ຕື່ມເງິນ", "value": "phoneDestination" },
-        { "text": "ເບີໂທລູກຄ້າ", "value": "User.phone" },
-        { "text": "ວັນທີ", "value": "createdAt" }
+        {
+          "text": "ລຳດັບ",
+          "value": "No"
+        },
+        {
+          "text": "ປະເພດ",
+          "value": "type"
+        },
+        {
+          "text": "ລະຫັດ",
+          "value": "code"
+        },
+        {
+          "text": "ເບີໂທໃຊ້ຕື່ມເງິນ",
+          "value": "phoneDestination"
+        },
+        {
+          "text": "ເບີໂທລູກຄ້າ",
+          "value": "User.phone"
+        },
+        {
+          "text": "ວັນທີ",
+          "value": "createdAt"
+        }
       ]
     },
     "balance_transfer": {
@@ -1605,12 +1882,30 @@
       "refill_total": "ຍອດການໂອນທັງໝົດ",
       "refill": "ໂອນເງິນ",
       "headers": [
-        { "text": "ລຳດັບ", "value": "No" },
-        { "text": "ປະເພດ", "value": "type" },
-        { "text": "ມູນຄ່າ", "value": "value" },
-        { "text": "ເບີໂທຕົ້ນທາງ", "value": "User.phone" },
-        { "text": "ເບີໂທປາຍທາງ", "value": "phoneDestination" },
-        { "text": "ວັນທີ", "value": "createdAt" }
+        {
+          "text": "ລຳດັບ",
+          "value": "No"
+        },
+        {
+          "text": "ປະເພດ",
+          "value": "type"
+        },
+        {
+          "text": "ມູນຄ່າ",
+          "value": "value"
+        },
+        {
+          "text": "ເບີໂທຕົ້ນທາງ",
+          "value": "User.phone"
+        },
+        {
+          "text": "ເບີໂທປາຍທາງ",
+          "value": "phoneDestination"
+        },
+        {
+          "text": "ວັນທີ",
+          "value": "createdAt"
+        }
       ]
     },
     "package_register": {
@@ -1618,13 +1913,34 @@
       "refill_total": "ຍອດການນຳໃຊ້ແພັກເກັດ",
       "refill": "ສະໝັກແພັກເກັດ",
       "headers": [
-        { "text": "ລຳດັບ", "value": "No" },
-        { "text": "ປະເພດ", "value": "type" },
-        { "text": "ລະຫັດ", "value": "code" },
-        { "text": "ຊື່ແພັກເກັດ", "value": "value" },
-        { "text": "ເບີໂທທີ່ສະໝັກ", "value": "phoneDestination" },
-        { "text": "ເບີໂທລູກຄ້າ", "value": "User.phone" },
-        { "text": "ວັນທີ", "value": "createdAt" }
+        {
+          "text": "ລຳດັບ",
+          "value": "No"
+        },
+        {
+          "text": "ປະເພດ",
+          "value": "type"
+        },
+        {
+          "text": "ລະຫັດ",
+          "value": "code"
+        },
+        {
+          "text": "ຊື່ແພັກເກັດ",
+          "value": "value"
+        },
+        {
+          "text": "ເບີໂທທີ່ສະໝັກ",
+          "value": "phoneDestination"
+        },
+        {
+          "text": "ເບີໂທລູກຄ້າ",
+          "value": "User.phone"
+        },
+        {
+          "text": "ວັນທີ",
+          "value": "createdAt"
+        }
       ]
     }
   },
@@ -1689,7 +2005,104 @@
       "delete": "ລົບຂໍ້ມູນ"
     }
   },
-
+  "Jobs": {
+    "title": "ຂໍ້ມູນວຽກ",
+    "button": "ເພີ່ມ",
+    "search": "ຄົ້ນຫາ...",
+    "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
+    "table": {
+      "headers": [
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": true
+        },
+        {
+          "text": "ຫົວຂໍ້",
+          "value": "title",
+          "sortable": true
+        },
+        {
+          "text": "ປະເພດວຽກ",
+          "value": "type_job_id",
+          "sortable": true
+        },
+        {
+          "text": "ບໍລິສັດ",
+          "value": "company",
+          "sortable": true
+        },
+        {
+          "text": "ສະຖານທີ່",
+          "value": "location",
+          "sortable": true
+        },
+        {
+          "text": "ປະເພດ",
+          "value": "type",
+          "sortable": true
+        },
+        {
+          "text": "ເງິນເດືອນ",
+          "value": "salary",
+          "sortable": true
+        },
+        {
+          "text": "ວັນທີເລີ່ມ",
+          "value": "start_date",
+          "sortable": true
+        },
+        {
+          "text": "ວັນທີສິ້ນສຸດ",
+          "value": "end_date",
+          "sortable": true
+        },
+        {
+          "text": "ສະຖານະ",
+          "value": "is_active",
+          "sortable": true
+        },
+        {
+          "text": "ຈັດການ",
+          "value": "Actions",
+          "sortable": false
+        }
+      ]
+    },
+    "Create": {
+      "header": "ເພີ່ມຂໍ້ມູນວຽກ"
+    },
+    "Edit": {
+      "header": "ແກ້ໄຂຂໍ້ມູນວຽກ"
+    },
+    "Delete": {
+      "title": "ລົບຂໍ້ມູນວຽກ"
+    },
+    "form": {
+      "title": "ຫົວຂໍ້ວຽກ",
+      "company": "ບໍລິສັດ",
+      "type_job_id": "ເລືອກປະເພດວຽກ",
+      "location": "ສະຖານທີ່",
+      "type": "ປະເພດການຈ້າງງານ",
+      "salary": "ເງິນເດືອນ",
+      "salary_placeholder": "ຕົວຢ່າງ 5000000-5500000",
+      "description": "ລາຍລະອຽດ",
+      "start_date": "ວັນທີເລີ່ມ",
+      "end_date": "ວັນທີສິ້ນສຸດ",
+      "logo_url": "ຮູບໂລໂກ້",
+      "image_details": "ຮູບລາຍລະອຽດ",
+      "is_active": "ເປີດໃຊ້ງານ"
+    },
+    "status": {
+      "active": "ເປີດໃຊ້ງານ",
+      "inactive": "ປິດໃຊ້ງານ"
+    },
+    "options": {
+      "save": "ບັນທຶກ",
+      "cancel": "ຍົກເລີກ",
+      "delete": "ລົບຂໍ້ມູນ"
+    }
+  },
   "reports": {
     "customer": {
       "all_users": "ຈຳນວນລູກຄ້າທັງໝົດ",

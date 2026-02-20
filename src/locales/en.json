@@ -24,6 +24,11 @@
       "icon": "fas fa-phone-office",
       "text": "Call Abroad",
       "router": "/call-abroad"
+    },
+    {
+      "icon": "fas fa-briefcase",
+      "text": "Jobs",
+      "router": "/jobs"
     }
   ],
   "Contactmenus": {
@@ -74,7 +79,6 @@
         "text": "Promotion",
         "router": "/promotion"
       },
-
       {
         "icon": "far fa-newspaper",
         "text": "Event",
@@ -232,7 +236,6 @@
         "email": "Email",
         "tile": "Title",
         "description": "Description",
-
         "button": {
           "save": "Save",
           "cancel": "Cancel"
@@ -461,7 +464,12 @@
     "loadingtext": "Loading...",
     "table": {
       "headers": [
-        { "text": "No", "value": "No", "sortable": true, "checked": false },
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": true,
+          "checked": false
+        },
         {
           "text": "Piccture",
           "value": "BannerTrans[0].image[0]",
@@ -472,14 +480,26 @@
           "value": "BannerTrans[0].banName",
           "sortable": true
         },
-        { "text": "Link", "value": "BannerTrans[0].link", "sortable": true },
+        {
+          "text": "Link",
+          "value": "BannerTrans[0].link",
+          "sortable": true
+        },
         {
           "text": "Description",
           "value": "BannerTrans[0].description",
           "sortable": true
         },
-        { "text": "View", "value": "view", "sortable": true },
-        { "text": "Actions", "value": "Actions", "sortable": true }
+        {
+          "text": "View",
+          "value": "view",
+          "sortable": true
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": true
+        }
       ],
       "dontdata": "Don't have data",
       "options": {
@@ -500,7 +520,6 @@
         "link": "Link",
         "description": "Description",
         "picture": "Upload Image",
-
         "button": {
           "save": "Save",
           "cancel": "Cancel"
@@ -518,13 +537,21 @@
     "loadingtext": "Loading...",
     "table": {
       "headers": [
-        { "text": "No", "value": "No", "sortable": true },
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": true
+        },
         {
           "text": "Category Post Name",
           "value": "NewsCategoryTrans[0].name",
           "sortable": true
         },
-        { "text": "Actions", "value": "Actions", "sortable": true }
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": true
+        }
       ],
       "dontdata": "Don't have data",
       "options": {
@@ -555,8 +582,14 @@
     },
     "Status": {
       "item": [
-        { "text": "Open", "value": true },
-        { "text": "close", "value": false }
+        {
+          "text": "Open",
+          "value": true
+        },
+        {
+          "text": "close",
+          "value": false
+        }
       ]
     }
   },
@@ -567,7 +600,11 @@
     "loadingtext": "Loading...",
     "table": {
       "headers": [
-        { "text": "No", "value": "No", "sortable": true },
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": true
+        },
         {
           "text": "Pictures",
           "value": "PostImageTrans[0].image",
@@ -588,9 +625,21 @@
           "value": "PostTrans[0].description",
           "sortable": true
         },
-        { "text": "Status", "value": "status", "sortable": true },
-        { "text": "View", "value": "view", "sortable": true },
-        { "text": "Actions", "value": "Actions", "sortable": true }
+        {
+          "text": "Status",
+          "value": "status",
+          "sortable": true
+        },
+        {
+          "text": "View",
+          "value": "view",
+          "sortable": true
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": true
+        }
       ],
       "dontdata": "Dont have data",
       "options": {
@@ -600,7 +649,6 @@
         "delicon": "fas fa-trash-alt"
       }
     },
-
     "Create": {
       "header": "Add News",
       "lang": {
@@ -626,8 +674,14 @@
     },
     "status": {
       "item": [
-        { "text": "Open", "value": "open" },
-        { "text": "Close", "value": "close" }
+        {
+          "text": "Open",
+          "value": "open"
+        },
+        {
+          "text": "Close",
+          "value": "close"
+        }
       ]
     }
   },
@@ -640,25 +694,51 @@
     "loadingtext": "Loading...",
     "table": {
       "headers": [
-        { "text": "No", "value": "No", "sortable": true },
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": true
+        },
         {
           "text": "Pictures",
           "value": "PostImageTrans[0].image",
           "sortable": true
         },
-        { "text": "title", "value": "PostTrans[0].title", "sortable": true },
-
+        {
+          "text": "title",
+          "value": "PostTrans[0].title",
+          "sortable": true
+        },
         {
           "text": "Description",
           "value": "PostTrans[0].description",
           "sortable": true
         },
-        { "text": "Start Date", "value": "startDate", "sortable": true },
-        { "text": "End Date", "value": "endDate", "sortable": true },
-
-        { "text": "Status", "value": "status", "sortable": true },
-        { "text": "View", "value": "view", "sortable": true },
-        { "text": "Actions", "value": "Actions", "sortable": true }
+        {
+          "text": "Start Date",
+          "value": "startDate",
+          "sortable": true
+        },
+        {
+          "text": "End Date",
+          "value": "endDate",
+          "sortable": true
+        },
+        {
+          "text": "Status",
+          "value": "status",
+          "sortable": true
+        },
+        {
+          "text": "View",
+          "value": "view",
+          "sortable": true
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": true
+        }
       ],
       "dontdata": "Dont have data",
       "options": {
@@ -668,7 +748,6 @@
         "delicon": "fas fa-trash-alt"
       }
     },
-
     "Create": {
       "header_promotion": "Add Promotion",
       "header_event": "Add Event",
@@ -695,12 +774,17 @@
     },
     "status": {
       "item": [
-        { "text": "Open", "value": "open" },
-        { "text": "Close", "value": "close" }
+        {
+          "text": "Open",
+          "value": "open"
+        },
+        {
+          "text": "Close",
+          "value": "close"
+        }
       ]
     }
   },
-
   "CateProduct": {
     "title": "Category Product",
     "button": "Create",
@@ -708,15 +792,26 @@
     "loadingtext": "Loading...",
     "table": {
       "headers": [
-        { "text": "No", "value": "No", "sortable": true },
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": true
+        },
         {
           "text": "Category Product Name",
           "value": "CateProductTrans[0].cateName",
           "sortable": true
         },
-
-        { "text": "Description", "value": "description", "sortable": true },
-        { "text": "Actions", "value": "Actions", "sortable": true }
+        {
+          "text": "Description",
+          "value": "description",
+          "sortable": true
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": true
+        }
       ],
       "dontdata": "Don't have data",
       "options": {
@@ -735,7 +830,6 @@
       "form": {
         "cate_product_name": "Category Product Name",
         "description": "Description",
-
         "button": {
           "save": "Save",
           "cancel": "Cancel"
@@ -753,8 +847,16 @@
     "loadingtext": "Loading..",
     "table": {
       "headers": [
-        { "text": "No", "value": "No", "sortable": true },
-        { "text": "Pictures", "value": "Picture", "sortable": true },
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": true
+        },
+        {
+          "text": "Pictures",
+          "value": "Picture",
+          "sortable": true
+        },
         {
           "text": "Product Name",
           "value": "ProductTrans[0].productName",
@@ -770,8 +872,16 @@
           "value": "ProductTrans[0].description",
           "sortable": true
         },
-        { "text": "View", "value": "view", "sortable": true },
-        { "text": "Actions", "value": "Actions", "sortable": true }
+        {
+          "text": "View",
+          "value": "view",
+          "sortable": true
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": true
+        }
       ],
       "dontdata": "Dont have data",
       "options": {
@@ -824,7 +934,6 @@
           "value": "type_name",
           "sortable": true
         },
-
         {
           "text": "Actions",
           "value": "Actions",
@@ -869,11 +978,26 @@
     "loadingtext": "Loading...",
     "table": {
       "headers": [
-        { "text": "No", "value": "No", "sortable": true },
-        { "text": "Code", "value": "mainProduct", "sortable": true },
-
-        { "text": "Description", "value": "detail", "sortable": true },
-        { "text": "Actions", "value": "Actions", "sortable": true }
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": true
+        },
+        {
+          "text": "Code",
+          "value": "mainProduct",
+          "sortable": true
+        },
+        {
+          "text": "Description",
+          "value": "detail",
+          "sortable": true
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": true
+        }
       ],
       "dontdata": "Don't have data",
       "options": {
@@ -892,7 +1016,6 @@
       "form": {
         "cate_data_package_name": "Sim Type",
         "description": "Description",
-
         "button": {
           "save": "Save",
           "cancel": "Cancel"
@@ -911,10 +1034,26 @@
     "loadingtext": "Loading...",
     "table": {
       "headers": [
-        { "text": "No", "value": "No", "sortable": true },
-        { "text": "Pictures", "value": "Picture", "sortable": true },
-        { "text": "Code", "value": "code", "sortable": true },
-        { "text": "Package Name", "value": "name", "sortable": true },
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": true
+        },
+        {
+          "text": "Pictures",
+          "value": "Picture",
+          "sortable": true
+        },
+        {
+          "text": "Code",
+          "value": "code",
+          "sortable": true
+        },
+        {
+          "text": "Package Name",
+          "value": "name",
+          "sortable": true
+        },
         {
           "text": "Package Type",
           "value": "typePackage.type_name",
@@ -925,15 +1064,43 @@
           "value": "categoryPackage.cateName",
           "sortable": true
         },
-        { "text": "Detail", "value": "detail", "sortable": true },
-        { "text": "View", "value": "view", "sortable": true },
-        { "text": "Actions", "value": "Actions", "sortable": true }
+        {
+          "text": "Detail",
+          "value": "detail",
+          "sortable": true
+        },
+        {
+          "text": "View",
+          "value": "view",
+          "sortable": true
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": true
+        }
       ],
       "headers_simtype": [
-        { "text": "No", "value": "No", "sortable": true },
-        { "text": "Pictures", "value": "Picture", "sortable": true },
-        { "text": "Code", "value": "code", "sortable": true },
-        { "text": "Package Name", "value": "en_name", "sortable": true },
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": true
+        },
+        {
+          "text": "Pictures",
+          "value": "Picture",
+          "sortable": true
+        },
+        {
+          "text": "Code",
+          "value": "code",
+          "sortable": true
+        },
+        {
+          "text": "Package Name",
+          "value": "en_name",
+          "sortable": true
+        },
         {
           "text": "Package Type",
           "value": "typePackage.type_name",
@@ -944,8 +1111,16 @@
           "value": "categoryPackage.cateName",
           "sortable": true
         },
-        { "text": "Sim Type", "value": "simTypes.detail", "sortable": true },
-        { "text": "Actions", "value": "Actions", "sortable": true }
+        {
+          "text": "Sim Type",
+          "value": "simTypes.detail",
+          "sortable": true
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": true
+        }
       ],
       "dontdata": "Don't have data",
       "options": {
@@ -1217,7 +1392,6 @@
           "value": "updatedAt",
           "sortable": true
         },
-
         {
           "text": "Actions",
           "value": "Actions",
@@ -1251,7 +1425,6 @@
       "header": "Edit User Roles"
     }
   },
-
   "ChatQuestion": {
     "title": "Question",
     "subtitle": "Sub Question",
@@ -1261,10 +1434,26 @@
     "loadingtext": "Loading...",
     "table": {
       "headers": [
-        { "text": "No", "value": "No", "sortable": true },
-        { "text": "Question", "value": "question", "sortable": true },
-        { "text": "Answer", "value": "answer", "sortable": true },
-        { "text": "Actions", "value": "Actions", "sortable": true }
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": true
+        },
+        {
+          "text": "Question",
+          "value": "question",
+          "sortable": true
+        },
+        {
+          "text": "Answer",
+          "value": "answer",
+          "sortable": true
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": true
+        }
       ],
       "dontdata": "Don't have data",
       "options": {
@@ -1293,16 +1482,17 @@
         }
       }
     },
-    "Edit": {
-      "header": "Edit Question",
-      "header": "Edit Sub Question"
-    },
     "itemOption": [
-      { "name": "Write", "id": 1 },
-      { "name": "Picture", "id": 2 }
+      {
+        "name": "Write",
+        "id": 1
+      },
+      {
+        "name": "Picture",
+        "id": 2
+      }
     ]
   },
-
   "Validate": {
     "required": "Please!! input data",
     "email": "E-mail must not be valid",
@@ -1333,10 +1523,22 @@
       "header": "Report data customer",
       "search": "Search..customer",
       "headers": [
-        { "text": "Name", "value": "Customer.firstName" },
-        { "text": "Lastname", "value": "Customer.surName" },
-        { "text": "Phone", "value": "phone" },
-        { "text": "Status", "value": "status" }
+        {
+          "text": "Name",
+          "value": "Customer.firstName"
+        },
+        {
+          "text": "Lastname",
+          "value": "Customer.surName"
+        },
+        {
+          "text": "Phone",
+          "value": "phone"
+        },
+        {
+          "text": "Status",
+          "value": "status"
+        }
       ],
       "status_select": "Choose a status",
       "status_list": [
@@ -1363,13 +1565,34 @@
       "submit": "Submit",
       "reset": "Reset",
       "headers": [
-        { "text": "No", "value": "No" },
-        { "text": "Title", "value": "title" },
-        { "text": "Description", "value": "desription" },
-        { "text": "Image", "value": "image" },
-        { "text": "From Date", "value": "startDate" },
-        { "text": "To Date", "value": "endDate" },
-        { "text": "Status", "value": "status" }
+        {
+          "text": "No",
+          "value": "No"
+        },
+        {
+          "text": "Title",
+          "value": "title"
+        },
+        {
+          "text": "Description",
+          "value": "desription"
+        },
+        {
+          "text": "Image",
+          "value": "image"
+        },
+        {
+          "text": "From Date",
+          "value": "startDate"
+        },
+        {
+          "text": "To Date",
+          "value": "endDate"
+        },
+        {
+          "text": "Status",
+          "value": "status"
+        }
       ]
     },
     "promotion": {
@@ -1405,22 +1628,65 @@
         }
       ],
       "headers": [
-        { "text": "No", "value": "No", "sortable": true },
-        { "text": "Pictures", "value": "image", "sortable": true },
-        { "text": "Code", "value": "packageCode", "sortable": true },
-        { "text": "Package Name", "value": "packageName", "sortable": true },
-        { "text": "Detail", "value": "detail", "sortable": true },
-        { "text": "Package Type", "value": "packageType", "sortable": true },
-        { "text": "Package Cate", "value": "catId", "sortable": true }
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": true
+        },
+        {
+          "text": "Pictures",
+          "value": "image",
+          "sortable": true
+        },
+        {
+          "text": "Code",
+          "value": "packageCode",
+          "sortable": true
+        },
+        {
+          "text": "Package Name",
+          "value": "packageName",
+          "sortable": true
+        },
+        {
+          "text": "Detail",
+          "value": "detail",
+          "sortable": true
+        },
+        {
+          "text": "Package Type",
+          "value": "packageType",
+          "sortable": true
+        },
+        {
+          "text": "Package Cate",
+          "value": "catId",
+          "sortable": true
+        }
       ]
     },
     "news": {
       "headers": [
-        { "text": "No", "value": "No" },
-        { "text": "Title", "value": "title" },
-        { "text": "Description", "value": "desription" },
-        { "text": "Image", "value": "image" },
-        { "text": "Status", "value": "status" }
+        {
+          "text": "No",
+          "value": "No"
+        },
+        {
+          "text": "Title",
+          "value": "title"
+        },
+        {
+          "text": "Description",
+          "value": "desription"
+        },
+        {
+          "text": "Image",
+          "value": "image"
+        },
+        {
+          "text": "Status",
+          "value": "status"
+        }
       ],
       "status": [
         {
@@ -1436,44 +1702,101 @@
       ],
       "status_title": "Choose status"
     },
-    "refill_balance":{
-      "title":"Refill balance report",
-      "refill_total":"Refill balance total",
-      "refill":"Refill balance",
+    "refill_balance": {
+      "title": "Refill balance report",
+      "refill_total": "Refill balance total",
+      "refill": "Refill balance",
       "headers": [
-        { "text": "No", "value": "No" },
-        { "text": "Type", "value": "type" },
-        { "text": "Code", "value": "code" },
-        { "text": "Phone refill", "value": "phoneDestination" },
-        { "text": "Phone customer", "value": "User.phone" },
-        { "text": "Date", "value": "createdAt" }
+        {
+          "text": "No",
+          "value": "No"
+        },
+        {
+          "text": "Type",
+          "value": "type"
+        },
+        {
+          "text": "Code",
+          "value": "code"
+        },
+        {
+          "text": "Phone refill",
+          "value": "phoneDestination"
+        },
+        {
+          "text": "Phone customer",
+          "value": "User.phone"
+        },
+        {
+          "text": "Date",
+          "value": "createdAt"
+        }
       ]
     },
-    "balance_transfer":{
-      "title":"Balance transfer report",
-      "refill_total":"Balance transfer total",
-      "refill":"Balance transfer",
+    "balance_transfer": {
+      "title": "Balance transfer report",
+      "refill_total": "Balance transfer total",
+      "refill": "Balance transfer",
       "headers": [
-        { "text": "No", "value": "No" },
-        { "text": "Type", "value": "type" },
-        { "text": "Value", "value": "value" },
-        { "text": "From phone", "value": "User.phone" },
-        { "text": "To phone", "value": "phoneDestination" },
-        { "text": "Date", "value": "createdAt" }
+        {
+          "text": "No",
+          "value": "No"
+        },
+        {
+          "text": "Type",
+          "value": "type"
+        },
+        {
+          "text": "Value",
+          "value": "value"
+        },
+        {
+          "text": "From phone",
+          "value": "User.phone"
+        },
+        {
+          "text": "To phone",
+          "value": "phoneDestination"
+        },
+        {
+          "text": "Date",
+          "value": "createdAt"
+        }
       ]
     },
-    "package_register":{
-      "title":"Package register report",
-      "refill_total":"Balance package register total",
-      "refill":"Register package",
+    "package_register": {
+      "title": "Package register report",
+      "refill_total": "Balance package register total",
+      "refill": "Register package",
       "headers": [
-        { "text": "No", "value": "No" },
-        { "text": "Type", "value": "type" },
-        { "text": "Code", "value": "code" },
-        { "text": "Package", "value": "value" },
-        { "text": "Phone register ", "value": "phoneDestination" },
-        { "text": "Phone customer", "value": "User.phone" },
-        { "text": "Date", "value": "createdAt" }
+        {
+          "text": "No",
+          "value": "No"
+        },
+        {
+          "text": "Type",
+          "value": "type"
+        },
+        {
+          "text": "Code",
+          "value": "code"
+        },
+        {
+          "text": "Package",
+          "value": "value"
+        },
+        {
+          "text": "Phone register ",
+          "value": "phoneDestination"
+        },
+        {
+          "text": "Phone customer",
+          "value": "User.phone"
+        },
+        {
+          "text": "Date",
+          "value": "createdAt"
+        }
       ]
     }
   },
@@ -1532,7 +1855,104 @@
       "delete": "Delete"
     }
   },
-
+  "Jobs": {
+    "title": "Jobs Data",
+    "button": "Create",
+    "search": "Search...",
+    "loadingtext": "Loading...",
+    "table": {
+      "headers": [
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": true
+        },
+        {
+          "text": "Title",
+          "value": "title",
+          "sortable": true
+        },
+        {
+          "text": "Job Type",
+          "value": "type_job_id",
+          "sortable": true
+        },
+        {
+          "text": "Company",
+          "value": "company",
+          "sortable": true
+        },
+        {
+          "text": "Location",
+          "value": "location",
+          "sortable": true
+        },
+        {
+          "text": "Type",
+          "value": "type",
+          "sortable": true
+        },
+        {
+          "text": "Salary",
+          "value": "salary",
+          "sortable": true
+        },
+        {
+          "text": "Start Date",
+          "value": "start_date",
+          "sortable": true
+        },
+        {
+          "text": "End Date",
+          "value": "end_date",
+          "sortable": true
+        },
+        {
+          "text": "Status",
+          "value": "is_active",
+          "sortable": true
+        },
+        {
+          "text": "Actions",
+          "value": "Actions",
+          "sortable": false
+        }
+      ]
+    },
+    "Create": {
+      "header": "Add Job"
+    },
+    "Edit": {
+      "header": "Edit Job"
+    },
+    "Delete": {
+      "title": "Delete Job"
+    },
+    "form": {
+      "title": "Job Title",
+      "company": "Company",
+      "type_job_id": "Job Type ID",
+      "location": "Location",
+      "type": "Employment Type",
+      "salary": "Salary",
+      "salary_placeholder": "e.g. 5000000-5500000",
+      "description": "Description",
+      "start_date": "Start Date",
+      "end_date": "End Date",
+      "logo_url": "Logo Image",
+      "image_details": "Detail Image",
+      "is_active": "Active"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "options": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "delete": "Delete"
+    }
+  },
   "reports": {
     "customer": {
       "all_users": "All customers",
