@@ -1572,6 +1572,286 @@
       "header": "Edit User Roles"
     }
   },
+  "Jobs": {
+    "title": "ຂໍ້ມູນວຽກ",
+    "button": "ເພີ່ມ",
+    "search": "ຄົ້ນຫາຂໍ້ມູນ",
+    "JobRecruit": "ເບີ່ງຄົນທີ່ມາສະໝັກວຽກ",
+    "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ...",
+    "Create": {
+      "header": "ເພີ່ມຂໍ້ມູນວຽກ"
+    },
+    "Edit": {
+      "header": "ແກ້ໄຂຂໍ້ມູນວຽກ"
+    },
+    "form": {
+      "logo": "ໂລໂກ້ບໍລິສັດ",
+      "title": "ຫົວຂໍ້",
+      "company": "ບໍລິສັດ",
+      "type_job_id": "ປະເພດວຽກ",
+      "location": "ສະຖານທີ່",
+      "type": "ປະເພດການຈ້າງງານ",
+      "salary": "ເງິນເດືອນ",
+      "salary_placeholder": "ລະບຸເງິນເດືອນ",
+      "description": "ລາຍລະອຽດ",
+      "image_details": "ຮູບລາຍລະອຽດ",
+      "is_active": "ສະຖານະ",
+      "start_date": "ວັນເລີ່ມເປີດຮັບສະໝັກ",
+      "end_date": "ວັນປິດຮັບສະໝັກ",
+      "start_date_hint": "ຄລິກເພື່ອເລືອກວັນທີ່ເລີ່ມສະແດງປະກາດວຽກ",
+      "end_date_hint": "ວັນສຸດທ້າຍທີ່ຜູ້ສະໝັກສາມາດສະໝັກວຽກໄດ້",
+      "date_range_title": "ຊ່ວງເວລາເປີດຮັບສະໝັກ",
+      "date_range_subtitle": "ກຳນົດວັນທີ່ປະກາດວຽກຈະສະແດງ ແລະ ຮັບສະໝັກວຽກ",
+      "total_days": "ເປີດຮັບສະໝັກທັງໝົດ:",
+      "date_error": "ວັນປິດຮັບສະໝັກຕ້ອງມາຫຼັງວັນເລີ່ມເປີດຮັບສະໝັກ",
+      "max_file_size": "ຂະໜາດໄຟລ່ສູງສຸດ 5MB"
+    },
+    "options": {
+      "save": "ບັນທຶກ",
+      "cancel": "ຍົກເລີກ",
+      "delete": "ລົບ"
+    },
+    "status": {
+      "active": "ເປີດໃຊ້ງານ",
+      "inactive": "ປິດໃຊ້ງານ"
+    },
+    "table": {
+      "headers": [
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": true
+        },
+        {
+          "text": "ຫົວຂໍ້",
+          "value": "title",
+          "sortable": true
+        },
+        {
+          "text": "ປະເພດວຽກ",
+          "value": "type_job_id",
+          "sortable": true
+        },
+        {
+          "text": "ບໍລິສັດ",
+          "value": "company",
+          "sortable": true
+        },
+        {
+          "text": "ສະຖານທີ່",
+          "value": "location",
+          "sortable": true
+        },
+        {
+          "text": "ປະເພດ",
+          "value": "type",
+          "sortable": true
+        },
+        {
+          "text": "ເງິນເດືອນ",
+          "value": "salary",
+          "sortable": true
+        },
+        {
+          "text": "ວັນເລີ່ມຕົ້ນ",
+          "value": "start_date",
+          "sortable": true
+        },
+        {
+          "text": "ວັນສິ້ນສຸດ",
+          "value": "end_date",
+          "sortable": true
+        },
+        {
+          "text": "ສະຖານະ",
+          "value": "is_active",
+          "sortable": true
+        },
+        {
+          "text": "ຈັດການ",
+          "value": "Actions",
+          "sortable": true
+        }
+      ],
+      "dontdata": "ບໍ່ມີຂໍ້ມູນ",
+      "options": {
+        "edit": "ແກ້ໄຂ",
+        "iconEdit": "fas fa-edit",
+        "delete": "ລົບ",
+        "delicon": "fas fa-trash-alt"
+      }
+    }
+  },
+  "JobApplicants": {
+    "title": "ລາຍຊື່ຜູ້ສະໝັກວຽກ",
+    "pendingTitle": "ລາຍຊື່ຄົນທີ່ມາສະໝັກວຽກ",
+    "historyTitle": "ປະຫວັດລາຍຊື່ຄົນທີ່ມາສະໝັກວຽກ",
+    "back": "ກັບຄືນ",
+    "search": "ຄົ້ນຫາ...",
+    "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ...",
+    "status": {
+      "pending": "ລໍຖ້າ",
+      "confirmed": "ອະນຸມັດ",
+      "rejected": "ປະຕິເສດ"
+    },
+    "actions": {
+      "view": "ເບິ່ງລາຍລະອຽດ",
+      "confirm": "ອະນຸມັດ",
+      "reject": "ປະຕິເສດ",
+      "close": "ປິດ"
+    },
+    "table": {
+      "headers": [
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "ຊື່",
+          "value": "name_and_surname",
+          "sortable": true
+        },
+        {
+          "text": "ເງິນເດືອນທີ່ຄາດຫວັງ",
+          "value": "salary_expecting",
+          "sortable": true
+        },
+        {
+          "text": "ເບີໂທ",
+          "value": "contact_number",
+          "sortable": true
+        },
+        {
+          "text": "ແຂວງ",
+          "value": "province",
+          "sortable": true
+        },
+        {
+          "text": "ເພດ",
+          "value": "sex",
+          "sortable": true
+        },
+        {
+          "text": "ວັນທີ",
+          "value": "createdAt",
+          "sortable": true
+        },
+        {
+          "text": "ສະຖານະ",
+          "value": "status",
+          "sortable": true
+        },
+        {
+          "text": "ຈັດການ",
+          "value": "actions",
+          "sortable": false
+        }
+      ],
+      "dontdata": "ບໍ່ມີຜູ້ສະໝັກ"
+    },
+    "historyTable": {
+      "headers": [
+        {
+          "text": "ລຳດັບ",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "ຊື່",
+          "value": "name_and_surname",
+          "sortable": true
+        },
+        {
+          "text": "ເງິນເດືອນທີ່ຄາດຫວັງ",
+          "value": "salary_expecting",
+          "sortable": true
+        },
+        {
+          "text": "ເບີໂທ",
+          "value": "contact_number",
+          "sortable": true
+        },
+        {
+          "text": "ແຂວງ",
+          "value": "province",
+          "sortable": true
+        },
+        {
+          "text": "ເພດ",
+          "value": "sex",
+          "sortable": true
+        },
+        {
+          "text": "ວັນທີ",
+          "value": "createdAt",
+          "sortable": true
+        },
+        {
+          "text": "ສະຖານະ",
+          "value": "status",
+          "sortable": true
+        },
+        {
+          "text": "ຈັດການ",
+          "value": "actions",
+          "sortable": false
+        }
+      ],
+      "dontdata": "ບໍ່ມີປະຫວັດ"
+    },
+    "detail": {
+      "title": "ລາຍລະອຽດຜູ້ສະໝັກ",
+      "personalInfo": "ຂໍ້ມູນສ່ວນຕົວ",
+      "name": "ຊື່",
+      "dob": "ວັນເດືອນປີເກີດ",
+      "pob": "ບ່ອນເກີດ",
+      "sex": "ເພດ",
+      "nationality": "ສັນຊາດ",
+      "maritalStatus": "ສະຖານະພາບ",
+      "contactInfo": "ຂໍ້ມູນຕິດຕໍ່",
+      "phone": "ເບີໂທ",
+      "email": "ອີເມວ",
+      "address": "ທີ່ຢູ່ປັດຈຸບັນ",
+      "village": "ບ້ານ",
+      "district": "ເມືອງ",
+      "province": "ແຂວງ",
+      "jobInfo": "ຂໍ້ມູນວຽກ",
+      "jobTitle": "ຕຳແໜ່ງ",
+      "jobType": "ປະເພດວຽກ",
+      "jobDescription": "ລາຍລະອຽດວຽກ",
+      "company": "ບໍລິສັດ",
+      "salaryExpecting": "ເງິນເດືອນທີ່ຄາດຫວັງ",
+      "howKnow": "ຮູ້ຈັກວຽກນີ້ແນວໃດ?",
+      "education": "ການສຶກສາ",
+      "university": "ມະຫາວິທະຍາໄລ",
+      "qualification": "ຄຸນວຸດທິ",
+      "major": "ສາຂາ",
+      "trainings": "ການຝຶກອົບຮົມ",
+      "trainingCompany": "ບໍລິສັດ/ອົງກອນ",
+      "trainingDepartment": "ພະແນກ",
+      "trainingDuty": "ໜ້າທີ່ຫຼັກ",
+      "trainingDuration": "ໄລຍະເວລາ",
+      "workExperience": "ປະສົບການເຮັດວຽກ",
+      "workPeriod": "ໄລຍະເວລາ",
+      "workPosition": "ຕຳແໜ່ງ",
+      "workEmployer": "ນາຍຈ້າງ",
+      "workSalary": "ເງິນເດືອນ",
+      "workDuties": "ໜ້າທີ່",
+      "workReason": "ເຫດຜົນທີ່ອອກ",
+      "reference": "ຜູ້ອ້າງອີງ",
+      "refName": "ຊື່",
+      "refOccupation": "ອາຊີບ",
+      "refCompany": "ບໍລິສັດ",
+      "refContact": "ທີ່ຢູ່ / ເບີໂທ",
+      "signature": "ລາຍເຊັນ",
+      "signatureName": "ລົງຊື່ໂດຍ",
+      "signatureDate": "ວັນທີລົງຊື່",
+      "document": "ເອກະສານ",
+      "viewDocument": "ເບິ່ງເອກະສານ (PDF)",
+      "currentStatus": "ສະຖານະປັດຈຸບັນ"
+    }
+  },
   "ChatQuestion": {
     "title": "ຂໍ້ມູນຄຳຖາມ",
     "subtitle": "ຂໍ້ມູນຄຳຖາມຮອງ",
@@ -1998,104 +2278,6 @@
       "price": "ມູນຄ່າໂທ",
       "lao": "ລາວ",
       "english": "ອັງກິດ"
-    },
-    "options": {
-      "save": "ບັນທຶກ",
-      "cancel": "ຍົກເລີກ",
-      "delete": "ລົບຂໍ້ມູນ"
-    }
-  },
-  "Jobs": {
-    "title": "ຂໍ້ມູນວຽກ",
-    "button": "ເພີ່ມ",
-    "search": "ຄົ້ນຫາ...",
-    "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ",
-    "table": {
-      "headers": [
-        {
-          "text": "ລຳດັບ",
-          "value": "No",
-          "sortable": true
-        },
-        {
-          "text": "ຫົວຂໍ້",
-          "value": "title",
-          "sortable": true
-        },
-        {
-          "text": "ປະເພດວຽກ",
-          "value": "type_job_id",
-          "sortable": true
-        },
-        {
-          "text": "ບໍລິສັດ",
-          "value": "company",
-          "sortable": true
-        },
-        {
-          "text": "ສະຖານທີ່",
-          "value": "location",
-          "sortable": true
-        },
-        {
-          "text": "ປະເພດ",
-          "value": "type",
-          "sortable": true
-        },
-        {
-          "text": "ເງິນເດືອນ",
-          "value": "salary",
-          "sortable": true
-        },
-        {
-          "text": "ວັນທີເລີ່ມ",
-          "value": "start_date",
-          "sortable": true
-        },
-        {
-          "text": "ວັນທີສິ້ນສຸດ",
-          "value": "end_date",
-          "sortable": true
-        },
-        {
-          "text": "ສະຖານະ",
-          "value": "is_active",
-          "sortable": true
-        },
-        {
-          "text": "ຈັດການ",
-          "value": "Actions",
-          "sortable": false
-        }
-      ]
-    },
-    "Create": {
-      "header": "ເພີ່ມຂໍ້ມູນວຽກ"
-    },
-    "Edit": {
-      "header": "ແກ້ໄຂຂໍ້ມູນວຽກ"
-    },
-    "Delete": {
-      "title": "ລົບຂໍ້ມູນວຽກ"
-    },
-    "form": {
-      "title": "ຫົວຂໍ້ວຽກ",
-      "company": "ບໍລິສັດ",
-      "type_job_id": "ເລືອກປະເພດວຽກ",
-      "location": "ສະຖານທີ່",
-      "type": "ປະເພດການຈ້າງງານ",
-      "salary": "ເງິນເດືອນ",
-      "salary_placeholder": "ຕົວຢ່າງ 5000000-5500000",
-      "description": "ລາຍລະອຽດ",
-      "start_date": "ວັນທີເລີ່ມ",
-      "end_date": "ວັນທີສິ້ນສຸດ",
-      "logo_url": "ຮູບໂລໂກ້",
-      "image_details": "ຮູບລາຍລະອຽດ",
-      "is_active": "ເປີດໃຊ້ງານ"
-    },
-    "status": {
-      "active": "ເປີດໃຊ້ງານ",
-      "inactive": "ປິດໃຊ້ງານ"
     },
     "options": {
       "save": "ບັນທຶກ",

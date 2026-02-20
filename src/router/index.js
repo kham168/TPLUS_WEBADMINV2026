@@ -1036,6 +1036,15 @@ const routes = [
           middleware: [Middleware.auth],
           layout: "admin",
         },
+      },
+      {
+        path: "/jobs/applicants",
+        name: "jobs.applicants",
+        component: () => import(/* webpackChunkName:"Jobs Applicants" */ "../views/jobs/applicants.vue"),
+        meta: {
+          middleware: [Middleware.auth],
+          layout: "admin",
+        },
       }
     ]
   },

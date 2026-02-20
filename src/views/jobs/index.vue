@@ -6,11 +6,15 @@
         type="table"
         v-if="Loader"
       ></v-skeleton-loader>
-      <div class="header contact-header">
+      <div class="header contact-header">  
         <h1>{{ $t("Jobs.title") }}</h1>
+        <v-btn @click="onApplyJob" class="btn btn-applyjob">
+          <v-icon>fa-solid fa-eye</v-icon>{{ $t("Jobs.JobRecruit") }}</v-btn
+        >
         <v-btn @click="onCreate" class="btn btn-create">
           <v-icon>fal fa-plus-circle</v-icon>{{ $t("Jobs.button") }}</v-btn
         >
+       
       </div>
       <div class="contact-content">
         <v-data-table
@@ -74,23 +78,25 @@
                     </v-btn>
                   </template>
                   <v-list>
+
+
                     <v-list-item link @click="onEdit(item.id)">
                       <v-list-item-icon>
                         <v-icon class="mr-3" small>{{
-                          $t("Contact.table.options.iconEdit")
+                          $t("Jobs.table.options.iconEdit")
                         }}</v-icon>
                         <v-list-item-title>
-                          {{ $t("Contact.table.options.edit") }}
+                          {{ $t("Jobs.table.options.edit") }}
                         </v-list-item-title>
                       </v-list-item-icon>
                     </v-list-item>
                     <v-list-item link @click="onDelete(item.id)">
                       <v-list-item-icon>
                         <v-icon class="mr-3" small>{{
-                          $t("Contact.table.options.delicon")
+                          $t("Jobs.table.options.delicon")
                         }}</v-icon>
                         <v-list-item-title>
-                          {{ $t("Contact.table.options.delete") }}
+                          {{ $t("Jobs.table.options.delete") }}
                         </v-list-item-title>
                       </v-list-item-icon>
                     </v-list-item>
@@ -104,7 +110,7 @@
           <div class="image">
             <v-img src="@/assets/Images/NoData.png"></v-img>
           </div>
-          <h3>{{ $t("Contact.table.dontdata") }}</h3>
+          <h3>{{ $t("Jobs.table.dontdata") }}</h3>
         </div>
       </div>
     </section>
@@ -125,6 +131,9 @@ export default {
     };
   },
   methods: {
+    onApplyJob() {
+      this.$router.push({ name: "jobs.applicants" }).catch(() => {});
+    },
     onCreate() {
       this.$router.push({ name: "jobs.create" }).catch({});
     },
@@ -136,6 +145,8 @@ export default {
     onDelete(id) {
       this.$store.commit("isDeleteJobsModal", id);
     },
+
+
     async fetchDataJobs() {
       this.Loader = true;
       try {

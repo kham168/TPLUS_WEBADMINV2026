@@ -1858,6 +1858,7 @@
   "Jobs": {
     "title": "Jobs Data",
     "button": "Create",
+    "JobRecruit": "Job Recruit",
     "search": "Search...",
     "loadingtext": "Loading...",
     "table": {
@@ -1951,6 +1952,176 @@
       "save": "Save",
       "cancel": "Cancel",
       "delete": "Delete"
+    }
+  },
+  "JobApplicants": {
+    "title": "Job Applicants",
+    "pendingTitle": "Applicants List",
+    "historyTitle": "Application History",
+    "back": "Back",
+    "search": "Search...",
+    "loadingtext": "Loading...",
+    "status": {
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "rejected": "Rejected"
+    },
+    "actions": {
+      "view": "View Details",
+      "confirm": "Confirm",
+      "reject": "Reject",
+      "close": "Close"
+    },
+    "table": {
+      "headers": [
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "Name",
+          "value": "name_and_surname",
+          "sortable": true
+        },
+        {
+          "text": "Salary Expectation",
+          "value": "salary_expecting",
+          "sortable": true
+        },
+        {
+          "text": "Contact",
+          "value": "contact_number",
+          "sortable": true
+        },
+        {
+          "text": "Province",
+          "value": "province",
+          "sortable": true
+        },
+        {
+          "text": "Sex",
+          "value": "sex",
+          "sortable": true
+        },
+        {
+          "text": "Date",
+          "value": "createdAt",
+          "sortable": true
+        },
+        {
+          "text": "Status",
+          "value": "status",
+          "sortable": true
+        },
+        {
+          "text": "Actions",
+          "value": "actions",
+          "sortable": false
+        }
+      ],
+      "dontdata": "No applicants found"
+    },
+    "historyTable": {
+      "headers": [
+        {
+          "text": "No",
+          "value": "No",
+          "sortable": false
+        },
+        {
+          "text": "Name",
+          "value": "name_and_surname",
+          "sortable": true
+        },
+        {
+          "text": "Salary Expectation",
+          "value": "salary_expecting",
+          "sortable": true
+        },
+        {
+          "text": "Contact",
+          "value": "contact_number",
+          "sortable": true
+        },
+        {
+          "text": "Province",
+          "value": "province",
+          "sortable": true
+        },
+        {
+          "text": "Sex",
+          "value": "sex",
+          "sortable": true
+        },
+        {
+          "text": "Date",
+          "value": "createdAt",
+          "sortable": true
+        },
+        {
+          "text": "Status",
+          "value": "status",
+          "sortable": true
+        },
+        {
+          "text": "Actions",
+          "value": "actions",
+          "sortable": false
+        }
+      ],
+      "dontdata": "No history yet"
+    },
+    "detail": {
+      "title": "Applicant Details",
+      "personalInfo": "Personal Information",
+      "name": "Name",
+      "dob": "Date of Birth",
+      "pob": "Place of Birth",
+      "sex": "Sex",
+      "nationality": "Nationality",
+      "maritalStatus": "Marital Status",
+      "contactInfo": "Contact Information",
+      "phone": "Phone",
+      "email": "Email",
+      "address": "Current Address",
+      "village": "Village",
+      "district": "District",
+      "province": "Province",
+      "jobInfo": "Job Information",
+      "jobTitle": "Job Title",
+      "jobType": "Job Type",
+      "jobDescription": "Job Description",
+      "company": "Company",
+      "salaryExpecting": "Salary Expectation",
+      "howKnow": "How did you know about this job?",
+      "education": "Education",
+      "university": "University",
+      "qualification": "Qualification",
+      "major": "Major",
+      "trainings": "Trainings",
+      "trainingCompany": "Company/Organization",
+      "trainingDepartment": "Department",
+      "trainingDuty": "Main Duty",
+      "trainingDuration": "Duration",
+      "workExperience": "Work Experience",
+      "workPeriod": "Period",
+      "workPosition": "Position",
+      "workEmployer": "Employer",
+      "workSalary": "Salary",
+      "workDuties": "Duties",
+      "workReason": "Reason for Leaving",
+      "reference": "Reference",
+      "refName": "Name",
+      "refOccupation": "Occupation",
+      "refCompany": "Company",
+      "refContact": "Address / Tel",
+      "signature": "Signature",
+      "signatureName": "Signed By",
+      "signatureDate": "Signature Date",
+      "document": "Document",
+      "viewDocument": "View Document (PDF)",
+      "currentStatus": "Current Status"
     }
   },
   "reports": {

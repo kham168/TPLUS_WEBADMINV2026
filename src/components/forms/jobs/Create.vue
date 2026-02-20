@@ -104,11 +104,11 @@
                 <div class="d-flex align-center mb-2">
                   <v-icon color="primary" class="mr-2">mdi-calendar-range</v-icon>
                   <h3 class="text-subtitle-1 font-weight-medium">
-                    ຊ່ວງເວລາເປີດຮັບສະໝັກ
+                    {{ $t('Jobs.form.date_range_title') }}
                   </h3>
                 </div>
                 <p class="text-caption grey--text text--darken-1 ml-8 mb-3">
-                  ກຳນົດວັນທີ່ປະກາດວຽກຈະສະແດງ ແລະ ຮັບສະໝັກວຽກ
+                  {{ $t('Jobs.form.date_range_subtitle') }}
                 </p>
               </v-col>
 
@@ -125,13 +125,13 @@
                   <template v-slot:activator="{ on, attrs }">
                     <v-text-field
                       v-model="formattedStartDate"
-                      label="ວັນເລີ່ມເປີດຮັບສະໝັກ"
+                      :label="$t('Jobs.form.start_date')"
                       prepend-inner-icon="mdi-calendar-start"
                       readonly
                       outlined
                       v-bind="attrs"
                       v-on="on"
-                      hint="ຄລິກເພື່ອເລືອກວັນທີ່ເລີ່ມສະແດງປະກາດວຽກ"
+                      :hint="$t('Jobs.form.start_date_hint')"
                       persistent-hint
                       required
                       :rules="[
@@ -164,13 +164,13 @@
                   <template v-slot:activator="{ on, attrs }">
                     <v-text-field
                       v-model="formattedEndDate"
-                      label="ວັນປິດຮັບສະໝັກ"
+                      :label="$t('Jobs.form.end_date')"
                       prepend-inner-icon="mdi-calendar-end"
                       readonly
                       outlined
                       v-bind="attrs"
                       v-on="on"
-                      hint="ວັນສຸດທ້າຍທີ່ຜູ້ສະໝັກສາມາດສະໝັກວຽກໄດ້"
+                      :hint="$t('Jobs.form.end_date_hint')"
                       persistent-hint
                       required
                       :rules="[
@@ -202,7 +202,7 @@
                 >
                   <div class="d-flex align-center">
                     <v-icon small left color="success">mdi-information-outline</v-icon>
-                    <span>ເປີດຮັບສະໝັກທັງໝົດ: <strong>{{ durationDays }} ມື້</strong></span>
+                    <span>{{ $t('Jobs.form.total_days') }} <strong>{{ durationDays }} ມື້</strong></span>
                   </div>
                 </v-alert>
               </v-col>
@@ -216,13 +216,13 @@
                   class="mb-0"
                 >
                   <v-icon small left>mdi-alert-circle</v-icon>
-                  ວັນປິດຮັບສະໝັກຕ້ອງມາຫຼັງວັນເລີ່ມເປີດຮັບສະໝັກ
+                  {{ $t('Jobs.form.date_error') }}
                 </v-alert>
               </v-col>
 
               <!-- LOGO SECTION -->
               <v-col cols="6">
-                <label class="image-label">{{ $t("Post.Create.form.picture") }}</label>
+                <label class="image-label">{{ $t("Jobs.form.logo") }}</label>
 
                 <div class="upload-image" v-if="previewLogo == null">
                   <div class="content">
@@ -257,7 +257,7 @@
                     />
                   </div>
                 </div>
-                <p class="text-caption grey--text mt-2">ຂະໜາດໄຟລ່ສູງສຸດ 5MB</p>
+                <p class="text-caption grey--text mt-2">{{ $t('Jobs.form.max_file_size') }}</p>
               </v-col>
 
               <!-- IMAGE DETAILS SECTION -->
@@ -297,7 +297,7 @@
                     />
                   </div>
                 </div>
-                <p class="text-caption grey--text mt-2">ຂະໜາດໄຟລ່ສູງສຸດ 5MB</p>
+                <p class="text-caption grey--text mt-2">{{ $t('Jobs.form.max_file_size') }}</p>
               </v-col>
 
               <!-- IS ACTIVE -->
@@ -424,7 +424,7 @@ export default {
       if (!this.DataJob.start_date || !this.DataJob.end_date) return true;
       const start = new Date(this.DataJob.start_date);
       const end = new Date(this.DataJob.end_date);
-      return end > start || 'ວັນປິດຮັບສະໝັກຕ້ອງມາຫຼັງວັນເລີ່ມເປີດຮັບສະໝັກ';
+      return end > start || this.$t('Jobs.form.date_error');
     },
 
     buildFormData() {
