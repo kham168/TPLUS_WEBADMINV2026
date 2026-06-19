@@ -214,12 +214,14 @@
           </v-btn>
         </v-card-title>
         <v-divider></v-divider>
-        <v-card-text class="pt-4">
+        <v-card-text class="pt-4" id="printSection">
           <!-- Photo -->
-          <div class="text-center mb-4" v-if="selectedApplicant.photo_url">
-            <v-avatar size="100">
-              <v-img :src="getImageUrl(selectedApplicant.photo_url)"></v-img>
+          <div class="text-center mb-4" v-if="selectedApplicant.photoURL">
+            <v-avatar size="100" class="no-print">
+              <v-img :src="getImageUrl(selectedApplicant.photoURL)"></v-img>
             </v-avatar>
+            <!-- Standard img tag for printing because v-img uses background images -->
+            <img class="print-only" :src="getImageUrl(selectedApplicant.photoURL)" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;" />
           </div>
 
           <!-- Personal Info -->
@@ -431,15 +433,17 @@
           <!-- Document -->
           <div v-if="selectedApplicant.document">
             <h3 class="mb-2">{{ $t("JobApplicants.detail.document") }}</h3>
-            <a v-if="selectedApplicant.document.endsWith('.pdf')" :href="getImageUrl(selectedApplicant.document)" target="_blank" class="d-block mb-4">
+            <a v-if="selectedApplicant.documentUrl.endsWith('.pdf')" :href="getImageUrl(selectedApplicant.documentUrl)" target="_blank" class="d-block mb-4">
               <v-icon left>fas fa-file-pdf</v-icon> {{ $t("JobApplicants.detail.viewDocument") }}
             </a>
-            <v-img
-              v-else
-              :src="getImageUrl(selectedApplicant.document)"
-              max-width="400"
-              class="mb-4"
-            ></v-img>
+            <template v-else>
+              <v-img
+                :src="getImageUrl(selectedApplicant.documentUrl)"
+                max-width="400"
+                class="mb-4 no-print"
+              ></v-img>
+              <img :src="getImageUrl(selectedApplicant.documentUrl)" class="print-only mb-4" style="max-width: 400px; height: auto;" />
+            </template>
           </div>
 
           <!-- Status -->
@@ -453,6 +457,14 @@
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>
+          <v-btn
+            color="primary"
+            @click="onPrint(selectedApplicant)"
+            v-if="selectedApplicant.status === 'approved'"
+          >
+            <v-icon left small>fas fa-print</v-icon>
+            {{ $t("JobApplicants.actions.print") }}
+          </v-btn>
           <v-btn
             color="success"
             @click="onConfirm(selectedApplicant)"
@@ -469,6 +481,7 @@
             <v-icon left small>fas fa-times</v-icon>
             {{ $t("JobApplicants.actions.reject") }}
           </v-btn>
+      
           <v-btn text @click="detailDialog = false">
             {{ $t("JobApplicants.actions.close") }}
           </v-btn>
@@ -621,6 +634,10 @@ export default {
 
     getImageUrl(path) {
       if (!path) return "";
+      // If path is already a full URL, return it directly
+      if (path.startsWith("http://") || path.startsWith("https://")) {
+        return path;
+      }
       const baseUrl = process.env.VUE_APP_BASE_API_URL_TEST || "";
       // Remove /api/v1/ from base URL to get the server root
       const serverRoot = baseUrl.replace(/\/api\/v1\/?$/, "");
@@ -637,6 +654,96 @@ export default {
         }, 300);
       }
     },
+
+    onPrint(applicant) {
+      const printContents = document.getElementById("printSection").innerHTML;
+      const printWindow = window.open("", "_blank");
+      printWindow.document.write(`
+        <html>
+          <head>
+            <title>Print Applicant Details - ${applicant.name_and_surname}</title>
+            <style>
+              body { 
+                font-family: 'Inter', sans-serif; 
+                padding: 20px; 
+                color: #333;
+              }
+              h3 { 
+                margin-top: 20px; 
+                margin-bottom: 10px; 
+                border-bottom: 1px solid #ddd;
+                padding-bottom: 5px;
+              }
+              table { 
+                width: 100%; 
+                border-collapse: collapse; 
+                margin-bottom: 20px; 
+              }
+              th, td { 
+                border: 1px solid #ddd; 
+                padding: 8px 12px; 
+                text-align: left; 
+              }
+              th {
+                background-color: #f5f5f5;
+              }
+              .font-weight-bold {
+                font-weight: bold;
+                background-color: #f9f9f9;
+              }
+              .text-center {
+                text-align: center;
+              }
+              img {
+                max-width: 100px;
+                max-height: 100px;
+                border-radius: 50%;
+                object-fit: cover;
+              }
+              .mb-4 { margin-bottom: 1.5rem; }
+              .mt-4 { margin-top: 1.5rem; }
+              /* Hide chip styles and replace with plain text for printing */
+              .v-chip {
+                padding: 4px 8px;
+                border: 1px solid #000;
+                border-radius: 4px;
+                display: inline-block;
+              }
+              /* Hide v-img and UI elements when printing */
+              .no-print { display: none !important; }
+              .print-only { display: block !important; margin: 0 auto; }
+              /* A4 specific styles */
+              @media print {
+                @page { 
+                  size: A4; 
+                  margin: 20mm; 
+                }
+                body {
+                  margin: 0;
+                  padding: 0;
+                }
+                /* Hide pdf link and images that shouldn't be printed if needed */
+                a[href$=".pdf"] {
+                  display: none !important;
+                }
+              }
+            </style>
+          </head>
+          <body>
+            <div style="text-align: center; margin-bottom: 20px;">
+              <h2>Applicant Information</h2>
+            </div>
+            ${printContents}
+          </body>
+        </html>
+      `);
+      printWindow.document.close();
+      printWindow.onload = function() {
+        printWindow.focus();
+        printWindow.print();
+        printWindow.close();
+      };
+    },
   },
 
   created() {
@@ -650,5 +757,8 @@ export default {
   display: flex;
   gap: 4px;
   align-items: center;
+}
+.print-only {
+  display: none !important;
 }
 </style>

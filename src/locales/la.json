@@ -1691,14 +1691,15 @@
     "loadingtext": "ກຳລັງໂຫຼດຂໍ້ມູນ...",
     "status": {
       "pending": "ລໍຖ້າ",
-      "confirmed": "ອະນຸມັດ",
-      "rejected": "ປະຕິເສດ"
+      "confirmed": "ອະນຸມັດແລ້ວ",
+      "rejected": "ປະຕິເສດແລ້ວ"
     },
     "actions": {
       "view": "ເບິ່ງລາຍລະອຽດ",
       "confirm": "ອະນຸມັດ",
       "reject": "ປະຕິເສດ",
-      "close": "ປິດ"
+      "close": "ປິດ",
+      "print": "ພິມ"
     },
     "table": {
       "headers": [

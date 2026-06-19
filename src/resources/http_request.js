@@ -21,7 +21,8 @@ class HttpRequest {
 
     this.axiosInstance.interceptors.request.use(function (config) {
       // Do something before request is sent
-
+      config.params = config.params || {};
+      config.params['lang'] = localStorage.getItem('lang') || 'la';
       return config
     }, function (error) {
       // Do something with request error
@@ -90,9 +91,13 @@ class HttpRequest {
     }, function (error) {
       // Do something with response error
  
-      console.log(error.response.data);
-      console.log("Error response status:"+error.response.status);
-      console.log(error.response.headers);
+      if (error.response) {
+        console.log(error.response.data);
+        console.log("Error response status:"+error.response.status);
+        console.log(error.response.headers);
+      } else {
+        console.log("Network error or CORS blocked:", error.message);
+      }
 
       return Promise.reject(error)
     })
@@ -111,7 +116,7 @@ class HttpRequest {
     // this.axiosInstance.defaults.headers.common[header.key] = header.value
     this.axiosInstance.defaults.headers.common = header
     this.axiosInstance.defaults.headers.common['Authorization'] = 'Bearer '+User.state.token
-    this.axiosInstance.defaults.headers.common['content_language'] = localStorage.getItem('lang')
+    this.axiosInstance.defaults.headers.common['content_language'] = localStorage.getItem('lang') || 'la'
     this.axiosInstance.defaults.headers.common['Accept'] = 'application/json'
     this.axiosInstance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 

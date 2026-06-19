@@ -125,10 +125,16 @@ export default {
   },
 
   mounted() {
-    this.getLogo().then(res=>{
-      if(res.success){
-        this.firstLoad=false;
+    this.getLogo().then(res => {
+      if (res && res.success) {
+        this.firstLoad = false;
+      } else {
+        this.firstLoad = false;
+        console.error("Failed to load logo", res);
       }
+    }).catch(error => {
+      this.firstLoad = false;
+      console.error("Error fetching logo", error);
     });
   },
   methods: {

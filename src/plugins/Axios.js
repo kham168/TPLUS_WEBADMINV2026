@@ -5,7 +5,12 @@ import router from "../router/index"
 
 if (store.getters['User/isAuth']) {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + store.getters['User/getToken'];
-    axios.defaults.headers.common['content_language'] = localStorage.getItem('lang') || localStorage.setItem('lang', "la");
+    let lang = localStorage.getItem('lang');
+    if (!lang) {
+        lang = 'la';
+        localStorage.setItem('lang', lang);
+    }
+    axios.defaults.headers.common['content_language'] = lang;
 }
 
 export const $axios = axios.create(
@@ -13,6 +18,14 @@ export const $axios = axios.create(
         baseURL: process.env.VUE_APP_BASE_API_URL,
     }
 );
+
+$axios.interceptors.request.use(function (config) {
+    config.params = config.params || {};
+    config.params['lang'] = localStorage.getItem('lang') || 'la';
+    return config;
+}, function (error) {
+    return Promise.reject(error);
+});
 export const $http = axios.create(
     {
         baseURL: process.env.VUE_APP_BASE_API_ADDRESS,
@@ -22,7 +35,7 @@ export const $http = axios.create(
 $axios.interceptors.response.use(function (response) {
     return response;
 }, function (error) {
-    if (error.response.status == 401) {
+    if (error.response && error.response.status == 401) {
         store.dispatch("User/destroyToken");
         router.push({name: 'Login'})
     }

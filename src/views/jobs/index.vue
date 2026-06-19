@@ -114,7 +114,7 @@
         </div>
       </div>
     </section>
-    <DeleteModal />
+    <DeleteModal @deleted="fetchDataJobs" />
   </div>
 </template>
 <script>

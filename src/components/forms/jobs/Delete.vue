@@ -53,7 +53,7 @@ export default {
               message: this.$t("Notification.delDataSuccess"),
             });
             setTimeout(() => {
-              window.location.reload();
+              this.$emit('deleted');
             }, 300);
        }
        this.isLoading = false;

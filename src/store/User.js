@@ -69,32 +69,34 @@ const actions = {
             })
                 .then(response => {
                     if (response) {
-                        resolve(response)
                         const token = response.data.accessToken;
-                        localStorage.setItem('access_token', token);   // ເກັບ Token ໄວ້ໃນ Localstorage ເພື່ອຈະນຳໄປໃຊ້ຂໍຂໍ້ມູນ
                         const authUser = response.data.role;
-                        localStorage.setItem("roleUser", response.data.role[0].name);
+
+                        if (!authUser || authUser.length === 0) {
+                            context.commit('Commit_ErrorLogin', 'ບັນຊີນີ້ບໍ່ມີສິດເຂົ້າໃຊ້ລະບົບ (ບໍ່ມີ Role)');
+                            reject(new Error('No role assigned'));
+                            return;
+                        }
+
+                        localStorage.setItem('access_token', token);
+                        localStorage.setItem("roleUser", authUser[0].name);
                         $axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+                        context.commit('AdminSigIn', token);
+
                         authUser.forEach((roleUser) => {
                             if (roleUser.name === 'Super-admin') {
-                                router.push({
-                                    name: "Dashboard"
-                                })
+                                router.push({ name: "Dashboard" })
                             } else if (roleUser.name === 'Admin') {
-                                router.push({
-                                    name: "Dashboard"
-                                })
+                                router.push({ name: "Dashboard" })
                             } else if (roleUser.name === 'Employee') {
-                                router.push({
-                                    name: "Dashboard"
-                                })
+                                router.push({ name: "Dashboard" })
                             }
                         })
-                        window.location.reload();
+                        resolve(response)
                     }
                 }).catch(error => {
                 reject(error)
-                if (error.response.status == 404) {
+                if (error.response.status == 404 || error.response.status == 401) {
                     context.commit('Commit_ErrorLogin', 'ອີເມວ ຫຼື ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ...');
                     setTimeout(() => {
                         context.commit('Commit_ErrorLogin', '');

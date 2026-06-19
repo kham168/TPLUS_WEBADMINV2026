@@ -1918,7 +1918,14 @@
           "value": "Actions",
           "sortable": false
         }
-      ]
+      ],
+      "dontdata": "Don't have data",
+      "options": {
+        "edit": "Edit",
+        "iconEdit": "fas fa-edit",
+        "delete": "Delete",
+        "delicon": "fas fa-trash-alt"
+      }
     },
     "Create": {
       "header": "Add Job"
@@ -1970,7 +1977,8 @@
       "view": "View Details",
       "confirm": "Confirm",
       "reject": "Reject",
-      "close": "Close"
+      "close": "Close",
+      "print": "Print"
     },
     "table": {
       "headers": [

@@ -127,8 +127,9 @@ export default {
     },
     async fetchDataCall() {
       this.Loader = true;
+      const lang = localStorage.getItem('lang') || 'la';
       await this.$axios
-        .get("internationCalls")
+        .get(`internationCalls?lang=${lang}`)
         .then((res) => {
           if (res.status == 200) {
             this.dataCall = res.data.data;

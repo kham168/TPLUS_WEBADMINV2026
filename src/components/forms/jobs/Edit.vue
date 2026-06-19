@@ -417,8 +417,8 @@ export default {
           this.originalData = { ...this.DataJob };
 
           // Set previews for existing images
-          if (data.logo_url) this.previewLogo = this.resolveImageUrl(data.logo_url);
-          if (data.image_details) this.previewImageDetails = this.resolveImageUrl(data.image_details);
+          if (data.logoURL) this.previewLogo = this.resolveImageUrl(data.logoURL);
+          if (data.image_detailsURL) this.previewImageDetails = this.resolveImageUrl(data.image_detailsURL);
         }
       } catch (error) {
         this.showErrorNotification(error);

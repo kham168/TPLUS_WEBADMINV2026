@@ -1,4 +1,5 @@
 const path = require("path");
+const https = require("https");
 module.exports = {
   css: {
     loaderOptions: {
@@ -36,6 +37,17 @@ module.exports = {
         "@assets": path.resolve(__dirname, "src/assets"),
       },
     },
+  },
+
+  devServer: {
+    proxy: {
+      '/web-api': {
+        target: 'https://api.tplus.la',
+        changeOrigin: true,
+        secure: false,
+        agent: new https.Agent({ rejectUnauthorized: false }),
+      }
+    }
   },
 
   pluginOptions: {
