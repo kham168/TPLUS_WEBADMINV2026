@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'WebsiteTplus',
+      name: 'WebsiteTplusAddmin',
       script: 'serve',              // PM2 built-in static file server
       env: {
         PM2_SERVE_PATH: './dist',   // folder created by `npm run build`
