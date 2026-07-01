@@ -103,9 +103,9 @@ class PostProvider extends HttpRequest {
       bodyFormData.append('other_lang[0][title]',other_lang_title);
       bodyFormData.append('other_lang[0][description]',other_lang_description);
       bodyFormData.append('other_lang[0][language_id]',other_lang_id);
-        bodyFormData.append('avatar[]',avatar);
-        bodyFormData.append('avatar_EN[]',avatar_EN);
-
+        
+      if(avatar) bodyFormData.append('avatar[]',avatar);
+      if(avatar_EN) bodyFormData.append('avatar_EN[]',avatar_EN);
 
     for(let i =0;i<newsCategoryId.length;i++){
       bodyFormData.append('newsCategoryId[]',newsCategoryId[i]);

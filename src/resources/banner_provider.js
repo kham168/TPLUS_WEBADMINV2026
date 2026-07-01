@@ -112,11 +112,8 @@ class BannerProvider extends HttpRequest {
         bodyFormData.append('other_lang[0][description]',other_lang_description);
         bodyFormData.append('other_lang[0][language_id]',2);
 
-          bodyFormData.append('avatar[]',avatar);
-
-  
-
-          bodyFormData.append('avatar_EN[]',avatar_EN);
+        if (avatar) bodyFormData.append('avatar[]',avatar);
+        if (avatar_EN) bodyFormData.append('avatar_EN[]',avatar_EN);
 
  
     this.setHeader({

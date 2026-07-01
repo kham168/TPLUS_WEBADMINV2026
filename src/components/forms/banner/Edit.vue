@@ -296,25 +296,34 @@ export default {
     loadDataToComponent(res){
       let data = res.data
 
-        this.banId=data.id,
-        this.bannerName=data.banName,
-      this.bannerNameEng=data.BannerTrans[0].banName,
-      this.link=data.link,
-      this.linkEng=data.BannerTrans[0].link,
-      this.description=data.description,
-      this.descriptionEng=data.BannerTrans[0].description
+      this.banId = data.id;
+      this.bannerName = data.banName || '';
+      this.link = data.link || '';
+      this.description = data.description || '';
+
+      const transName = Array.isArray(data.BannerTrans) ? (data.BannerTrans.find(t => t.banName) || data.BannerTrans[0]) : (data.BannerTrans || null);
+      const transLink = Array.isArray(data.BannerTrans) ? (data.BannerTrans.find(t => t.link) || data.BannerTrans[0]) : (data.BannerTrans || null);
+      const transDesc = Array.isArray(data.BannerTrans) ? (data.BannerTrans.find(t => t.description) || data.BannerTrans[0]) : (data.BannerTrans || null);
+
+      this.bannerNameEng = transName ? transName.banName : '';
+      this.linkEng = transLink ? transLink.link : '';
+      this.descriptionEng = transDesc ? transDesc.description : '';
 
 
-       this.previewImage.push(data.image)
-       this.convertUrlToFileImage(data.image)
+      if(data.image) {
+        this.previewImage.push(data.image)
+        this.convertUrlToFileImage(data.image)
+      }
 
-      this.previewImageEng.push(data.BannerTrans[0].image)
+      if(data.BannerTrans && data.BannerTrans.length > 0) {
+        const transImg = data.BannerTrans.find(t => t.image) || data.BannerTrans[0];
+        if(transImg && transImg.image) {
+          this.previewImageEng.push(transImg.image)
+          this.convertUrlToFileImageEng(transImg.image)
+        }
+      }
 
-
-         this.convertUrlToFileImageEng(data.BannerTrans[0].image)
-
-    
-     console.log(this.previewImage);
+      console.log(this.previewImage);
     },
 
 

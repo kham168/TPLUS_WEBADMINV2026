@@ -55,14 +55,14 @@
             <tr class="table-content" v-if="isLaoLanguage" >
 
               <td>{{ index + 1 }}</td>
-              <td><v-img :src="item.PostImages[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
+              <td><v-img v-if="item.PostImages && item.PostImages.length > 0" :src="item.PostImages[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
               <td>{{ item.title }}</td>
 
 
               <td style="   max-width: 200px;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;" v-html="`${ item.description }`"></td>
+        white-space: nowrap;" v-html="`${ item.description || '' }`"></td>
               <td>{{ item.startDate }}</td>
               <td>{{ item.endDate }}</td>
 
@@ -111,13 +111,16 @@
             </tr>
             <tr class="table-content" v-else >
               <td>{{ index + 1 }}</td>
-              <td><v-img :src="item.PostImageTrans[0].image" alt="preview" max-height="50" max-width="50"></v-img></td>
-              <td>{{ item.PostTrans[0].title }}</td>
+              <td>
+                <v-img v-if="item.PostImageTrans && item.PostImageTrans.length > 0" :src="item.PostImageTrans[0].image" alt="preview" max-height="50" max-width="50"></v-img>
+                <v-img v-else-if="item.PostImages && item.PostImages.length > 0" :src="item.PostImages[0].image" alt="preview" max-height="50" max-width="50"></v-img>
+              </td>
+              <td>{{ item.PostTrans && item.PostTrans.length > 0 ? (item.PostTrans.find(t => t.title) || item.PostTrans[0]).title : '' }}</td>
 
               <td style="   max-width: 200px;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;" v-html="`${ item.PostTrans[0].description }`"></td>
+        white-space: nowrap;" v-html="`${ item.PostTrans && item.PostTrans.length > 0 ? (item.PostTrans.find(t => t.description) || item.PostTrans[0]).description : '' }`"></td>
               <td>{{ item.startDate }}</td>
               <td>{{ item.endDate }}</td>
 
@@ -295,29 +298,42 @@ components: {
       this.previewImageEng=[];
 
       this.descriptionText = data.description;
-          this.descriptionTextEng = data.PostTrans[0].description;
-          this.postName = data.title;
-          this.postNameEng = data.PostTrans[0].title;
-          this.statusValue = data.status;
-          this.catePostValue = data.postTypeId;
+      const trans = data.PostTrans && data.PostTrans.length > 0 ? (data.PostTrans.find(t => t.title) || data.PostTrans[0]) : null;
+      this.descriptionTextEng = trans ? trans.description : '';
+      this.postName = data.title;
+      this.postNameEng = trans ? trans.title : '';
+      this.statusValue = data.status;
+      this.catePostValue = data.postTypeId;
+
+      try {
+        if (data.startDate) {
           this.dateStart = new Date(data.startDate).toISOString().substr(0, 10);
+        }
+      } catch (e) { console.error("Error parsing startDate", e); }
+      
+      try {
+        if (data.endDate) {
           this.dateEnd = new Date(data.endDate).toISOString().substr(0, 10);
+        }
+      } catch (e) { console.error("Error parsing endDate", e); }
 
-
-      for (let i = 0; i < data.PostImages.length; i++) {
-
-        let url = data.PostImages[i].image;
-        this.previewImage.push(url);
-
-
+      if (data.PostImages) {
+        for (let i = 0; i < data.PostImages.length; i++) {
+          let url = data.PostImages[i].image;
+          this.previewImage.push(url);
+        }
       }
 
-      for (let i = 0; i < data.PostImageTrans.length; i++) {
-
-        let url = data.PostImageTrans[i].image;
-
-        this.previewImageEng.push(url);
-
+      if (data.PostImageTrans && data.PostImageTrans.length > 0) {
+        for (let i = 0; i < data.PostImageTrans.length; i++) {
+          let url = data.PostImageTrans[i].image;
+          this.previewImageEng.push(url);
+        }
+      } else if (data.PostImages && data.PostImages.length > 0) {
+        for (let i = 0; i < data.PostImages.length; i++) {
+          let url = data.PostImages[i].image;
+          this.previewImageEng.push(url);
+        }
       }
 
 

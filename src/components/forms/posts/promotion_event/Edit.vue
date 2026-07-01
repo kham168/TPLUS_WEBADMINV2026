@@ -166,9 +166,9 @@
 
                       ></v-select>
 
-                      <vue-editor  v-show="isLaoTab" v-model="descriptionText" id="editor1" :editor-toolbar="customToolbar"  class="mb-10" ref="editor1" />
+                      <vue-editor v-if="isLaoTab" v-model="descriptionText" id="editor1" :editor-toolbar="customToolbar"  class="mb-10" ref="editor1" />
 
-                      <vue-editor v-show="isEngTab" v-model="descriptionTextEng" id="editor2" :editor-toolbar="customToolbar" class="mb-10" ref="editor2" />
+                      <vue-editor v-if="isEngTab" v-model="descriptionTextEng" id="editor2" :editor-toolbar="customToolbar" class="mb-10" ref="editor2" />
 
 
                       <div v-show="isLaoTab">
@@ -222,7 +222,7 @@
                               <v-layout row>
                                 <v-flex v-for="j in 1" :key="j" align-self-center>
 
-                                  <img :src="previewImage" class="image-files">
+                                  <img :src="previewImage[0]" class="image-files">
 
                                 </v-flex>
 
@@ -283,7 +283,7 @@
                               <v-layout row>
                                 <v-flex v-for="j in 1" :key="j" align-self-center>
 
-                                  <img :src="previewImageEng" class="image-files">
+                                  <img :src="previewImageEng[0]" class="image-files">
 
                                 </v-flex>
 
@@ -353,7 +353,7 @@ export default {
       tab: null,
 
       valid: true,
-
+      rawData: null,
       customToolbar : [
         [{ 'font': [] }],
         [{ 'header': [false, 1, 2, 3, 4, 5, 6, ] }],
@@ -409,39 +409,51 @@ export default {
     },
 
     loadDataToComponent(res) {
-
+      this.rawData = res.data;
       let data = res.data;
 
 
-      this.postId = data.id,
-          this.descriptionText = data.description,
-          this.descriptionTextEng = data.PostTrans[0].description,
-          this.postName = data.title,
-          this.postNameEng = data.PostTrans[0].title,
-          this.statusValue = data.status,
+      this.postId = data.id;
+      this.descriptionText = data.description || '';
+      const transTitle = Array.isArray(data.PostTrans) ? (data.PostTrans.find(t => t.title) || data.PostTrans[0]) : (data.PostTrans || null);
+      const transDesc = Array.isArray(data.PostTrans) ? (data.PostTrans.find(t => t.description) || data.PostTrans[0]) : (data.PostTrans || null);
+      this.descriptionTextEng = transDesc ? transDesc.description : '';
+      this.postName = data.title || '';
+      this.postNameEng = transTitle ? transTitle.title : '';
+      this.statusValue = data.status;
 
-          this.dateStart = new Date(data.startDate).toISOString().substr(0, 10),
-          this.dateEnd = new Date(data.endDate).toISOString().substr(0, 10)
+      try {
+        if (data.startDate) {
+          this.dateStart = new Date(data.startDate).toISOString().substr(0, 10);
+        }
+      } catch (e) { console.error("Error parsing startDate", e); }
+      
+      try {
+        if (data.endDate) {
+          this.dateEnd = new Date(data.endDate).toISOString().substr(0, 10);
+        }
+      } catch (e) { console.error("Error parsing endDate", e); }
 
-
-      for (let i = 0; i < data.PostImages.length; i++) {
-
-        let url = data.PostImages[i].image;
-        this.previewImage.push(url);
-
-        this.convertUrlToFileImage(url)
-
-
+      if (data.PostImages) {
+        for (let i = 0; i < data.PostImages.length; i++) {
+          let url = data.PostImages[i].image;
+          this.previewImage.push(url);
+          this.convertUrlToFileImage(url);
+        }
       }
 
-      for (let i = 0; i < data.PostImageTrans.length; i++) {
-
-        let url = data.PostImageTrans[i].image;
-        this.convertUrlToFileImageEng(url)
-
-        this.previewImageEng.push(url);
-
-
+      if (data.PostImageTrans && data.PostImageTrans.length > 0) {
+        for (let i = 0; i < data.PostImageTrans.length; i++) {
+          let url = data.PostImageTrans[i].image;
+          this.convertUrlToFileImageEng(url);
+          this.previewImageEng.push(url);
+        }
+      } else if (data.PostImages && data.PostImages.length > 0) {
+        for (let i = 0; i < data.PostImages.length; i++) {
+          let url = data.PostImages[i].image;
+          this.convertUrlToFileImageEng(url);
+          this.previewImageEng.push(url);
+        }
       }
 
 

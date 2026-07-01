@@ -72,7 +72,7 @@
               <div v-if="tab===0" class="upload-image">
 
 
-                <img class="image-files" :src="previewImage" />
+                <img class="image-files" :src="previewImage[0]" />
 
               </div>
 
@@ -80,7 +80,7 @@
               <div v-else class="upload-image">
 
 
-                <img class="image-files" :src="previewImageEng" />
+                <img class="image-files" :src="previewImageEng[0]" />
 
               </div>
 

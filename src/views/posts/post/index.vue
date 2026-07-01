@@ -116,12 +116,12 @@
               <td v-for="element in item.PostImageTrans">
                 <v-img :src="element.image" alt="preview" max-height="50" max-width="50"></v-img>
               </td>
-              <td>{{ item.PostTrans[0].title }}</td>
-              <td><p v-for="element in item.newsCategories">{{ element.NewsCategoryTrans[0].name }}</p></td>
+              <td>{{ item.PostTrans && item.PostTrans.length > 0 ? item.PostTrans[0].title : '' }}</td>
+              <td><p v-for="element in item.newsCategories">{{ element.NewsCategoryTrans && element.NewsCategoryTrans.length > 0 ? element.NewsCategoryTrans[0].name : '' }}</p></td>
               <td style="   max-width: 200px;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;" v-html="item.PostTrans[0].description"></td>
+        white-space: nowrap;" v-html="item.PostTrans && item.PostTrans.length > 0 ? item.PostTrans[0].description : ''"></td>
               <td>
                 <v-chip
                     :color="getColor(item.status)"
@@ -263,31 +263,34 @@ export default {
       this.previewImage = [];
       this.previewImageEng = [];
 
-      this.descriptionText = data.description,
-          this.descriptionTextEng = data.PostTrans[0].description,
-          this.postName = data.title,
-          this.postNameEng = data.PostTrans[0].title,
+      this.descriptionText = data.description;
+      this.descriptionTextEng = data.PostTrans && data.PostTrans.length > 0 ? data.PostTrans[0].description : '';
+      this.postName = data.title;
+      this.postNameEng = data.PostTrans && data.PostTrans.length > 0 ? data.PostTrans[0].title : '';
 
-          this.catePostValue = data.newsCategories,
+      this.catePostValue = data.newsCategories;
 
-          this.dateStart = new Date(data.startDate).toISOString().substr(0, 10),
-          this.dateEnd = new Date(data.endDate).toISOString().substr(0, 10)
+      if (data.startDate) {
+        this.dateStart = new Date(data.startDate).toISOString().substr(0, 10);
+      }
+      if (data.endDate) {
+        this.dateEnd = new Date(data.endDate).toISOString().substr(0, 10);
+      }
 
       console.log(data)
 
-      for (let i = 0; i < data.PostImages.length; i++) {
-
-        let url = data.PostImages[i].image;
-        this.previewImage.push(url);
-
-
+      if (data.PostImages) {
+        for (let i = 0; i < data.PostImages.length; i++) {
+          let url = data.PostImages[i].image;
+          this.previewImage.push(url);
+        }
       }
 
-      for (let i = 0; i < data.PostImageTrans.length; i++) {
-
-        let url = data.PostImageTrans[i].image;
-        this.previewImageEng.push(url);
-
+      if (data.PostImageTrans) {
+        for (let i = 0; i < data.PostImageTrans.length; i++) {
+          let url = data.PostImageTrans[i].image;
+          this.previewImageEng.push(url);
+        }
       }
 
     },

@@ -157,9 +157,9 @@
                       ></v-select>
 
 
-                      <vue-editor  v-show="isLaoTab" v-model="descriptionText" id="editor1" :editor-toolbar="customToolbar"  class="mb-10" ref="editor1" />
+                      <vue-editor v-if="isLaoTab" v-model="descriptionText" id="editor1" :editor-toolbar="customToolbar"  class="mb-10" ref="editor1" />
 
-                      <vue-editor v-show="isEngTab" v-model="descriptionTextEng" id="editor2" :editor-toolbar="customToolbar" class="mb-10" ref="editor2" />
+                      <vue-editor v-if="isEngTab" v-model="descriptionTextEng" id="editor2" :editor-toolbar="customToolbar" class="mb-10" ref="editor2" />
 
                       <div v-show="isLaoTab">
 

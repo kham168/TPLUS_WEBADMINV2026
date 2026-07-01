@@ -12,7 +12,7 @@ import Router from '@/router';
 class HttpRequest {
 
   //api 
-  constructor (url = process.env.VUE_APP_BASE_API_URL_TEST) {
+  constructor(url = process.env.VUE_APP_BASE_API_URL_TEST) {
     // this.axios = axios
     this.axiosInstance = axios.create({
       baseURL: url,
@@ -34,28 +34,28 @@ class HttpRequest {
     // Add a response interceptor
     this.axiosInstance.interceptors.response.use(function (response) {
       // Do something with response data
-       console.log("response status:"+response.status)
+      console.log("response status:" + response.status)
       console.log("response body:")
       console.log(response)
 
-       if(response.config.method=="post" && response.status == 200 || response.status == 201){
+      if (response.config.method == "post" && response.status == 200 || response.status == 201) {
         setTimeout(() => {
           Store.dispatch({
-          type:"action_Notifi_Success",
-          message:i18n.tc('Notification.saveDataSuccess')
-        })
-       }, 300);
+            type: "action_Notifi_Success",
+            message: i18n.tc('Notification.saveDataSuccess')
+          })
+        }, 300);
 
-        if(response.data.message=="Updated order banner successfully"){
+        if (response.data.message == "Updated order banner successfully") {
 
-        }else if(response.config.url == `/api/v1/admin/chat/${response.data.message.chat_room_id}`) {
+        } else if (response.config.url == `/api/v1/admin/chat/${response.data.message.chat_room_id}`) {
 
-        }else if(response.config.url == `admin/chat/${response.data.message.chat_room_id}`){
+        } else if (response.config.url == `admin/chat/${response.data.message.chat_room_id}`) {
 
         }
-        else if(response.data.message=="Updated new position topping successfully."){
+        else if (response.data.message == "Updated new position topping successfully.") {
 
-        }else if(response.data.message=="Package add sim types successfully"){
+        } else if (response.data.message == "Package add sim types successfully") {
 
         }
         else {
@@ -63,37 +63,37 @@ class HttpRequest {
 
         }
 
-      }else if(response.config.method=="put" && response.status == 200){
+      } else if (response.config.method == "put" && response.status == 200) {
 
         setTimeout(() => {
           Store.dispatch({
-          type:"action_Notifi_Success",
-          message:i18n.tc('Notification.editDataSuccess')
-        })
-       }, 300);
+            type: "action_Notifi_Success",
+            message: i18n.tc('Notification.editDataSuccess')
+          })
+        }, 300);
 
-        if(response.data.message==`Updated priority package type ID:${response.data.data.id} success`){
+        if (response.data.message == `Updated priority package type ID:${response.data.data.id} success`) {
 
-         }else{
+        } else {
           Router.back();
         }
 
-      }else if(response.config.method=="delete" && response.status == 200){
+      } else if (response.config.method == "delete" && response.status == 200) {
         setTimeout(() => {
           Store.dispatch({
-          type:"action_Notifi_Success",
-          message:i18n.tc('Notification.delDataSuccess')
-        })
-       }, 300);
-       Store.commit("modalDelete_State", false);
+            type: "action_Notifi_Success",
+            message: i18n.tc('Notification.delDataSuccess')
+          })
+        }, 300);
+        Store.commit("modalDelete_State", false);
       }
       return response
     }, function (error) {
       // Do something with response error
- 
+
       if (error.response) {
         console.log(error.response.data);
-        console.log("Error response status:"+error.response.status);
+        console.log("Error response status:" + error.response.status);
         console.log(error.response.headers);
       } else {
         console.log("Network error or CORS blocked:", error.message);
@@ -103,55 +103,55 @@ class HttpRequest {
     })
   }
 
-  setHeader (header) {
+  setHeader(header) {
     // this.axiosInstance.defaults.headers.common[header.key] = header.value
     this.axiosInstance.defaults.headers.common = header
-     this.axiosInstance.defaults.headers.common['Authorization'] = 'Bearer '+User.state.token
-      this.axiosInstance.defaults.headers.common['content_language'] = 'en'
+    this.axiosInstance.defaults.headers.common['Authorization'] = 'Bearer ' + User.state.token
+    this.axiosInstance.defaults.headers.common['content_language'] = 'en'
     this.axiosInstance.defaults.headers.common['Accept'] = 'application/json'
     this.axiosInstance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
   }
 
-  setHeaderBaseQuestion (header) {
+  setHeaderBaseQuestion(header) {
     // this.axiosInstance.defaults.headers.common[header.key] = header.value
     this.axiosInstance.defaults.headers.common = header
-    this.axiosInstance.defaults.headers.common['Authorization'] = 'Bearer '+User.state.token
+    this.axiosInstance.defaults.headers.common['Authorization'] = 'Bearer ' + User.state.token
     this.axiosInstance.defaults.headers.common['content_language'] = localStorage.getItem('lang') || 'la'
     this.axiosInstance.defaults.headers.common['Accept'] = 'application/json'
     this.axiosInstance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 
   }
 
-  get (methodName, data) {
+  get(methodName, data) {
     return this.axiosInstance.get(methodName, {
       params: data
     })
   }
 
-  create (methodName, data) {
+  create(methodName, data) {
     return this.axiosInstance.post(methodName, data)
   }
 
-  update (methodName, data) {
-    
+  update(methodName, data) {
+
     return this.axiosInstance.put(methodName, data)
   }
 
-  delete (methodName, param, data) {
+  delete(methodName, param, data) {
     return this.axiosInstance.delete(methodName, {
       params: param,
       data: data
     })
   }
 
-  request (type, url, data) {
+  request(type, url, data) {
     let promise = null
     switch (type) {
       case 'GET': promise = axios.get(url, { params: data }); break
       case 'POST': promise = axios.post(url, data); break
       case 'PUT': promise = axios.put(url, data); break
       case 'DELETE': promise = axios.delete(url, data); break
-      default : promise = axios.get(url, { params: data }); break
+      default: promise = axios.get(url, { params: data }); break
     }
     return promise
   }
