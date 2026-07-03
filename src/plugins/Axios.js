@@ -22,6 +22,13 @@ export const $axios = axios.create(
 $axios.interceptors.request.use(function (config) {
     config.params = config.params || {};
     config.params['lang'] = localStorage.getItem('lang') || 'la';
+    // Always attach the current token so every request is authenticated,
+    // regardless of navigation path or whether the page was reloaded.
+    const token = localStorage.getItem('access_token');
+    if (token) {
+        config.headers = config.headers || {};
+        config.headers['Authorization'] = 'Bearer ' + token;
+    }
     return config;
 }, function (error) {
     return Promise.reject(error);
